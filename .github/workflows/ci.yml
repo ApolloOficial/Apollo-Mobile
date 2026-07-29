@@ -1,0 +1,46 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    services:
+      postgres:
+        image: postgres:17.9
+        env:
+          POSTGRES_USER: apollo
+          POSTGRES_PASSWORD: apollo123
+          POSTGRES_DB: dbapollo
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7.0.0
+
+      - name: Setup JDK 21
+        uses: actions/setup-java@v5.4.0
+        with:
+          java-version: '21'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Build e testes
+        env:
+          DB_HOST: localhost
+          DB_PORT: 5432
+          DB_NAME: dbapollo
+          DB_USER: apollo
+          DB_PASSWORD: apollo123
+        run: mvn --batch-mode --update-snapshots verify
