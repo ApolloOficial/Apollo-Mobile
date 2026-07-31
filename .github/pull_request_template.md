@@ -12,36 +12,39 @@
 -
 -
 
-## API
+## Funcionalidade
 
 <!-- Preencha apenas se aplicável. -->
 
-- Endpoint(s):
-- Entidade(s):
+- Tela(s):
+- Fluxo(s):
 - Regra(s) de negócio:
 
 ### Camadas alteradas
 
 > Marque os itens alterados substituindo `⬜` por `✅`.
 
-- ⬜ Controller
-- ⬜ Service
+- ⬜ UI (Compose/XML)
+- ⬜ ViewModel
+- ⬜ Use Case
 - ⬜ Repository
-- ⬜ Entity
-- ⬜ DTO
-- ⬜ Exception Handler
+- ⬜ Data Source (Local/Remoto)
+- ⬜ Model / DTO
+- ⬜ Navegação
+- ⬜ Injeção de Dependência
 - ⬜ Configuração
 
-## Banco e Integrações
+## Recursos e Integrações
 
 > Marque apenas o que foi alterado substituindo `⬜` por `✅`.
 
-- ⬜ Entidades JPA / PostgreSQL
-- ⬜ Migration SQL
-- ⬜ Procedure / Function
-- ⬜ Swagger/OpenAPI
-- ⬜ Spring Security
-- ⬜ NoSQL
+- ⬜ Consumo de API
+- ⬜ Banco local (Room/SQLite)
+- ⬜ Firebase
+- ⬜ Autenticação
+- ⬜ Permissões do Android
+- ⬜ Hardware do dispositivo (Câmera, GPS, etc.)
+- ⬜ Notificações
 - ⬜ Não se aplica
 
 ## Testes
@@ -49,7 +52,7 @@
 > Marque o que foi validado substituindo `⬜` por `✅`.
 
 - ⬜ Testes unitários
-- ⬜ Testes de integração
+- ⬜ Testes instrumentados
 - ⬜ Teste manual
 - ⬜ Cenários de sucesso e erro
 - ⬜ Não se aplica
@@ -58,10 +61,11 @@
 
 > Marque os impactos aplicáveis substituindo `⬜` por `✅`.
 
-- ⬜ Front-end
-- ⬜ Banco de dados
-- ⬜ Documentação (Swagger/OpenAPI)
-- ⬜ Infraestrutura/Configuração
+- ⬜ Interface do usuário
+- ⬜ Navegação
+- ⬜ Persistência de dados
+- ⬜ Integração com API
+- ⬜ Performance
 - ⬜ Não há impacto externo
 
 ## Checklist
@@ -69,10 +73,14 @@
 > Marque os itens concluídos substituindo `⬜` por `✅`.
 
 - ⬜ Código segue a arquitetura do projeto
-- ⬜ Entradas da API possuem validação adequada
-- ⬜ Exceções retornam respostas HTTP apropriadas
-- ⬜ Documentação (Swagger/OpenAPI) atualizada, quando necessário
-- ⬜ Não há secrets, credenciais ou dados sensíveis versionados
+- ⬜ Componentes reutilizáveis quando aplicável
+- ⬜ Tratamento de erros implementado
+- ⬜ Permissões tratadas corretamente (quando aplicável)
+- ⬜ Não há credenciais, tokens ou dados sensíveis versionados
+
+## Evidências
+
+<!-- Inclua prints, GIFs ou vídeos, quando houver alterações visuais. -->
 
 ## Observações
 
