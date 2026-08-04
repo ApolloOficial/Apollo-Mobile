@@ -1,5 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+
+    <!-- Cores do Apollo -->
+
+    <!-- Neutros ou disable -->
+    <color name="neutral_black">#1C1C1C</color>
+    <color name="neutral_white">#FFFEFC</color>
+    <color name="neutral_gray">#716764</color>
+    <color name="disable_gray">#B3D1CEC1</color>
+
+    <!-- Primárias -->
+    <color name="primary_one">#FCD83A</color>
+    <color name="primary_two">#FEF7C3</color>
+    <color name="primary_three">#F9C516</color>
+
+    <!-- Secundárias -->
+    <color name="secondary_one">#FF672C</color>
+    <color name="secondary_two">#FFC8A8</color>
+    <color name="secondary_three">#FE4A11</color>
+
+    <!-- Sucesso -->
+    <color name="sucess_one">#10B981</color>
+    <color name="sucess_two">#6EE7B7</color>
+    <color name="sucess_three">#059669</color>
+
+    <!-- Erro -->
+    <color name="error_one">#DC2626</color>
+    <color name="error_two">#F87171</color>
+    <color name="error_three">#B91C1C</color>
+
+    <!-- Alerta -->
+    <color name="alert_one">#F59E0B</color>
+    <color name="alert_two">#FCD34D</color>
+    <color name="alert_three">#D97706</color>
+
+    <!-- Informativo -->
+    <color name="info_one">#0EA5E9</color>
+    <color name="info_two">#7DD3FC</color>
+    <color name="info_three">#0284C7</color>
+
 </resources>
