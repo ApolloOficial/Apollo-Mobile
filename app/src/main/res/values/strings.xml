@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Apollo-Mobile</string>
+    <string name="txt_login"><u>Faça login</u></string>
 </resources>
