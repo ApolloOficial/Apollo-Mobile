@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ===== DISPLAY (display1 fica igual) ===== -->
+
+    <style name="apollo_display2" parent="apollo_display1" />
+
+    <!-- ===== BODY (body1 fica igual) ===== -->
+
+    <style name="apollo_body2" parent="apollo_body1" />
+
+    <style name="apollo_body3" parent="apollo_body2" />
+
+    <style name="apollo_body4" parent="apollo_body3" />
+
+    <style name="apollo_body5" parent="apollo_body4" />
+
+    <!-- ===== LABEL (label1 fica igual) ===== -->
+
+    <style name="apollo_label2" parent="apollo_label1" />
+
+    <style name="apollo_label3" parent="apollo_label2" />
+
+    <style name="apollo_label4" parent="apollo_label3" />
+
+    <style name="apollo_label5" parent="apollo_label4" />
+
+    <style name="apollo_label6" parent="apollo_label5" />
+
+    <!-- ===== CAPTION -> BODY5 ===== -->
+
+    <style name="apollo_caption" parent="apollo_body5" />
+
+</resources>
