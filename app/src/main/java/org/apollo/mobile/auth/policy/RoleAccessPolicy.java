@@ -14,7 +14,7 @@ public final class RoleAccessPolicy {
 
         switch (destination) {
             case TECHNICIAN_HOME:
-                return role == UserRole.TECHNICIAN || role == UserRole.ADMINISTRATOR;
+                return role == UserRole.TECHNICIAN;
             default:
                 return false;
         }
