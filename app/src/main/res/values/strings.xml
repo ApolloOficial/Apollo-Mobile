@@ -1,4 +1,27 @@
 <resources>
     <string name="app_name">Apollo-Mobile</string>
     <string name="txt_login"><u>Faça login</u></string>
+
+    <string name="login_success">Login realizado com sucesso.</string>
+    <string name="login_required_fields">Informe e-mail e senha.</string>
+    <string name="login_invalid_credentials">E-mail ou senha inválidos.</string>
+    <string name="login_timeout">A solicitação demorou demais. Tente novamente.</string>
+    <string name="login_network_error">Não foi possível conectar ao servidor.</string>
+    <string name="login_unavailable">Não foi possível iniciar a sessão agora.</string>
+
+    <string name="recovery_identifier_required">
+    Informe o e-mail ou telefone para continuar.
+</string>
+
+    <string name="recovery_password_invalid">
+    A senha deve ter pelo menos 8 caracteres e as duas senhas precisam ser iguais.
+</string>
+
+    <string name="recovery_password_success">
+    Senha validada. A redefinição real será integrada ao backend.
+</string>
+
+    <string name="recovery_password_mismatch">
+    As senhas não coincidem. Por favor, tente novamente.
+    </string>
 </resources>

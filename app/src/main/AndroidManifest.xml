@@ -20,6 +20,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".view.auth.LoginActivity" />
+        <activity android:name=".view.auth.ForgotPasswordStartActivity" />
+        <activity android:name=".view.auth.ForgotPasswordMethodActivity" />
+        <activity android:name=".view.auth.OtpVerificationActivity" />
+        <activity android:name=".view.auth.CreateNewPasswordActivity" />
+        <activity android:name=".view.auth.WelcomeActivity" />
     </application>
 
 </manifest>
