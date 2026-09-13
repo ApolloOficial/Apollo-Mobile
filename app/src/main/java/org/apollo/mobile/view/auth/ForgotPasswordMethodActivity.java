@@ -2,6 +2,7 @@ package org.apollo.mobile.view.auth;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.CheckBox;
 import android.widget.RadioButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,7 +20,7 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
 
         String identifier = getIntent().getStringExtra(ForgotPasswordStartActivity.EXTRA_IDENTIFIER);
         if (identifier != null && identifier.contains("@")) {
-            ((RadioButton) findViewById(R.id.rbEmail)).setText("Enviar via E-mail\n" + identifier);
+            ((CheckBox) findViewById(R.id.rbEmail)).setText("Enviar via E-mail\n" + identifier);
         }
         findViewById(R.id.btnContinue).setOnClickListener(view -> {
             Intent intent = new Intent(this, OtpVerificationActivity.class)

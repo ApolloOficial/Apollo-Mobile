@@ -13,54 +13,60 @@
 
     <ImageView
         android:id="@+id/ivLogo"
-        android:layout_width="100dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_width="@dimen/logo_width"
+        android:layout_height="@dimen/logo_height"
+        android:layout_marginStart="@dimen/logo_margin_start"
+        android:layout_marginTop="@dimen/logo_margin_top"
         android:src="@drawable/logo_white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_card_white"
-        android:padding="24dp"
+        android:paddingStart="@dimen/card_padding_horizontal"
+        android:paddingEnd="@dimen/card_padding_horizontal"
+        android:paddingTop="@dimen/card_padding_top"
+        android:paddingBottom="@dimen/card_padding_bottom"
         app:layout_constraintBottom_toBottomOf="parent">
 
         <TextView
             android:id="@+id/tvTitle"
+            style="@style/apollo_h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
             android:text="Informe o código\nde segurança"
             android:textColor="@color/neutral_black"
-            android:textSize="20sp"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvSubtitle"
+            style="@style/apollo_h5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="carlosdev@institucional.com"
+            android:layout_marginTop="24dp"
+            android:gravity="center"
+            android:text="(85) 98765 – 4321"
             android:textColor="@color/neutral_black"
-            android:textSize="14sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
         <TextView
-            android:id="@+id/tvError"
+            android:id="@+id/tvChangeMethod"
+            style="@style/apollo_label4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Código inválido, tente novamente"
-            android:textColor="@color/error_one"
-            android:textSize="12sp"
-            android:visibility="gone"
+            android:layout_marginTop="8dp"
+            android:text="Alterar método de contato"
+            android:textColor="@color/secondary_three"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
 
@@ -71,85 +77,106 @@
             android:layout_marginTop="24dp"
             android:gravity="center"
             android:orientation="horizontal"
-            app:layout_constraintTop_toBottomOf="@id/tvError">
+            app:layout_constraintTop_toBottomOf="@id/tvChangeMethod">
 
             <EditText
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/otp_box_bg"
                 android:gravity="center"
+                android:hint="–"
                 android:inputType="number"
                 android:maxLength="1"
+                android:textColor="@color/neutral_black"
+                android:textColorHint="@color/disable_gray"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/otp_box_bg"
                 android:gravity="center"
+                android:hint="–"
                 android:inputType="number"
                 android:maxLength="1"
+                android:textColor="@color/neutral_black"
+                android:textColorHint="@color/disable_gray"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:layout_width="60dp"
-                android:layout_height="60dp"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
                 android:layout_marginEnd="8dp"
-                android:background="@drawable/edittext_bg"
+                android:background="@drawable/otp_box_bg"
                 android:gravity="center"
+                android:hint="–"
                 android:inputType="number"
                 android:maxLength="1"
+                android:textColor="@color/neutral_black"
+                android:textColorHint="@color/disable_gray"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
             <EditText
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:background="@drawable/edittext_bg"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:background="@drawable/otp_box_bg"
                 android:gravity="center"
+                android:hint="–"
                 android:inputType="number"
                 android:maxLength="1"
+                android:textColor="@color/neutral_black"
+                android:textColorHint="@color/disable_gray"
                 android:textSize="24sp"
                 android:textStyle="bold" />
         </LinearLayout>
 
         <TextView
             android:id="@+id/tvResend"
+            style="@style/apollo_body4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Enviar novo código em 00:59 seg"
+            android:text="Reenviar código em 30 segundos"
             android:textColor="@color/neutral_gray"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/llOtpContainer" />
 
         <Button
             android:id="@+id/btnContinue"
+            style="@style/apollo_label2"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
+            android:layout_height="@dimen/button_height"
             android:layout_marginTop="24dp"
-            android:backgroundTint="@color/secondary_one"
+            android:backgroundTint="@color/secondary_three"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Continuar"
             android:textAllCaps="false"
             android:textColor="@color/neutral_white"
-            app:cornerRadius="12dp"
+            app:cornerRadius="@dimen/button_corner_radius"
             app:layout_constraintTop_toBottomOf="@id/tvResend" />
 
         <Button
             android:id="@+id/btnBack"
-            style="@style/Widget.Material3.Button.TextButton"
+            style="@style/apollo_label2"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="@dimen/button_height"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="8dp"
+            android:background="@drawable/btn_outlined"
+            android:insetTop="0dp"
+            android:insetBottom="0dp"
             android:text="Voltar"
+            android:textAllCaps="false"
             android:textColor="@color/neutral_black"
+            app:backgroundTint="@null"
+            app:cornerRadius="@dimen/button_corner_radius"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/btnContinue" />
 
