@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/ivBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bg_login" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="@dimen/logo_width"
+        android:layout_height="@dimen/logo_height"
+        android:layout_marginStart="@dimen/logo_margin_start"
+        android:layout_marginTop="@dimen/logo_margin_top"
+        android:src="@drawable/logo_white"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cardContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_card_white"
+        android:paddingStart="@dimen/card_padding_horizontal"
+        android:paddingEnd="@dimen/card_padding_horizontal"
+        android:paddingTop="64dp"
+        android:paddingBottom="48dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <ImageView
+            android:id="@+id/ivDeniedIllustration"
+            android:layout_width="220dp"
+            android:layout_height="180dp"
+            android:src="@drawable/denied_image"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvTitle"
+            style="@style/apollo_h4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:text="Falta pouco para começar"
+            android:textColor="@color/neutral_black"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivDeniedIllustration" />
+
+        <TextView
+            android:id="@+id/tvDescription"
+            style="@style/apollo_body2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:gravity="center"
+            android:text="Sua empresa já usa o Apollo?\nPeça ao administrador para cadastrar seu acesso."
+            android:textColor="@color/neutral_black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="64dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+            <TextView
+                style="@style/apollo_label4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sua empresa ainda não usa o Apollo? "
+                android:textColor="@color/neutral_black" />
+
+            <TextView
+                style="@style/apollo_label4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fale com a gente"
+                android:textColor="@color/secondary_three"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
