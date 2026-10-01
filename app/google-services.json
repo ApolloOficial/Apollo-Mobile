@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "1039558118662",
+    "project_id": "apollo-mobile-192b4",
+    "storage_bucket": "apollo-mobile-192b4.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039558118662:android:3d7397cee41e214595a287",
+        "android_client_info": {
+          "package_name": "org.apollo.mobile"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLks_g3csk2H-vd4YZkW9V-CsR7jZUBFg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
