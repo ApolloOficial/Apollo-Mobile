@@ -2,9 +2,7 @@ package org.apollo.mobile.auth.gateway;
 
 import java.io.Serializable;
 
-/** Forma de receber o código: method = "EMAIL" ou "SMS"; destination já vem mascarado pela API. */
 public final class OtpMethod implements Serializable {
-
     public static final String EMAIL = "EMAIL";
     public static final String SMS = "SMS";
 

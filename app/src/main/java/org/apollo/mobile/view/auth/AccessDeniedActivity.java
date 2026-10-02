@@ -8,9 +8,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import org.apollo.mobile.R;
 
-/** Tela "Falta pouco para começar": a conta existe mas o perfil não usa o app do técnico. */
 public final class AccessDeniedActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

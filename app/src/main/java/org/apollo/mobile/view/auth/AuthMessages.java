@@ -5,9 +5,7 @@ import androidx.annotation.StringRes;
 import org.apollo.mobile.R;
 import org.apollo.mobile.auth.error.AuthError;
 
-/** Texto de cada erro das telas de código e recuperação. */
 final class AuthMessages {
-
     private AuthMessages() {
     }
 

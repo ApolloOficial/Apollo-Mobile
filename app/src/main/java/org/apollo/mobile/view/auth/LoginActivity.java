@@ -19,7 +19,6 @@ import org.apollo.mobile.session.UserSession;
 import java.util.ArrayList;
 
 public final class LoginActivity extends AppCompatActivity {
-
     private EditText emailInput;
     private EditText passwordInput;
     private TextView emailError;

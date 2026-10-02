@@ -8,7 +8,6 @@ import org.apollo.mobile.auth.gateway.AuthenticationGateway;
 import org.apollo.mobile.auth.gateway.RetrofitAuthenticationGateway;
 
 public final class SessionManagerFactory {
-
     private SessionManagerFactory() {
     }
 
@@ -17,7 +16,6 @@ public final class SessionManagerFactory {
         return new SessionManager(createGateway(context), sessionStorage, new JwtClaimsParser());
     }
 
-    /** Gateway para os fluxos que não abrem sessão (recuperação de senha). */
     public static AuthenticationGateway createGateway(Context context) {
         return new RetrofitAuthenticationGateway(AuthApiClient.createAuthService(context));
     }

@@ -1,8 +1,6 @@
 package org.apollo.mobile.auth.policy;
 
-/** Mesma regra da API: 8 a 72 caracteres, com maiúscula, minúscula, número e caractere especial. */
 public final class PasswordPolicy {
-
     private static final int MIN_LENGTH = 8;
     private static final int MAX_LENGTH = 72;
 

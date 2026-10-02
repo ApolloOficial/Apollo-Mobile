@@ -26,12 +26,7 @@ import org.apollo.mobile.session.UserSession;
 
 import java.util.ArrayList;
 
-/**
- * Código de 4 dígitos. MODE_LOGIN: confere o código e abre a sessão.
- * MODE_RECOVERY: confere o código e segue para criar a nova senha.
- */
 public final class OtpVerificationActivity extends AppCompatActivity {
-
     private static final int CODE_LENGTH = 4;
 
     private final EditText[] boxes = new EditText[CODE_LENGTH];
@@ -151,7 +146,6 @@ public final class OtpVerificationActivity extends AppCompatActivity {
 
                 @Override
                 public void onOtpRequired(String newChallengeId, ArrayList<OtpMethod> methods) {
-                    // Não acontece na conferência do código.
                     continueButton.setEnabled(true);
                 }
 
@@ -194,7 +188,6 @@ public final class OtpVerificationActivity extends AppCompatActivity {
             case OTP_EXPIRED:
             case OTP_TOO_MANY_ATTEMPTS:
             case LOCKED:
-                // O desafio acabou: volta ao login para recomeçar.
                 Intent intent = new Intent(this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(intent);

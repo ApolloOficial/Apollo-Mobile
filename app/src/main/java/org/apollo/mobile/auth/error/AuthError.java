@@ -1,7 +1,6 @@
 package org.apollo.mobile.auth.error;
 
 public final class AuthError {
-
     public enum Type {
         VALIDATION,
         INVALID_CREDENTIALS,

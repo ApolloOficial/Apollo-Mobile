@@ -15,7 +15,6 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class AuthApiClient {
-
     private static final long NETWORK_TIMEOUT_SECONDS = 60;
 
     private AuthApiClient() {
@@ -57,7 +56,6 @@ public final class AuthApiClient {
                 .create(AuthApiService.class);
     }
 
-    /** Nome do aparelho para a tela de segurança; só ASCII porque cabeçalho HTTP não aceita acento. */
     private static String deviceName() {
         String name = (Build.MANUFACTURER + " " + Build.MODEL).replaceAll("[^A-Za-z0-9 ._-]", "").trim();
         if (name.isEmpty()) {

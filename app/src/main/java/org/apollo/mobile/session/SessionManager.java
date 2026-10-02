@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.function.LongSupplier;
 
 public final class SessionManager {
-
     private final AuthenticationGateway authenticationGateway;
     private final SessionStorage sessionStorage;
     private final JwtClaimsParser jwtClaimsParser;
@@ -66,7 +65,6 @@ public final class SessionManager {
         });
     }
 
-    /** Segundo passo do login: confere o código e, se estiver certo, abre a sessão. */
     public void completeOtpLogin(String challengeId, String code, LoginCallback callback) {
         authenticationGateway.verifyOtp(challengeId, code, new AuthenticationGateway.Callback<OtpVerifyResponse>() {
             @Override
@@ -106,7 +104,6 @@ public final class SessionManager {
 
         try {
             JwtClaimsParser.JwtClaims claims = jwtClaimsParser.parse(token);
-            // A API publicada hoje não devolve "role" no corpo do login; o cargo vem no token.
             String effectiveRole = role != null && !role.trim().isEmpty() ? role : claims.getRole();
             if (effectiveRole == null || effectiveRole.trim().isEmpty()) {
                 callback.onFailure(new AuthError(AuthError.Type.INVALID_RESPONSE));
@@ -136,7 +133,6 @@ public final class SessionManager {
     public interface LoginCallback {
         void onSuccess(UserSession session);
 
-        /** A conta exige o código de segurança: abra a tela de método/código com estes dados. */
         void onOtpRequired(String challengeId, ArrayList<OtpMethod> methods);
 
         void onFailure(AuthError error);

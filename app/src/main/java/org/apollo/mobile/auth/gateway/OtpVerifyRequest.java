@@ -1,7 +1,6 @@
 package org.apollo.mobile.auth.gateway;
 
 public final class OtpVerifyRequest {
-
     private final String challengeId;
     private final String code;
 
