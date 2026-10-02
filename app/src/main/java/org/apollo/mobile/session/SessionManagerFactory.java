@@ -14,9 +14,11 @@ public final class SessionManagerFactory {
 
     public static SessionManager create(Context context) {
         SessionStorage sessionStorage = new EncryptedSessionStorage(context);
-        AuthenticationGateway authenticationGateway = new RetrofitAuthenticationGateway(
-                AuthApiClient.createAuthService(context)
-        );
-        return new SessionManager(authenticationGateway, sessionStorage, new JwtClaimsParser());
+        return new SessionManager(createGateway(context), sessionStorage, new JwtClaimsParser());
+    }
+
+    /** Gateway para os fluxos que não abrem sessão (recuperação de senha). */
+    public static AuthenticationGateway createGateway(Context context) {
+        return new RetrofitAuthenticationGateway(AuthApiClient.createAuthService(context));
     }
 }
