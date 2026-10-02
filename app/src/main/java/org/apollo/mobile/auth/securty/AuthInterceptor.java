@@ -11,7 +11,9 @@ import okhttp3.Response;
 
 public final class AuthInterceptor implements Interceptor {
 
-    private static final String LOGIN_PATH = "/api/v1/auth/login";
+    // Rotas públicas (login, código, recuperação): nunca levam token nem limpam a sessão.
+    private static final String PUBLIC_PATH = "/api/v1/mobile/auth/";
+    private static final String LEGACY_LOGIN_PATH = "/api/v1/auth/login";
 
     private final SessionStorage sessionStorage;
 
@@ -22,7 +24,8 @@ public final class AuthInterceptor implements Interceptor {
     @Override
     public Response intercept(Interceptor.Chain chain) throws IOException {
         Request request = chain.request();
-        if (LOGIN_PATH.equals(request.url().encodedPath())) {
+        String path = request.url().encodedPath();
+        if (path.contains(PUBLIC_PATH) || path.endsWith(LEGACY_LOGIN_PATH)) {
             return chain.proceed(request);
         }
 
