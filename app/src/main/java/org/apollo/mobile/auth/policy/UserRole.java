@@ -18,12 +18,15 @@ public enum UserRole {
     }
 
     public static UserRole fromApiValue(String value) {
+        if (value == null) {
+            return UNKNOWN;
+        }
         String normalized = Normalizer.normalize(value, Normalizer.Form.NFD)
                 .replaceAll("\\p{M}", "")
                 .trim()
                 .toLowerCase(Locale.ROOT);
 
-        if ("tecnico".equals(normalized)) {
+        if ("tecnico".equals(normalized) || "technician".equals(normalized)) {
             return TECHNICIAN;
         }
         return UNKNOWN;

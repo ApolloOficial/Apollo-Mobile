@@ -30,7 +30,9 @@ public final class JwtClaimsParser {
             }
             long expirationInSeconds = claims.get("exp").getAsLong();
             long expirationInMillis = Math.multiplyExact(expirationInSeconds, 1_000L);
-            return new JwtClaims(subject, expirationInMillis);
+            String role = claims.has("role") && !claims.get("role").isJsonNull()
+                    ? claims.get("role").getAsString() : null;
+            return new JwtClaims(subject, expirationInMillis, role);
         } catch (RuntimeException exception) {
             throw new IllegalArgumentException("Payload do Token é inválido", exception);
         }
@@ -40,10 +42,17 @@ public final class JwtClaimsParser {
 
         private final String subject;
         private final long expiresAtEpochMillis;
+        private final String role;
 
-        private JwtClaims(String subject, long expiresAtEpochMillis) {
+        private JwtClaims(String subject, long expiresAtEpochMillis, String role) {
             this.subject = subject;
             this.expiresAtEpochMillis = expiresAtEpochMillis;
+            this.role = role;
+        }
+
+        /** Cargo gravado no token (ex.: TECHNICIAN); null se o token não trouxer. */
+        public String getRole() {
+            return role;
         }
 
         public String getSubject() {

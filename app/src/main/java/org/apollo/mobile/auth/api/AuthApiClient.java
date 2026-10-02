@@ -1,6 +1,7 @@
 package org.apollo.mobile.auth.api;
 
 import android.content.Context;
+import android.os.Build;
 
 import org.apollo.mobile.BuildConfig;
 import org.apollo.mobile.auth.securty.AuthInterceptor;
@@ -15,7 +16,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public final class AuthApiClient {
 
-    private static final long NETWORK_TIMEOUT_SECONDS = 20;
+    private static final long NETWORK_TIMEOUT_SECONDS = 60;
 
     private AuthApiClient() {
     }
@@ -41,6 +42,9 @@ public final class AuthApiClient {
                 .connectTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .readTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
                 .writeTimeout(NETWORK_TIMEOUT_SECONDS, TimeUnit.SECONDS)
+                .addInterceptor(chain -> chain.proceed(chain.request().newBuilder()
+                        .header("X-Device-Name", deviceName())
+                        .build()))
                 .addInterceptor(new AuthInterceptor(new EncryptedSessionStorage(context)))
                 .addInterceptor(loggingInterceptor)
                 .build();
@@ -51,5 +55,14 @@ public final class AuthApiClient {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build()
                 .create(AuthApiService.class);
+    }
+
+    /** Nome do aparelho para a tela de segurança; só ASCII porque cabeçalho HTTP não aceita acento. */
+    private static String deviceName() {
+        String name = (Build.MANUFACTURER + " " + Build.MODEL).replaceAll("[^A-Za-z0-9 ._-]", "").trim();
+        if (name.isEmpty()) {
+            name = "Android";
+        }
+        return name.length() > 60 ? name.substring(0, 60) : name;
     }
 }
