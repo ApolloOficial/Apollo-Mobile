@@ -3,13 +3,7 @@ package org.apollo.mobile.auth.gateway;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Resposta de POST /api/v1/mobile/auth/login.
- * status = AUTHENTICATED (token, tokenType e role preenchidos) ou
- * OTP_REQUIRED (challengeId e methods preenchidos; falta confirmar o código).
- */
 public final class LoginResponse {
-
     private static final String STATUS_OTP_REQUIRED = "OTP_REQUIRED";
 
     private String status;

@@ -11,7 +11,6 @@ import retrofit2.Call;
 import retrofit2.Response;
 
 public final class RetrofitAuthenticationGateway implements AuthenticationGateway {
-
     private static final String TAG = "ApolloAuth";
 
     private final AuthApiService authApiService;
@@ -77,7 +76,6 @@ public final class RetrofitAuthenticationGateway implements AuthenticationGatewa
 
                 @Override
                 public void onFailure(Call<T> call, Throwable throwable) {
-                    // Sem isso, "sem rede", "resposta fora do formato" e "sem permissão" parecem iguais na tela.
                     Log.w(TAG, "Falha na chamada " + call.request().url().encodedPath(), throwable);
                     AuthError.Type type = throwable instanceof SocketTimeoutException
                             ? AuthError.Type.TIMEOUT
@@ -105,7 +103,6 @@ public final class RetrofitAuthenticationGateway implements AuthenticationGatewa
             return new AuthError(AuthError.Type.OTP_RESEND_TOO_SOON);
         }
         if (statusCode == 404 || statusCode == 410) {
-            // Desafio inexistente ou vencido: o fluxo precisa recomeçar.
             return new AuthError(AuthError.Type.OTP_EXPIRED);
         }
         return mapGenericError(statusCode);

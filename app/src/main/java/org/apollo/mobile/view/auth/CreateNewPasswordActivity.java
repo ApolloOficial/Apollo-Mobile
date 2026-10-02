@@ -15,7 +15,6 @@ import org.apollo.mobile.auth.policy.PasswordPolicy;
 import org.apollo.mobile.session.SessionManagerFactory;
 
 public final class CreateNewPasswordActivity extends AppCompatActivity {
-
     private View resetButton;
     private String resetToken;
     private AuthenticationGateway gateway;

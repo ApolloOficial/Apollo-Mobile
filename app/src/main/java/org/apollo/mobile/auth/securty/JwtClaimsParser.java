@@ -7,7 +7,6 @@ import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 
 public final class JwtClaimsParser {
-
     public JwtClaims parse(String token) {
         if (token == null) {
             throw new IllegalArgumentException("Token é obrigatório");
@@ -39,7 +38,6 @@ public final class JwtClaimsParser {
     }
 
     public static final class JwtClaims {
-
         private final String subject;
         private final long expiresAtEpochMillis;
         private final String role;
@@ -50,7 +48,6 @@ public final class JwtClaimsParser {
             this.role = role;
         }
 
-        /** Cargo gravado no token (ex.: TECHNICIAN); null se o token não trouxer. */
         public String getRole() {
             return role;
         }

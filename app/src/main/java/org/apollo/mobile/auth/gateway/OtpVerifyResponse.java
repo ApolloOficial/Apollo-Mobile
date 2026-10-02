@@ -1,11 +1,6 @@
 package org.apollo.mobile.auth.gateway;
 
-/**
- * Resposta de POST /otp/verify. No login vem token/tokenType/role;
- * na recuperação de senha vem resetToken.
- */
 public final class OtpVerifyResponse {
-
     private String token;
     private String tokenType;
     private String role;

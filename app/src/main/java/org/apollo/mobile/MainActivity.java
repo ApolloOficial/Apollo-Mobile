@@ -5,13 +5,16 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 
+import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
 
 import org.apollo.mobile.auth.api.ServerWarmUp;
 import org.apollo.mobile.view.auth.WelcomeActivity;
 
 public class MainActivity extends AppCompatActivity {
-
     private static final long SPLASH_DURATION_MS = 1200L;
 
     private final Handler handler = new Handler(Looper.getMainLooper());

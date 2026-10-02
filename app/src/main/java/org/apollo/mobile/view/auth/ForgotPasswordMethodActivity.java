@@ -19,12 +19,7 @@ import org.apollo.mobile.session.SessionManagerFactory;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Escolha de onde receber o código (e-mail ou SMS). Serve ao login com 2FA
- * e à recuperação de senha; o extra MODE diz qual dos dois é.
- */
 public final class ForgotPasswordMethodActivity extends AppCompatActivity {
-
     private CheckBox emailCheck;
     private CheckBox smsCheck;
     private View continueButton;
@@ -49,7 +44,6 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
 
         bindMethods(readMethods());
 
-        // Escolha única: marcar um desmarca o outro.
         emailCheck.setOnCheckedChangeListener((button, checked) -> {
             if (checked) {
                 smsCheck.setChecked(false);
@@ -89,7 +83,6 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
             ((TextView) findViewById(R.id.tvSmsDestination)).setText(smsMethod.getDestination());
         }
 
-        // Só uma opção disponível: já vem marcada.
         if (emailMethod != null && smsMethod == null) {
             emailCheck.setChecked(true);
         } else if (smsMethod != null && emailMethod == null) {

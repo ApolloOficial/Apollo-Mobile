@@ -10,8 +10,6 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public final class AuthInterceptor implements Interceptor {
-
-    // Rotas públicas (login, código, recuperação): nunca levam token nem limpam a sessão.
     private static final String PUBLIC_PATH = "/api/v1/mobile/auth/";
     private static final String LEGACY_LOGIN_PATH = "/api/v1/auth/login";
 

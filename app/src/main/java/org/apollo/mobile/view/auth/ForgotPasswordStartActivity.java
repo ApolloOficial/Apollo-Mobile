@@ -19,7 +19,6 @@ import org.apollo.mobile.session.SessionManagerFactory;
 import java.util.ArrayList;
 
 public final class ForgotPasswordStartActivity extends AppCompatActivity {
-
     public static final String EXTRA_IDENTIFIER = "identifier";
 
     private EditText identifierInput;
@@ -61,7 +60,6 @@ public final class ForgotPasswordStartActivity extends AppCompatActivity {
             public void onSuccess(RecoveryResponse response) {
                 continueButton.setEnabled(true);
                 if (response.getChallengeId() == null || response.getMethods().isEmpty()) {
-                    // A API responde igual para e-mail desconhecido: sem métodos, não há para onde enviar.
                     showError(R.string.recovery_no_methods);
                     return;
                 }

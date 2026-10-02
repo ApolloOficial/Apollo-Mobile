@@ -10,22 +10,16 @@ import org.apollo.mobile.auth.policy.RoleAccessPolicy;
 import org.apollo.mobile.session.SessionManager;
 import org.apollo.mobile.session.UserSession;
 
-/** Decide para onde ir depois que a sessão foi aberta (com ou sem código de segurança). */
 final class PostLoginRouter {
-
     private PostLoginRouter() {
     }
 
     static void route(Activity activity, SessionManager sessionManager, UserSession session) {
         if (RoleAccessPolicy.canAccess(session.getRole(), AppDestination.TECHNICIAN_HOME)) {
-            /*
-             * A TechnicianHomeActivity ainda não existe. Quando ela entrar, é só abri-la aqui.
-             */
             Toast.makeText(activity, R.string.login_success, Toast.LENGTH_SHORT).show();
             return;
         }
 
-        // Perfil sem acesso ao app (ex.: gerente): não deixa token guardado.
         sessionManager.logout();
         Intent intent = new Intent(activity, AccessDeniedActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK

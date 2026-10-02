@@ -10,13 +10,7 @@ import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
 
-/**
- * Acorda a API assim que o app abre. Em hospedagem gratuita (Render) o servidor dorme e a primeira
- * chamada pode levar mais de 30 s; disparando um ping na abertura, ele já está de pé quando o usuário
- * chega ao login. O resultado é ignorado de propósito.
- */
 public final class ServerWarmUp {
-
     private static final long TIMEOUT_SECONDS = 90;
 
     private ServerWarmUp() {
@@ -38,7 +32,6 @@ public final class ServerWarmUp {
             client.newCall(request).enqueue(new Callback() {
                 @Override
                 public void onFailure(Call call, java.io.IOException e) {
-                    // Ignorado: é só para acordar o servidor.
                 }
 
                 @Override
@@ -47,7 +40,6 @@ public final class ServerWarmUp {
                 }
             });
         } catch (RuntimeException ignored) {
-            // URL inválida etc.: o login mostrará o erro de verdade.
         }
     }
 }

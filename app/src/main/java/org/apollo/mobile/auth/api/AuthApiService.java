@@ -15,9 +15,6 @@ import retrofit2.http.Body;
 import retrofit2.http.POST;
 
 public interface AuthApiService {
-
-    // Compatível com a API publicada hoje (main). Quando o módulo mobile do back entrar,
-    // trocar para "api/v1/mobile/auth/login" (traz 2FA e bloqueio de conta).
     @POST("api/v1/auth/login")
     Call<LoginResponse> login(@Body LoginRequest request);
 
