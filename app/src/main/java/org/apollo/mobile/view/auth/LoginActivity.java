@@ -3,17 +3,20 @@ package org.apollo.mobile.view.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.apollo.mobile.R;
 import org.apollo.mobile.auth.error.AuthError;
+import org.apollo.mobile.auth.gateway.OtpMethod;
 import org.apollo.mobile.session.SessionManager;
 import org.apollo.mobile.session.SessionManagerFactory;
 import org.apollo.mobile.session.UserSession;
+
+import java.util.ArrayList;
 
 public final class LoginActivity extends AppCompatActivity {
 
@@ -21,7 +24,9 @@ public final class LoginActivity extends AppCompatActivity {
     private EditText passwordInput;
     private TextView emailError;
     private TextView passwordError;
-    private View loginButton;
+    private Button loginButton;
+    private TextView loginStatus;
+    private boolean loading;
     private SessionManager sessionManager;
 
     @Override
@@ -34,6 +39,7 @@ public final class LoginActivity extends AppCompatActivity {
         emailError = findViewById(R.id.tvEmailError);
         passwordError = findViewById(R.id.tvPasswordError);
         loginButton = findViewById(R.id.btnLogin);
+        loginStatus = findViewById(R.id.tvLoginStatus);
 
         sessionManager = SessionManagerFactory.create(getApplicationContext());
 
@@ -47,8 +53,11 @@ public final class LoginActivity extends AppCompatActivity {
     }
 
     private void submitLogin() {
+        if (loading) {
+            return;
+        }
         clearErrors();
-        loginButton.setEnabled(false);
+        setLoading(true);
 
         sessionManager.login(
                 emailInput.getText().toString(),
@@ -57,26 +66,36 @@ public final class LoginActivity extends AppCompatActivity {
                     @Override
                     public void onSuccess(UserSession session) {
                         passwordInput.setText("");
-                        loginButton.setEnabled(true);
+                        setLoading(false);
+                        PostLoginRouter.route(LoginActivity.this, sessionManager, session);
+                    }
 
-                        /*
-                         * A Home ainda não existe nessa branch. A navegação por role será conectada depois,
-                         * junto com TechnicianHomeActivity e AccessDeniedActivity.
-                         */
-                        Toast.makeText(
-                                LoginActivity.this,
-                                R.string.login_success,
-                                Toast.LENGTH_SHORT
-                        ).show();
+                    @Override
+                    public void onOtpRequired(String challengeId, ArrayList<OtpMethod> methods) {
+                        passwordInput.setText("");
+                        setLoading(false);
+                        Intent intent = new Intent(LoginActivity.this, ForgotPasswordMethodActivity.class)
+                                .putExtra(AuthExtras.MODE, AuthExtras.MODE_LOGIN)
+                                .putExtra(AuthExtras.CHALLENGE_ID, challengeId)
+                                .putExtra(AuthExtras.METHODS, methods);
+                        startActivity(intent);
                     }
 
                     @Override
                     public void onFailure(AuthError error) {
-                        loginButton.setEnabled(true);
+                        setLoading(false);
                         showError(error);
                     }
                 }
         );
+    }
+
+    private void setLoading(boolean value) {
+        loading = value;
+        loginButton.setEnabled(!value);
+        loginButton.setAlpha(value ? 0.6f : 1f);
+        loginButton.setText(value ? R.string.login_connecting : R.string.login_button);
+        loginStatus.setVisibility(value ? View.VISIBLE : View.GONE);
     }
 
     private void clearErrors() {
@@ -99,6 +118,10 @@ public final class LoginActivity extends AppCompatActivity {
                 emailError.setVisibility(View.VISIBLE);
                 passwordError.setVisibility(View.VISIBLE);
                 return;
+
+            case LOCKED:
+                passwordError.setText(R.string.login_locked);
+                break;
 
             case TIMEOUT:
                 passwordError.setText(R.string.login_timeout);
