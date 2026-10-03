@@ -17,7 +17,11 @@ public final class AccessDeniedActivity extends AppCompatActivity {
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                openLogin();
+                if (isTaskRoot()) {
+                    openLogin();
+                } else {
+                    finish();
+                }
             }
         });
     }

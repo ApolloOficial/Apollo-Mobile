@@ -14,8 +14,13 @@ public final class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
 
-        findViewById(R.id.btnStart).setOnClickListener(view -> openLogin());
+        findViewById(R.id.btnStart).setOnClickListener(view -> openAccessInfo());
         findViewById(R.id.tvLoginLink).setOnClickListener(view -> openLogin());
+        findViewById(R.id.tvLoginLink2).setOnClickListener(view -> openLogin());
+    }
+
+    private void openAccessInfo() {
+        startActivity(new Intent(this, AccessDeniedActivity.class));
     }
 
     private void openLogin() {
