@@ -28,7 +28,11 @@
         <activity android:name=".view.auth.OtpVerificationActivity" />
         <activity android:name=".view.auth.CreateNewPasswordActivity" />
         <activity android:name=".view.auth.WelcomeActivity" />
-        <activity android:name=".view.auth.AccessDeniedActivity" />
+        <activity android:name=".view.auth.AccessDeniedActivity" />]
+
+        <activity
+            android:name=".view.home.HomeActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
