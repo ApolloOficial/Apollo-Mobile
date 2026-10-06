@@ -50,4 +50,29 @@
     <string name="login_connecting">Conectando\.\.\.</string>
 
     <string name="login_connecting_hint">Conectando ao servidor. Na primeira vez pode levar até 1 minuto.</string>
+
+    <string name="home_default_user">Técnico</string>
+    <string name="home_location_unavailable">Local não informado</string>
+
+    <string name="home_greeting_morning">Bom dia, %1$s</string>
+    <string name="home_greeting_afternoon">Boa tarde, %1$s</string>
+    <string name="home_greeting_evening">Boa noite, %1$s</string>
+
+    <string name="home_view_all_count">Ver todas (%1$d)</string>
+    <string name="home_asset_code">Placa %1$s</string>
+    <string name="home_service_order_id">ID: %1$d</string>
+    <string name="home_due_date">Prazo: %1$s</string>
+    <string name="home_percentage">%1$d%%</string>
+    <string name="home_batch">Lote %1$s</string>
+    <string name="home_pending_count">%1$d/%2$d</string>
+
+    <plurals name="home_pending_panels">
+        <item quantity="one">Falta %1$d placa para registrar</item>
+        <item quantity="other">Faltam %1$d placas para registrar</item>
+    </plurals>
+
+    <string name="home_timeout">A Home demorou demais para responder.</string>
+    <string name="home_network_error">Não foi possível conectar ao servidor.</string>
+    <string name="home_server_error">O servidor não conseguiu carregar a Home.</string>
+    <string name="home_load_error">Não foi possível carregar a Home.</string>
 </resources>

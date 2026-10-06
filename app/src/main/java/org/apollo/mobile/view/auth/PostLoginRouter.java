@@ -9,21 +9,56 @@ import org.apollo.mobile.auth.navigation.AppDestination;
 import org.apollo.mobile.auth.policy.RoleAccessPolicy;
 import org.apollo.mobile.session.SessionManager;
 import org.apollo.mobile.session.UserSession;
+import org.apollo.mobile.view.home.HomeActivity;
 
 final class PostLoginRouter {
+
     private PostLoginRouter() {
     }
 
-    static void route(Activity activity, SessionManager sessionManager, UserSession session) {
-        if (RoleAccessPolicy.canAccess(session.getRole(), AppDestination.TECHNICIAN_HOME)) {
-            Toast.makeText(activity, R.string.login_success, Toast.LENGTH_SHORT).show();
+    static void route(
+            Activity activity,
+            SessionManager sessionManager,
+            UserSession session
+    ) {
+        if (RoleAccessPolicy.canAccess(
+                session.getRole(),
+                AppDestination.TECHNICIAN_HOME
+        )) {
+            Toast.makeText(
+                    activity,
+                    R.string.login_success,
+                    Toast.LENGTH_SHORT
+            ).show();
+
+            Intent intent = new Intent(
+                    activity,
+                    HomeActivity.class
+            );
+
+            intent.addFlags(
+                    Intent.FLAG_ACTIVITY_NEW_TASK
+                            | Intent.FLAG_ACTIVITY_CLEAR_TASK
+            );
+
+            activity.startActivity(intent);
+            activity.finish();
             return;
         }
 
         sessionManager.logout();
-        Intent intent = new Intent(activity, AccessDeniedActivity.class);
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK
-                | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+        Intent intent = new Intent(
+                activity,
+                AccessDeniedActivity.class
+        );
+
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_CLEAR_TOP
+                        | Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+        );
+
         activity.startActivity(intent);
         activity.finish();
     }
