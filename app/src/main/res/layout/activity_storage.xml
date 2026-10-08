@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_white"
+    tools:context=".view.settings.StorageActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp">
+
+            <!-- Botão Voltar -->
+            <TextView
+                android:id="@+id/tvBack"
+                style="@style/apollo_label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_arrow_back"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="Voltar"
+                android:textColor="@color/neutral_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/apollo_h4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Armazenamento e\ndados offline"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <!-- Card Uso Total -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <TextView
+                        android:id="@+id/tvUsoTotal"
+                        style="@style/apollo_label1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Uso total"
+                        android:textColor="@color/neutral_black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/apollo_body4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="56MB de 3GB disponíveis"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintBottom_toBottomOf="@id/tvUsoTotal"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- Barra de Progresso Customizada -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="10dp"
+                    android:layout_marginTop="16dp"
+                    android:background="@drawable/bg_label_rounded"
+                    android:backgroundTint="#F0F0F0"
+                    android:clipToOutline="true"
+                    android:orientation="horizontal">
+
+                    <!-- Parte Apollo (Laranja) -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.3"
+                        android:background="@color/secondary_one" />
+
+                    <!-- Parte Outros (Azul Claro) -->
+                    <View
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="0.7"
+                        android:background="@color/info_two" />
+
+                </LinearLayout>
+
+                <!-- Legenda -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="horizontal">
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_gravity="center_vertical"
+                        android:background="@drawable/dot_indicator"
+                        android:backgroundTint="@color/secondary_one" />
+
+                    <TextView
+                        style="@style/apollo_caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="Uso do Apollo"
+                        android:textColor="@color/neutral_gray" />
+
+                    <View
+                        android:layout_width="6dp"
+                        android:layout_height="6dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginStart="16dp"
+                        android:background="@drawable/dot_indicator"
+                        android:backgroundTint="@color/info_two" />
+
+                    <TextView
+                        style="@style/apollo_caption"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="Uso de outros aplicativos"
+                        android:textColor="@color/neutral_gray" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Seção Dados de placa offline -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:id="@+id/tvPlacaTitle"
+                    style="@style/apollo_label1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Dados de placa offline"
+                    android:textColor="@color/neutral_black"
+                    app:layout_constraintEnd_toStartOf="@+id/tvPlacaSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPlacaSize"
+                    style="@style/apollo_label1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="21MB"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Cópia local pra consultar placas sem internet. Limpar não afeta nada já salvo, só que a próxima consulta offline não vai funcionar até sincronizar de novo."
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintTop_toBottomOf="@id/tvPlacaTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Seção Registros pendentes -->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp">
+
+                <TextView
+                    android:id="@+id/tvPendingTitle"
+                    style="@style/apollo_label1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Registros pendentes (2 itens)"
+                    android:textColor="@color/neutral_black"
+                    app:layout_constraintEnd_toStartOf="@+id/tvPendingSize"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvPendingSize"
+                    style="@style/apollo_label1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="35MB"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Manutenções que você já registrou, mas que ainda só existem no seu celular. Ficam guardadas até serem enviadas — não têm opção de exclusão."
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintTop_toBottomOf="@id/tvPendingTitle" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Botão Limpar Cache -->
+            <Button
+                android:id="@+id/btnClearCache"
+                style="@style/apollo_label2"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="32dp"
+                android:background="@drawable/btn_outlined"
+                android:text="Limpar cache de placas"
+                android:textAllCaps="false"
+                android:textColor="@color/neutral_black"
+                app:backgroundTint="@null" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
