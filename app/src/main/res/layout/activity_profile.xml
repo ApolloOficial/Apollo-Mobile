@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_white"
+    tools:context=".view.profile.ProfileActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp">
+
+            <!-- Botão Voltar -->
+            <TextView
+                android:id="@+id/tvBack"
+                style="@style/apollo_label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_arrow_back"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="Voltar"
+                android:textColor="@color/neutral_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/apollo_h4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Meu perfil"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <!-- Imagem de Perfil -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv_profile_large"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/profile_picture"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                <TextView
+                    android:id="@+id/btn_change_photo"
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Editar foto"
+                    android:textColor="@color/secondary_one" />
+            </LinearLayout>
+
+            <!-- Seção de Campos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nome completo"
+                    android:textColor="@color/neutral_black" />
+
+                <TextView
+                    android:id="@+id/tv_name_value"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_profile_field"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:text="Carlos Alves da Silva"
+                    android:textColor="@color/neutral_gray" />
+
+                <TextView
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="E-mail"
+                    android:textColor="@color/neutral_black" />
+
+                <TextView
+                    android:id="@+id/tv_email_value"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_profile_field"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:text="carlosalves@institucional.com"
+                    android:textColor="@color/neutral_gray" />
+
+                <TextView
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Empresa"
+                    android:textColor="@color/neutral_black" />
+
+                <TextView
+                    android:id="@+id/tv_company_value"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_profile_field"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:text="Fábrica Itajaí, Limeira - SP"
+                    android:textColor="@color/neutral_gray" />
+
+                <TextView
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:text="Cargo"
+                    android:textColor="@color/neutral_black" />
+
+                <TextView
+                    android:id="@+id/tv_role_value"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:background="@drawable/bg_profile_field"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="12dp"
+                    android:text="Técnico de Manutenção"
+                    android:textColor="@color/neutral_gray" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_info_footer"
+                style="@style/apollo_body4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:background="@drawable/bg_info_box"
+                android:padding="16dp"
+                android:text="Esses dados são cadastrados pela gestão da sua empresa. Pra corrigir alguma informação, fale com o gerente responsável pela sua conta."
+                android:textColor="@color/neutral_black" />
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_white"
+    tools:context=".view.security.SecurityActivity">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="48dp"
+            android:paddingBottom="24dp">
+
+            <!-- Botão Voltar -->
+            <TextView
+                android:id="@+id/tvBack"
+                style="@style/apollo_label2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:drawableStart="@drawable/ic_arrow_back"
+                android:drawablePadding="8dp"
+                android:gravity="center_vertical"
+                android:text="Voltar"
+                android:textColor="@color/neutral_black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/apollo_h4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Segurança"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <!-- Verificação de login Section -->
+            <TextView
+                style="@style/apollo_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Verificação de login"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <View
+                        android:id="@+id/bg_ic_phone"
+                        android:layout_width="48dp"
+                        android:layout_height="48dp"
+                        android:background="@drawable/bg_icon_rounded"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:src="@drawable/ic_phone"
+                        app:layout_constraintBottom_toBottomOf="@id/bg_ic_phone"
+                        app:layout_constraintEnd_toEndOf="@id/bg_ic_phone"
+                        app:layout_constraintStart_toStartOf="@id/bg_ic_phone"
+                        app:layout_constraintTop_toTopOf="@id/bg_ic_phone" />
+
+                    <TextView
+                        android:id="@+id/tv_phone_title"
+                        style="@style/apollo_label2"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:text="Telefone para SMS"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/bg_ic_phone"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tv_phone_value"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:text="(85) 9**** - 4321"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="@id/tv_phone_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_phone_title" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/btn_change_phone"
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="16dp"
+                    android:text="Solicitar alteração de telefone"
+                    android:textColor="@color/secondary_one" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/apollo_body4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_info_box"
+                android:padding="16dp"
+                android:text="O telefone é cadastrado pela gestão da sua empresa.\nVocê pode solicitar a troca de número, a gestão da sua empresa recebe o pedido e aprova ou recusa."
+                android:textColor="@color/neutral_black" />
+
+            <!-- Senha Section -->
+            <TextView
+                style="@style/apollo_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Senha"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_settings_card"
+                android:padding="16dp">
+
+                <View
+                    android:id="@+id/bg_ic_lock"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_icon_rounded"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_lock"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_ic_lock"
+                    app:layout_constraintEnd_toEndOf="@id/bg_ic_lock"
+                    app:layout_constraintStart_toStartOf="@id/bg_ic_lock"
+                    app:layout_constraintTop_toTopOf="@id/bg_ic_lock" />
+
+                <TextView
+                    android:id="@+id/tv_password_title"
+                    style="@style/apollo_label2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="Trocar senha"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_arrow_password"
+                    app:layout_constraintStart_toEndOf="@id/bg_ic_lock"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/apollo_body4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Última alteração há 3 meses"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/iv_arrow_password"
+                    app:layout_constraintStart_toStartOf="@id/tv_password_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_password_title" />
+
+                <ImageView
+                    android:id="@+id/iv_arrow_password"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:src="@drawable/ic_arrow_gray"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- Sessão Section -->
+            <TextView
+                style="@style/apollo_label1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="Sessão"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_settings_card"
+                android:padding="16dp">
+
+                <View
+                    android:id="@+id/bg_ic_device"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="@drawable/bg_icon_rounded"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/ic_smartphone"
+                    app:layout_constraintBottom_toBottomOf="@id/bg_ic_device"
+                    app:layout_constraintEnd_toEndOf="@id/bg_ic_device"
+                    app:layout_constraintStart_toStartOf="@id/bg_ic_device"
+                    app:layout_constraintTop_toTopOf="@id/bg_ic_device" />
+
+                <TextView
+                    android:id="@+id/tv_device_title"
+                    style="@style/apollo_label2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:text="Este dispositivo"
+                    app:layout_constraintEnd_toStartOf="@+id/view_status_dot"
+                    app:layout_constraintStart_toEndOf="@id/bg_ic_device"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/apollo_body4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Ativo agora, último login: hoje, 07:52"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintEnd_toStartOf="@+id/view_status_dot"
+                    app:layout_constraintStart_toStartOf="@id/tv_device_title"
+                    app:layout_constraintTop_toBottomOf="@id/tv_device_title" />
+
+                <View
+                    android:id="@+id/view_status_dot"
+                    android:layout_width="8dp"
+                    android:layout_height="8dp"
+                    android:background="@drawable/dot_indicator"
+                    android:backgroundTint="@color/sucess_one"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
