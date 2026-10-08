@@ -28,6 +28,9 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         gateway = SessionManagerFactory.createGateway(getApplicationContext());
         resetButton = findViewById(R.id.btnResetPassword);
 
+        PasswordVisibilityToggle.attach(findViewById(R.id.etNewPassword));
+        PasswordVisibilityToggle.attach(findViewById(R.id.etConfirmPassword));
+
         resetButton.setOnClickListener(view -> resetPassword());
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
     }

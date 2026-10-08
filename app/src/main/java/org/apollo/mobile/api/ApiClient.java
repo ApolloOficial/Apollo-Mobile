@@ -24,6 +24,18 @@ public final class ApiClient {
             Context context,
             Class<T> serviceClass
     ) {
+        return createService(
+                context,
+                serviceClass,
+                NETWORK_TIMEOUT_SECONDS
+        );
+    }
+
+    public static <T> T createService(
+            Context context,
+            Class<T> serviceClass,
+            long timeoutSeconds
+    ) {
         String baseUrl = BuildConfig.API_BASE_URL;
 
         if (baseUrl == null || baseUrl.trim().isEmpty()) {
@@ -53,15 +65,15 @@ public final class ApiClient {
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
                 .connectTimeout(
-                        NETWORK_TIMEOUT_SECONDS,
+                        timeoutSeconds,
                         TimeUnit.SECONDS
                 )
                 .readTimeout(
-                        NETWORK_TIMEOUT_SECONDS,
+                        timeoutSeconds,
                         TimeUnit.SECONDS
                 )
                 .writeTimeout(
-                        NETWORK_TIMEOUT_SECONDS,
+                        timeoutSeconds,
                         TimeUnit.SECONDS
                 )
                 .addInterceptor(chain ->

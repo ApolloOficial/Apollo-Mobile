@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -12,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import org.apollo.mobile.R;
 import org.apollo.mobile.auth.error.AuthError;
 import org.apollo.mobile.auth.gateway.OtpMethod;
+import org.apollo.mobile.session.RememberMeStore;
 import org.apollo.mobile.session.SessionManager;
 import org.apollo.mobile.session.SessionManagerFactory;
 import org.apollo.mobile.session.UserSession;
@@ -25,6 +27,8 @@ public final class LoginActivity extends AppCompatActivity {
     private TextView passwordError;
     private Button loginButton;
     private TextView loginStatus;
+    private CheckBox rememberMeCheck;
+    private RememberMeStore rememberMeStore;
     private boolean loading;
     private SessionManager sessionManager;
 
@@ -39,6 +43,14 @@ public final class LoginActivity extends AppCompatActivity {
         passwordError = findViewById(R.id.tvPasswordError);
         loginButton = findViewById(R.id.btnLogin);
         loginStatus = findViewById(R.id.tvLoginStatus);
+        rememberMeCheck = findViewById(R.id.cbRememberMe);
+
+        rememberMeStore = new RememberMeStore(getApplicationContext());
+        if (rememberMeStore.isRemembered()) {
+            emailInput.setText(rememberMeStore.getEmail());
+            rememberMeCheck.setChecked(true);
+        }
+        PasswordVisibilityToggle.attach(passwordInput);
 
         sessionManager = SessionManagerFactory.create(getApplicationContext());
 
@@ -56,6 +68,7 @@ public final class LoginActivity extends AppCompatActivity {
             return;
         }
         clearErrors();
+        saveRememberChoice();
         setLoading(true);
 
         sessionManager.login(
@@ -87,6 +100,15 @@ public final class LoginActivity extends AppCompatActivity {
                     }
                 }
         );
+    }
+
+    private void saveRememberChoice() {
+        String email = emailInput.getText().toString().trim();
+        if (rememberMeCheck.isChecked() && !email.isEmpty()) {
+            rememberMeStore.remember(email);
+        } else {
+            rememberMeStore.forget();
+        }
     }
 
     private void setLoading(boolean value) {
