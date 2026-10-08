@@ -29,7 +29,7 @@
 
     <string name="otp_choose_method">Escolha onde receber o código.</string>
 
-    <string name="otp_incomplete">Digite os 4 números do código.</string>
+    <string name="otp_incomplete">Digite os 6 números do código.</string>
 
     <string name="otp_invalid">Código incorreto. Confira e tente novamente.</string>
 
