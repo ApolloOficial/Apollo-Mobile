@@ -21,6 +21,7 @@ import org.apollo.mobile.home.gateway.HomeResponse;
 import org.apollo.mobile.home.gateway.HomeServiceOrder;
 import org.apollo.mobile.session.SessionManagerFactory;
 import org.apollo.mobile.view.auth.LoginActivity;
+import org.apollo.mobile.view.chat.ChatbotActivity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -89,6 +90,12 @@ public final class HomeActivity extends AppCompatActivity {
 
         syncButton.setOnClickListener(
                 view -> loadHome()
+        );
+
+        findViewById(R.id.fabChatbot).setOnClickListener(
+                view -> startActivity(
+                        new Intent(this, ChatbotActivity.class)
+                )
         );
 
         loadHome();

@@ -2,11 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/clRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white">
 
-    <!-- Header Area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clToolbar"
         android:layout_width="match_parent"
@@ -24,7 +24,9 @@
             android:drawableStart="@drawable/ic_arrow_back"
             android:drawablePadding="8dp"
             android:gravity="center_vertical"
-            android:text="Voltar"
+            android:text="@string/chat_back"
+            android:clickable="true"
+            android:focusable="true"
             android:textColor="@color/neutral_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -35,7 +37,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="Apollo AI"
+            android:text="@string/chat_title"
             android:textColor="@color/neutral_black"
             android:textStyle="bold"
             app:layout_constraintStart_toStartOf="parent"
@@ -50,7 +52,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <!-- Main Content Area -->
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clContent"
         android:layout_width="match_parent"
@@ -65,7 +66,6 @@
             android:scaleType="centerCrop"
             android:src="@drawable/orange_blur_layer" />
 
-        <!-- Initial State: Centered Content Group -->
         <LinearLayout
             android:id="@+id/llInitialState"
             android:layout_width="match_parent"
@@ -78,87 +78,42 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.4">
 
-            <!-- Row 1 of Suggestions -->
             <TextView
                 android:id="@+id/tvGreeting"
                 style="@style/apollo_h5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Oi Carlos! Como posso ajudar?"
+                android:text="@string/chat_greeting"
                 android:textColor="@color/neutral_black"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipSuggestion"
+                    style="@style/Widget.Material3.Chip.Suggestion"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:text="@string/chat_chip_board_error"
+                    app:chipBackgroundColor="@color/neutral_white"
+                    app:chipCornerRadius="24dp"
+                    app:chipStrokeColor="#E0E0E0"
+                    app:chipStrokeWidth="1dp" />
+            </FrameLayout>
+
             <LinearLayout
+                android:id="@+id/llSuggestionDots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal" />
 
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Erro na placa"
-                    app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="24dp"
-                    app:chipStrokeColor="#E0E0E0"
-                    app:chipStrokeWidth="1dp" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Dúvida técnica"
-                    app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="24dp"
-                    app:chipStrokeColor="#E0E0E0"
-                    app:chipStrokeWidth="1dp" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ativar placa nova"
-                    app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="24dp"
-                    app:chipStrokeColor="#E0E0E0"
-                    app:chipStrokeWidth="1dp" />
-            </LinearLayout>
-
-            <!-- Row 2 of Suggestions -->
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:orientation="horizontal">
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="8dp"
-                    android:text="Como escanear uma placa?"
-                    app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="24dp"
-                    app:chipStrokeColor="#E0E0E0"
-                    app:chipStrokeWidth="1dp" />
-
-                <com.google.android.material.chip.Chip
-                    style="@style/Widget.Material3.Chip.Suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Ver histórico de manutenções"
-                    app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="24dp"
-                    app:chipStrokeColor="#E0E0E0"
-                    app:chipStrokeWidth="1dp" />
-            </LinearLayout>
-
-            <!-- Rounded Input Bar -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvInitialInput"
                 android:layout_width="match_parent"
@@ -180,7 +135,10 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"
-                        android:hint="Digite aqui sua pergunta..."
+                        android:hint="@string/chat_input_hint"
+                        android:imeOptions="actionSend"
+                        android:inputType="textCapSentences"
+                        android:maxLines="3"
                         android:paddingEnd="12dp"
                         android:textColorHint="@color/neutral_gray"
                         app:layout_constraintEnd_toStartOf="@id/ibSendInitial"
@@ -188,6 +146,9 @@
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/ibSendInitial"
+                        android:clickable="true"
+                        android:contentDescription="@string/chat_send"
+                        android:focusable="true"
                         android:layout_width="48dp"
                         android:layout_height="48dp"
                         app:cardBackgroundColor="@color/secondary_three"
@@ -208,7 +169,6 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <!-- Messages History (Hidden initially) -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvChat"
             android:layout_width="match_parent"
@@ -219,6 +179,62 @@
             android:paddingBottom="96dp"
             android:visibility="gone"
             tools:listitem="@layout/item_chat_bot" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvConversationInput"
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:layout_marginHorizontal="24dp"
+            android:layout_marginBottom="16dp"
+            android:visibility="gone"
+            app:cardBackgroundColor="@color/neutral_white"
+            app:cardCornerRadius="32dp"
+            app:cardElevation="4dp"
+            app:layout_constraintBottom_toBottomOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingHorizontal="16dp">
+
+                <EditText
+                    android:id="@+id/etMessage"
+                    style="@style/apollo_label3"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
+                    android:hint="@string/chat_input_hint"
+                    android:imeOptions="actionSend"
+                    android:inputType="textCapSentences"
+                    android:maxLines="3"
+                    android:paddingEnd="12dp"
+                    android:textColorHint="@color/neutral_gray"
+                    app:layout_constraintEnd_toStartOf="@id/ibSend"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/ibSend"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:clickable="true"
+                    android:contentDescription="@string/chat_send"
+                    android:focusable="true"
+                    app:cardBackgroundColor="@color/secondary_three"
+                    app:cardCornerRadius="24dp"
+                    app:cardElevation="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_send"
+                        app:tint="@color/neutral_white" />
+                </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

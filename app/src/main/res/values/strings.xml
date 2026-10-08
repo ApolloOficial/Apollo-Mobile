@@ -29,7 +29,7 @@
 
     <string name="otp_choose_method">Escolha onde receber o código.</string>
 
-    <string name="otp_incomplete">Digite os 4 números do código.</string>
+    <string name="otp_incomplete">Digite os 6 números do código.</string>
 
     <string name="otp_invalid">Código incorreto. Confira e tente novamente.</string>
 
@@ -75,4 +75,31 @@
     <string name="home_network_error">Não foi possível conectar ao servidor.</string>
     <string name="home_server_error">O servidor não conseguiu carregar a Home.</string>
     <string name="home_load_error">Não foi possível carregar a Home.</string>
+
+    <string name="chat_title">Apollo AI</string>
+    <string name="chat_back">Voltar</string>
+    <string name="chat_greeting">Oi! Como posso ajudar?</string>
+    <string name="chat_greeting_named">Oi %1$s! Como posso ajudar?</string>
+    <string name="chat_input_hint">Digite aqui sua pergunta...</string>
+    <string name="chat_send">Enviar mensagem</string>
+    <string name="chat_copy">Copiar texto</string>
+    <string name="chat_copied">Texto copiado.</string>
+    <string name="chat_edit">Editar mensagem</string>
+    <string name="chat_speak">Ouvir resposta</string>
+    <string name="chat_speech_unavailable">A leitura em voz alta não está disponível neste aparelho.</string>
+    <string name="chat_typing">Apollo AI está respondendo…</string>
+    <string name="chat_sources">Fontes: %1$s</string>
+    <string name="chat_empty_answer">Não consegui gerar uma resposta. Tente reformular a pergunta.</string>
+    <string name="chat_chip_board_error">Erro na placa</string>
+    <string name="chat_chip_technical_question">Dúvida técnica</string>
+    <string name="chat_chip_activate_board">Ativar placa nova</string>
+    <string name="chat_chip_scan_board">Como escanear uma placa?</string>
+    <string name="chat_chip_maintenance_history">Ver histórico de manutenções</string>
+    <string name="chat_error_network">Não foi possível conectar ao servidor. Verifique sua internet e tente novamente.</string>
+    <string name="chat_error_timeout">O Apollo AI demorou demais para responder. Tente novamente.</string>
+    <string name="chat_error_rate_limited">Você enviou muitas mensagens em pouco tempo. Aguarde um minuto e tente de novo.</string>
+    <string name="chat_error_forbidden">Essa conversa não pertence à sua conta. Envie a mensagem de novo para começar outra.</string>
+    <string name="chat_error_invalid">Não foi possível enviar essa mensagem. Revise o texto e tente novamente.</string>
+    <string name="chat_error_unavailable">O Apollo AI está indisponível no momento. Tente novamente em instantes.</string>
+    <string name="chat_error_server">Ocorreu um erro no servidor. Tente novamente.</string>
 </resources>

@@ -27,7 +27,7 @@ import org.apollo.mobile.session.UserSession;
 import java.util.ArrayList;
 
 public final class OtpVerificationActivity extends AppCompatActivity {
-    private static final int CODE_LENGTH = 4;
+    private static final int CODE_LENGTH = 6;
 
     private final EditText[] boxes = new EditText[CODE_LENGTH];
     private TextView resendText;
