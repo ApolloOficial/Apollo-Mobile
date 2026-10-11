@@ -39,6 +39,12 @@
         <activity
             android:name=".view.home.HomeActivity"
             android:exported="false" />
+        <activity android:name=".view.settings.SettingsActivity" />
+        <activity android:name=".view.settings.ProfileActivity" />
+        <activity android:name=".view.settings.SecurityActivity" />
+        <activity android:name=".view.settings.NotificationsSettingsActivity" />
+        <activity android:name=".view.settings.LanguageActivity" />
+        <activity android:name=".view.settings.StorageActivity" />
         <activity
             android:name=".view.chat.ChatbotActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
