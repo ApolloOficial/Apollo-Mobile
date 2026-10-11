@@ -86,12 +86,12 @@
                     android:id="@+id/switch_1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:thumbTint="@color/neutral_white"
-                    app:trackTint="@color/secondary_three" />
+                    app:trackTint="@color/switch_track_tint" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -136,12 +136,12 @@
                     android:id="@+id/switch_2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:checked="true"
+                    android:checked="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:thumbTint="@color/neutral_white"
-                    app:trackTint="@color/secondary_three" />
+                    app:trackTint="@color/switch_track_tint" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -191,7 +191,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:thumbTint="@color/neutral_white"
-                    app:trackTint="@color/disable_gray" />
+                    app:trackTint="@color/switch_track_tint" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
