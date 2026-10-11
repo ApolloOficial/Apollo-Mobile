@@ -1,5 +1,6 @@
 package org.apollo.mobile.view.home;
 
+import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +23,7 @@ import org.apollo.mobile.home.gateway.HomeServiceOrder;
 import org.apollo.mobile.session.SessionManagerFactory;
 import org.apollo.mobile.view.auth.LoginActivity;
 import org.apollo.mobile.view.chat.ChatbotActivity;
+import org.apollo.mobile.view.settings.SettingsActivity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -95,6 +97,17 @@ public final class HomeActivity extends AppCompatActivity {
         findViewById(R.id.fabChatbot).setOnClickListener(
                 view -> startActivity(
                         new Intent(this, ChatbotActivity.class)
+                )
+        );
+
+        findViewById(R.id.ivSettings).setOnClickListener(
+                view -> startActivity(
+                        new Intent(this, SettingsActivity.class),
+                        ActivityOptions.makeCustomAnimation(
+                                this,
+                                R.anim.nav_fade_in,
+                                R.anim.nav_fade_out
+                        ).toBundle()
                 )
         );
 
