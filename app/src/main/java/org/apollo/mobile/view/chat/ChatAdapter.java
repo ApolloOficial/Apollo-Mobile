@@ -138,7 +138,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
 
         void bind(ChatMessage message) {
-            text.setText(message.getText());
+            text.setText(MarkdownRenderer.render(message.getText()));
             boolean hasSources = !message.getSources().isEmpty();
             sources.setVisibility(hasSources ? View.VISIBLE : View.GONE);
             if (hasSources) {
