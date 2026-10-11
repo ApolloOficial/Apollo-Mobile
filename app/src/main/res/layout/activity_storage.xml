@@ -70,6 +70,7 @@
                         style="@style/apollo_body4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:id="@+id/tvStorageAvailable"
                         android:text="56MB de 3GB disponíveis"
                         android:textColor="@color/neutral_gray"
                         app:layout_constraintBottom_toBottomOf="@id/tvUsoTotal"
