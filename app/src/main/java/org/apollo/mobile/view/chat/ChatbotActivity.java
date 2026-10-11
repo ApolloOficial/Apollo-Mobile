@@ -22,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import org.apollo.mobile.R;
 import org.apollo.mobile.chat.ChatSourcesFormatter;
 import org.apollo.mobile.chat.GreetingName;
+import org.apollo.mobile.chat.MarkdownParser;
 import org.apollo.mobile.chat.error.ChatError;
 import org.apollo.mobile.chat.gateway.ChatGateway;
 import org.apollo.mobile.chat.gateway.ChatGatewayFactory;
@@ -121,7 +122,9 @@ public final class ChatbotActivity extends AppCompatActivity {
         adapter = new ChatAdapter(new ChatAdapter.Actions() {
             @Override
             public void onCopy(ChatMessage message) {
-                copyToClipboard(message.getText());
+                copyToClipboard(message.getKind() == ChatMessage.Kind.BOT
+                        ? MarkdownParser.parse(message.getText()).getText()
+                        : message.getText());
             }
 
             @Override
