@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_error_network">Sem conexão. Verifique a internet e tente de novo.</string>
+    <string name="settings_error_timeout">O servidor demorou para responder. Tente novamente.</string>
+    <string name="settings_error_unavailable">Serviço indisponível no momento.</string>
+    <string name="settings_error_server">Erro no servidor. Tente novamente mais tarde.</string>
+    <string name="settings_error_forbidden">Você não tem permissão para esta ação.</string>
+    <string name="settings_error_invalid">Não foi possível concluir. Confira os dados e tente de novo.</string>
+    <string name="settings_error_generic">Não foi possível carregar os ajustes.</string>
+
+    <string name="settings_default_name">Usuário</string>
+    <string name="settings_value_empty">Não informado</string>
+    <string name="settings_photo_updated">Foto atualizada.</string>
+    <string name="settings_photo_removed">Foto removida.</string>
+    <string name="settings_photo_invalid">Não foi possível usar essa imagem.</string>
+    <string name="settings_photo_title">Foto de perfil</string>
+    <string name="settings_photo_choose">Escolher da galeria</string>
+    <string name="settings_photo_remove">Remover foto</string>
+    <string name="settings_sync_none">Tudo sincronizado</string>
+    <string name="settings_sync_running">Sincronizando…</string>
+    <string name="settings_sync_nothing">Não há registros pendentes.</string>
+    <string name="settings_sync_done">Sincronização concluída.</string>
+    <string name="settings_sync_offline">Sem conexão. Os registros continuam salvos no aparelho.</string>
+    <string name="settings_sync_with_errors">%1$d registro(s) foram recusados pelo servidor.</string>
+    <string name="settings_sync_failed_suffix">%1$d com erro</string>
+    <string name="settings_sync_status_join">%1$s · %2$s</string>
+    <plurals name="settings_sync_pending">
+        <item quantity="one">%d registro pendente</item>
+        <item quantity="other">%d registros pendentes</item>
+    </plurals>
+
+    <string name="settings_about_title">Sobre o Apollo</string>
+    <string name="settings_about_message">Apollo-Mobile\nVersão %1$s</string>
+    <string name="settings_logout_title">Sair da conta</string>
+    <string name="settings_logout_message">Deseja encerrar a sessão neste aparelho?</string>
+    <string name="settings_logout_confirm">Sair</string>
+    <string name="settings_cancel">Cancelar</string>
+    <string name="settings_ok">OK</string>
+
+    <string name="settings_profile_footer">Para alterar nome, e-mail ou cargo, procure o gestor da sua unidade.</string>
+
+    <string name="settings_phone_pending">Alteração de telefone aguardando aprovação do gestor.</string>
+    <string name="settings_phone_none">Telefone não cadastrado</string>
+    <string name="settings_phone_dialog_title">Novo telefone</string>
+    <string name="settings_phone_dialog_hint">(85) 98765-4321</string>
+    <string name="settings_phone_send">Solicitar</string>
+    <string name="settings_phone_invalid">Informe um telefone válido com DDD.</string>
+    <string name="settings_phone_requested">Solicitação enviada ao gestor.</string>
+    <string name="settings_password_unknown">Senha alterada: sem registro</string>
+    <string name="settings_password_changed_now">Alterada agora há pouco</string>
+    <string name="settings_device_unknown">Sem dispositivos registrados</string>
+    <string name="settings_device_value">%1$s · %2$s</string>
+    <string name="settings_device_active_now">ativo agora</string>
+
+    <plurals name="settings_password_changed_minutes">
+        <item quantity="one">Última alteração há %d minuto</item>
+        <item quantity="other">Última alteração há %d minutos</item>
+    </plurals>
+    <plurals name="settings_password_changed_hours">
+        <item quantity="one">Última alteração há %d hora</item>
+        <item quantity="other">Última alteração há %d horas</item>
+    </plurals>
+    <plurals name="settings_password_changed_days">
+        <item quantity="one">Última alteração há %d dia</item>
+        <item quantity="other">Última alteração há %d dias</item>
+    </plurals>
+    <plurals name="settings_password_changed_months">
+        <item quantity="one">Última alteração há %d mês</item>
+        <item quantity="other">Última alteração há %d meses</item>
+    </plurals>
+    <plurals name="settings_password_changed_years">
+        <item quantity="one">Última alteração há %d ano</item>
+        <item quantity="other">Última alteração há %d anos</item>
+    </plurals>
+
+    <plurals name="settings_seen_minutes">
+        <item quantity="one">visto há %d minuto</item>
+        <item quantity="other">visto há %d minutos</item>
+    </plurals>
+    <plurals name="settings_seen_hours">
+        <item quantity="one">visto há %d hora</item>
+        <item quantity="other">visto há %d horas</item>
+    </plurals>
+    <plurals name="settings_seen_days">
+        <item quantity="one">visto há %d dia</item>
+        <item quantity="other">visto há %d dias</item>
+    </plurals>
+    <plurals name="settings_seen_months">
+        <item quantity="one">visto há %d mês</item>
+        <item quantity="other">visto há %d meses</item>
+    </plurals>
+    <plurals name="settings_seen_years">
+        <item quantity="one">visto há %d ano</item>
+        <item quantity="other">visto há %d anos</item>
+    </plurals>
+
+    <string name="settings_language_saved">Idioma salvo.</string>
+
+    <string name="settings_storage_cache_value">Cache do aplicativo: %1$s</string>
+    <string name="settings_storage_pending_title">Registros pendentes (%1$d itens)</string>
+    <string name="settings_storage_cleared">Cache limpo.</string>
+    <string name="settings_storage_total">%1$s de %2$s disponíveis</string>
+</resources>
