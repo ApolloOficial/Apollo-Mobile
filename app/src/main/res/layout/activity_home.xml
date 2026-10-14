@@ -97,6 +97,7 @@
                     android:id="@+id/ivSync"
                     android:layout_width="32dp"
                     android:layout_height="32dp"
+                    android:contentDescription="@string/home_sync_content_description"
                     android:src="@drawable/ic_sync"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -267,6 +268,17 @@
 
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:id="@+id/tvServiceOrderEmpty"
+                style="@style/apollo_body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/home_empty_service_orders"
+                android:textColor="@color/neutral_gray"
+                android:visibility="gone" />
+
             <!-- Paginação Suas OS -->
             <LinearLayout
                 android:id="@+id/llOsPagination"
@@ -279,11 +291,15 @@
 
                 <ImageButton
                     android:id="@+id/btnPrevOs"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Página anterior"
+                    android:padding="8dp"
+                    android:rotation="180"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_arrow_gray" />
+                    android:src="@drawable/lucide_circle_chevron_right"
+                    app:tint="@color/pagination_arrow_tint" />
 
                 <LinearLayout
                     android:id="@+id/llOsIndicators"
@@ -294,11 +310,14 @@
 
                 <ImageButton
                     android:id="@+id/btnNextOs"
-                    android:layout_width="36dp"
-                    android:layout_height="36dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
                     android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Próxima página"
+                    android:padding="8dp"
                     android:scaleType="fitCenter"
-                    android:src="@drawable/ic_arrow_orange" />
+                    android:src="@drawable/lucide_circle_chevron_right"
+                    app:tint="@color/pagination_arrow_tint" />
 
             </LinearLayout>
 
@@ -431,6 +450,17 @@
 
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:id="@+id/tvAttentionEmpty"
+                style="@style/apollo_body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/home_empty_attention"
+                android:textColor="@color/neutral_gray"
+                android:visibility="gone" />
+
             <!-- Seção Registros Pendentes -->
             <TextView
                 style="@style/apollo_label1"
@@ -555,6 +585,17 @@
 
             </androidx.cardview.widget.CardView>
 
+            <TextView
+                android:id="@+id/tvPendingEmpty"
+                style="@style/apollo_body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:text="@string/home_empty_pending"
+                android:textColor="@color/neutral_gray"
+                android:visibility="gone" />
+
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
@@ -562,16 +603,16 @@
     <!-- Botão Chatbot Circular -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabChatbot"
-        android:layout_width="68dp"
-        android:layout_height="68dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:layout_marginEnd="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="16dp"
         android:src="@drawable/ic_chatbot"
         app:backgroundTint="@color/secondary_three"
-        app:fabCustomSize="68dp"
+        app:fabCustomSize="80dp"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="30dp"
+        app:maxImageSize="36dp"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
         app:tint="@color/neutral_white" />
 
@@ -579,15 +620,14 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_height="91dp"
+        android:layout_marginHorizontal="8dp"
         android:layout_marginBottom="20dp"
         app:cardCornerRadius="32dp"
         app:cardElevation="4dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintDimensionRatio="H,394:64"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_percent="0.86">
+        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -595,46 +635,46 @@
             android:gravity="center"
             android:orientation="horizontal">
 
-            <FrameLayout
+            <LinearLayout
                 android:id="@+id/llHome"
-                android:layout_width="24dp"
-                android:layout_height="match_parent">
+                android:layout_width="34dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/ivHome"
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
+                    android:layout_width="34dp"
+                    android:layout_height="34dp"
                     android:src="@drawable/ic_home_black" />
 
                 <View
-                    android:layout_width="18dp"
-                    android:layout_height="3dp"
-                    android:layout_gravity="bottom|center_horizontal"
-                    android:layout_marginBottom="9dp"
+                    android:layout_width="34dp"
+                    android:layout_height="6dp"
+                    android:layout_marginTop="4dp"
                     android:background="@drawable/bg_indicator_home" />
 
-            </FrameLayout>
+            </LinearLayout>
 
             <ImageView
                 android:id="@+id/ivPanels"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="28dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="24dp"
                 android:src="@drawable/ic_solarpanel_gray" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvScanContainer"
-                android:layout_width="44dp"
-                android:layout_height="44dp"
-                android:layout_marginStart="28dp"
+                android:layout_width="73dp"
+                android:layout_height="73dp"
+                android:layout_marginStart="24dp"
                 app:cardBackgroundColor="@color/secondary_three"
-                app:cardCornerRadius="22dp"
+                app:cardCornerRadius="36.5dp"
                 app:cardElevation="0dp">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="35dp"
+                    android:layout_height="35dp"
                     android:layout_gravity="center"
                     android:src="@drawable/ic_scan"
                     app:tint="@color/neutral_white" />
@@ -643,16 +683,16 @@
 
             <ImageView
                 android:id="@+id/ivTools"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="28dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="24dp"
                 android:src="@drawable/ic_tools_gray" />
 
             <ImageView
                 android:id="@+id/ivSettings"
-                android:layout_width="24dp"
-                android:layout_height="24dp"
-                android:layout_marginStart="28dp"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
+                android:layout_marginStart="24dp"
                 android:src="@drawable/ic_settings_gray" />
 
         </LinearLayout>
