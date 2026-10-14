@@ -4,6 +4,7 @@ import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,6 +22,9 @@ import org.apollo.mobile.home.gateway.HomePendingRegistration;
 import org.apollo.mobile.home.gateway.HomeResponse;
 import org.apollo.mobile.home.gateway.HomeServiceOrder;
 import org.apollo.mobile.session.SessionManagerFactory;
+import org.apollo.mobile.sync.PendingSyncFactory;
+import org.apollo.mobile.sync.PendingSyncRunner;
+import org.apollo.mobile.sync.SyncReport;
 import org.apollo.mobile.view.auth.LoginActivity;
 import org.apollo.mobile.view.chat.ChatbotActivity;
 import org.apollo.mobile.view.settings.SettingsActivity;
@@ -49,7 +53,9 @@ public final class HomeActivity extends AppCompatActivity {
     private TextView priorityText;
     private View previousButton;
     private View nextButton;
+    private View paginationContainer;
     private LinearLayout indicatorsContainer;
+    private TextView serviceOrderEmptyText;
 
     private View attentionCard;
     private TextView attentionSeverityText;
@@ -57,14 +63,17 @@ public final class HomeActivity extends AppCompatActivity {
     private TextView attentionMetricLabelText;
     private TextView attentionPercentageText;
     private LinearProgressIndicator attentionProgress;
+    private TextView attentionEmptyText;
 
     private View pendingCard;
     private TextView pendingBatchText;
     private TextView pendingTitleText;
     private TextView pendingCountText;
     private LinearProgressIndicator pendingProgress;
+    private TextView pendingEmptyText;
 
-    private View syncButton;
+    private ImageView syncButton;
+    private PendingSyncRunner syncRunner;
 
     private List<HomeServiceOrder> serviceOrders =
             Collections.emptyList();
@@ -81,6 +90,9 @@ public final class HomeActivity extends AppCompatActivity {
         homeGateway = HomeGatewayFactory.create(
                 getApplicationContext()
         );
+        syncRunner = PendingSyncFactory.runner(
+                getApplicationContext()
+        );
 
         previousButton.setOnClickListener(
                 view -> showPreviousServiceOrder()
@@ -91,7 +103,7 @@ public final class HomeActivity extends AppCompatActivity {
         );
 
         syncButton.setOnClickListener(
-                view -> loadHome()
+                view -> syncNow()
         );
 
         findViewById(R.id.fabChatbot).setOnClickListener(
@@ -140,8 +152,12 @@ public final class HomeActivity extends AppCompatActivity {
                 findViewById(R.id.btnPrevOs);
         nextButton =
                 findViewById(R.id.btnNextOs);
+        paginationContainer =
+                findViewById(R.id.llOsPagination);
         indicatorsContainer =
                 findViewById(R.id.llOsIndicators);
+        serviceOrderEmptyText =
+                findViewById(R.id.tvServiceOrderEmpty);
 
         attentionCard =
                 findViewById(R.id.cardAttention);
@@ -155,6 +171,8 @@ public final class HomeActivity extends AppCompatActivity {
                 findViewById(R.id.tvAlertPercentage);
         attentionProgress =
                 findViewById(R.id.progressAlert);
+        attentionEmptyText =
+                findViewById(R.id.tvAttentionEmpty);
 
         pendingCard =
                 findViewById(R.id.cardPending);
@@ -166,23 +184,21 @@ public final class HomeActivity extends AppCompatActivity {
                 findViewById(R.id.tvPendingCount);
         pendingProgress =
                 findViewById(R.id.progressPending);
+        pendingEmptyText =
+                findViewById(R.id.tvPendingEmpty);
 
         syncButton = findViewById(R.id.ivSync);
     }
 
     private void loadHome() {
-        setLoading(true);
-
         homeGateway.getHome(new HomeGateway.Callback() {
             @Override
             public void onSuccess(HomeResponse response) {
-                setLoading(false);
                 bindHome(response);
             }
 
             @Override
             public void onFailure(HomeError error) {
-                setLoading(false);
                 handleError(error);
             }
         });
@@ -258,6 +274,8 @@ public final class HomeActivity extends AppCompatActivity {
     private void bindCurrentServiceOrder() {
         if (serviceOrders.isEmpty()) {
             serviceOrderCard.setVisibility(View.GONE);
+            serviceOrderEmptyText.setVisibility(View.VISIBLE);
+            paginationContainer.setVisibility(View.GONE);
             previousButton.setEnabled(false);
             nextButton.setEnabled(false);
             indicatorsContainer.removeAllViews();
@@ -265,6 +283,8 @@ public final class HomeActivity extends AppCompatActivity {
         }
 
         serviceOrderCard.setVisibility(View.VISIBLE);
+        serviceOrderEmptyText.setVisibility(View.GONE);
+        paginationContainer.setVisibility(View.VISIBLE);
 
         HomeServiceOrder order =
                 serviceOrders.get(currentServiceOrderIndex);
@@ -309,14 +329,6 @@ public final class HomeActivity extends AppCompatActivity {
         nextButton.setEnabled(
                 currentServiceOrderIndex
                         < serviceOrders.size() - 1
-        );
-
-        previousButton.setAlpha(
-                previousButton.isEnabled() ? 1f : 0.35f
-        );
-
-        nextButton.setAlpha(
-                nextButton.isEnabled() ? 1f : 0.35f
         );
 
         renderIndicators();
@@ -367,8 +379,8 @@ public final class HomeActivity extends AppCompatActivity {
             indicator.setLayoutParams(params);
             indicator.setBackgroundResource(
                     active
-                            ? R.drawable.dot_indicator_active
-                            : R.drawable.dot_indicator
+                            ? R.drawable.dot_indicator_home_active
+                            : R.drawable.dot_indicator_home_inactive
             );
 
             final int selectedIndex = index;
@@ -387,10 +399,12 @@ public final class HomeActivity extends AppCompatActivity {
     ) {
         if (items == null || items.isEmpty()) {
             attentionCard.setVisibility(View.GONE);
+            attentionEmptyText.setVisibility(View.VISIBLE);
             return;
         }
 
         attentionCard.setVisibility(View.VISIBLE);
+        attentionEmptyText.setVisibility(View.GONE);
 
         HomeAttentionItem item = items.get(0);
 
@@ -426,10 +440,12 @@ public final class HomeActivity extends AppCompatActivity {
     ) {
         if (items == null || items.isEmpty()) {
             pendingCard.setVisibility(View.GONE);
+            pendingEmptyText.setVisibility(View.VISIBLE);
             return;
         }
 
         pendingCard.setVisibility(View.VISIBLE);
+        pendingEmptyText.setVisibility(View.GONE);
 
         HomePendingRegistration pending =
                 items.get(0);
@@ -463,37 +479,86 @@ public final class HomeActivity extends AppCompatActivity {
         );
     }
 
-    private void setLoading(boolean loading) {
-        syncButton.setEnabled(!loading);
-
-        if (loading) {
-            syncButton.animate()
-                    .rotationBy(360f)
-                    .setDuration(700L)
-                    .start();
+    private void syncNow() {
+        if (syncRunner.isRunning()) {
+            return;
         }
+
+        showSyncIcon();
+        syncButton.setEnabled(false);
+        syncButton.animate()
+                .rotationBy(360f)
+                .setDuration(700L)
+                .start();
+
+        syncRunner.run(report -> {
+            if (isFinishing() || isDestroyed()) {
+                return;
+            }
+
+            syncButton.setEnabled(true);
+            syncButton.setRotation(0f);
+
+            if (report.getStop()
+                    == SyncReport.Stop.UNAUTHORIZED) {
+                goToLogin();
+                return;
+            }
+
+            boolean synchronizedSuccessfully =
+                    report.getStop() == SyncReport.Stop.NONE
+                            && report.getRejected() == 0
+                            && report.getRemaining() == 0;
+
+            if (synchronizedSuccessfully) {
+                showSyncSuccessIcon();
+                loadHome();
+                return;
+            }
+
+            showSyncIcon();
+        });
+    }
+
+    private void showSyncIcon() {
+        syncButton.setImageResource(R.drawable.ic_sync);
+        syncButton.setContentDescription(
+                getString(R.string.home_sync_content_description)
+        );
+    }
+
+    private void showSyncSuccessIcon() {
+        syncButton.setImageResource(R.drawable.ic_check_sync);
+        syncButton.setContentDescription(
+                getString(
+                        R.string.home_sync_success_content_description
+                )
+        );
+    }
+
+    private void goToLogin() {
+        SessionManagerFactory.create(
+                getApplicationContext()
+        ).logout();
+
+        Intent intent = new Intent(
+                this,
+                LoginActivity.class
+        );
+
+        intent.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK
+                        | Intent.FLAG_ACTIVITY_CLEAR_TASK
+        );
+
+        startActivity(intent);
+        finish();
     }
 
     private void handleError(HomeError error) {
         if (error.getType()
                 == HomeError.Type.UNAUTHORIZED) {
-
-            SessionManagerFactory.create(
-                    getApplicationContext()
-            ).logout();
-
-            Intent intent = new Intent(
-                    this,
-                    LoginActivity.class
-            );
-
-            intent.addFlags(
-                    Intent.FLAG_ACTIVITY_NEW_TASK
-                            | Intent.FLAG_ACTIVITY_CLEAR_TASK
-            );
-
-            startActivity(intent);
-            finish();
+            goToLogin();
             return;
         }
 
