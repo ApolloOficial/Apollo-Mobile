@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="error_unexpected_title">Ops! Aconteceu um erro inesperado.</string>
+    <string name="error_unexpected_description">Tente novamente em alguns instantes. Se o problema continuar, fale com o suporte.</string>
+    <string name="error_btn_try_again">Tentar novamente</string>
+    <string name="error_btn_support">Falar com o suporte</string>
+
+    <string name="error_loading_title">Não foi possível carregar</string>
+    <string name="error_loading_description">Algo deu errado do nosso lado. Tente novamente. Se o problema continuar, fale com nosso suporte.</string>
+</resources>

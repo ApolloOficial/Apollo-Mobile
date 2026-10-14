@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="maintenance_title">Manutenção</string>
+    <string name="maintenance_history_title">Histórico</string>
+    <string name="maintenance_os_card_title">Ordens de serviço</string>
+    <string name="maintenance_os_summary">3 em aberto · 1 em andamento</string>
+    <string name="maintenance_btn_orders">Ver ordens</string>
+    <string name="maintenance_search_hint">Buscar por nº da OS</string>
+
+    <string name="maintenance_filter_all">Todas</string>
+    <string name="maintenance_filter_preventive">Preventiva</string>
+    <string name="maintenance_filter_corrective">Corretiva</string>
+    <string name="maintenance_filter_predictive">Preditiva</string>
+    <string name="maintenance_filter_open">Aberta</string>
+    <string name="maintenance_filter_in_progress">Em andamento</string>
+
+    <string name="maintenance_today">Hoje</string>
+    <string name="maintenance_yesterday">Ontem</string>
+    <string name="maintenance_last_30_days">Nos últimos 30 dias</string>
+
+    <string name="maintenance_item_placa_default">Placa CS-2024-00765</string>
+    <string name="maintenance_item_os_84524">OS84524</string>
+    <string name="maintenance_item_os_84513">OS84513</string>
+    <string name="maintenance_item_os_84547">OS84547</string>
+    <string name="maintenance_item_inverter_strings">Inversor 02, Todas as strings</string>
+    <string name="maintenance_item_inverter_string_01">Inversor 01, String ITJ-LIM-001</string>
+
+    <string name="maintenance_btn_view_details">Ver detalhes</string>
+
+    <string name="service_orders_back">Voltar</string>
+    <string name="service_orders_title">Ordens de serviço</string>
+    <string name="service_orders_due_date">Prazo: %1$s</string>
+    <string name="service_orders_tag_open">Aberta</string>
+    <string name="service_orders_tag_medium">Média</string>
+
+    <!-- OS Details -->
+    <string name="os_details_label_inverter">Inversor / String</string>
+    <string name="os_details_label_position">Posição</string>
+    <string name="os_details_label_serial">Número de série</string>
+    <string name="os_details_label_type">Tipo de manutenção</string>
+    <string name="os_details_label_deadline">Prazo de conclusão</string>
+    <string name="os_details_label_description">Descrição</string>
+    <string name="os_details_progress_title">Histórico de andamento</string>
+    <string name="os_details_btn_scan">Escanear placa para começar</string>
+
+    <string name="os_details_history_created">OS Criada</string>
+    <string name="os_details_history_created_desc">Aberta pelo operador Enzo a partir de alerta de eficiência baixa. Atribuido a você.</string>
+    <string name="os_details_history_waiting">Aguardando execução</string>
+
+    <!-- Maintenance Identified -->
+    <string name="maintenance_identified_title">Placa identificada!</string>
+    <string name="maintenance_identified_subtitle">Dados abaixo vieram do scan</string>
+    <string name="maintenance_identified_label_model">Modelo</string>
+    <string name="maintenance_identified_label_efficiency">Eficiência</string>
+    <string name="maintenance_identified_btn_start">Começar manutenção</string>
+
+    <!-- Complete Maintenance -->
+    <string name="complete_maintenance_title">Concluir %1$s</string>
+    <string name="complete_maintenance_summary_title">Resumo</string>
+    <string name="complete_maintenance_verified_tag">%1$d de %2$d verificadas</string>
+    <string name="complete_maintenance_problem_tag">%1$d com problema</string>
+    <string name="complete_maintenance_report_label">Laudo</string>
+    <string name="complete_maintenance_report_hint">Descreva o que foi feito: limpeza, reaperto, peças trocadas, estado final da placa...</string>
+    <string name="complete_maintenance_btn_finish">Concluir manutenção</string>
+
+    <!-- Register Condition -->
+    <string name="register_condition_label">Condição encontrada</string>
+    <string name="register_condition_btn_register">Registrar</string>
+    <string name="register_condition_btn_no_problem">Sem problema aparente</string>
+
+    <!-- Verified Plates List -->
+    <string name="verified_plates_header_title">Placas verificadas</string>
+    <string name="verified_plates_header_count">%1$d de %2$d</string>
+    <string name="verified_plates_inverter_info">Inversor 01, ITJ-LIM-001</string>
+    <string name="verified_plates_summary_count">%1$d de %2$d placas verificadas</string>
+</resources>
