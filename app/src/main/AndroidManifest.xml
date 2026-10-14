@@ -60,6 +60,7 @@
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name="org.apollo.mobile.view.scanner.ScannerActivity" />
+        <activity android:name=".view.maintenance.MaintenanceActivity" />
     </application>
 
 </manifest>
