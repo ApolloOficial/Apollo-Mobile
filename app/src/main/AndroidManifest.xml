@@ -51,7 +51,7 @@
             android:name=".view.chat.ChatbotActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:windowSoftInputMode="adjustResize" />
-        <activity android:name=".view.scanner.ScannerActivity" />
+        <activity android:name="org.apollo.mobile.view.scanner.ScannerActivity" />
     </application>
 
 </manifest>
