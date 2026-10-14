@@ -9,9 +9,7 @@ val apiBaseUrl = providers.gradleProperty("API_BASE_URL")
 
 android {
     namespace = "org.apollo.mobile"
-    compileSdk {
-        version = release(36)
-    }
+    compileSdk = 36
 
     defaultConfig {
         applicationId = "org.apollo.mobile"
@@ -55,6 +53,14 @@ dependencies {
     implementation(libs.okhttp)
     implementation(libs.okhttp.logging)
     implementation(libs.gson)
+
+    // CameraX
+    implementation(libs.camera.core)
+    implementation(libs.camera.camera2)
+    implementation(libs.camera.lifecycle)
+    implementation(libs.camera.video)
+    implementation(libs.camera.view)
+    implementation(libs.camera.extensions)
 
     testImplementation(libs.junit)
     androidTestImplementation(libs.ext.junit)
