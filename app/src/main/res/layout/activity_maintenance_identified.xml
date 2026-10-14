@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_white">
+
+    <!-- Back Button -->
+    <LinearLayout
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="48dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_arrow_back"
+            app:tint="@color/neutral_black" />
+
+        <TextView
+            style="@style/apollo_label3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@string/service_orders_back"
+            android:textColor="@color/neutral_black" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/headerDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#EEEEEE"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/headerDivider">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:paddingHorizontal="24dp"
+            android:paddingTop="40dp"
+            android:paddingBottom="40dp">
+
+            <!-- Success Icon -->
+            <ImageView
+                android:id="@+id/ivSuccessIcon"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:src="@drawable/ic_check_green" />
+
+            <TextView
+                android:id="@+id/tvTitle"
+                style="@style/apollo_h5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/maintenance_identified_title"
+                android:textColor="@color/neutral_black"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvSubtitle"
+                style="@style/apollo_body3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="@string/maintenance_identified_subtitle"
+                android:textColor="@color/neutral_gray" />
+
+            <!-- Properties List -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp">
+                    <TextView style="@style/apollo_label3" android:text="@string/os_details_label_inverter" android:textColor="@color/neutral_gray" />
+                    <TextView style="@style/apollo_label3" android:layout_alignParentRight="true" android:text="Inversor 01 / ITJ-LIM-001" android:textColor="@color/neutral_black" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp">
+                    <TextView style="@style/apollo_label3" android:text="@string/os_details_label_position" android:textColor="@color/neutral_gray" />
+                    <TextView style="@style/apollo_label3" android:layout_alignParentRight="true" android:text="14" android:textColor="@color/neutral_black" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp">
+                    <TextView style="@style/apollo_label3" android:text="@string/os_details_label_serial" android:textColor="@color/neutral_gray" />
+                    <TextView style="@style/apollo_label3" android:layout_alignParentRight="true" android:text="CS-2024-00765" android:textColor="@color/neutral_black" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp">
+                    <TextView style="@style/apollo_label3" android:text="@string/maintenance_identified_label_model" android:textColor="@color/neutral_gray" />
+                    <TextView style="@style/apollo_label3" android:layout_alignParentRight="true" android:text="Canadian CS3W-410P" android:textColor="@color/neutral_black" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingVertical="10dp">
+                    <TextView style="@style/apollo_label3" android:text="@string/maintenance_identified_label_efficiency" android:textColor="@color/neutral_gray" />
+                    <TextView style="@style/apollo_label3" android:layout_alignParentRight="true" android:text="82%" android:textColor="@color/neutral_black" />
+                </RelativeLayout>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnStartMaintenance"
+                style="@style/apollo_label2"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="40dp"
+                android:backgroundTint="@color/secondary_three"
+                android:text="@string/maintenance_identified_btn_start"
+                android:textAllCaps="false"
+                android:textColor="@color/neutral_white"
+                app:cornerRadius="28dp" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
