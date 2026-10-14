@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="panels_back">Voltar</string>
+    <string name="panels_title">Placas</string>
+    <string name="panels_search_hint">Buscar por número de série...</string>
+    <string name="panels_filter_all">Todas</string>
+    <string name="panels_filter_stock">Em estoque</string>
+    <string name="panels_filter_in_use">Em uso</string>
+    <string name="panels_filter_attention">Atenção</string>
+
+    <string name="plate_serial_number_label">Número de série</string>
+    <string name="plate_position_label">Posição %1$d</string>
+    <string name="plate_efficiency_label">Eficiência</string>
+    <string name="plate_status_in_operation">Em operação</string>
+    <string name="plate_status_stock">Em estoque</string>
+    <string name="plate_status_attention">Atenção</string>
+    <string name="plate_stock_waiting">Aguardando ativação em campo...</string>
+    <string name="plate_view_os">Ver OS</string>
+
+    <string name="inverter_summary">%1$s · %2$d placas</string>
+    <string name="inverter_summary_attention">%1$s · %2$d requerem atenção</string>
+    <string name="inverter_summary_in_use">%1$s · %2$d em operação</string>
+    <string name="inverter_summary_stock">%1$s · %2$d em estoque</string>
+</resources>
