@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="panels_inverter_group">Inversor %1$s</string>
+    <string name="panels_summary">Capac. %1$s kWp · %2$d placas</string>
+    <string name="panels_see_all">Ver todas as %1$d placas</string>
+    <string name="panels_health_unknown">Sem medição</string>
+    <string name="panels_empty_strings">Nenhuma string encontrada.</string>
+    <string name="panels_empty_panels">Nenhuma placa encontrada.</string>
+    <string name="panels_in_stock">Em estoque</string>
+    <string name="panels_in_operation">Em operação</string>
+    <string name="panels_attention">Atenção</string>
+    <string name="panels_awaiting_activation">Aguardando ativação em campo...</string>
+    <string name="panels_sheet_model">Modelo</string>
+    <string name="panels_sheet_string">Inversor / String</string>
+    <string name="panels_sheet_installation">Data de instalação</string>
+    <string name="panels_sheet_efficiency">Eficiência</string>
+    <string name="panels_sheet_report">Relatar problema</string>
+    <string name="panels_sheet_close">Fechar</string>
+    <string name="panels_unavailable_value">-</string>
+
+    <string name="report_title">Relatar problema de %1$s</string>
+    <string name="report_severity">Severidade</string>
+    <string name="report_type">Tipo do problema</string>
+    <string name="report_description">Descrição</string>
+    <string name="report_description_hint">O que você viu na placa?</string>
+    <string name="report_send">Enviar relato</string>
+    <string name="report_sending">Enviando...</string>
+    <string name="report_sent">Relato enviado. O operador foi avisado.</string>
+    <string name="report_pick_severity">Escolha a severidade.</string>
+    <string name="report_pick_type">Escolha o tipo do problema.</string>
+    <string name="report_write_description">Descreva o que você viu na placa.</string>
+
+    <string name="panels_error_network">Não foi possível conectar ao servidor.</string>
+    <string name="panels_error_timeout">O servidor demorou demais para responder.</string>
+    <string name="panels_error_server">O servidor não conseguiu concluir o pedido.</string>
+    <string name="panels_error_forbidden">Você não tem permissão para esta ação.</string>
+    <string name="panels_error_not_found">Placa não encontrada.</string>
+    <string name="panels_error_invalid">Não foi possível enviar. Revise os dados e tente de novo.</string>
+    <string name="panels_error_generic">Algo deu errado. Tente novamente.</string>
+</resources>
