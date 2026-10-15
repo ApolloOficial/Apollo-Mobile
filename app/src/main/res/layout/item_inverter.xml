@@ -14,7 +14,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="12dp"
-        android:text="Inversor 001"
+        android:text=""
         android:textColor="@color/neutral_black" />
 
     <androidx.cardview.widget.CardView
@@ -25,6 +25,7 @@
         app:cardElevation="2dp">
 
         <LinearLayout
+            android:id="@+id/llCardContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
@@ -49,7 +50,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="ITJ-LIM-001"
+                    android:text=""
                     android:textColor="@color/neutral_black"
                     app:layout_constraintStart_toEndOf="@id/ivInverterIcon"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -60,12 +61,13 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="12dp"
-                    android:text="Capac. 42 kWp · 24 placas"
+                    android:text=""
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintStart_toEndOf="@id/ivInverterIcon"
                     app:layout_constraintTop_toBottomOf="@id/tvInverterId" />
 
                 <ImageView
+                    android:id="@+id/ivChevron"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_arrow_back"
@@ -96,6 +98,7 @@
                     android:paddingVertical="12dp">
 
                     <TextView
+                        android:id="@+id/tvStockCount"
                         style="@style/apollo_h5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -126,6 +129,7 @@
                     android:paddingVertical="12dp">
 
                     <TextView
+                        android:id="@+id/tvOperationCount"
                         style="@style/apollo_h5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -156,6 +160,7 @@
                     android:paddingVertical="12dp">
 
                     <TextView
+                        android:id="@+id/tvAttentionCount"
                         style="@style/apollo_h5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -169,6 +174,30 @@
                         android:text="Atenção"
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/llHealthRow"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/apollo_label4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Saúde da string"
+                    android:textColor="@color/neutral_black" />
+
+                <TextView
+                    android:id="@+id/tvHealthValue"
+                    style="@style/apollo_body4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/neutral_gray" />
 
             </LinearLayout>
 
@@ -188,10 +217,6 @@
                 android:layout_marginTop="8dp"
                 android:orientation="vertical">
 
-                <!-- Plate Item Placeholder -->
-                <include layout="@layout/item_plate_summary" />
-                <include layout="@layout/item_plate_summary" />
-                <include layout="@layout/item_plate_summary" />
 
             </LinearLayout>
 
@@ -203,7 +228,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:gravity="center"
-                android:text="Ver todas as 33 placas"
+                android:text=""
                 android:textColor="@color/secondary_three"
                 android:background="?attr/selectableItemBackground"
                 android:padding="8dp"/>
