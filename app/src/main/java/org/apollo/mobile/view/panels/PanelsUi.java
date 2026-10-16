@@ -1,54 +1,21 @@
 package org.apollo.mobile.view.panels;
 
 import android.app.Activity;
-import android.app.ActivityOptions;
 import android.content.Intent;
-import android.view.View;
 import android.widget.Toast;
 
 import org.apollo.mobile.R;
 import org.apollo.mobile.panels.error.PanelsError;
 import org.apollo.mobile.session.SessionManagerFactory;
 import org.apollo.mobile.view.auth.LoginActivity;
-import org.apollo.mobile.view.chat.ChatbotActivity;
-import org.apollo.mobile.view.home.HomeActivity;
-import org.apollo.mobile.view.scanner.ScannerActivity;
-import org.apollo.mobile.view.settings.SettingsActivity;
+import org.apollo.mobile.view.common.BottomNavigation;
 
 final class PanelsUi {
     private PanelsUi() {
     }
 
     static void bindNavigation(Activity activity) {
-        View home = activity.findViewById(R.id.ivHome);
-        if (home != null) {
-            home.setOnClickListener(view -> open(activity, HomeActivity.class, true));
-        }
-        View panels = activity.findViewById(R.id.ivPanels);
-        if (panels != null && !(activity instanceof PanelsActivity)) {
-            panels.setOnClickListener(view -> open(activity, PanelsActivity.class, true));
-        }
-        View scan = activity.findViewById(R.id.cvScanContainer);
-        if (scan != null) {
-            scan.setOnClickListener(view -> activity.startActivity(new Intent(activity, ScannerActivity.class)));
-        }
-        View settings = activity.findViewById(R.id.ivSettings);
-        if (settings != null) {
-            settings.setOnClickListener(view -> open(activity, SettingsActivity.class, false));
-        }
-        View chat = activity.findViewById(R.id.fabChatbot);
-        if (chat != null) {
-            chat.setOnClickListener(view -> activity.startActivity(new Intent(activity, ChatbotActivity.class)));
-        }
-    }
-
-    private static void open(Activity activity, Class<?> target, boolean clearTop) {
-        Intent intent = new Intent(activity, target);
-        if (clearTop) {
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-        }
-        activity.startActivity(intent, ActivityOptions.makeCustomAnimation(
-                activity, R.anim.nav_fade_in, R.anim.nav_fade_out).toBundle());
+        BottomNavigation.setup(activity, BottomNavigation.Tab.PANELS);
     }
 
     static boolean handleFailure(Activity activity, PanelsError error) {

@@ -12,15 +12,16 @@
         android:id="@+id/clHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/header_top_padding"
+        android:paddingBottom="@dimen/header_bottom_padding"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivProfile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_picture"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,11 +31,16 @@
         <TextView
             android:id="@+id/tvLocation"
             style="@style/apollo_label4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/header_item_spacing"
+            android:layout_marginEnd="@dimen/header_item_spacing"
             android:background="@drawable/edittext_bg"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/space_16"
+            android:paddingVertical="@dimen/space_8"
             android:text="Fábrica Itajaí, Limeira - SP"
             android:textColor="@color/neutral_black"
             app:layout_constraintBottom_toBottomOf="@id/ivProfile"
@@ -44,8 +50,8 @@
 
         <ImageButton
             android:id="@+id/ibNotifications"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:background="@drawable/edittext_bg"
             android:src="@drawable/ic_notifications"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,24 +59,31 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/topBar"
+        android:name="org.apollo.mobile.view.common.TopBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/clHeader">
+        app:layout_constraintTop_toBottomOf="@id/topBar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingBottom="120dp">
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/content_bottom_padding">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="@dimen/space_16">
 
                 <TextView
                     android:id="@+id/tvGreeting"
@@ -95,8 +108,8 @@
 
                 <ImageView
                     android:id="@+id/ivSync"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="@dimen/space_32"
+                    android:layout_height="@dimen/space_32"
                     android:contentDescription="@string/home_sync_content_description"
                     android:src="@drawable/ic_sync"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -110,7 +123,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp">
+                android:layout_marginTop="@dimen/space_32">
 
                 <TextView
                     style="@style/apollo_label1"
@@ -138,22 +151,23 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardServiceOrder"
                 android:layout_width="match_parent"
-                android:layout_height="148dp"
-                android:layout_marginTop="12dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_12"
                 app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="24dp"
+                app:cardCornerRadius="@dimen/space_24"
                 app:cardElevation="2dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/space_12">
 
                     <LinearLayout
                         android:id="@+id/llTags"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="@dimen/space_16"
+                        android:layout_marginTop="@dimen/space_8"
                         android:orientation="horizontal"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvPlacaValue">
@@ -166,26 +180,26 @@
                             android:background="@drawable/bg_label_rounded"
                             android:backgroundTint="@color/alert_two"
                             android:includeFontPadding="false"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
+                            android:paddingHorizontal="@dimen/space_12"
+                            android:paddingVertical="@dimen/space_4"
                             android:text="Em andamento"
                             android:textColor="@color/neutral_black"
-                            android:textSize="11sp" />
+                            android:textSize="@dimen/text_12" />
 
                         <TextView
                             android:id="@+id/tvPriorityTag"
                             style="@style/apollo_label6"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="4dp"
+                            android:layout_marginStart="@dimen/space_4"
                             android:background="@drawable/bg_label_rounded"
                             android:backgroundTint="@color/error_two"
                             android:includeFontPadding="false"
-                            android:paddingHorizontal="12dp"
-                            android:paddingVertical="4dp"
+                            android:paddingHorizontal="@dimen/space_12"
+                            android:paddingVertical="@dimen/space_4"
                             android:text="Alta"
                             android:textColor="@color/neutral_black"
-                            android:textSize="11sp" />
+                            android:textSize="@dimen/text_12" />
 
                     </LinearLayout>
 
@@ -194,8 +208,8 @@
                         style="@style/apollo_label2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="12dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginTop="@dimen/space_12"
                         android:includeFontPadding="false"
                         android:text="Placa CS-2023-00529"
                         android:textColor="@color/neutral_gray"
@@ -208,11 +222,11 @@
                         style="@style/apollo_h5"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:includeFontPadding="false"
                         android:text="OS84524"
                         android:textColor="@color/neutral_black"
-                        android:textSize="26sp"
+                        android:textSize="@dimen/text_26"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvPlacaLabel" />
@@ -222,7 +236,7 @@
                         style="@style/apollo_body3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:includeFontPadding="false"
                         android:text="ID: OS84424"
                         android:textColor="@color/neutral_gray"
@@ -235,7 +249,7 @@
                         style="@style/apollo_body3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:includeFontPadding="false"
                         android:text="Prazo: 03/10/2026"
                         android:textColor="@color/neutral_gray"
@@ -247,22 +261,22 @@
                         android:id="@+id/btnOsDetails"
                         style="@style/apollo_label2"
                         android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:layout_marginEnd="16dp"
-                        android:layout_marginBottom="12dp"
+                        android:layout_height="@dimen/touch_target_min_size"
+                        android:layout_marginTop="@dimen/space_8"
+                        android:layout_marginEnd="@dimen/space_16"
                         android:background="@drawable/btn_outlined"
                         android:gravity="center"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:paddingHorizontal="24dp"
+                        android:paddingHorizontal="@dimen/space_16"
                         android:text="Ver detalhes"
                         android:textAllCaps="false"
                         android:textColor="@color/secondary_three"
-                        android:textSize="14sp"
+                        android:textSize="@dimen/text_14"
                         app:backgroundTint="@null"
-                        app:cornerRadius="18dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent" />
+                        app:cornerRadius="@dimen/space_24"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/llTags" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -273,7 +287,7 @@
                 style="@style/apollo_body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:gravity="center"
                 android:text="@string/home_empty_service_orders"
                 android:textColor="@color/neutral_gray"
@@ -285,17 +299,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/space_20"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/btnPrevOs"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/space_48"
+                    android:layout_height="@dimen/space_48"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Página anterior"
-                    android:padding="8dp"
+                    android:padding="@dimen/space_8"
                     android:rotation="180"
                     android:scaleType="fitCenter"
                     android:src="@drawable/lucide_circle_chevron_right"
@@ -310,11 +324,11 @@
 
                 <ImageButton
                     android:id="@+id/btnNextOs"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/space_48"
+                    android:layout_height="@dimen/space_48"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Próxima página"
-                    android:padding="8dp"
+                    android:padding="@dimen/space_8"
                     android:scaleType="fitCenter"
                     android:src="@drawable/lucide_circle_chevron_right"
                     app:tint="@color/pagination_arrow_tint" />
@@ -325,7 +339,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="@dimen/space_24">
 
                 <TextView
                     style="@style/apollo_label1"
@@ -354,29 +368,29 @@
                 android:id="@+id/cardAttention"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="@dimen/space_16"
                 app:cardElevation="2dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="@dimen/space_16">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvAlertIcon"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="@dimen/space_64"
+                        android:layout_height="@dimen/space_64"
                         app:cardBackgroundColor="#FFEBEB"
-                        app:cardCornerRadius="12dp"
+                        app:cardCornerRadius="@dimen/space_12"
                         app:cardElevation="0dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_warning"
                             app:tint="@color/error_one" />
@@ -388,11 +402,11 @@
                         style="@style/apollo_label6"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:background="@drawable/bg_label_rounded"
                         android:backgroundTint="@color/error_one"
-                        android:paddingHorizontal="12dp"
-                        android:paddingVertical="4dp"
+                        android:paddingHorizontal="@dimen/space_12"
+                        android:paddingVertical="@dimen/space_4"
                         android:text="Crítico"
                         android:textColor="@color/neutral_white"
                         app:layout_constraintStart_toEndOf="@id/cvAlertIcon"
@@ -403,8 +417,8 @@
                         style="@style/apollo_label2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginTop="@dimen/space_4"
                         android:text="Placa CS-2023-00456 - eficiência crítica"
                         android:textColor="@color/neutral_black"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -416,7 +430,7 @@
                         style="@style/apollo_body4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/space_8"
                         android:text="Eficiência"
                         android:textColor="@color/neutral_gray"
                         app:layout_constraintStart_toStartOf="@id/tvAlertTitle"
@@ -436,15 +450,15 @@
                         android:id="@+id/progressAlert"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/space_4"
                         android:progress="42"
                         app:indicatorColor="@color/error_one"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tvAlertEficLabel"
                         app:layout_constraintTop_toBottomOf="@id/tvAlertEficLabel"
                         app:trackColor="@color/disable_gray"
-                        app:trackCornerRadius="4dp"
-                        app:trackThickness="8dp" />
+                        app:trackCornerRadius="@dimen/space_4"
+                        app:trackThickness="@dimen/space_8" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -455,7 +469,7 @@
                 style="@style/apollo_body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:gravity="center"
                 android:text="@string/home_empty_attention"
                 android:textColor="@color/neutral_gray"
@@ -466,7 +480,7 @@
                 style="@style/apollo_label1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:text="Registros pendentes"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -475,29 +489,29 @@
                 android:id="@+id/cardPending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="16dp"
+                app:cardCornerRadius="@dimen/space_16"
                 app:cardElevation="2dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="@dimen/space_16">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvPendingIcon"
-                        android:layout_width="64dp"
-                        android:layout_height="64dp"
+                        android:layout_width="@dimen/space_64"
+                        android:layout_height="@dimen/space_64"
                         app:cardBackgroundColor="#E3F2FD"
-                        app:cardCornerRadius="12dp"
+                        app:cardCornerRadius="@dimen/space_12"
                         app:cardElevation="0dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:layout_width="32dp"
-                            android:layout_height="32dp"
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_clipboard"
                             app:tint="@color/info_one" />
@@ -509,7 +523,7 @@
                         style="@style/apollo_body4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:text="Lote ITJ-LIM-02"
                         android:textColor="@color/neutral_gray"
                         app:layout_constraintStart_toEndOf="@id/cvPendingIcon"
@@ -520,7 +534,7 @@
                         style="@style/apollo_label2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:layout_marginTop="2dp"
                         android:text="Faltam 8 placas para registrar"
                         android:textColor="@color/neutral_black"
@@ -533,7 +547,7 @@
                         style="@style/apollo_body4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp"
+                        android:layout_marginTop="@dimen/space_8"
                         android:text="Registros"
                         android:textColor="@color/neutral_gray"
                         app:layout_constraintStart_toStartOf="@id/tvPendingTitle"
@@ -553,22 +567,22 @@
                         android:id="@+id/progressPending"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="4dp"
+                        android:layout_marginTop="@dimen/space_4"
                         android:progress="66"
                         app:indicatorColor="@color/info_one"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="@id/tvPendingRegLabel"
                         app:layout_constraintTop_toBottomOf="@id/tvPendingRegLabel"
                         app:trackColor="@color/disable_gray"
-                        app:trackCornerRadius="4dp"
-                        app:trackThickness="8dp" />
+                        app:trackCornerRadius="@dimen/space_4"
+                        app:trackThickness="@dimen/space_8" />
 
                     <Button
                         android:id="@+id/btnPendingDetails"
                         style="@style/apollo_label3"
                         android:layout_width="wrap_content"
-                        android:layout_height="34dp"
-                        android:layout_marginTop="16dp"
+                        android:layout_height="@dimen/touch_target_min_size"
+                        android:layout_marginTop="@dimen/space_16"
                         android:background="@drawable/btn_outlined"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
@@ -576,7 +590,7 @@
                         android:textAllCaps="false"
                         android:textColor="@color/secondary_one"
                         app:backgroundTint="@null"
-                        app:cornerRadius="20dp"
+                        app:cornerRadius="@dimen/space_24"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/progressPending" />
@@ -590,7 +604,7 @@
                 style="@style/apollo_body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:gravity="center"
                 android:text="@string/home_empty_pending"
                 android:textColor="@color/neutral_gray"
@@ -600,103 +614,7 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Botão Chatbot Circular -->
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fabChatbot"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
-        android:src="@drawable/ic_chatbot"
-        app:backgroundTint="@color/secondary_three"
-        app:fabCustomSize="80dp"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="36dp"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-        app:tint="@color/neutral_white" />
-
-    <!-- Navigation Footer -->
-    <androidx.cardview.widget.CardView
-        android:id="@+id/bottomNavigation"
-        android:layout_width="0dp"
-        android:layout_height="91dp"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginBottom="20dp"
-        app:cardCornerRadius="32dp"
-        app:cardElevation="4dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="horizontal">
-
-            <LinearLayout
-                android:id="@+id/llHome"
-                android:layout_width="34dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="vertical">
-
-                <ImageView
-                    android:id="@+id/ivHome"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
-                    android:src="@drawable/ic_home_black" />
-
-                <View
-                    android:layout_width="34dp"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="4dp"
-                    android:background="@drawable/bg_indicator_home" />
-
-            </LinearLayout>
-
-            <ImageView
-                android:id="@+id/ivPanels"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="24dp"
-                android:src="@drawable/ic_solarpanel_gray" />
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cvScanContainer"
-                android:layout_width="73dp"
-                android:layout_height="73dp"
-                android:layout_marginStart="24dp"
-                app:cardBackgroundColor="@color/secondary_three"
-                app:cardCornerRadius="36.5dp"
-                app:cardElevation="0dp">
-
-                <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
-                    android:layout_gravity="center"
-                    android:src="@drawable/ic_scan"
-                    app:tint="@color/neutral_white" />
-
-            </androidx.cardview.widget.CardView>
-
-            <ImageView
-                android:id="@+id/ivTools"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="24dp"
-                android:src="@drawable/ic_tools_gray" />
-
-            <ImageView
-                android:id="@+id/ivSettings"
-                android:layout_width="34dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="24dp"
-                android:src="@drawable/ic_settings_gray" />
-
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
+    <!-- Footer + chatbot compartilhados -->
+    <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

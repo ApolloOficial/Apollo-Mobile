@@ -4,106 +4,108 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="@dimen/space_12"
     app:cardBackgroundColor="@color/neutral_white"
-    app:cardCornerRadius="20dp"
+    app:cardCornerRadius="@dimen/space_20"
     app:cardElevation="2dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:orientation="vertical"
+        android:padding="@dimen/card_content_padding">
 
         <TextView
             android:id="@+id/tvSubtitle"
             style="@style/apollo_label4"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Placa CS-2024-00765"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:textColor="@color/neutral_gray"
-            app:layout_constraintEnd_toStartOf="@+id/llTags"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            tools:text="Placa CS-2024-00765" />
 
         <TextView
             android:id="@+id/tvMainId"
             style="@style/apollo_h6"
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="2dp"
-            android:text="OS84524"
+            android:layout_marginTop="@dimen/space_4"
             android:textColor="@color/neutral_black"
             android:textStyle="bold"
-            app:layout_constraintEnd_toStartOf="@+id/llTags"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+            tools:text="OS84524" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_8"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:id="@+id/llTags"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tvStatusTag"
+                    style="@style/apollo_label6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_label_rounded"
+                    android:backgroundTint="@color/info_two"
+                    android:paddingHorizontal="@dimen/space_12"
+                    android:paddingVertical="@dimen/space_6"
+                    android:text="@string/service_orders_tag_open"
+                    android:textColor="@color/neutral_black" />
+
+                <TextView
+                    android:id="@+id/tvPriorityTag"
+                    style="@style/apollo_label6"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:background="@drawable/bg_label_rounded"
+                    android:backgroundTint="@color/primary_two"
+                    android:paddingHorizontal="@dimen/space_12"
+                    android:paddingVertical="@dimen/space_6"
+                    android:text="@string/service_orders_tag_medium"
+                    android:textColor="@color/neutral_black" />
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <LinearLayout
-            android:id="@+id/llTags"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            app:layout_constraintBottom_toBottomOf="@+id/tvMainId"
-            app:layout_constraintEnd_toEndOf="parent">
+            android:layout_marginTop="@dimen/space_12"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
             <TextView
-                android:id="@+id/tvStatusTag"
-                style="@style/apollo_label6"
-                android:layout_width="wrap_content"
+                android:id="@+id/tvDueDate"
+                style="@style/apollo_body4"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:background="@drawable/bg_label_rounded"
-                android:backgroundTint="@color/info_two"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="4dp"
-                android:text="@string/service_orders_tag_open"
-                android:textColor="@color/neutral_black" />
+                android:layout_marginEnd="@dimen/space_8"
+                android:layout_weight="1"
+                android:textColor="@color/neutral_gray"
+                tools:text="Prazo: 30/09/2026" />
 
-            <TextView
-                android:id="@+id/tvPriorityTag"
-                style="@style/apollo_label6"
+            <Button
+                android:id="@+id/btnDetails"
+                style="@style/apollo_label3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:background="@drawable/bg_label_rounded"
-                android:backgroundTint="@color/primary_two"
-                android:paddingHorizontal="12dp"
-                android:paddingVertical="4dp"
-                android:text="@string/service_orders_tag_medium"
-                android:textColor="@color/neutral_black" />
-
+                android:layout_height="@dimen/touch_target_min_size"
+                android:background="@drawable/btn_outlined"
+                android:insetTop="0dp"
+                android:insetBottom="0dp"
+                android:minWidth="0dp"
+                android:paddingHorizontal="@dimen/space_16"
+                android:text="@string/maintenance_btn_view_details"
+                android:textAllCaps="false"
+                android:textColor="@color/secondary_three"
+                app:backgroundTint="@null"
+                app:cornerRadius="@dimen/space_24" />
         </LinearLayout>
-
-        <TextView
-            android:id="@+id/tvDueDate"
-            style="@style/apollo_body4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:text="Prazo: 30/09/2026"
-            android:textColor="@color/neutral_gray"
-            app:layout_constraintBottom_toBottomOf="@+id/btnDetails"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/btnDetails" />
-
-        <Button
-            android:id="@+id/btnDetails"
-            style="@style/apollo_label3"
-            android:layout_width="wrap_content"
-            android:layout_height="34dp"
-            android:layout_marginTop="12dp"
-            android:background="@drawable/btn_outlined"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
-            android:paddingHorizontal="20dp"
-            android:text="@string/maintenance_btn_view_details"
-            android:textAllCaps="false"
-            android:textColor="@color/secondary_three"
-            app:backgroundTint="@null"
-            app:cornerRadius="17dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvMainId" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
+    </LinearLayout>
 </androidx.cardview.widget.CardView>

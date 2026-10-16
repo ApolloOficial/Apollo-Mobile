@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="screen_horizontal_padding">14dp</dimen>
+    <dimen name="header_top_padding">28dp</dimen>
+    <dimen name="header_bottom_padding">12dp</dimen>
+    <dimen name="header_control_size">43dp</dimen>
+    <dimen name="header_item_spacing">11dp</dimen>
+    <dimen name="content_bottom_padding">120dp</dimen>
+    <dimen name="section_spacing">20dp</dimen>
+    <dimen name="card_content_padding">16dp</dimen>
+    <dimen name="os_overview_icon_size">64dp</dimen>
+    <dimen name="os_overview_icon_inner_size">32dp</dimen>
+    <dimen name="bottom_nav_bottom_margin">18dp</dimen>
+
+    <dimen name="scanner_button_size">66dp</dimen>
+    <dimen name="scanner_button_radius">33dp</dimen>
+    <dimen name="scanner_icon_size">32dp</dimen>
+
+    <dimen name="chatbot_size">72dp</dimen>
+    <dimen name="chatbot_icon_size">32dp</dimen>
+    <dimen name="bottom_nav_height">82dp</dimen>
+    <dimen name="bottom_nav_horizontal_margin">3.5dp</dimen>
+    <dimen name="bottom_nav_icon_size">29dp</dimen>
+    <dimen name="bottom_nav_indicator_width">31dp</dimen>
+    <dimen name="bottom_nav_indicator_height">5.5dp</dimen>
+    <dimen name="bottom_nav_item_spacing">23dp</dimen>
+    <dimen name="bottom_nav_indicator_spacing">3.5dp</dimen>
+    <dimen name="chatbot_margin_end">18dp</dimen>
+    <dimen name="chatbot_margin_bottom">11dp</dimen>
+</resources>

@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="48dp"
-            android:paddingBottom="24dp">
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_48"
+            android:paddingBottom="@dimen/space_24">
 
             <!-- Botão Voltar -->
             <TextView
@@ -28,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:drawableStart="@drawable/ic_arrow_back"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/space_8"
                 android:focusable="true"
                 android:gravity="center_vertical"
                 android:text="Voltar"
@@ -38,7 +38,7 @@
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:text="Notificações"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -47,19 +47,19 @@
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:background="#F0F0F0" />
 
             <!-- Item: Manutenção Preditiva -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="20dp">
+                android:paddingVertical="@dimen/space_20">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/space_16"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/switch_1"
@@ -104,12 +104,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="20dp">
+                android:paddingVertical="@dimen/space_20">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/space_16"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/switch_2"
@@ -154,12 +154,12 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="20dp">
+                android:paddingVertical="@dimen/space_20">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
+                    android:layout_marginEnd="@dimen/space_16"
                     android:orientation="vertical"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/switch_3"

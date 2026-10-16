@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Linha "rótulo .......... valor" dos detalhes da OS -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingVertical="@dimen/space_8">
+
+    <TextView
+        android:id="@+id/tvLabel"
+        style="@style/apollo_body2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/neutral_gray"
+        tools:text="Inversor / String" />
+
+    <TextView
+        android:id="@+id/tvValue"
+        style="@style/apollo_label2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        android:gravity="start"
+        android:textColor="@color/neutral_black"
+        tools:text="Inversor 01 / ITJ-LIM-001" />
+</LinearLayout>

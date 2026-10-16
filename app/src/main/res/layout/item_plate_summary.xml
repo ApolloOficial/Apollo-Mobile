@@ -5,12 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="6dp">
+    android:paddingVertical="@dimen/space_6">
 
     <View
         android:id="@+id/vStatusDot"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
+        android:layout_width="@dimen/space_8"
+        android:layout_height="@dimen/space_8"
         android:background="@drawable/bg_status_dot"
         android:backgroundTint="@color/sucess_one"
         app:layout_constraintBottom_toBottomOf="@id/tvPlateName"
@@ -22,7 +22,7 @@
         style="@style/apollo_body3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/space_12"
         android:text="CS-2025-00841"
         android:textColor="@color/neutral_black"
         app:layout_constraintStart_toEndOf="@id/vStatusDot"

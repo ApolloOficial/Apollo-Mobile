@@ -48,7 +48,7 @@
             style="@style/apollo_h5"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/space_24"
             android:gravity="center"
             android:text="(85) 98765 – 4321"
             android:textColor="@color/neutral_black"
@@ -62,7 +62,7 @@
             style="@style/apollo_label4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/space_8"
             android:text="Alterar método de contato"
             android:textColor="@color/secondary_three"
             android:textStyle="bold"
@@ -74,16 +74,16 @@
             android:id="@+id/llOtpContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/space_24"
             android:gravity="center"
             android:orientation="horizontal"
             app:layout_constraintTop_toBottomOf="@id/tvChangeMethod">
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/space_56"
                 android:layout_weight="1"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="@dimen/space_6"
                 android:background="@drawable/otp_box_bg"
                 android:gravity="center"
                 android:hint="–"
@@ -91,14 +91,14 @@
                 android:maxLength="1"
                 android:textColor="@color/neutral_black"
                 android:textColorHint="@color/disable_gray"
-                android:textSize="22sp"
+                android:textSize="@dimen/text_22"
                 android:textStyle="bold" />
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/space_56"
                 android:layout_weight="1"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="@dimen/space_6"
                 android:background="@drawable/otp_box_bg"
                 android:gravity="center"
                 android:hint="–"
@@ -106,14 +106,14 @@
                 android:maxLength="1"
                 android:textColor="@color/neutral_black"
                 android:textColorHint="@color/disable_gray"
-                android:textSize="22sp"
+                android:textSize="@dimen/text_22"
                 android:textStyle="bold" />
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/space_56"
                 android:layout_weight="1"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="@dimen/space_6"
                 android:background="@drawable/otp_box_bg"
                 android:gravity="center"
                 android:hint="–"
@@ -121,14 +121,14 @@
                 android:maxLength="1"
                 android:textColor="@color/neutral_black"
                 android:textColorHint="@color/disable_gray"
-                android:textSize="22sp"
+                android:textSize="@dimen/text_22"
                 android:textStyle="bold" />
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/space_56"
                 android:layout_weight="1"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="@dimen/space_6"
                 android:background="@drawable/otp_box_bg"
                 android:gravity="center"
                 android:hint="–"
@@ -136,14 +136,14 @@
                 android:maxLength="1"
                 android:textColor="@color/neutral_black"
                 android:textColorHint="@color/disable_gray"
-                android:textSize="22sp"
+                android:textSize="@dimen/text_22"
                 android:textStyle="bold" />
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/space_56"
                 android:layout_weight="1"
-                android:layout_marginEnd="6dp"
+                android:layout_marginEnd="@dimen/space_6"
                 android:background="@drawable/otp_box_bg"
                 android:gravity="center"
                 android:hint="–"
@@ -151,12 +151,12 @@
                 android:maxLength="1"
                 android:textColor="@color/neutral_black"
                 android:textColorHint="@color/disable_gray"
-                android:textSize="22sp"
+                android:textSize="@dimen/text_22"
                 android:textStyle="bold" />
 
             <EditText
                 android:layout_width="0dp"
-                android:layout_height="56dp"
+                android:layout_height="@dimen/space_56"
                 android:layout_weight="1"
                 android:background="@drawable/otp_box_bg"
                 android:gravity="center"
@@ -165,7 +165,7 @@
                 android:maxLength="1"
                 android:textColor="@color/neutral_black"
                 android:textColorHint="@color/disable_gray"
-                android:textSize="22sp"
+                android:textSize="@dimen/text_22"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -174,7 +174,7 @@
             style="@style/apollo_body4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/space_16"
             android:text="Reenviar código em 30 segundos"
             android:textColor="@color/neutral_gray"
             app:layout_constraintEnd_toEndOf="parent"
@@ -186,7 +186,7 @@
             style="@style/apollo_label2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="@dimen/space_24"
             android:backgroundTint="@color/secondary_three"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -201,8 +201,8 @@
             style="@style/apollo_label2"
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/space_12"
+            android:layout_marginBottom="@dimen/space_8"
             android:background="@drawable/btn_outlined"
             android:insetTop="0dp"
             android:insetBottom="0dp"

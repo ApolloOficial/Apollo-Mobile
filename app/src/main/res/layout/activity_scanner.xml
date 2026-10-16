@@ -16,9 +16,12 @@
     <!-- Scanner Frame -->
     <ImageView
         android:id="@+id/ivScannerFrame"
-        android:layout_width="300dp"
-        android:layout_height="180dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
         android:src="@drawable/bg_scanner_frame"
+        app:layout_constraintDimensionRatio="5:3"
+        app:layout_constraintWidth_max="@dimen/space_300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -66,8 +69,9 @@
         android:id="@+id/btnBack"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="48dp"
+        android:layout_marginStart="@dimen/screen_horizontal_padding"
+        android:layout_marginTop="@dimen/header_top_padding"
+        android:minHeight="@dimen/touch_target_min_size"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:clickable="true"
@@ -76,8 +80,8 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
-            android:layout_width="18dp"
-            android:layout_height="18dp"
+            android:layout_width="@dimen/space_18"
+            android:layout_height="@dimen/space_18"
             android:src="@drawable/ic_arrow_back"
             app:tint="@color/neutral_white" />
 
@@ -85,17 +89,18 @@
             style="@style/apollo_label2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginStart="@dimen/space_8"
             android:text="Voltar"
             android:textColor="@color/neutral_white" />
     </LinearLayout>
 
     <ImageView
         android:id="@+id/ivFlash"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="24dp"
+        android:layout_width="@dimen/touch_target_min_size"
+        android:layout_height="@dimen/touch_target_min_size"
+        android:layout_marginTop="@dimen/header_top_padding"
+        android:layout_marginEnd="@dimen/screen_horizontal_padding"
+        android:padding="@dimen/space_12"
         android:src="@drawable/ic_flash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -105,10 +110,11 @@
     <TextView
         android:id="@+id/tvScanTitle"
         style="@style/apollo_h6"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="@dimen/space_8"
         android:text="Centralize o código na moldura"
+        android:gravity="center"
         android:textColor="@color/neutral_white"
         app:layout_constraintBottom_toTopOf="@id/tvScanSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
@@ -117,10 +123,11 @@
     <TextView
         android:id="@+id/tvScanSubtitle"
         style="@style/apollo_body2"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
+        android:layout_marginBottom="@dimen/space_40"
         android:text="A leitura acontece automaticamente"
+        android:gravity="center"
         android:textColor="@color/neutral_white"
         android:alpha="0.8"
         app:layout_constraintBottom_toTopOf="@id/ivScannerFrame"
@@ -131,9 +138,11 @@
     <TextView
         android:id="@+id/tvManualCode"
         style="@style/apollo_label2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="64dp"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/touch_target_min_size"
+        android:gravity="center"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+        android:layout_marginBottom="@dimen/space_64"
         android:text="Digitar código manualmente"
         android:textColor="@color/neutral_white"
         android:clickable="true"

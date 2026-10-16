@@ -11,9 +11,9 @@
         android:id="@+id/clToolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/space_48"
+        android:paddingBottom="@dimen/space_16"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -22,7 +22,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:drawableStart="@drawable/ic_arrow_back"
-            android:drawablePadding="8dp"
+            android:drawablePadding="@dimen/space_8"
             android:gravity="center_vertical"
             android:text="@string/chat_back"
             android:clickable="true"
@@ -36,7 +36,7 @@
             style="@style/apollo_h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/space_16"
             android:text="@string/chat_title"
             android:textColor="@color/neutral_black"
             android:textStyle="bold"
@@ -46,7 +46,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="@dimen/space_16"
             android:background="#F0F0F0"
             app:layout_constraintTop_toBottomOf="@id/tvTitle" />
 
@@ -72,7 +72,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -86,13 +86,13 @@
                 android:gravity="center"
                 android:text="@string/chat_greeting"
                 android:textColor="@color/neutral_black"
-                android:textSize="24sp"
+                android:textSize="@dimen/text_24"
                 android:textStyle="bold" />
 
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp">
+                android:layout_marginTop="@dimen/space_16">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chipSuggestion"
@@ -102,7 +102,7 @@
                     android:layout_gravity="center_horizontal"
                     android:text="@string/chat_chip_board_error"
                     app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="24dp"
+                    app:chipCornerRadius="@dimen/space_24"
                     app:chipStrokeColor="#E0E0E0"
                     app:chipStrokeWidth="1dp" />
             </FrameLayout>
@@ -111,23 +111,23 @@
                 android:id="@+id/llSuggestionDots"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="@dimen/space_10"
                 android:orientation="horizontal" />
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvInitialInput"
                 android:layout_width="match_parent"
-                android:layout_height="64dp"
-                android:layout_marginTop="20dp"
+                android:layout_height="@dimen/space_64"
+                android:layout_marginTop="@dimen/space_20"
                 app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="4dp"
+                app:cardCornerRadius="@dimen/space_32"
+                app:cardElevation="@dimen/space_4"
                 app:cardUseCompatPadding="false">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:paddingHorizontal="16dp">
+                    android:paddingHorizontal="@dimen/space_16">
 
                     <EditText
                         android:id="@+id/etMessageInitial"
@@ -139,7 +139,7 @@
                         android:imeOptions="actionSend"
                         android:inputType="textCapSentences"
                         android:maxLines="3"
-                        android:paddingEnd="12dp"
+                        android:paddingEnd="@dimen/space_12"
                         android:textColorHint="@color/neutral_gray"
                         app:layout_constraintEnd_toStartOf="@id/ibSendInitial"
                         app:layout_constraintStart_toStartOf="parent" />
@@ -149,18 +149,18 @@
                         android:clickable="true"
                         android:contentDescription="@string/chat_send"
                         android:focusable="true"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="@dimen/space_48"
+                        android:layout_height="@dimen/space_48"
                         app:cardBackgroundColor="@color/secondary_three"
-                        app:cardCornerRadius="24dp"
+                        app:cardCornerRadius="@dimen/space_24"
                         app:cardElevation="0dp"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:layout_width="24dp"
-                            android:layout_height="24dp"
+                            android:layout_width="@dimen/space_24"
+                            android:layout_height="@dimen/space_24"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_send"
                             app:tint="@color/neutral_white" />
@@ -174,28 +174,28 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:clipToPadding="false"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="16dp"
-            android:paddingBottom="96dp"
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_16"
+            android:paddingBottom="@dimen/space_96"
             android:visibility="gone"
             tools:listitem="@layout/item_chat_bot" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/cvConversationInput"
             android:layout_width="match_parent"
-            android:layout_height="64dp"
-            android:layout_marginHorizontal="24dp"
-            android:layout_marginBottom="16dp"
+            android:layout_height="@dimen/space_64"
+            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+            android:layout_marginBottom="@dimen/space_16"
             android:visibility="gone"
             app:cardBackgroundColor="@color/neutral_white"
-            app:cardCornerRadius="32dp"
-            app:cardElevation="4dp"
+            app:cardCornerRadius="@dimen/space_32"
+            app:cardElevation="@dimen/space_4"
             app:layout_constraintBottom_toBottomOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:paddingHorizontal="16dp">
+                android:paddingHorizontal="@dimen/space_16">
 
                 <EditText
                     android:id="@+id/etMessage"
@@ -207,28 +207,28 @@
                     android:imeOptions="actionSend"
                     android:inputType="textCapSentences"
                     android:maxLines="3"
-                    android:paddingEnd="12dp"
+                    android:paddingEnd="@dimen/space_12"
                     android:textColorHint="@color/neutral_gray"
                     app:layout_constraintEnd_toStartOf="@id/ibSend"
                     app:layout_constraintStart_toStartOf="parent" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/ibSend"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/space_48"
+                    android:layout_height="@dimen/space_48"
                     android:clickable="true"
                     android:contentDescription="@string/chat_send"
                     android:focusable="true"
                     app:cardBackgroundColor="@color/secondary_three"
-                    app:cardCornerRadius="24dp"
+                    app:cardCornerRadius="@dimen/space_24"
                     app:cardElevation="0dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
                         android:layout_gravity="center"
                         android:src="@drawable/ic_send"
                         app:tint="@color/neutral_white" />

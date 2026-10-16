@@ -38,11 +38,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.auth.LoginActivity" />
-        <activity android:name=".view.auth.ForgotPasswordStartActivity" />
-        <activity android:name=".view.auth.ForgotPasswordMethodActivity" />
-        <activity android:name=".view.auth.OtpVerificationActivity" />
-        <activity android:name=".view.auth.CreateNewPasswordActivity" />
+        <activity
+            android:name=".view.auth.LoginActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.auth.ForgotPasswordStartActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.auth.ForgotPasswordMethodActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.auth.OtpVerificationActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.auth.CreateNewPasswordActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.auth.WelcomeActivity" />
         <activity android:name=".view.auth.AccessDeniedActivity" />
 
@@ -50,8 +60,12 @@
             android:name=".view.home.HomeActivity"
             android:exported="false" />
         <activity android:name=".view.settings.SettingsActivity" />
-        <activity android:name=".view.settings.ProfileActivity" />
-        <activity android:name=".view.settings.SecurityActivity" />
+        <activity
+            android:name=".view.settings.ProfileActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".view.settings.SecurityActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.settings.NotificationsSettingsActivity" />
         <activity android:name=".view.settings.LanguageActivity" />
         <activity android:name=".view.settings.StorageActivity" />
@@ -61,6 +75,11 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name="org.apollo.mobile.view.scanner.ScannerActivity" />
         <activity android:name=".view.maintenance.MaintenanceActivity" />
+        <activity android:name=".view.maintenance.os.ServiceOrdersActivity" />
+        <activity android:name=".view.maintenance.os.OsDetailsActivity" />
+        <activity
+            android:name=".view.maintenance.os.CompleteMaintenanceActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.panels.PanelsActivity" />
         <activity android:name=".view.panels.PanelDetailsActivity" />
         <activity android:name=".view.panels.ReportIssueActivity" />

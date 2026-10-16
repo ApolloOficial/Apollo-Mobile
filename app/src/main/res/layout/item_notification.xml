@@ -7,18 +7,18 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cvIconBackground"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
-        android:layout_marginTop="16dp"
-        app:cardCornerRadius="12dp"
+        android:layout_width="@dimen/space_56"
+        android:layout_height="@dimen/space_56"
+        android:layout_marginTop="@dimen/space_16"
+        app:cardCornerRadius="@dimen/space_12"
         app:cardElevation="0dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <ImageView
             android:id="@+id/ivNotificationIcon"
-            android:layout_width="32dp"
-            android:layout_height="32dp"
+            android:layout_width="@dimen/space_32"
+            android:layout_height="@dimen/space_32"
             android:layout_gravity="center"
             android:src="@drawable/ic_info" />
     </androidx.cardview.widget.CardView>
@@ -28,8 +28,8 @@
         style="@style/apollo_label3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="8dp"
+        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginEnd="@dimen/space_8"
         android:text="Título da Notificação"
         android:textColor="@color/neutral_black"
         android:textStyle="bold"
@@ -42,7 +42,7 @@
         style="@style/apollo_body4"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="4dp"
+        android:layout_marginTop="@dimen/space_4"
         android:text="Descrição curta da notificação."
         android:textColor="@color/neutral_gray"
         android:lineSpacingExtra="2dp"
@@ -62,9 +62,9 @@
 
     <View
         android:id="@+id/vUnreadIndicator"
-        android:layout_width="8dp"
-        android:layout_height="8dp"
-        android:layout_marginStart="8dp"
+        android:layout_width="@dimen/space_8"
+        android:layout_height="@dimen/space_8"
+        android:layout_marginStart="@dimen/space_8"
         android:background="@drawable/dot_indicator_active"
         app:layout_constraintBottom_toBottomOf="@id/tvNotificationTime"
         app:layout_constraintEnd_toEndOf="parent"
@@ -73,7 +73,7 @@
     <View
         android:layout_width="0dp"
         android:layout_height="1dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="@dimen/space_16"
         android:background="#F0F0F0"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/tvNotificationTitle"

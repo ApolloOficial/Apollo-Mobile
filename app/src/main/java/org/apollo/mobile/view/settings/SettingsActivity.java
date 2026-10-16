@@ -1,6 +1,5 @@
 package org.apollo.mobile.view.settings;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -27,9 +26,7 @@ import org.apollo.mobile.settings.error.SettingsError;
 import org.apollo.mobile.settings.gateway.SettingsGateway;
 import org.apollo.mobile.settings.gateway.SettingsGatewayFactory;
 import org.apollo.mobile.settings.gateway.SettingsSummary;
-import org.apollo.mobile.view.chat.ChatbotActivity;
-import org.apollo.mobile.view.home.HomeActivity;
-import org.apollo.mobile.view.panels.PanelsActivity;
+import org.apollo.mobile.view.common.BottomNavigation;
 
 public final class SettingsActivity extends AppCompatActivity {
     private SettingsGateway gateway;
@@ -75,17 +72,8 @@ public final class SettingsActivity extends AppCompatActivity {
         findViewById(R.id.btn_edit_photo).setOnClickListener(view -> showPhotoMenu());
         photoView.setOnClickListener(view -> showPhotoMenu());
 
-        findViewById(R.id.ivHome).setOnClickListener(view -> {
-            Intent intent = new Intent(this, HomeActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-            startActivity(intent, ActivityOptions.makeCustomAnimation(
-                    this, R.anim.nav_fade_in, R.anim.nav_fade_out).toBundle());
-            finish();
-        });
-        findViewById(R.id.ivPanels).setOnClickListener(
-                view -> startActivity(new Intent(this, PanelsActivity.class)));
-        findViewById(R.id.fabChatbot).setOnClickListener(
-                view -> startActivity(new Intent(this, ChatbotActivity.class)));
+        // Footer + chatbot (aba Configurações ativa)
+        BottomNavigation.setup(this, BottomNavigation.Tab.SETTINGS);
     }
 
     @Override

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Card expansível de uma string com suas placas -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/space_12"
+    android:background="@drawable/bg_os_card"
+    android:orientation="vertical"
+    android:paddingHorizontal="@dimen/space_16"
+    android:paddingVertical="@dimen/space_14">
+
+    <LinearLayout
+        android:id="@+id/llGroupHeader"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/touch_target_min_size"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvGroupTitle"
+                style="@style/apollo_label3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/neutral_black"
+                tools:text="Inversor 01, ITJ-LIM-001" />
+
+            <TextView
+                android:id="@+id/tvGroupCount"
+                style="@style/apollo_body4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/neutral_gray"
+                tools:text="0 de 24 placas verificadas" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/ivChevron"
+            android:layout_width="@dimen/space_24"
+            android:layout_height="@dimen/space_24"
+            android:contentDescription="Expandir"
+            android:src="@drawable/ic_chevron_up" />
+    </LinearLayout>
+
+    <!-- item_verified_plate x N -->
+    <LinearLayout
+        android:id="@+id/llPlates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:orientation="vertical" />
+</LinearLayout>

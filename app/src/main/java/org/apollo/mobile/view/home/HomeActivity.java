@@ -1,6 +1,5 @@
 package org.apollo.mobile.view.home;
 
-import android.app.ActivityOptions;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -26,9 +25,8 @@ import org.apollo.mobile.sync.PendingSyncFactory;
 import org.apollo.mobile.sync.PendingSyncRunner;
 import org.apollo.mobile.sync.SyncReport;
 import org.apollo.mobile.view.auth.LoginActivity;
-import org.apollo.mobile.view.chat.ChatbotActivity;
-import org.apollo.mobile.view.panels.PanelsActivity;
-import org.apollo.mobile.view.settings.SettingsActivity;
+import org.apollo.mobile.view.common.BottomNavigation;
+import org.apollo.mobile.view.maintenance.os.OsDetailsActivity;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -40,12 +38,12 @@ public final class HomeActivity extends AppCompatActivity {
 
     private HomeGateway homeGateway;
 
-    private TextView locationText;
     private TextView greetingText;
     private TextView serviceOrderCountText;
     private TextView attentionCountText;
 
     private View serviceOrderCard;
+    private View serviceOrderDetailsButton;
     private TextView assetCodeText;
     private TextView serviceOrderCodeText;
     private TextView serviceOrderIdText;
@@ -86,6 +84,9 @@ public final class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Footer + chatbot: aba Início ativa (ícone preto + tab laranja) e cliques de navegação
+        BottomNavigation.setup(this, BottomNavigation.Tab.HOME);
+
         bindViews();
 
         homeGateway = HomeGatewayFactory.create(
@@ -107,34 +108,10 @@ public final class HomeActivity extends AppCompatActivity {
                 view -> syncNow()
         );
 
-        findViewById(R.id.fabChatbot).setOnClickListener(
-                view -> startActivity(
-                        new Intent(this, ChatbotActivity.class)
-                )
-        );
-
-        findViewById(R.id.ivPanels).setOnClickListener(
-                view -> startActivity(
-                        new Intent(this, PanelsActivity.class)
-                )
-        );
-
-        findViewById(R.id.ivSettings).setOnClickListener(
-                view -> startActivity(
-                        new Intent(this, SettingsActivity.class),
-                        ActivityOptions.makeCustomAnimation(
-                                this,
-                                R.anim.nav_fade_in,
-                                R.anim.nav_fade_out
-                        ).toBundle()
-                )
-        );
-
         loadHome();
     }
 
     private void bindViews() {
-        locationText = findViewById(R.id.tvLocation);
         greetingText = findViewById(R.id.tvGreeting);
         serviceOrderCountText =
                 findViewById(R.id.tvServiceOrderCount);
@@ -143,6 +120,8 @@ public final class HomeActivity extends AppCompatActivity {
 
         serviceOrderCard =
                 findViewById(R.id.cardServiceOrder);
+        serviceOrderDetailsButton =
+                findViewById(R.id.btnOsDetails);
         assetCodeText =
                 findViewById(R.id.tvPlacaLabel);
         serviceOrderCodeText =
@@ -237,30 +216,21 @@ public final class HomeActivity extends AppCompatActivity {
     }
 
     private void bindHeader(HomeResponse response) {
-        String technicianName = response.getTechnicianName();
-
-        if (technicianName == null || technicianName.trim().isEmpty()) {
-            technicianName = getString(
-                    R.string.home_default_user
-            );
-        }
-
         greetingText.setText(
                 getString(
                         greetingResource(),
-                        technicianName
+                        firstName(response.getTechnicianName())
                 )
         );
+    }
 
-        String location = response.getFormattedLocation();
-
-        if (location.isEmpty()) {
-            location = getString(
-                    R.string.home_location_unavailable
-            );
+    /** "Vanessa Lima Mendes" -> "Vanessa". */
+    private String firstName(String fullName) {
+        if (fullName == null || fullName.trim().isEmpty()) {
+            return getString(R.string.home_default_user);
         }
 
-        locationText.setText(location);
+        return fullName.trim().split("\\s+")[0];
     }
 
     private int greetingResource() {
@@ -328,6 +298,21 @@ public final class HomeActivity extends AppCompatActivity {
         priorityText.setText(
                 formatPriority(order.getPriority())
         );
+
+        View.OnClickListener openDetails = view -> {
+            Intent intent = new Intent(
+                    HomeActivity.this,
+                    OsDetailsActivity.class
+            );
+            intent.putExtra(
+                    OsDetailsActivity.EXTRA_ORDER_ID,
+                    order.getId()
+            );
+            startActivity(intent);
+        };
+
+        serviceOrderDetailsButton.setOnClickListener(openDetails);
+        serviceOrderCard.setOnClickListener(openDetails);
 
         previousButton.setEnabled(
                 currentServiceOrderIndex > 0

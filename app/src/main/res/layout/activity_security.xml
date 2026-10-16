@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="48dp"
-            android:paddingBottom="24dp">
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_48"
+            android:paddingBottom="@dimen/space_24">
 
             <!-- Botão Voltar -->
             <TextView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_arrow_back"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/space_8"
                 android:gravity="center_vertical"
                 android:text="Voltar"
                 android:textColor="@color/neutral_black"
@@ -38,7 +38,7 @@
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
                 android:text="Segurança"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -48,7 +48,7 @@
                 style="@style/apollo_label1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:text="Verificação de login"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -56,10 +56,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 android:background="@drawable/bg_settings_card"
                 android:orientation="vertical"
-                android:padding="16dp">
+                android:padding="@dimen/space_16">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -67,15 +67,15 @@
 
                     <View
                         android:id="@+id/bg_ic_phone"
-                        android:layout_width="48dp"
-                        android:layout_height="48dp"
+                        android:layout_width="@dimen/space_48"
+                        android:layout_height="@dimen/space_48"
                         android:background="@drawable/bg_icon_rounded"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
                         android:src="@drawable/ic_phone"
                         app:layout_constraintBottom_toBottomOf="@id/bg_ic_phone"
                         app:layout_constraintEnd_toEndOf="@id/bg_ic_phone"
@@ -87,7 +87,7 @@
                         style="@style/apollo_label2"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
+                        android:layout_marginStart="@dimen/space_12"
                         android:text="Telefone para SMS"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/bg_ic_phone"
@@ -112,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="@dimen/space_16"
                     android:text="Solicitar alteração de telefone"
                     android:textColor="@color/secondary_one" />
             </LinearLayout>
@@ -121,9 +121,9 @@
                 style="@style/apollo_body4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 android:background="@drawable/bg_info_box"
-                android:padding="16dp"
+                android:padding="@dimen/space_16"
                 android:text="O telefone é cadastrado pela gestão da sua empresa.\nVocê pode solicitar a troca de número, a gestão da sua empresa recebe o pedido e aprova ou recusa."
                 android:textColor="@color/neutral_black" />
 
@@ -132,7 +132,7 @@
                 style="@style/apollo_label1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:text="Senha"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -140,22 +140,22 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 android:background="@drawable/bg_settings_card"
-                android:padding="16dp">
+                android:padding="@dimen/space_16">
 
                 <View
                     android:id="@+id/bg_ic_lock"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/space_48"
+                    android:layout_height="@dimen/space_48"
                     android:background="@drawable/bg_icon_rounded"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/space_24"
+                    android:layout_height="@dimen/space_24"
                     android:src="@drawable/ic_lock"
                     app:layout_constraintBottom_toBottomOf="@id/bg_ic_lock"
                     app:layout_constraintEnd_toEndOf="@id/bg_ic_lock"
@@ -167,7 +167,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="@dimen/space_12"
                     android:text="Trocar senha"
                     app:layout_constraintEnd_toStartOf="@+id/iv_arrow_password"
                     app:layout_constraintStart_toEndOf="@id/bg_ic_lock"
@@ -186,8 +186,8 @@
 
                 <ImageView
                     android:id="@+id/iv_arrow_password"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
+                    android:layout_width="@dimen/space_20"
+                    android:layout_height="@dimen/space_20"
                     android:src="@drawable/ic_arrow_gray"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -199,7 +199,7 @@
                 style="@style/apollo_label1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:text="Sessão"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -207,22 +207,22 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 android:background="@drawable/bg_settings_card"
-                android:padding="16dp">
+                android:padding="@dimen/space_16">
 
                 <View
                     android:id="@+id/bg_ic_device"
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
+                    android:layout_width="@dimen/space_48"
+                    android:layout_height="@dimen/space_48"
                     android:background="@drawable/bg_icon_rounded"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/space_24"
+                    android:layout_height="@dimen/space_24"
                     android:src="@drawable/ic_smartphone"
                     app:layout_constraintBottom_toBottomOf="@id/bg_ic_device"
                     app:layout_constraintEnd_toEndOf="@id/bg_ic_device"
@@ -234,7 +234,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="@dimen/space_12"
                     android:text="Este dispositivo"
                     app:layout_constraintEnd_toStartOf="@+id/view_status_dot"
                     app:layout_constraintStart_toEndOf="@id/bg_ic_device"
@@ -253,8 +253,8 @@
 
                 <View
                     android:id="@+id/view_status_dot"
-                    android:layout_width="8dp"
-                    android:layout_height="8dp"
+                    android:layout_width="@dimen/space_8"
+                    android:layout_height="@dimen/space_8"
                     android:background="@drawable/dot_indicator"
                     android:backgroundTint="@color/sucess_one"
                     app:layout_constraintBottom_toBottomOf="parent"
