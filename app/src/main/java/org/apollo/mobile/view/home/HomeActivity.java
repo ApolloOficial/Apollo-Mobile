@@ -27,6 +27,7 @@ import org.apollo.mobile.sync.PendingSyncRunner;
 import org.apollo.mobile.sync.SyncReport;
 import org.apollo.mobile.view.auth.LoginActivity;
 import org.apollo.mobile.view.chat.ChatbotActivity;
+import org.apollo.mobile.view.panels.PanelsActivity;
 import org.apollo.mobile.view.settings.SettingsActivity;
 
 import java.time.LocalDate;
@@ -109,6 +110,12 @@ public final class HomeActivity extends AppCompatActivity {
         findViewById(R.id.fabChatbot).setOnClickListener(
                 view -> startActivity(
                         new Intent(this, ChatbotActivity.class)
+                )
+        );
+
+        findViewById(R.id.ivPanels).setOnClickListener(
+                view -> startActivity(
+                        new Intent(this, PanelsActivity.class)
                 )
         );
 

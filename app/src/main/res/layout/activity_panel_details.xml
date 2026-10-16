@@ -35,7 +35,7 @@
             android:background="@drawable/edittext_bg"
             android:paddingHorizontal="16dp"
             android:paddingVertical="8dp"
-            android:text="Fábrica Itajaí, Limeira - SP"
+            android:text=""
             android:textColor="@color/neutral_black"
             app:layout_constraintBottom_toBottomOf="@id/ivProfile"
             app:layout_constraintEnd_toStartOf="@id/ibNotifications"
@@ -101,7 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="ITJ-LIM-001"
+                android:text=""
                 android:textColor="@color/neutral_black" />
 
             <TextView
@@ -109,7 +109,7 @@
                 style="@style/apollo_body2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Capac. 42 kWp · 24 placas"
+                android:text=""
                 android:textColor="@color/neutral_gray" />
 
             <!-- Search Section -->
@@ -149,6 +149,7 @@
                         app:tint="@color/secondary_three" />
 
                     <EditText
+                        android:id="@+id/etSearch"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:background="@android:color/transparent"

@@ -61,6 +61,9 @@
             android:windowSoftInputMode="adjustResize" />
         <activity android:name="org.apollo.mobile.view.scanner.ScannerActivity" />
         <activity android:name=".view.maintenance.MaintenanceActivity" />
+        <activity android:name=".view.panels.PanelsActivity" />
+        <activity android:name=".view.panels.PanelDetailsActivity" />
+        <activity android:name=".view.panels.ReportIssueActivity" />
     </application>
 
 </manifest>

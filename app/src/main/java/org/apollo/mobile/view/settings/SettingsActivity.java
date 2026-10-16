@@ -29,6 +29,7 @@ import org.apollo.mobile.settings.gateway.SettingsGatewayFactory;
 import org.apollo.mobile.settings.gateway.SettingsSummary;
 import org.apollo.mobile.view.chat.ChatbotActivity;
 import org.apollo.mobile.view.home.HomeActivity;
+import org.apollo.mobile.view.panels.PanelsActivity;
 
 public final class SettingsActivity extends AppCompatActivity {
     private SettingsGateway gateway;
@@ -81,6 +82,8 @@ public final class SettingsActivity extends AppCompatActivity {
                     this, R.anim.nav_fade_in, R.anim.nav_fade_out).toBundle());
             finish();
         });
+        findViewById(R.id.ivPanels).setOnClickListener(
+                view -> startActivity(new Intent(this, PanelsActivity.class)));
         findViewById(R.id.fabChatbot).setOnClickListener(
                 view -> startActivity(new Intent(this, ChatbotActivity.class)));
     }
