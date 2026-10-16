@@ -9,6 +9,7 @@ import org.apollo.mobile.R;
 import org.apollo.mobile.view.chat.ChatbotActivity;
 import org.apollo.mobile.view.home.HomeActivity;
 import org.apollo.mobile.view.maintenance.MaintenanceActivity;
+import org.apollo.mobile.view.panels.PanelsActivity;
 import org.apollo.mobile.view.scanner.ScannerActivity;
 import org.apollo.mobile.view.settings.SettingsActivity;
 
@@ -23,7 +24,7 @@ public final class BottomNavigation {
         highlight(activity, current);
 
         bind(activity, R.id.llHome, current == Tab.HOME ? null : HomeActivity.class);
-        bind(activity, R.id.llPanels, null); // TODO: PanelsActivity.class quando existir
+        bind(activity, R.id.llPanels, current == Tab.PANELS ? null : PanelsActivity.class);
         bind(activity, R.id.llTools, current == Tab.TOOLS ? null : MaintenanceActivity.class);
         bind(activity, R.id.llSettings, current == Tab.SETTINGS ? null : SettingsActivity.class);
         bind(activity, R.id.cvScanContainer, ScannerActivity.class);

@@ -80,6 +80,9 @@
         <activity
             android:name=".view.maintenance.os.CompleteMaintenanceActivity"
             android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".view.panels.PanelsActivity" />
+        <activity android:name=".view.panels.PanelDetailsActivity" />
+        <activity android:name=".view.panels.ReportIssueActivity" />
     </application>
 
 </manifest>
