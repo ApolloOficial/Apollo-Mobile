@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.settings;
 
 import android.graphics.Bitmap;
+import org.apollo.mobile.view.common.Motion;
 import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -29,6 +30,7 @@ public final class ProfileActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile);
+        Motion.enterScreen(this);
 
         gateway = SettingsGatewayFactory.create(getApplicationContext());
         photoView = findViewById(R.id.iv_profile_large);

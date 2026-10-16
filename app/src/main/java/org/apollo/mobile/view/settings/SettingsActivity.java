@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.settings;
 
 import android.content.Intent;
+import org.apollo.mobile.view.common.Motion;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Build;
@@ -48,6 +49,7 @@ public final class SettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        Motion.enterScreen(this);
 
         gateway = SettingsGatewayFactory.create(getApplicationContext());
         photoView = findViewById(R.id.img_profile);

@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.panels;
 
 import android.content.Intent;
+import org.apollo.mobile.view.common.Motion;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -36,6 +37,7 @@ public final class PanelsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panels);
+        Motion.enterScreen(this);
 
         gateway = PanelsGatewayFactory.create(getApplicationContext());
         PanelsUi.bindNavigation(this);

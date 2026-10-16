@@ -2,107 +2,63 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white">
 
-    <!-- Header -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/header_top_padding"
-        android:paddingBottom="@dimen/header_bottom_padding"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="@dimen/header_control_size"
-            android:layout_height="@dimen/header_control_size"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_picture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
-
-        <TextView
-            android:id="@+id/tvLocation"
-            style="@style/apollo_label4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/header_item_spacing"
-            android:layout_marginEnd="@dimen/header_item_spacing"
-            android:background="@drawable/edittext_bg"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/space_16"
-            android:paddingVertical="@dimen/space_8"
-            android:text="Fábrica Itajaí, Limeira - SP"
-            android:textColor="@color/neutral_black"
-            app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-            app:layout_constraintEnd_toStartOf="@id/ibNotifications"
-            app:layout_constraintStart_toEndOf="@id/ivProfile"
-            app:layout_constraintTop_toTopOf="@id/ivProfile" />
-
-        <ImageButton
-            android:id="@+id/ibNotifications"
-            android:layout_width="@dimen/header_control_size"
-            android:layout_height="@dimen/header_control_size"
-            android:background="@drawable/edittext_bg"
-            android:src="@drawable/ic_notifications"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/topBar"
         android:name="org.apollo.mobile.view.common.TopBarFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/topBar">
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_24"
             android:paddingBottom="@dimen/content_bottom_padding">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16">
+                android:layout_height="wrap_content">
 
                 <TextView
                     android:id="@+id/tvGreeting"
                     style="@style/apollo_h4"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_12"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="Bom dia, Carlos"
-                    android:textColor="@color/neutral_black"
-                    android:textStyle="bold"
+                    app:layout_constraintEnd_toStartOf="@id/ivSync"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tvSubGreeting"
-                    style="@style/apollo_body3"
+                    style="@style/apollo_body4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
                     android:text="Vamos manter tudo funcionando"
-                    android:textColor="@color/neutral_gray"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
 
@@ -110,203 +66,159 @@
                     android:id="@+id/ivSync"
                     android:layout_width="@dimen/space_32"
                     android:layout_height="@dimen/space_32"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/home_sync_content_description"
                     android:src="@drawable/ic_sync"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@id/tvGreeting"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tint="@color/neutral_gray" />
+                    app:layout_constraintTop_toTopOf="@id/tvGreeting" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Seção Suas OS -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_32">
+                android:layout_marginTop="@dimen/space_24"
+                android:gravity="bottom"
+                android:orientation="horizontal">
 
                 <TextView
-                    style="@style/apollo_label1"
+                    style="@style/apollo_h6"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Suas OS" />
+
+                <TextView
+                    android:id="@+id/tvServiceOrderCount"
+                    style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Suas OS"
-                    android:textColor="@color/neutral_black"
-                    android:textStyle="bold"
+                    android:background="?attr/selectableItemBackground"
+                    android:text="@string/home_view_all_sample"
+                    android:textColor="@color/secondary_three" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/cardServiceOrder"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/space_minus_5"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_surface_card"
+                android:foreground="?attr/selectableItemBackground"
+                android:paddingStart="@dimen/space_15"
+                android:paddingTop="@dimen/space_15"
+                android:paddingEnd="@dimen/space_19"
+                android:paddingBottom="@dimen/space_17">
+
+                <TextView
+                    android:id="@+id/tvPlacaLabel"
+                    style="@style/apollo_label2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Placa CS-2024-00765"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/tvServiceOrderCount"
-                    style="@style/apollo_label3"
+                    android:id="@+id/tvPlacaValue"
+                    style="@style/apollo_h5"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_2"
+                    android:text="OS84524"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPlacaLabel" />
+
+                <TextView
+                    android:id="@+id/tvOsId"
+                    style="@style/apollo_body4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver todas (3)"
-                    android:textColor="@color/secondary_three"
-                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvPlacaValue" />
+
+                <LinearLayout
+                    android:id="@+id/llTags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_6"
+                    android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toBottomOf="@id/tvPlacaValue">
+
+                    <TextView
+                        android:id="@+id/tvStatusTag"
+                        style="@style/apollo_tag"
+                        android:backgroundTint="@color/alert_two"
+                        android:text="Em andamento" />
+
+                    <TextView
+                        android:id="@+id/tvPriorityTag"
+                        style="@style/apollo_tag"
+                        android:layout_marginStart="@dimen/space_4"
+                        android:backgroundTint="@color/error_two"
+                        android:text="Alta" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/btnOsDetails"
+                    style="@style/apollo_cta_outline"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:text="Ver detalhes"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/llTags" />
+
+                <TextView
+                    android:id="@+id/tvOsPrazo"
+                    style="@style/apollo_body4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/space_1"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:text="Prazo: 03/10/2026"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintBottom_toBottomOf="@id/btnOsDetails"
+                    app:layout_constraintEnd_toStartOf="@id/btnOsDetails"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/btnOsDetails" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cardServiceOrder"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="@dimen/space_24"
-                app:cardElevation="2dp">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingBottom="@dimen/space_12">
-
-                    <LinearLayout
-                        android:id="@+id/llTags"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginEnd="@dimen/space_16"
-                        android:layout_marginTop="@dimen/space_8"
-                        android:orientation="horizontal"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvPlacaValue">
-
-                        <TextView
-                            android:id="@+id/tvStatusTag"
-                            style="@style/apollo_label6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@drawable/bg_label_rounded"
-                            android:backgroundTint="@color/alert_two"
-                            android:includeFontPadding="false"
-                            android:paddingHorizontal="@dimen/space_12"
-                            android:paddingVertical="@dimen/space_4"
-                            android:text="Em andamento"
-                            android:textColor="@color/neutral_black"
-                            android:textSize="@dimen/text_12" />
-
-                        <TextView
-                            android:id="@+id/tvPriorityTag"
-                            style="@style/apollo_label6"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/space_4"
-                            android:background="@drawable/bg_label_rounded"
-                            android:backgroundTint="@color/error_two"
-                            android:includeFontPadding="false"
-                            android:paddingHorizontal="@dimen/space_12"
-                            android:paddingVertical="@dimen/space_4"
-                            android:text="Alta"
-                            android:textColor="@color/neutral_black"
-                            android:textSize="@dimen/text_12" />
-
-                    </LinearLayout>
-
-                    <TextView
-                        android:id="@+id/tvPlacaLabel"
-                        style="@style/apollo_label2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:layout_marginTop="@dimen/space_12"
-                        android:includeFontPadding="false"
-                        android:text="Placa CS-2023-00529"
-                        android:textColor="@color/neutral_gray"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                    <TextView
-                        android:id="@+id/tvPlacaValue"
-                        style="@style/apollo_h5"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:includeFontPadding="false"
-                        android:text="OS84524"
-                        android:textColor="@color/neutral_black"
-                        android:textSize="@dimen/text_26"
-                        android:textStyle="bold"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvPlacaLabel" />
-
-                    <TextView
-                        android:id="@+id/tvOsId"
-                        style="@style/apollo_body3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:includeFontPadding="false"
-                        android:text="ID: OS84424"
-                        android:textColor="@color/neutral_gray"
-                        android:visibility="gone"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/tvPlacaValue" />
-
-                    <TextView
-                        android:id="@+id/tvOsPrazo"
-                        style="@style/apollo_body3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:includeFontPadding="false"
-                        android:text="Prazo: 03/10/2026"
-                        android:textColor="@color/neutral_gray"
-                        app:layout_constraintBottom_toBottomOf="@id/btnOsDetails"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="@id/btnOsDetails" />
-
-                    <Button
-                        android:id="@+id/btnOsDetails"
-                        style="@style/apollo_label2"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/touch_target_min_size"
-                        android:layout_marginTop="@dimen/space_8"
-                        android:layout_marginEnd="@dimen/space_16"
-                        android:background="@drawable/btn_outlined"
-                        android:gravity="center"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:paddingHorizontal="@dimen/space_16"
-                        android:text="Ver detalhes"
-                        android:textAllCaps="false"
-                        android:textColor="@color/secondary_three"
-                        android:textSize="@dimen/text_14"
-                        app:backgroundTint="@null"
-                        app:cornerRadius="@dimen/space_24"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/llTags" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
-
             <TextView
                 android:id="@+id/tvServiceOrderEmpty"
-                style="@style/apollo_body2"
+                style="@style/apollo_body3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_surface_card"
                 android:gravity="center"
+                android:padding="@dimen/space_24"
                 android:text="@string/home_empty_service_orders"
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
-            <!-- Paginação Suas OS -->
             <LinearLayout
                 android:id="@+id/llOsPagination"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginTop="@dimen/space_20"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_8"
                 android:gravity="center_vertical"
                 android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/btnPrevOs"
-                    android:layout_width="@dimen/space_48"
-                    android:layout_height="@dimen/space_48"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Página anterior"
                     android:padding="@dimen/space_8"
@@ -318,14 +230,14 @@
                 <LinearLayout
                     android:id="@+id/llOsIndicators"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="@dimen/space_12"
                     android:gravity="center"
                     android:orientation="horizontal" />
 
                 <ImageButton
                     android:id="@+id/btnNextOs"
-                    android:layout_width="@dimen/space_48"
-                    android:layout_height="@dimen/space_48"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="Próxima página"
                     android:padding="@dimen/space_8"
@@ -335,277 +247,255 @@
 
             </LinearLayout>
 
-            <!-- Seção Requer Atenção -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24">
+                android:layout_marginTop="@dimen/space_8"
+                android:gravity="bottom"
+                android:orientation="horizontal">
 
                 <TextView
-                    style="@style/apollo_label1"
-                    android:layout_width="wrap_content"
+                    style="@style/apollo_h6"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Requer atenção"
-                    android:textColor="@color/neutral_black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:layout_weight="1"
+                    android:text="Requer atenção" />
 
                 <TextView
                     android:id="@+id/tvAttentionCount"
-                    style="@style/apollo_label3"
+                    style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ver todas (2)"
+                    android:text="@string/home_view_all_sample"
                     android:textColor="@color/secondary_three"
-                    android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:visibility="gone" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
-            <androidx.cardview.widget.CardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardAttention"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="@dimen/space_16"
-                app:cardElevation="2dp">
+                android:layout_marginHorizontal="@dimen/space_minus_1"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_surface_card_lg"
+                android:paddingStart="@dimen/space_24"
+                android:paddingTop="@dimen/space_16"
+                android:paddingEnd="@dimen/space_16"
+                android:paddingBottom="@dimen/space_16">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:id="@+id/cvAlertIcon"
+                    android:layout_width="@dimen/os_overview_icon_size"
+                    android:layout_height="@dimen/os_overview_icon_size"
+                    android:layout_marginTop="@dimen/space_2"
+                    android:background="@drawable/bg_icon_box"
+                    android:backgroundTint="@color/alert_bg_soft"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/os_overview_icon_inner_size"
+                        android:layout_height="@dimen/os_overview_icon_inner_size"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_warning" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvCriticoTag"
+                    style="@style/apollo_tag_small"
+                    android:layout_marginStart="@dimen/space_16"
+                    android:backgroundTint="@color/error_one"
+                    android:minWidth="@dimen/space_73"
+                    android:text="Crítico"
+                    app:layout_constraintStart_toEndOf="@id/cvAlertIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvAlertTitle"
+                    style="@style/apollo_label3"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
+                    android:layout_marginTop="@dimen/space_4"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="Inversor 02, String ITJ-LIM-003 caiu eficiência."
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvCriticoTag"
+                    app:layout_constraintTop_toBottomOf="@id/tvCriticoTag" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cvAlertIcon"
-                        android:layout_width="@dimen/space_64"
-                        android:layout_height="@dimen/space_64"
-                        app:cardBackgroundColor="#FFEBEB"
-                        app:cardCornerRadius="@dimen/space_12"
-                        app:cardElevation="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/tvAlertEficLabel"
+                    style="@style/apollo_label5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:text="Eficiência"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintStart_toStartOf="@id/tvAlertTitle"
+                    app:layout_constraintTop_toBottomOf="@id/tvAlertTitle" />
 
-                        <ImageView
-                            android:layout_width="@dimen/space_32"
-                            android:layout_height="@dimen/space_32"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_warning"
-                            app:tint="@color/error_one" />
+                <TextView
+                    android:id="@+id/tvAlertPercentage"
+                    style="@style/apollo_label5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="42%"
+                    android:textColor="@color/error_one"
+                    app:layout_constraintBottom_toBottomOf="@id/tvAlertEficLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-                    </androidx.cardview.widget.CardView>
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressAlert"
+                    style="@style/apollo_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:progress="58"
+                    app:indicatorColor="@color/error_one"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvAlertEficLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvAlertEficLabel" />
 
-                    <TextView
-                        android:id="@+id/tvCriticoTag"
-                        style="@style/apollo_label6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:background="@drawable/bg_label_rounded"
-                        android:backgroundTint="@color/error_one"
-                        android:paddingHorizontal="@dimen/space_12"
-                        android:paddingVertical="@dimen/space_4"
-                        android:text="Crítico"
-                        android:textColor="@color/neutral_white"
-                        app:layout_constraintStart_toEndOf="@id/cvAlertIcon"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/btnAttentionDetails"
+                    style="@style/apollo_cta_outline"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:text="Ver OS"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/progressAlert" />
 
-                    <TextView
-                        android:id="@+id/tvAlertTitle"
-                        style="@style/apollo_label2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:layout_marginTop="@dimen/space_4"
-                        android:text="Placa CS-2023-00456 - eficiência crítica"
-                        android:textColor="@color/neutral_black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/cvAlertIcon"
-                        app:layout_constraintTop_toBottomOf="@id/tvCriticoTag" />
-
-                    <TextView
-                        android:id="@+id/tvAlertEficLabel"
-                        style="@style/apollo_body4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_8"
-                        android:text="Eficiência"
-                        android:textColor="@color/neutral_gray"
-                        app:layout_constraintStart_toStartOf="@id/tvAlertTitle"
-                        app:layout_constraintTop_toBottomOf="@id/tvAlertTitle" />
-
-                    <TextView
-                        android:id="@+id/tvAlertPercentage"
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="42%"
-                        android:textColor="@color/error_one"
-                        app:layout_constraintBottom_toBottomOf="@id/tvAlertEficLabel"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:id="@+id/progressAlert"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_4"
-                        android:progress="42"
-                        app:indicatorColor="@color/error_one"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/tvAlertEficLabel"
-                        app:layout_constraintTop_toBottomOf="@id/tvAlertEficLabel"
-                        app:trackColor="@color/disable_gray"
-                        app:trackCornerRadius="@dimen/space_4"
-                        app:trackThickness="@dimen/space_8" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tvAttentionEmpty"
-                style="@style/apollo_body2"
+                style="@style/apollo_body3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_surface_card_lg"
                 android:gravity="center"
+                android:padding="@dimen/space_24"
                 android:text="@string/home_empty_attention"
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
-            <!-- Seção Registros Pendentes -->
             <TextView
-                style="@style/apollo_label1"
+                style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Registros pendentes"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
+                android:layout_marginTop="@dimen/space_26"
+                android:text="Registros pendentes" />
 
-            <androidx.cardview.widget.CardView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardPending"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="@dimen/space_16"
-                app:cardElevation="2dp">
+                android:layout_marginHorizontal="@dimen/space_minus_1"
+                android:layout_marginTop="@dimen/space_14"
+                android:background="@drawable/bg_surface_card_lg"
+                android:paddingStart="@dimen/space_24"
+                android:paddingTop="@dimen/space_18"
+                android:paddingEnd="@dimen/space_16"
+                android:paddingBottom="@dimen/space_16">
 
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
+                <FrameLayout
+                    android:id="@+id/cvPendingIcon"
+                    android:layout_width="@dimen/os_overview_icon_size"
+                    android:layout_height="@dimen/os_overview_icon_size"
+                    android:background="@drawable/bg_icon_box"
+                    android:backgroundTint="@color/info_bg_soft"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <ImageView
+                        android:layout_width="@dimen/os_overview_icon_inner_size"
+                        android:layout_height="@dimen/os_overview_icon_inner_size"
+                        android:layout_gravity="center"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_clipboard" />
+
+                </FrameLayout>
+
+                <TextView
+                    android:id="@+id/tvPendingLote"
+                    style="@style/apollo_body3"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
+                    android:layout_marginStart="@dimen/space_16"
+                    android:layout_marginTop="@dimen/space_3"
+                    android:text="Lote ITJ-LIM-02"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@id/cvPendingIcon"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/cvPendingIcon"
-                        android:layout_width="@dimen/space_64"
-                        android:layout_height="@dimen/space_64"
-                        app:cardBackgroundColor="#E3F2FD"
-                        app:cardCornerRadius="@dimen/space_12"
-                        app:cardElevation="0dp"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/tvPendingTitle"
+                    style="@style/apollo_label3"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_2"
+                    android:text="Faltam 8 placas para registrar"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvPendingLote"
+                    app:layout_constraintTop_toBottomOf="@id/tvPendingLote" />
 
-                        <ImageView
-                            android:layout_width="@dimen/space_32"
-                            android:layout_height="@dimen/space_32"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_clipboard"
-                            app:tint="@color/info_one" />
+                <TextView
+                    android:id="@+id/tvPendingRegLabel"
+                    style="@style/apollo_label5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:text="Registros"
+                    android:textColor="@color/neutral_gray"
+                    app:layout_constraintStart_toStartOf="@id/tvPendingTitle"
+                    app:layout_constraintTop_toBottomOf="@id/tvPendingTitle" />
 
-                    </androidx.cardview.widget.CardView>
+                <TextView
+                    android:id="@+id/tvPendingCount"
+                    style="@style/apollo_label5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="16/24"
+                    android:textColor="@color/info_one"
+                    app:layout_constraintBottom_toBottomOf="@id/tvPendingRegLabel"
+                    app:layout_constraintEnd_toEndOf="parent" />
 
-                    <TextView
-                        android:id="@+id/tvPendingLote"
-                        style="@style/apollo_body4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:text="Lote ITJ-LIM-02"
-                        android:textColor="@color/neutral_gray"
-                        app:layout_constraintStart_toEndOf="@id/cvPendingIcon"
-                        app:layout_constraintTop_toTopOf="parent" />
+                <com.google.android.material.progressindicator.LinearProgressIndicator
+                    android:id="@+id/progressPending"
+                    style="@style/apollo_progress"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:progress="66"
+                    app:indicatorColor="@color/info_one"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="@id/tvPendingRegLabel"
+                    app:layout_constraintTop_toBottomOf="@id/tvPendingRegLabel" />
 
-                    <TextView
-                        android:id="@+id/tvPendingTitle"
-                        style="@style/apollo_label2"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_16"
-                        android:layout_marginTop="2dp"
-                        android:text="Faltam 8 placas para registrar"
-                        android:textColor="@color/neutral_black"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toEndOf="@id/cvPendingIcon"
-                        app:layout_constraintTop_toBottomOf="@id/tvPendingLote" />
+                <TextView
+                    android:id="@+id/btnPendingDetails"
+                    style="@style/apollo_cta_outline"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:text="Ver detalhes"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/progressPending" />
 
-                    <TextView
-                        android:id="@+id/tvPendingRegLabel"
-                        style="@style/apollo_body4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_8"
-                        android:text="Registros"
-                        android:textColor="@color/neutral_gray"
-                        app:layout_constraintStart_toStartOf="@id/tvPendingTitle"
-                        app:layout_constraintTop_toBottomOf="@id/tvPendingTitle" />
-
-                    <TextView
-                        android:id="@+id/tvPendingCount"
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="16/24"
-                        android:textColor="@color/info_one"
-                        app:layout_constraintBottom_toBottomOf="@id/tvPendingRegLabel"
-                        app:layout_constraintEnd_toEndOf="parent" />
-
-                    <com.google.android.material.progressindicator.LinearProgressIndicator
-                        android:id="@+id/progressPending"
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/space_4"
-                        android:progress="66"
-                        app:indicatorColor="@color/info_one"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintStart_toStartOf="@id/tvPendingRegLabel"
-                        app:layout_constraintTop_toBottomOf="@id/tvPendingRegLabel"
-                        app:trackColor="@color/disable_gray"
-                        app:trackCornerRadius="@dimen/space_4"
-                        app:trackThickness="@dimen/space_8" />
-
-                    <Button
-                        android:id="@+id/btnPendingDetails"
-                        style="@style/apollo_label3"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/touch_target_min_size"
-                        android:layout_marginTop="@dimen/space_16"
-                        android:background="@drawable/btn_outlined"
-                        android:insetTop="0dp"
-                        android:insetBottom="0dp"
-                        android:text="Ver detalhes"
-                        android:textAllCaps="false"
-                        android:textColor="@color/secondary_one"
-                        app:backgroundTint="@null"
-                        app:cornerRadius="@dimen/space_24"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toBottomOf="@id/progressPending" />
-
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-            </androidx.cardview.widget.CardView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <TextView
                 android:id="@+id/tvPendingEmpty"
-                style="@style/apollo_body2"
+                style="@style/apollo_body3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_surface_card_lg"
                 android:gravity="center"
+                android:padding="@dimen/space_24"
                 android:text="@string/home_empty_pending"
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
@@ -614,7 +504,6 @@
 
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Footer + chatbot compartilhados -->
     <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

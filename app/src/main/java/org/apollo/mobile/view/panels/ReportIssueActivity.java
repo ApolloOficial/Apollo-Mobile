@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.panels;
 
 import android.os.Bundle;
+import org.apollo.mobile.view.common.Motion;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -36,6 +37,7 @@ public final class ReportIssueActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_report_issue);
+        Motion.enterScreen(this);
 
         barcode = getIntent().getStringExtra(EXTRA_BARCODE);
         String serial = getIntent().getStringExtra(EXTRA_SERIAL);

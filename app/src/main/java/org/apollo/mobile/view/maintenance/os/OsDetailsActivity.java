@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.maintenance.os;
 
 import android.content.Intent;
+import org.apollo.mobile.view.common.Motion;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -43,6 +44,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_os_details);
+        Motion.enterScreen(this);
 
         orderId = getIntent().getLongExtra(EXTRA_ORDER_ID, -1L);
         if (orderId <= 0) {

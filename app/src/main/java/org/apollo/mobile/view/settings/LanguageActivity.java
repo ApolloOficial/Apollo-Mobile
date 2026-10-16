@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.settings;
 
 import android.os.Bundle;
+import org.apollo.mobile.view.common.Motion;
 import android.view.View;
 import android.widget.RadioButton;
 import android.widget.Toast;
@@ -29,6 +30,7 @@ public final class LanguageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_language);
+        Motion.enterScreen(this);
 
         gateway = SettingsGatewayFactory.create(getApplicationContext());
         portuguese = findViewById(R.id.rbPortuguese);

@@ -1,82 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@android:color/transparent">
+    android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cvIconBackground"
-        android:layout_width="@dimen/space_56"
-        android:layout_height="@dimen/space_56"
-        android:layout_marginTop="@dimen/space_16"
-        app:cardCornerRadius="@dimen/space_12"
-        app:cardElevation="0dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <View
+        android:id="@+id/vNotificationTopDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/disable_gray" />
+
+    <LinearLayout
+        android:id="@+id/llNotificationRow"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:orientation="horizontal"
+        android:paddingTop="@dimen/space_16"
+        android:paddingBottom="@dimen/space_16">
 
         <ImageView
             android:id="@+id/ivNotificationIcon"
-            android:layout_width="@dimen/space_32"
-            android:layout_height="@dimen/space_32"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_info" />
-    </androidx.cardview.widget.CardView>
+            android:layout_width="@dimen/space_58"
+            android:layout_height="@dimen/space_58"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_notif_predictive" />
 
-    <TextView
-        android:id="@+id/tvNotificationTitle"
-        style="@style/apollo_label3"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_16"
-        android:layout_marginEnd="@dimen/space_8"
-        android:text="Título da Notificação"
-        android:textColor="@color/neutral_black"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toStartOf="@id/tvNotificationTime"
-        app:layout_constraintStart_toEndOf="@id/cvIconBackground"
-        app:layout_constraintTop_toTopOf="@id/cvIconBackground" />
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_16"
+            android:layout_marginTop="@dimen/space_1"
+            android:layout_weight="1"
+            android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/tvNotificationDescription"
-        style="@style/apollo_body4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_4"
-        android:text="Descrição curta da notificação."
-        android:textColor="@color/neutral_gray"
-        android:lineSpacingExtra="2dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvNotificationTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvNotificationTitle" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/tvNotificationTime"
-        style="@style/apollo_body5"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="09:12"
-        android:textColor="@color/neutral_gray"
-        app:layout_constraintEnd_toStartOf="@id/vUnreadIndicator"
-        app:layout_constraintTop_toTopOf="@id/tvNotificationTitle" />
+                <TextView
+                    android:id="@+id/tvNotificationTitle"
+                    style="@style/apollo_label4"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="@dimen/space_8"
+                    android:layout_weight="1"
+                    android:maxLines="2"
+                    android:ellipsize="end"
+                    android:text="Manutenção preditiva recomendada" />
+
+                <TextView
+                    android:id="@+id/tvNotificationTime"
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:maxLines="1"
+                    android:text="09:12"
+                    android:textColor="@color/neutral_gray" />
+
+                <View
+                    android:id="@+id/vNotificationUnread"
+                    android:layout_width="@dimen/space_7"
+                    android:layout_height="@dimen/space_7"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="@dimen/space_8"
+                    android:background="@drawable/bg_dot_active" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvNotificationBody"
+                style="@style/apollo_body4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_4"
+                android:layout_marginEnd="@dimen/space_40"
+                android:text="Recomendamos inspeção nas próximas 48h."
+                android:textColor="@color/neutral_gray" />
+        </LinearLayout>
+    </LinearLayout>
 
     <View
-        android:id="@+id/vUnreadIndicator"
-        android:layout_width="@dimen/space_8"
-        android:layout_height="@dimen/space_8"
-        android:layout_marginStart="@dimen/space_8"
-        android:background="@drawable/dot_indicator_active"
-        app:layout_constraintBottom_toBottomOf="@id/tvNotificationTime"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvNotificationTime" />
-
-    <View
-        android:layout_width="0dp"
+        android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginTop="@dimen/space_16"
-        android:background="#F0F0F0"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/tvNotificationTitle"
-        app:layout_constraintTop_toBottomOf="@id/tvNotificationDescription" />
+        android:background="@color/disable_gray" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

@@ -31,6 +31,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<ChatMessage> messages = new ArrayList<>();
     private final Actions actions;
     private ChatMessage speaking;
+    private int lastAnimatedPosition = -1;
 
     ChatAdapter(Actions actions) {
         this.actions = actions;
@@ -58,6 +59,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         for (int index = messages.size() - 1; index >= 0; index--) {
             if (messages.get(index).getKind() == ChatMessage.Kind.TYPING) {
                 messages.remove(index);
+                if (lastAnimatedPosition >= index) lastAnimatedPosition = index - 1;
                 notifyItemRemoved(index);
                 return;
             }
@@ -91,12 +93,49 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ChatMessage message = messages.get(position);
+        int adapterPosition = holder.getBindingAdapterPosition();
+        if (adapterPosition == RecyclerView.NO_POSITION) return;
+
+        ChatMessage message = messages.get(adapterPosition);
         if (holder instanceof UserHolder) {
             ((UserHolder) holder).bind(message);
         } else if (holder instanceof BotHolder) {
             ((BotHolder) holder).bind(message);
         }
+        if (adapterPosition > lastAnimatedPosition) {
+            lastAnimatedPosition = adapterPosition;
+            animateIn(holder);
+        }
+    }
+
+    private void animateIn(RecyclerView.ViewHolder holder) {
+        View view = holder.itemView;
+        float density = view.getResources().getDisplayMetrics().density;
+        float dx = holder instanceof UserHolder ? 24 * density : -24 * density;
+        view.setAlpha(0f);
+        view.setTranslationX(dx);
+        view.setTranslationY(12 * density);
+        view.animate().alpha(1f).translationX(0f).translationY(0f).setDuration(320)
+                .setInterpolator(new android.view.animation.DecelerateInterpolator(1.8f)).start();
+        if (holder instanceof TypingHolder) {
+            View label = view.findViewById(R.id.tvTyping);
+            android.animation.ObjectAnimator blink = android.animation.ObjectAnimator.ofFloat(label, View.ALPHA, 1f, 0.45f);
+            blink.setDuration(650);
+            blink.setRepeatMode(android.animation.ValueAnimator.REVERSE);
+            blink.setRepeatCount(android.animation.ValueAnimator.INFINITE);
+            blink.start();
+            label.setTag(blink);
+        }
+    }
+
+    @Override
+    public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+        View label = holder.itemView.findViewById(R.id.tvTyping);
+        if (label != null && label.getTag() instanceof android.animation.Animator) {
+            ((android.animation.Animator) label.getTag()).cancel();
+            label.setAlpha(1f);
+        }
+        super.onViewRecycled(holder);
     }
 
     @Override

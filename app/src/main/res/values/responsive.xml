@@ -1,36 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="screen_horizontal_padding">13dp</dimen>
+    <dimen name="screen_horizontal_padding">@dimen/space_16</dimen>
     <dimen name="content_max_width">600dp</dimen>
 
-    <dimen name="header_top_padding">24dp</dimen>
-    <dimen name="header_bottom_padding">8dp</dimen>
-    <dimen name="header_control_size">38dp</dimen>
-    <dimen name="header_item_spacing">10dp</dimen>
-    <dimen name="content_bottom_padding">112dp</dimen>
-    <dimen name="section_spacing">16dp</dimen>
-    <dimen name="card_content_padding">14dp</dimen>
+    <dimen name="header_top_padding">@dimen/space_32</dimen>
+    <dimen name="header_bottom_padding">@dimen/space_24</dimen>
+    <dimen name="header_control_size">@dimen/space_49</dimen>
+    <dimen name="header_item_spacing">@dimen/space_24</dimen>
+    <dimen name="header_location_width">@dimen/space_224</dimen>
+    <dimen name="header_location_height">@dimen/space_36</dimen>
+    <dimen name="content_bottom_padding">@dimen/space_148</dimen>
+    <dimen name="section_spacing">@dimen/space_24</dimen>
+    <dimen name="card_content_padding">@dimen/space_16</dimen>
     <dimen name="touch_target_min_size">48dp</dimen>
-    <dimen name="os_overview_icon_size">56dp</dimen>
-    <dimen name="os_overview_icon_inner_size">28dp</dimen>
-    <dimen name="screen_title_spacing">8dp</dimen>
+    <dimen name="os_overview_icon_size">@dimen/space_74</dimen>
+    <dimen name="os_overview_icon_inner_size">@dimen/space_48</dimen>
+    <dimen name="screen_title_spacing">@dimen/space_8</dimen>
 
-    <dimen name="bottom_nav_height">73dp</dimen>
-    <dimen name="bottom_nav_horizontal_margin">3dp</dimen>
-    <dimen name="bottom_nav_bottom_margin">16dp</dimen>
+    <dimen name="bottom_nav_height">@dimen/space_91</dimen>
+    <dimen name="bottom_nav_horizontal_margin">@dimen/space_4</dimen>
+    <dimen name="bottom_nav_bottom_margin">@dimen/space_24</dimen>
+    <dimen name="bottom_nav_radius">@dimen/space_45</dimen>
+    <dimen name="bottom_nav_icon_size">@dimen/space_34</dimen>
+    <dimen name="bottom_nav_indicator_width">@dimen/space_34</dimen>
+    <dimen name="bottom_nav_indicator_height">@dimen/space_6</dimen>
+    <dimen name="bottom_nav_item_spacing">@dimen/space_24</dimen>
+    <dimen name="bottom_nav_indicator_spacing">@dimen/space_5</dimen>
 
-    <dimen name="bottom_nav_icon_size">26dp</dimen>
-    <dimen name="bottom_nav_indicator_width">27dp</dimen>
-    <dimen name="bottom_nav_indicator_height">5dp</dimen>
+    <dimen name="scanner_button_size">@dimen/space_73</dimen>
+    <dimen name="scanner_button_radius">@dimen/space_36</dimen>
+    <dimen name="scanner_icon_size">@dimen/space_35</dimen>
 
-    <dimen name="scanner_button_size">58dp</dimen>
-    <dimen name="scanner_button_radius">29dp</dimen>
-    <dimen name="scanner_icon_size">28dp</dimen>
+    <dimen name="chatbot_size">@dimen/space_80</dimen>
+    <dimen name="chatbot_icon_size">@dimen/space_35</dimen>
+    <dimen name="chatbot_margin_end">@dimen/space_16</dimen>
+    <dimen name="chatbot_margin_bottom">@dimen/space_16</dimen>
 
-    <dimen name="chatbot_size">64dp</dimen>
-    <dimen name="chatbot_icon_size">29dp</dimen>
-    <dimen name="bottom_nav_item_spacing">21dp</dimen>
-    <dimen name="bottom_nav_indicator_spacing">3dp</dimen>
-    <dimen name="chatbot_margin_end">16dp</dimen>
-    <dimen name="chatbot_margin_bottom">10dp</dimen>
+    <dimen name="cta_height">@dimen/space_32</dimen>
+    <dimen name="cta_width">@dimen/space_137</dimen>
+    <dimen name="button_primary_height">@dimen/space_48</dimen>
 </resources>

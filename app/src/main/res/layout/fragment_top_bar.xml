@@ -5,8 +5,8 @@
     android:layout_height="wrap_content"
     android:background="@color/neutral_white"
     android:paddingHorizontal="@dimen/screen_horizontal_padding"
-    android:paddingTop="@dimen/header_top_padding"
-    android:paddingBottom="@dimen/header_bottom_padding">
+    android:paddingTop="@dimen/space_24"
+    android:paddingBottom="@dimen/space_8">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/ivTopBarProfile"
@@ -23,15 +23,13 @@
         android:id="@+id/tvTopBarLocation"
         style="@style/apollo_label4"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/header_item_spacing"
-        android:layout_marginEnd="@dimen/header_item_spacing"
-        android:background="@drawable/edittext_bg"
+        android:layout_height="@dimen/header_location_height"
+        android:layout_marginHorizontal="@dimen/header_item_spacing"
+        android:background="@drawable/bg_pill_outline"
         android:ellipsize="end"
         android:gravity="center"
         android:maxLines="1"
-        android:paddingHorizontal="12dp"
-        android:paddingVertical="8dp"
+        android:paddingHorizontal="@dimen/space_16"
         android:text="Carregando unidade..."
         android:textColor="@color/neutral_black"
         app:layout_constraintBottom_toBottomOf="@id/ivTopBarProfile"
@@ -39,15 +37,34 @@
         app:layout_constraintStart_toEndOf="@id/ivTopBarProfile"
         app:layout_constraintTop_toTopOf="@id/ivTopBarProfile" />
 
-    <ImageButton
+    <FrameLayout
         android:id="@+id/ibTopBarNotifications"
         android:layout_width="@dimen/header_control_size"
         android:layout_height="@dimen/header_control_size"
-        android:background="@drawable/edittext_bg"
+        android:background="@drawable/bg_circle_outline"
+        android:clickable="true"
         android:contentDescription="Notificações"
-        android:padding="10dp"
-        android:src="@drawable/ic_notifications"
+        android:focusable="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/ivTopBarBell"
+            android:layout_width="@dimen/space_24"
+            android:layout_height="@dimen/space_24"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_notifications" />
+
+        <View
+            android:id="@+id/vTopBarBadge"
+            android:layout_width="@dimen/space_10"
+            android:layout_height="@dimen/space_10"
+            android:layout_gravity="top|end"
+            android:layout_marginTop="@dimen/space_10"
+            android:layout_marginEnd="@dimen/space_11"
+            android:background="@drawable/bg_dot_active"
+            android:visibility="gone" />
+    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

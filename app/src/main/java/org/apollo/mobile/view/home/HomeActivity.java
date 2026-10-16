@@ -26,6 +26,7 @@ import org.apollo.mobile.sync.PendingSyncRunner;
 import org.apollo.mobile.sync.SyncReport;
 import org.apollo.mobile.view.auth.LoginActivity;
 import org.apollo.mobile.view.common.BottomNavigation;
+import org.apollo.mobile.view.common.Motion;
 import org.apollo.mobile.view.maintenance.os.OsDetailsActivity;
 
 import java.time.LocalDate;
@@ -84,10 +85,11 @@ public final class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        // Footer + chatbot: aba Início ativa (ícone preto + tab laranja) e cliques de navegação
         BottomNavigation.setup(this, BottomNavigation.Tab.HOME);
 
         bindViews();
+        bindExtraActions();
+        Motion.enterScreen(this);
 
         homeGateway = HomeGatewayFactory.create(
                 getApplicationContext()
@@ -97,11 +99,11 @@ public final class HomeActivity extends AppCompatActivity {
         );
 
         previousButton.setOnClickListener(
-                view -> showPreviousServiceOrder()
+                view -> Motion.slideSwap(serviceOrderCard, false, this::showPreviousServiceOrder)
         );
 
         nextButton.setOnClickListener(
-                view -> showNextServiceOrder()
+                view -> Motion.slideSwap(serviceOrderCard, true, this::showNextServiceOrder)
         );
 
         syncButton.setOnClickListener(
@@ -284,12 +286,15 @@ public final class HomeActivity extends AppCompatActivity {
                 )
         );
 
-        dueDateText.setText(
-                getString(
-                        R.string.home_due_date,
-                        formatDate(order.getDueDate())
-                )
-        );
+        String due = getString(R.string.home_due_date, formatDate(order.getDueDate()));
+        android.text.SpannableString dueSpan = new android.text.SpannableString(due);
+        int colon = due.indexOf(':');
+        if (colon > 0) {
+            dueSpan.setSpan(new android.text.style.TypefaceSpan(
+                    androidx.core.content.res.ResourcesCompat.getFont(this, R.font.manrope_bold)),
+                    0, colon + 1, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        dueDateText.setText(dueSpan);
 
         statusText.setText(
                 formatStatus(order.getStatus())
@@ -355,17 +360,14 @@ public final class HomeActivity extends AppCompatActivity {
             boolean active =
                     index == currentServiceOrderIndex;
 
-            int size = dp(active ? 10 : 8);
+            int size = getResources().getDimensionPixelSize(
+                    active ? R.dimen.space_12 : R.dimen.space_8);
 
             LinearLayout.LayoutParams params =
                     new LinearLayout.LayoutParams(size, size);
 
-            params.setMargins(
-                    dp(6),
-                    0,
-                    dp(6),
-                    0
-            );
+            int gap = getResources().getDimensionPixelSize(R.dimen.space_4);
+            params.setMargins(gap, 0, gap, 0);
 
             View indicator = new View(this);
             indicator.setLayoutParams(params);
@@ -471,6 +473,21 @@ public final class HomeActivity extends AppCompatActivity {
         );
     }
 
+    private void bindExtraActions() {
+        serviceOrderCountText.setPaintFlags(
+                serviceOrderCountText.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
+        serviceOrderCountText.setOnClickListener(v -> startActivity(
+                new Intent(this, org.apollo.mobile.view.maintenance.os.ServiceOrdersActivity.class)));
+        View attentionButton = findViewById(R.id.btnAttentionDetails);
+        attentionButton.setOnClickListener(v -> startActivity(
+                new Intent(this, org.apollo.mobile.view.maintenance.os.ServiceOrdersActivity.class)));
+        View pendingButton = findViewById(R.id.btnPendingDetails);
+        pendingButton.setOnClickListener(v -> startActivity(
+                new Intent(this, org.apollo.mobile.view.panels.PanelsActivity.class)));
+        Motion.pressable(serviceOrderDetailsButton, attentionButton, pendingButton,
+                serviceOrderCard, attentionCard, pendingCard);
+    }
+
     private void syncNow() {
         if (syncRunner.isRunning()) {
             return;
@@ -478,10 +495,7 @@ public final class HomeActivity extends AppCompatActivity {
 
         showSyncIcon();
         syncButton.setEnabled(false);
-        syncButton.animate()
-                .rotationBy(360f)
-                .setDuration(700L)
-                .start();
+        Motion.spin(syncButton);
 
         syncRunner.run(report -> {
             if (isFinishing() || isDestroyed()) {

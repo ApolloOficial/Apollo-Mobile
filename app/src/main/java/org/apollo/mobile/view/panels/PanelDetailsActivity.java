@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.panels;
 
 import android.content.Intent;
+import org.apollo.mobile.view.common.Motion;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -45,6 +46,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_panel_details);
+        Motion.enterScreen(this);
 
         stringId = getIntent().getStringExtra(EXTRA_STRING_ID);
         stringCode = getIntent().getStringExtra(EXTRA_STRING_CODE);
