@@ -2,14 +2,18 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="@dimen/space_8">
+    android:paddingStart="@dimen/space_16"
+    android:paddingTop="@dimen/space_8"
+    android:paddingBottom="@dimen/space_8">
 
     <TextView
-        style="@style/apollo_body3"
+        android:id="@+id/tvTyping"
+        style="@style/apollo_body4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_chat_bot"
-        android:padding="@dimen/space_16"
+        android:paddingHorizontal="@dimen/space_20"
+        android:paddingVertical="@dimen/space_16"
         android:text="@string/chat_typing"
         android:textColor="@color/neutral_gray" />
 </FrameLayout>

@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/neutral_white">
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/topBar"
+        android:name="org.apollo.mobile.view.common.TopBarFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
+    <LinearLayout
+        android:id="@+id/llNotificationsHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/space_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
+
+        <TextView
+            android:id="@+id/btnBack"
+            style="@style/apollo_back" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_10"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                style="@style/apollo_h4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/notifications_title" />
+
+            <TextView
+                android:id="@+id/btnMarkAllRead"
+                style="@style/apollo_label4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="?attr/selectableItemBackground"
+                android:padding="@dimen/space_4"
+                android:text="@string/notifications_mark_all"
+                android:textColor="@color/secondary_three"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvNotificationsFilter"
+            style="@style/apollo_body4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:text="@string/notifications_filter_unread"
+            android:textColor="@color/neutral_gray"
+            android:visibility="gone" />
+    </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNotifications"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/space_16"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/llNotificationsHeader"
+            app:layout_constraintWidth_max="@dimen/content_max_width"
+            android:clipToPadding="false"
+            android:layoutAnimation="@anim/layout_list_enter"
+            android:overScrollMode="never"
+            android:paddingStart="@dimen/space_16"
+            android:paddingEnd="@dimen/space_13"
+            android:paddingBottom="@dimen/space_32" />
+
+    <LinearLayout
+        android:id="@+id/llNotificationsEmpty"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="@dimen/space_32"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llNotificationsHeader">
+
+        <ImageView
+            android:layout_width="@dimen/space_48"
+            android:layout_height="@dimen/space_48"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_notifications_gray" />
+
+        <TextView
+            android:id="@+id/tvNotificationsEmpty"
+            style="@style/apollo_body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_12"
+            android:gravity="center"
+            android:text="@string/notifications_empty"
+            android:textColor="@color/neutral_gray" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressNotifications"
+        android:layout_width="@dimen/space_32"
+        android:layout_height="@dimen/space_32"
+        android:indeterminateTint="@color/secondary_three"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llNotificationsHeader" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

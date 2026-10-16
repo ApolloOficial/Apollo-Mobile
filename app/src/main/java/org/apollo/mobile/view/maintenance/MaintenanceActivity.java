@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.maintenance;
 
 import android.content.Intent;
+import org.apollo.mobile.view.common.Motion;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -48,6 +49,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maintenance);
+        Motion.enterScreen(this);
 
         BottomNavigation.setup(this, BottomNavigation.Tab.TOOLS);
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());

@@ -9,7 +9,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,10 +22,19 @@ import org.apollo.mobile.home.gateway.HomeResponse;
 import org.apollo.mobile.settings.error.SettingsError;
 import org.apollo.mobile.settings.gateway.SettingsGateway;
 import org.apollo.mobile.settings.gateway.SettingsGatewayFactory;
+import org.apollo.mobile.notifications.NotificationRepository;
+import org.apollo.mobile.view.notifications.NotificationsActivity;
 import org.apollo.mobile.view.settings.SettingsActivity;
 
 public final class TopBarFragment extends Fragment {
+
+    public interface Host {
+        int topBarActionIcon();
+        void onTopBarAction();
+    }
+
     private TextView locationText;
+    private View badge;
     private ImageView profileImage;
     private SettingsGateway settingsGateway;
 
@@ -48,8 +56,23 @@ public final class TopBarFragment extends Fragment {
         view.findViewById(R.id.ivTopBarProfile).setOnClickListener(v ->
                 startActivity(new Intent(requireContext(), SettingsActivity.class)));
 
-        view.findViewById(R.id.ibTopBarNotifications).setOnClickListener(v ->
-                Toast.makeText(requireContext(), "Notificações", Toast.LENGTH_SHORT).show());
+        ImageView bell = view.findViewById(R.id.ivTopBarBell);
+        if (requireActivity() instanceof Host) {
+            Host host = (Host) requireActivity();
+            bell.setImageResource(host.topBarActionIcon());
+            view.findViewById(R.id.ibTopBarNotifications).setOnClickListener(v -> {
+                Motion.bounce(bell);
+                host.onTopBarAction();
+            });
+        } else {
+            view.findViewById(R.id.ibTopBarNotifications).setOnClickListener(v -> {
+                Motion.bounce(bell);
+                v.postDelayed(() -> {
+                    if (isAdded()) startActivity(new Intent(requireContext(), NotificationsActivity.class));
+                }, 90);
+            });
+            badge = view.findViewById(R.id.vTopBarBadge);
+        }
 
         loadHeader();
     }
@@ -58,6 +81,27 @@ public final class TopBarFragment extends Fragment {
     public void onResume() {
         super.onResume();
         loadPhoto();
+        loadBadge();
+    }
+
+    private void loadBadge() {
+        if (badge == null) return;
+        new NotificationRepository(requireContext()).unreadCount(new NotificationRepository.Result<Long>() {
+            @Override
+            public void onSuccess(Long value) {
+                if (!isAdded() || badge == null) return;
+                boolean show = value != null && value > 0;
+                if (show && badge.getVisibility() != View.VISIBLE) {
+                    badge.setVisibility(View.VISIBLE);
+                    Motion.popIn(badge, 200);
+                } else if (!show) {
+                    badge.setVisibility(View.GONE);
+                }
+            }
+
+            @Override
+            public void onFailure() { }
+        });
     }
 
     private void loadPhoto() {
@@ -103,6 +147,7 @@ public final class TopBarFragment extends Fragment {
     @Override
     public void onDestroyView() {
         locationText = null;
+        badge = null;
         profileImage = null;
         settingsGateway = null;
         super.onDestroyView();

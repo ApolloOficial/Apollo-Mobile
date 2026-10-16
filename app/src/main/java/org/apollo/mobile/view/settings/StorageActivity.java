@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.settings;
 
 import android.os.Bundle;
+import org.apollo.mobile.view.common.Motion;
 import android.os.StatFs;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -24,6 +25,7 @@ public final class StorageActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_storage);
+        Motion.enterScreen(this);
 
         availableText = findViewById(R.id.tvStorageAvailable);
         cacheSizeText = findViewById(R.id.tvPlacaSize);

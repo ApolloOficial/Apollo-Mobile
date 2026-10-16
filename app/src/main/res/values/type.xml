@@ -6,6 +6,7 @@
     <!-- ===== TEXTO BASE ===== -->
     <style name="apollo_text_base">
         <item name="android:textColor">@color/neutral_black</item>
+        <item name="android:includeFontPadding">false</item>
     </style>
 
     <!-- ===== DISPLAY ===== -->
@@ -118,4 +119,78 @@
         <item name="android:textSize">@dimen/text_8</item>
     </style>
 
+
+    <style name="apollo_tag" parent="apollo_label4">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/space_20</item>
+        <item name="android:background">@drawable/bg_tag</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">@dimen/space_10</item>
+        <item name="android:paddingEnd">@dimen/space_10</item>
+    </style>
+
+    <style name="apollo_tag_small" parent="apollo_label5">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/space_20</item>
+        <item name="android:background">@drawable/bg_tag_small</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">@dimen/space_8</item>
+        <item name="android:paddingEnd">@dimen/space_8</item>
+        <item name="android:textColor">@color/neutral_white</item>
+    </style>
+
+    <style name="apollo_cta_outline" parent="apollo_label4">
+        <item name="android:layout_width">@dimen/cta_width</item>
+        <item name="android:layout_height">@dimen/cta_height</item>
+        <item name="android:background">@drawable/bg_cta_outline</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/secondary_one</item>
+    </style>
+
+    <style name="apollo_button_primary" parent="apollo_label2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_primary_height</item>
+        <item name="android:background">@drawable/bg_cta_filled</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/neutral_white</item>
+    </style>
+
+    <style name="apollo_button_outline" parent="apollo_label2">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/button_primary_height</item>
+        <item name="android:background">@drawable/bg_cta_outline</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
+        <item name="android:textColor">@color/secondary_one</item>
+    </style>
+
+    <style name="apollo_progress" parent="Widget.Material3.LinearProgressIndicator">
+        <item name="trackThickness">@dimen/space_11</item>
+        <item name="trackCornerRadius">@dimen/space_6</item>
+        <item name="trackColor">@color/disable_gray</item>
+        <item name="indicatorTrackGapSize">0dp</item>
+        <item name="trackStopIndicatorSize">0dp</item>
+    </style>
+
+    <style name="apollo_back" parent="apollo_label3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:drawableStart">@drawable/ic_arrow_back</item>
+        <item name="android:drawablePadding">@dimen/space_4</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:paddingTop">@dimen/space_6</item>
+        <item name="android:paddingBottom">@dimen/space_6</item>
+        <item name="android:background">?attr/selectableItemBackground</item>
+        <item name="android:text">Voltar</item>
+    </style>
 </resources>

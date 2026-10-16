@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.maintenance.os;
 
 import android.os.Bundle;
+import org.apollo.mobile.view.common.Motion;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +28,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_complete_maintenance);
+        Motion.enterScreen(this);
 
         orderId = getIntent().getLongExtra(OsDetailsActivity.EXTRA_ORDER_ID, -1L);
         if (orderId <= 0) {

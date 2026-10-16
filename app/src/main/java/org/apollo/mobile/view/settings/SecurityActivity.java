@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.settings;
 
 import android.content.Intent;
+import org.apollo.mobile.view.common.Motion;
 import android.os.Bundle;
 import android.text.InputType;
 import android.view.View;
@@ -36,6 +37,7 @@ public final class SecurityActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_security);
+        Motion.enterScreen(this);
 
         gateway = SettingsGatewayFactory.create(getApplicationContext());
         phoneText = findViewById(R.id.tv_phone_value);

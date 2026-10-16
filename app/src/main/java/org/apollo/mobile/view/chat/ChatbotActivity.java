@@ -13,6 +13,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import org.apollo.mobile.view.common.Motion;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -152,6 +154,7 @@ public final class ChatbotActivity extends AppCompatActivity {
 
     private void bindActions() {
         findViewById(R.id.tvBack).setOnClickListener(view -> finish());
+        Motion.pressable(findViewById(R.id.ibSendInitial), findViewById(R.id.ibSend));
 
         findViewById(R.id.ibSendInitial).setOnClickListener(view -> submit(initialInput));
         findViewById(R.id.ibSend).setOnClickListener(view -> submit(conversationEditor));
@@ -160,8 +163,7 @@ public final class ChatbotActivity extends AppCompatActivity {
                 handleEditorAction(actionId, conversationEditor));
 
         suggestionCarousel = new SuggestionCarousel(
-                findViewById(R.id.chipSuggestion),
-                findViewById(R.id.llSuggestionDots),
+                findViewById(R.id.cgSuggestions),
                 new String[]{
                         getString(R.string.chat_chip_board_error),
                         getString(R.string.chat_chip_technical_question),
@@ -242,7 +244,14 @@ public final class ChatbotActivity extends AppCompatActivity {
 
     private void showConversation() {
         suggestionCarousel.stop();
-        initialState.setVisibility(View.GONE);
+        if (initialState.getVisibility() == View.VISIBLE) {
+            initialState.animate().alpha(0f).translationY(-initialState.getHeight() * 0.1f)
+                    .setDuration(200).withEndAction(() -> initialState.setVisibility(View.GONE)).start();
+            messageList.setVisibility(View.VISIBLE);
+            conversationInput.setVisibility(View.VISIBLE);
+            Motion.slideUp(conversationInput, 120);
+            return;
+        }
         messageList.setVisibility(View.VISIBLE);
         conversationInput.setVisibility(View.VISIBLE);
     }

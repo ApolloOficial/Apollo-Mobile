@@ -1,6 +1,7 @@
 package org.apollo.mobile.view.settings;
 
 import android.os.Bundle;
+import org.apollo.mobile.view.common.Motion;
 import android.widget.CompoundButton;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -23,6 +24,7 @@ public final class NotificationsSettingsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings_notifications);
+        Motion.enterScreen(this);
 
         gateway = SettingsGatewayFactory.create(getApplicationContext());
         predictiveSwitch = findViewById(R.id.switch_1);

@@ -39,4 +39,15 @@
     <color name="info_two">#7DD3FC</color>
     <color name="info_three">#0284C7</color>
 
+
+    <!-- Tokens extras do Figma V2 -->
+    <color name="surface_white">#FFFFFF</color>
+    <color name="disable_solid">#D1CEC1</color>
+    <color name="ripple_orange">#33FF672C</color>
+    <color name="ripple_white">#40FFFEFC</color>
+    <color name="alert_bg_soft">#4DF87171</color>
+    <color name="info_bg_soft">#807DD3FC</color>
+    <color name="success_bg_soft">#D4F8EA</color>
+    <color name="scrim">#66000000</color>
+    <color name="nav_shadow">#33000000</color>
 </resources>

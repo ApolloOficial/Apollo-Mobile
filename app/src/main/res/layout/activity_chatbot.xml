@@ -1,240 +1,202 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/clRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <LinearLayout
         android:id="@+id/clToolbar"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:orientation="vertical"
         android:paddingHorizontal="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/space_48"
+        android:paddingTop="@dimen/space_16"
         android:paddingBottom="@dimen/space_16"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
             android:id="@+id/tvBack"
-            style="@style/apollo_label2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:drawableStart="@drawable/ic_arrow_back"
-            android:drawablePadding="@dimen/space_8"
-            android:gravity="center_vertical"
-            android:text="@string/chat_back"
-            android:clickable="true"
-            android:focusable="true"
-            android:textColor="@color/neutral_black"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            style="@style/apollo_back" />
 
         <TextView
             android:id="@+id/tvTitle"
             style="@style/apollo_h4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_16"
-            android:text="@string/chat_title"
-            android:textColor="@color/neutral_black"
-            android:textStyle="bold"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvBack" />
+            android:layout_marginTop="@dimen/space_10"
+            android:text="Apollo AI" />
+    </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="@dimen/space_16"
-            android:background="#F0F0F0"
-            app:layout_constraintTop_toBottomOf="@id/tvTitle" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    <View
+        android:id="@+id/vToolbarDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:background="@color/disable_solid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/clToolbar" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/clContent"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clToolbar">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vToolbarDivider">
 
         <ImageView
             android:id="@+id/ivBackgroundBlur"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:scaleType="centerCrop"
-            android:src="@drawable/orange_blur_layer" />
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_340"
+            android:importantForAccessibility="no"
+            android:scaleType="fitXY"
+            android:src="@drawable/bg_chat_glow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.32" />
 
         <LinearLayout
             android:id="@+id/llInitialState"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:gravity="center"
+            android:gravity="center_horizontal"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/screen_horizontal_padding"
-            android:visibility="visible"
+            android:paddingStart="@dimen/space_14"
+            android:paddingEnd="@dimen/space_14"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.4">
+            app:layout_constraintVertical_bias="0.32"
+            app:layout_constraintWidth_max="@dimen/content_max_width">
 
             <TextView
                 android:id="@+id/tvGreeting"
-                style="@style/apollo_h5"
+                style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="@string/chat_greeting"
-                android:textColor="@color/neutral_black"
-                android:textSize="@dimen/text_24"
-                android:textStyle="bold" />
+                android:text="Oi Carlos! Como posso ajudar?" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cgSuggestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_26"
+                app:chipSpacingHorizontal="@dimen/space_8"
+                app:chipSpacingVertical="@dimen/space_8" />
 
             <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16">
-
-                <com.google.android.material.chip.Chip
-                    android:id="@+id/chipSuggestion"
-                    style="@style/Widget.Material3.Chip.Suggestion"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:text="@string/chat_chip_board_error"
-                    app:chipBackgroundColor="@color/neutral_white"
-                    app:chipCornerRadius="@dimen/space_24"
-                    app:chipStrokeColor="#E0E0E0"
-                    app:chipStrokeWidth="1dp" />
-            </FrameLayout>
-
-            <LinearLayout
-                android:id="@+id/llSuggestionDots"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_10"
-                android:orientation="horizontal" />
-
-            <androidx.cardview.widget.CardView
                 android:id="@+id/cvInitialInput"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_64"
-                android:layout_marginTop="@dimen/space_20"
-                app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="@dimen/space_32"
-                app:cardElevation="@dimen/space_4"
-                app:cardUseCompatPadding="false">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingHorizontal="@dimen/space_16">
-
-                    <EditText
-                        android:id="@+id/etMessageInitial"
-                        style="@style/apollo_label3"
-                        android:layout_width="0dp"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:hint="@string/chat_input_hint"
-                        android:imeOptions="actionSend"
-                        android:inputType="textCapSentences"
-                        android:maxLines="3"
-                        android:paddingEnd="@dimen/space_12"
-                        android:textColorHint="@color/neutral_gray"
-                        app:layout_constraintEnd_toStartOf="@id/ibSendInitial"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/ibSendInitial"
-                        android:clickable="true"
-                        android:contentDescription="@string/chat_send"
-                        android:focusable="true"
-                        android:layout_width="@dimen/space_48"
-                        android:layout_height="@dimen/space_48"
-                        app:cardBackgroundColor="@color/secondary_three"
-                        app:cardCornerRadius="@dimen/space_24"
-                        app:cardElevation="0dp"
-                        app:layout_constraintBottom_toBottomOf="parent"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent">
-
-                        <ImageView
-                            android:layout_width="@dimen/space_24"
-                            android:layout_height="@dimen/space_24"
-                            android:layout_gravity="center"
-                            android:src="@drawable/ic_send"
-                            app:tint="@color/neutral_white" />
-                    </androidx.cardview.widget.CardView>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvChat"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clipToPadding="false"
-            android:paddingHorizontal="@dimen/screen_horizontal_padding"
-            android:paddingTop="@dimen/space_16"
-            android:paddingBottom="@dimen/space_96"
-            android:visibility="gone"
-            tools:listitem="@layout/item_chat_bot" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cvConversationInput"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/space_64"
-            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
-            android:layout_marginBottom="@dimen/space_16"
-            android:visibility="gone"
-            app:cardBackgroundColor="@color/neutral_white"
-            app:cardCornerRadius="@dimen/space_32"
-            app:cardElevation="@dimen/space_4"
-            app:layout_constraintBottom_toBottomOf="parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:paddingHorizontal="@dimen/space_16">
+                android:layout_height="@dimen/space_57"
+                android:layout_marginHorizontal="@dimen/space_8"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_chat_input"
+                android:elevation="@dimen/space_4">
 
                 <EditText
-                    android:id="@+id/etMessage"
-                    style="@style/apollo_label3"
-                    android:layout_width="0dp"
+                    android:id="@+id/etMessageInitial"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@android:color/transparent"
+                    android:background="@null"
                     android:hint="@string/chat_input_hint"
                     android:imeOptions="actionSend"
                     android:inputType="textCapSentences"
-                    android:maxLines="3"
-                    android:paddingEnd="@dimen/space_12"
-                    android:textColorHint="@color/neutral_gray"
-                    app:layout_constraintEnd_toStartOf="@id/ibSend"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    android:maxLines="1"
+                    android:paddingStart="@dimen/space_16"
+                    android:paddingEnd="@dimen/space_64"
+                    android:textColorHint="@color/disable_gray" />
 
-                <androidx.cardview.widget.CardView
-                    android:id="@+id/ibSend"
-                    android:layout_width="@dimen/space_48"
-                    android:layout_height="@dimen/space_48"
-                    android:clickable="true"
-                    android:contentDescription="@string/chat_send"
-                    android:focusable="true"
-                    app:cardBackgroundColor="@color/secondary_three"
-                    app:cardCornerRadius="@dimen/space_24"
-                    app:cardElevation="0dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                <FrameLayout
+                    android:id="@+id/ibSendInitial"
+                    android:layout_width="@dimen/space_41"
+                    android:layout_height="@dimen/space_41"
+                    android:layout_gravity="end|center_vertical"
+                    android:layout_marginEnd="@dimen/space_12"
+                    android:background="@drawable/bg_send_button"
+                    android:contentDescription="@string/chat_send">
 
                     <ImageView
                         android:layout_width="@dimen/space_24"
                         android:layout_height="@dimen/space_24"
                         android:layout_gravity="center"
-                        android:src="@drawable/ic_send"
-                        app:tint="@color/neutral_white" />
-                </androidx.cardview.widget.CardView>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_send" />
+                </FrameLayout>
+            </FrameLayout>
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvChat"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:clipToPadding="false"
+            android:overScrollMode="never"
+            android:paddingTop="@dimen/space_24"
+            android:paddingBottom="@dimen/space_16"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/cvConversationInput"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="@dimen/content_max_width" />
+
+        <FrameLayout
+            android:id="@+id/cvConversationInput"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_57"
+            android:layout_marginHorizontal="@dimen/space_24"
+            android:layout_marginBottom="@dimen/space_24"
+            android:background="@drawable/bg_chat_input"
+            android:elevation="@dimen/space_8"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintWidth_max="@dimen/content_max_width">
+
+            <EditText
+                android:id="@+id/etMessage"
+                style="@style/apollo_label3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@null"
+                android:hint="@string/chat_input_hint"
+                android:imeOptions="actionSend"
+                android:inputType="textCapSentences|textMultiLine"
+                android:maxLines="3"
+                android:paddingStart="@dimen/space_16"
+                android:paddingEnd="@dimen/space_64"
+                android:textColorHint="@color/disable_gray" />
+
+            <FrameLayout
+                android:id="@+id/ibSend"
+                android:layout_width="@dimen/space_41"
+                android:layout_height="@dimen/space_41"
+                android:layout_gravity="end|center_vertical"
+                android:layout_marginEnd="@dimen/space_12"
+                android:background="@drawable/bg_send_button"
+                android:contentDescription="@string/chat_send">
+
+                <ImageView
+                    android:layout_width="@dimen/space_24"
+                    android:layout_height="@dimen/space_24"
+                    android:layout_gravity="center"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_send" />
+            </FrameLayout>
+        </FrameLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
