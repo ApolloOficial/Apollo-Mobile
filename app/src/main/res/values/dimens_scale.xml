@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Escala responsiva gerada: base = Figma (402dp de largura = values-w400dp).
+     values: <360dp | w360dp: 360-399 | w400dp: 400+ | sw600dp: tablet. Ajuste o fator aqui, não nos layouts. -->
+<resources>
+    <!-- fator espaçamento: 0.8 | fator texto: 0.88 (proporcional ao Figma de 402dp) -->
+    <dimen name="space_4">3dp</dimen>
+    <dimen name="space_5">4dp</dimen>
+    <dimen name="space_6">5dp</dimen>
+    <dimen name="space_8">6dp</dimen>
+    <dimen name="space_10">8dp</dimen>
+    <dimen name="space_12">10dp</dimen>
+    <dimen name="space_14">11dp</dimen>
+    <dimen name="space_16">13dp</dimen>
+    <dimen name="space_18">14dp</dimen>
+    <dimen name="space_20">16dp</dimen>
+    <dimen name="space_22">18dp</dimen>
+    <dimen name="space_24">19dp</dimen>
+    <dimen name="space_28">22dp</dimen>
+    <dimen name="space_32">26dp</dimen>
+    <dimen name="space_36">29dp</dimen>
+    <dimen name="space_40">32dp</dimen>
+    <dimen name="space_48">38dp</dimen>
+    <dimen name="space_52">42dp</dimen>
+    <dimen name="space_56">45dp</dimen>
+    <dimen name="space_64">51dp</dimen>
+    <dimen name="space_72">58dp</dimen>
+    <dimen name="space_80">64dp</dimen>
+    <dimen name="space_96">77dp</dimen>
+    <dimen name="space_100">80dp</dimen>
+    <dimen name="space_120">96dp</dimen>
+    <dimen name="space_148">118dp</dimen>
+    <dimen name="space_160">128dp</dimen>
+    <dimen name="space_162">130dp</dimen>
+    <dimen name="space_180">144dp</dimen>
+    <dimen name="space_200">160dp</dimen>
+    <dimen name="space_203">162dp</dimen>
+    <dimen name="space_209">167dp</dimen>
+    <dimen name="space_220">176dp</dimen>
+    <dimen name="space_300">240dp</dimen>
+    <dimen name="text_8">8sp</dimen>
+    <dimen name="text_10">10sp</dimen>
+    <dimen name="text_12">10.5sp</dimen>
+    <dimen name="text_14">12.5sp</dimen>
+    <dimen name="text_16">14sp</dimen>
+    <dimen name="text_18">16sp</dimen>
+    <dimen name="text_20">17.5sp</dimen>
+    <dimen name="text_22">19.5sp</dimen>
+    <dimen name="text_24">21sp</dimen>
+    <dimen name="text_26">23sp</dimen>
+    <dimen name="text_28">24.5sp</dimen>
+    <dimen name="text_32">28sp</dimen>
+    <dimen name="text_36">31.5sp</dimen>
+    <dimen name="text_40">35sp</dimen>
+    <dimen name="text_48">42sp</dimen>
+    <dimen name="text_56">49.5sp</dimen>
+</resources>

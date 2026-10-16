@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="48dp"
-            android:paddingBottom="24dp">
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_48"
+            android:paddingBottom="@dimen/space_24">
 
             <!-- Botão Voltar -->
             <TextView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_arrow_back"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/space_8"
                 android:gravity="center_vertical"
                 android:text="Voltar"
                 android:textColor="@color/neutral_black"
@@ -38,7 +38,7 @@
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
                 android:text="Armazenamento e\ndados offline"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -47,10 +47,10 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:background="@drawable/bg_settings_card"
                 android:orientation="vertical"
-                android:padding="20dp">
+                android:padding="@dimen/space_20">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
@@ -81,8 +81,8 @@
                 <!-- Barra de Progresso Customizada -->
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="10dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_height="@dimen/space_10"
+                    android:layout_marginTop="@dimen/space_16"
                     android:background="@drawable/bg_label_rounded"
                     android:backgroundTint="#F0F0F0"
                     android:clipToOutline="true"
@@ -108,12 +108,12 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/space_12"
                     android:orientation="horizontal">
 
                     <View
-                        android:layout_width="6dp"
-                        android:layout_height="6dp"
+                        android:layout_width="@dimen/space_6"
+                        android:layout_height="@dimen/space_6"
                         android:layout_gravity="center_vertical"
                         android:background="@drawable/dot_indicator"
                         android:backgroundTint="@color/secondary_one" />
@@ -122,15 +122,15 @@
                         style="@style/apollo_caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
+                        android:layout_marginStart="@dimen/space_4"
                         android:text="Uso do Apollo"
                         android:textColor="@color/neutral_gray" />
 
                     <View
-                        android:layout_width="6dp"
-                        android:layout_height="6dp"
+                        android:layout_width="@dimen/space_6"
+                        android:layout_height="@dimen/space_6"
                         android:layout_gravity="center_vertical"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="@dimen/space_16"
                         android:background="@drawable/dot_indicator"
                         android:backgroundTint="@color/info_two" />
 
@@ -138,7 +138,7 @@
                         style="@style/apollo_caption"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
+                        android:layout_marginStart="@dimen/space_4"
                         android:text="Uso de outros aplicativos"
                         android:textColor="@color/neutral_gray" />
 
@@ -150,7 +150,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="@dimen/space_24">
 
                 <TextView
                     android:id="@+id/tvPlacaTitle"
@@ -177,7 +177,7 @@
                     style="@style/apollo_body4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/space_8"
                     android:text="Cópia local pra consultar placas sem internet. Limpar não afeta nada já salvo, só que a próxima consulta offline não vai funcionar até sincronizar de novo."
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintTop_toBottomOf="@id/tvPlacaTitle" />
@@ -188,7 +188,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="@dimen/space_24">
 
                 <TextView
                     android:id="@+id/tvPendingTitle"
@@ -215,7 +215,7 @@
                     style="@style/apollo_body4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/space_8"
                     android:text="Manutenções que você já registrou, mas que ainda só existem no seu celular. Ficam guardadas até serem enviadas — não têm opção de exclusão."
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintTop_toBottomOf="@id/tvPendingTitle" />
@@ -227,8 +227,8 @@
                 android:id="@+id/btnClearCache"
                 style="@style/apollo_label2"
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="32dp"
+                android:layout_height="@dimen/space_56"
+                android:layout_marginTop="@dimen/space_32"
                 android:background="@drawable/btn_outlined"
                 android:text="Limpar cache de placas"
                 android:textAllCaps="false"

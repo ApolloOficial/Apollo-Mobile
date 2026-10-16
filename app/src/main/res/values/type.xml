@@ -12,110 +12,110 @@
 
     <style name="apollo_display1" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">56sp</item>
+        <item name="android:textSize">@dimen/text_56</item>
     </style>
 
     <style name="apollo_display2" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">40sp</item>
+        <item name="android:textSize">@dimen/text_40</item>
     </style>
 
     <!-- ===== HEADING ===== -->
 
     <style name="apollo_h1" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">48sp</item>
+        <item name="android:textSize">@dimen/text_48</item>
     </style>
 
     <style name="apollo_h2" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">36sp</item>
+        <item name="android:textSize">@dimen/text_36</item>
     </style>
 
     <style name="apollo_h3" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">32sp</item>
+        <item name="android:textSize">@dimen/text_32</item>
     </style>
 
     <style name="apollo_h4" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">28sp</item>
+        <item name="android:textSize">@dimen/text_28</item>
     </style>
 
     <style name="apollo_h5" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">24sp</item>
+        <item name="android:textSize">@dimen/text_24</item>
     </style>
 
     <style name="apollo_h6" parent="apollo_text_base">
         <item name="android:fontFamily">@font/plusjakartasans_bold</item>
-        <item name="android:textSize">20sp</item>
+        <item name="android:textSize">@dimen/text_20</item>
     </style>
 
     <!-- ===== BODY ===== -->
 
     <style name="apollo_body1" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_18</item>
     </style>
 
     <style name="apollo_body2" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_16</item>
     </style>
 
     <style name="apollo_body3" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_14</item>
     </style>
 
     <style name="apollo_body4" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/text_12</item>
     </style>
 
     <style name="apollo_body5" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/text_10</item>
     </style>
 
     <!-- ===== LABEL ===== -->
 
     <style name="apollo_label1" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_bold</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">@dimen/text_18</item>
     </style>
 
     <style name="apollo_label2" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_bold</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">@dimen/text_16</item>
     </style>
 
     <style name="apollo_label3" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_bold</item>
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">@dimen/text_14</item>
     </style>
 
     <style name="apollo_label4" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_bold</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">@dimen/text_12</item>
     </style>
 
     <style name="apollo_label5" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_bold</item>
-        <item name="android:textSize">10sp</item>
+        <item name="android:textSize">@dimen/text_10</item>
     </style>
 
     <style name="apollo_label6" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_bold</item>
-        <item name="android:textSize">8sp</item>
+        <item name="android:textSize">@dimen/text_8</item>
     </style>
 
     <!-- ===== CAPTION ===== -->
 
     <style name="apollo_caption" parent="apollo_text_base">
         <item name="android:fontFamily">@font/manrope_regular</item>
-        <item name="android:textSize">8sp</item>
+        <item name="android:textSize">@dimen/text_8</item>
     </style>
 
 </resources>

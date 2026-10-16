@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Status / prioridade -->
+    <string name="os_status_open">Aberta</string>
+    <string name="os_status_in_progress">Em andamento</string>
+    <string name="os_status_done">Concluída</string>
+    <string name="os_priority_low">Baixa</string>
+    <string name="os_priority_medium">Média</string>
+    <string name="os_priority_high">Alta</string>
+
+    <!-- Linhas de informação -->
+    <string name="os_label_lot">Lote</string>
+    <string name="os_label_inverter_only">Inversor</string>
+    <string name="os_all_strings">Todas as strings</string>
+    <string name="os_done_at">Concluída em\n%1$s</string>
+
+    <!-- Botões por estado -->
+    <string name="os_btn_scan_any">Escaneie uma placa da OS para começar</string>
+    <string name="os_btn_go_to_conclusion">Ir para conclusão</string>
+    <string name="os_btn_register_condition">Registrar condição</string>
+    <string name="os_btn_condition_registered">Condição registrada!</string>
+
+    <!-- Histórico -->
+    <string name="os_history_started">Execução iniciada</string>
+    <string name="os_history_done">OS concluída</string>
+
+    <!-- Conclusão -->
+    <string name="os_summary_problem_item">%1$s (%2$s, Posição %3$d)</string>
+    <string name="os_report_required">Descreva o que foi feito antes de concluir.</string>
+    <string name="os_conclusion_pending_plates">Verifique todas as placas antes de concluir.</string>
+    <string name="os_condition_required">Descreva a condição ou toque em \"Sem problema aparente\".</string>
+</resources>

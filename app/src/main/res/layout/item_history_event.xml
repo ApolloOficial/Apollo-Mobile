@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Evento da linha do tempo "Histórico de andamento" -->
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/ivDot"
+        android:layout_width="@dimen/space_8"
+        android:layout_height="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_5"
+        android:importantForAccessibility="no"
+        android:src="@drawable/bg_status_dot"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="@color/sucess_one" />
+
+    <!-- Linha vertical até o próximo evento (escondida no último) -->
+    <View
+        android:id="@+id/vLine"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/space_4"
+        android:background="#D1D1D1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/ivDot"
+        app:layout_constraintStart_toStartOf="@id/ivDot"
+        app:layout_constraintTop_toBottomOf="@id/ivDot" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        style="@style/apollo_label3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_12"
+        android:textColor="@color/neutral_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivDot"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="OS Criada" />
+
+    <TextView
+        android:id="@+id/tvDescription"
+        style="@style/apollo_body3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_4"
+        android:textColor="@color/neutral_black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvTitle"
+        tools:text="Aberta pelo operador Enzo a partir de alerta de eficiência baixa." />
+
+    <TextView
+        android:id="@+id/tvDate"
+        style="@style/apollo_body4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:paddingBottom="@dimen/space_20"
+        android:textColor="@color/neutral_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="@id/tvTitle"
+        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+        tools:text="22/09/2026 · 09:34" />
+</androidx.constraintlayout.widget.ConstraintLayout>

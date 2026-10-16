@@ -12,9 +12,9 @@
         android:id="@+id/clHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/space_48"
+        android:paddingBottom="@dimen/space_16"
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
@@ -30,8 +30,8 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="@dimen/space_20"
+                android:layout_height="@dimen/space_20"
                 android:src="@drawable/ic_arrow_back"
                 app:tint="@color/neutral_black" />
 
@@ -39,7 +39,7 @@
                 style="@style/apollo_label2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
+                android:layout_marginStart="@dimen/space_8"
                 android:text="Voltar"
                 android:textColor="@color/neutral_black" />
         </LinearLayout>
@@ -56,15 +56,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingBottom="32dp">
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/space_32">
 
             <!-- Success Section -->
             <ImageView
-                android:layout_width="64dp"
-                android:layout_height="64dp"
+                android:layout_width="@dimen/space_64"
+                android:layout_height="@dimen/space_64"
                 android:layout_gravity="center"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:src="@drawable/ic_check_green" />
 
             <TextView
@@ -72,7 +72,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
                 android:text="Placa identificada!"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -89,7 +89,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/space_32"
                 android:orientation="vertical">
 
                 <include layout="@layout/item_activation_info"
@@ -108,7 +108,7 @@
                 style="@style/apollo_label1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
+                android:layout_marginTop="@dimen/space_32"
                 android:text="Preencha para ativar a placa"
                 android:textColor="@color/neutral_black" />
 
@@ -124,22 +124,22 @@
                 style="@style/apollo_label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:text="Data de instalação"
                 android:textColor="@color/neutral_black" />
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="52dp"
-                android:layout_marginTop="8dp"
+                android:layout_height="@dimen/space_52"
+                android:layout_marginTop="@dimen/space_8"
                 android:background="@drawable/edittext_bg"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingHorizontal="16dp">
+                android:paddingHorizontal="@dimen/space_16">
 
                 <ImageView
-                    android:layout_width="22dp"
-                    android:layout_height="22dp"
+                    android:layout_width="@dimen/space_22"
+                    android:layout_height="@dimen/space_22"
                     android:src="@drawable/ic_calendar"
                     app:tint="@color/neutral_black" />
 
@@ -148,8 +148,8 @@
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
                     android:hint="Insira a data de instalação"
-                    android:paddingStart="12dp"
-                    android:textSize="14sp"
+                    android:paddingStart="@dimen/space_12"
+                    android:textSize="@dimen/text_14"
                     android:inputType="date" />
             </LinearLayout>
 
@@ -157,16 +157,16 @@
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="24dp"
+                app:cardCornerRadius="@dimen/space_24"
                 app:cardElevation="2dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical"
-                    android:padding="20dp">
+                    android:padding="@dimen/space_20">
 
                     <TextView
                         style="@style/apollo_label2"
@@ -186,7 +186,7 @@
                         style="@style/apollo_label4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="@dimen/space_20"
                         android:text="Defina a posição desta placa na string:"
                         android:textColor="@color/neutral_black" />
 
@@ -195,14 +195,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/space_16"
                         android:gravity="center_vertical"
                         android:orientation="horizontal">
 
                         <ImageButton
                             android:id="@+id/btnMinus"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
+                            android:layout_width="@dimen/space_48"
+                            android:layout_height="@dimen/space_48"
                             android:background="@drawable/bg_label_rounded"
                             android:backgroundTint="@color/neutral_white"
                             android:elevation="2dp"
@@ -214,15 +214,15 @@
                             style="@style/apollo_h4"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="24dp"
+                            android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
                             android:text="14 de 24"
                             android:textColor="@color/neutral_black"
                             android:textStyle="bold" />
 
                         <ImageButton
                             android:id="@+id/btnPlus"
-                            android:layout_width="48dp"
-                            android:layout_height="48dp"
+                            android:layout_width="@dimen/space_48"
+                            android:layout_height="@dimen/space_48"
                             android:background="@drawable/bg_label_rounded"
                             android:backgroundTint="@color/secondary_three"
                             android:elevation="2dp"
@@ -235,7 +235,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/space_16"
                         android:text="Sugerida: próxima posição livre na ordem do bipe."
                         android:textColor="@color/neutral_gray" />
 
@@ -243,7 +243,7 @@
                         style="@style/apollo_body5"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
+                        android:layout_marginTop="@dimen/space_16"
                         android:text="Bipe na ordem física da fileira: a posição é sugerida sozinha (próxima livre). Use - / + só para corrigir. Não é mais preciso digitar eficiência inicial"
                         android:textColor="@color/neutral_gray" />
 

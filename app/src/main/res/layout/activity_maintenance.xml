@@ -12,15 +12,16 @@
         android:id="@+id/clHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="12dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/header_top_padding"
+        android:paddingBottom="@dimen/header_bottom_padding"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivProfile"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_picture"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,12 +33,14 @@
             style="@style/apollo_label4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/header_item_spacing"
+            android:layout_marginEnd="@dimen/header_item_spacing"
             android:background="@drawable/edittext_bg"
+            android:ellipsize="end"
             android:gravity="center"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/space_12"
+            android:paddingVertical="@dimen/space_6"
             android:text="Fábrica Itajaí, Limeira - SP"
             android:textColor="@color/neutral_black"
             app:layout_constraintBottom_toBottomOf="@id/ivProfile"
@@ -47,8 +50,8 @@
 
         <ImageButton
             android:id="@+id/ibNotifications"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:background="@drawable/edittext_bg"
             android:src="@drawable/ic_notifications"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,47 +59,54 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/topBar"
+        android:name="org.apollo.mobile.view.common.TopBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/clHeader">
+        app:layout_constraintTop_toBottomOf="@id/topBar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingBottom="100dp">
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/content_bottom_padding">
 
             <!-- OS Overview Card -->
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/space_8"
                 app:cardBackgroundColor="@color/neutral_white"
-                app:cardCornerRadius="20dp"
+                app:cardCornerRadius="@dimen/space_20"
                 app:cardElevation="1dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:padding="@dimen/card_content_padding">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cvOsIcon"
-                        android:layout_width="72dp"
-                        android:layout_height="72dp"
+                        android:layout_width="@dimen/os_overview_icon_size"
+                        android:layout_height="@dimen/os_overview_icon_size"
                         app:cardBackgroundColor="#FFF1ED"
-                        app:cardCornerRadius="18dp"
+                        app:cardCornerRadius="@dimen/space_18"
                         app:cardElevation="0dp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent">
 
                         <ImageView
-                            android:layout_width="36dp"
-                            android:layout_height="36dp"
+                            android:layout_width="@dimen/os_overview_icon_inner_size"
+                            android:layout_height="@dimen/os_overview_icon_inner_size"
                             android:layout_gravity="center"
                             android:src="@drawable/ic_clipboard"
                             app:tint="@color/secondary_three" />
@@ -108,7 +118,7 @@
                         style="@style/apollo_label1"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
+                        android:layout_marginStart="@dimen/space_14"
                         android:text="@string/maintenance_os_card_title"
                         android:textColor="@color/neutral_black"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -120,7 +130,7 @@
                         style="@style/apollo_body4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="14dp"
+                        android:layout_marginStart="@dimen/space_14"
                         android:layout_marginTop="2dp"
                         android:text="@string/maintenance_os_summary"
                         android:textColor="@color/neutral_gray"
@@ -132,16 +142,16 @@
                         android:id="@+id/btnVerOrdens"
                         style="@style/apollo_label3"
                         android:layout_width="wrap_content"
-                        android:layout_height="36dp"
-                        android:layout_marginTop="8dp"
+                        android:layout_height="@dimen/touch_target_min_size"
+                        android:layout_marginTop="@dimen/space_8"
                         android:backgroundTint="@color/secondary_three"
                         android:insetTop="0dp"
                         android:insetBottom="0dp"
-                        android:paddingHorizontal="24dp"
+                        android:paddingHorizontal="@dimen/space_16"
                         android:text="@string/maintenance_btn_orders"
                         android:textAllCaps="false"
                         android:textColor="@color/neutral_white"
-                        app:cornerRadius="18dp"
+                        app:cornerRadius="@dimen/space_24"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/tvOsSummary" />
 
@@ -150,10 +160,11 @@
             </androidx.cardview.widget.CardView>
 
             <!-- History Header -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp">
+                android:layout_marginTop="@dimen/section_spacing"
+                android:orientation="vertical">
 
                 <TextView
                     android:id="@+id/tvHistoryTitle"
@@ -163,26 +174,21 @@
                     android:text="Histórico"
                     android:textColor="@color/neutral_black"
                     android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    />
 
                 <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="36dp"
-                    android:layout_marginStart="16dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/space_48"
+                    android:layout_marginTop="@dimen/space_12"
                     android:background="@drawable/edittext_bg"
                     android:gravity="center_vertical"
                     android:orientation="horizontal"
-                    android:paddingHorizontal="12dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tvHistoryTitle"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:paddingHorizontal="@dimen/space_12"
+                    >
 
                     <ImageView
-                        android:layout_width="16dp"
-                        android:layout_height="16dp"
+                        android:layout_width="@dimen/space_16"
+                        android:layout_height="@dimen/space_16"
                         android:src="@drawable/ic_search"
                         app:tint="@color/secondary_three" />
 
@@ -193,104 +199,104 @@
                         android:hint="@string/maintenance_search_hint"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
-                        android:paddingStart="6dp"
+                        android:paddingStart="@dimen/space_6"
                         android:textColorHint="@color/neutral_gray"
-                        android:textSize="11sp" />
+                        android:textSize="@dimen/text_14" />
                 </LinearLayout>
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
 
             <!-- Filters -->
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:paddingVertical="4dp">
+                    android:paddingVertical="@dimen/space_4">
 
                     <TextView
+                        android:id="@+id/chipMaintenanceAll"
                         style="@style/apollo_label4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bg_label_rounded"
-                        android:backgroundTint="#EBEBEB"
-                        android:paddingHorizontal="18dp"
-                        android:paddingVertical="6dp"
-                        android:text="@string/maintenance_filter_all"
-                        android:textColor="@color/neutral_gray" />
-
-                    <TextView
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
                         android:background="@drawable/bg_label_rounded"
                         android:backgroundTint="@color/secondary_three"
-                        android:paddingHorizontal="18dp"
-                        android:paddingVertical="6dp"
-                        android:text="@string/maintenance_filter_preventive"
+                        android:paddingHorizontal="@dimen/space_18"
+                        android:paddingVertical="@dimen/space_6"
+                        android:text="@string/maintenance_filter_all"
                         android:textColor="@color/neutral_white" />
 
                     <TextView
+                        android:id="@+id/chipMaintenancePreventive"
                         style="@style/apollo_label4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/space_8"
                         android:background="@drawable/bg_label_rounded"
                         android:backgroundTint="#EBEBEB"
-                        android:paddingHorizontal="18dp"
-                        android:paddingVertical="6dp"
+                        android:paddingHorizontal="@dimen/space_18"
+                        android:paddingVertical="@dimen/space_6"
+                        android:text="@string/maintenance_filter_preventive"
+                        android:textColor="@color/neutral_gray" />
+
+                    <TextView
+                        android:id="@+id/chipMaintenanceCorrective"
+                        style="@style/apollo_label4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_8"
+                        android:background="@drawable/bg_label_rounded"
+                        android:backgroundTint="#EBEBEB"
+                        android:paddingHorizontal="@dimen/space_18"
+                        android:paddingVertical="@dimen/space_6"
                         android:text="@string/maintenance_filter_corrective"
                         android:textColor="@color/neutral_gray" />
 
                     <TextView
+                        android:id="@+id/chipMaintenancePredictive"
                         style="@style/apollo_label4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
+                        android:layout_marginStart="@dimen/space_8"
                         android:background="@drawable/bg_label_rounded"
                         android:backgroundTint="#EBEBEB"
-                        android:paddingHorizontal="18dp"
-                        android:paddingVertical="6dp"
+                        android:paddingHorizontal="@dimen/space_18"
+                        android:paddingVertical="@dimen/space_6"
                         android:text="@string/maintenance_filter_predictive"
                         android:textColor="@color/neutral_gray" />
 
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <!-- List Groups -->
-            <TextView
-                style="@style/apollo_label2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="@string/maintenance_today"
-                android:textColor="@color/neutral_gray" />
-
-            <include
-                layout="@layout/item_maintenance_os"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+            <ProgressBar
+                android:id="@+id/progressMaintenanceHistory"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_24" />
 
             <TextView
-                style="@style/apollo_label2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="18dp"
-                android:text="@string/maintenance_last_30_days"
-                android:textColor="@color/neutral_gray" />
-
-            <include
-                layout="@layout/item_maintenance_os"
+                android:id="@+id/tvMaintenanceEmpty"
+                style="@style/apollo_body2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="@dimen/space_32"
+                android:gravity="center"
+                android:text="Nenhuma OS encontrada."
+                android:textColor="@color/neutral_gray"
+                android:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/maintenanceHistoryList"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_18"
+                android:orientation="vertical" />
 
         </LinearLayout>
 

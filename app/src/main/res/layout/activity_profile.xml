@@ -16,9 +16,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="48dp"
-            android:paddingBottom="24dp">
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_48"
+            android:paddingBottom="@dimen/space_24">
 
             <!-- Botão Voltar -->
             <TextView
@@ -27,7 +27,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:drawableStart="@drawable/ic_arrow_back"
-                android:drawablePadding="8dp"
+                android:drawablePadding="@dimen/space_8"
                 android:gravity="center_vertical"
                 android:text="Voltar"
                 android:textColor="@color/neutral_black"
@@ -38,7 +38,7 @@
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
                 android:text="Meu perfil"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
@@ -47,14 +47,14 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
                 android:gravity="center"
                 android:orientation="vertical">
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/iv_profile_large"
-                    android:layout_width="96dp"
-                    android:layout_height="96dp"
+                    android:layout_width="@dimen/space_96"
+                    android:layout_height="@dimen/space_96"
                     android:scaleType="centerCrop"
                     android:src="@drawable/profile_picture"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
@@ -64,7 +64,7 @@
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="@dimen/space_8"
                     android:text="Editar foto"
                     android:textColor="@color/secondary_one" />
             </LinearLayout>
@@ -73,7 +73,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/space_20"
                 android:orientation="vertical">
 
                 <TextView
@@ -88,10 +88,10 @@
                     style="@style/apollo_body4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/space_6"
                     android:background="@drawable/bg_profile_field"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp"
+                    android:paddingHorizontal="@dimen/space_16"
+                    android:paddingVertical="@dimen/space_12"
                     android:text="Carlos Alves da Silva"
                     android:textColor="@color/neutral_gray" />
 
@@ -99,7 +99,7 @@
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/space_12"
                     android:text="E-mail"
                     android:textColor="@color/neutral_black" />
 
@@ -108,10 +108,10 @@
                     style="@style/apollo_body4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/space_6"
                     android:background="@drawable/bg_profile_field"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp"
+                    android:paddingHorizontal="@dimen/space_16"
+                    android:paddingVertical="@dimen/space_12"
                     android:text="carlosalves@institucional.com"
                     android:textColor="@color/neutral_gray" />
 
@@ -119,7 +119,7 @@
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/space_12"
                     android:text="Empresa"
                     android:textColor="@color/neutral_black" />
 
@@ -128,10 +128,10 @@
                     style="@style/apollo_body4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/space_6"
                     android:background="@drawable/bg_profile_field"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp"
+                    android:paddingHorizontal="@dimen/space_16"
+                    android:paddingVertical="@dimen/space_12"
                     android:text="Fábrica Itajaí, Limeira - SP"
                     android:textColor="@color/neutral_gray" />
 
@@ -139,7 +139,7 @@
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="@dimen/space_12"
                     android:text="Cargo"
                     android:textColor="@color/neutral_black" />
 
@@ -148,10 +148,10 @@
                     style="@style/apollo_body4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="6dp"
+                    android:layout_marginTop="@dimen/space_6"
                     android:background="@drawable/bg_profile_field"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="12dp"
+                    android:paddingHorizontal="@dimen/space_16"
+                    android:paddingVertical="@dimen/space_12"
                     android:text="Técnico de Manutenção"
                     android:textColor="@color/neutral_gray" />
 
@@ -162,9 +162,9 @@
                 style="@style/apollo_body4"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="@dimen/space_24"
                 android:background="@drawable/bg_info_box"
-                android:padding="16dp"
+                android:padding="@dimen/space_16"
                 android:text="Esses dados são cadastrados pela gestão da sua empresa. Pra corrigir alguma informação, fale com o gerente responsável pela sua conta."
                 android:textColor="@color/neutral_black" />
 

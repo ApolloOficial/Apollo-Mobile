@@ -6,9 +6,9 @@
     android:id="@+id/cardPlate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="12dp"
+    android:layout_marginBottom="@dimen/space_12"
     app:cardBackgroundColor="@color/neutral_white"
-    app:cardCornerRadius="16dp"
+    app:cardCornerRadius="@dimen/space_16"
     app:cardElevation="2dp"
     app:strokeWidth="1dp"
     app:strokeColor="@android:color/transparent">
@@ -16,7 +16,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="@dimen/space_16">
 
         <TextView
             android:id="@+id/tvSerialNumberLabel"
@@ -58,16 +58,16 @@
             android:backgroundTint="@color/sucess_two"
             android:gravity="center"
             android:orientation="horizontal"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="4dp"
+            android:paddingHorizontal="@dimen/space_12"
+            android:paddingVertical="@dimen/space_4"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <ImageView
                 android:id="@+id/ivStatusIcon"
-                android:layout_width="10dp"
-                android:layout_height="10dp"
-                android:layout_marginEnd="4dp"
+                android:layout_width="@dimen/space_10"
+                android:layout_height="@dimen/space_10"
+                android:layout_marginEnd="@dimen/space_4"
                 android:src="@drawable/ic_warning"
                 android:visibility="gone"
                 app:tint="@color/neutral_white" />
@@ -79,7 +79,7 @@
                 android:layout_height="wrap_content"
                 android:text="Em operação"
                 android:textColor="@color/neutral_black"
-                android:textSize="10sp" />
+                android:textSize="@dimen/text_12" />
 
         </LinearLayout>
 
@@ -88,7 +88,7 @@
             android:id="@+id/clEfficiency"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_12"
             app:layout_constraintTop_toBottomOf="@id/tvPosition">
 
             <TextView
@@ -115,13 +115,13 @@
                 android:id="@+id/progressEfficiency"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/space_4"
                 android:progress="87"
                 app:indicatorColor="@color/sucess_one"
                 app:layout_constraintTop_toBottomOf="@id/tvEfficiencyLabel"
                 app:trackColor="@color/disable_gray"
-                app:trackCornerRadius="4dp"
-                app:trackThickness="8dp" />
+                app:trackCornerRadius="@dimen/space_4"
+                app:trackThickness="@dimen/space_8" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -131,7 +131,7 @@
             style="@style/apollo_body3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="@dimen/space_12"
             android:text="Aguardando ativação em campo..."
             android:textColor="@color/neutral_gray"
             android:visibility="gone"
@@ -142,8 +142,8 @@
             android:id="@+id/btnVerOS"
             style="@style/apollo_label3"
             android:layout_width="wrap_content"
-            android:layout_height="36dp"
-            android:layout_marginTop="16dp"
+            android:layout_height="@dimen/space_36"
+            android:layout_marginTop="@dimen/space_16"
             android:background="@drawable/btn_outlined"
             android:insetTop="0dp"
             android:insetBottom="0dp"
@@ -152,7 +152,7 @@
             android:textColor="@color/secondary_three"
             android:visibility="gone"
             app:backgroundTint="@null"
-            app:cornerRadius="18dp"
+            app:cornerRadius="@dimen/space_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clEfficiency" />
 

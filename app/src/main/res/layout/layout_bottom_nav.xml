@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
-    Footer + botão do chatbot reutilizáveis (medidas da activity_home).
-    Uso: dentro de um ConstraintLayout raiz →
-        <include layout="@layout/layout_bottom_nav" />
-    O conteúdo rolável da tela deve usar app:layout_constraintBottom_toTopOf="@id/bottomNavigation".
+    Footer + botão do chatbot reutilizáveis. Medidas do Figma (402dp) em values-w400dp/responsive.xml,
+    escaladas proporcionalmente em values-w360dp (0.9) e values (0.8).
+    Uso: <include layout="@layout/layout_bottom_nav" /> no ConstraintLayout raiz.
     Aba ativa e cliques: BottomNavigation.setup(this, BottomNavigation.Tab.X)
 -->
 <merge
@@ -15,17 +14,17 @@
     <!-- Botão Chatbot Circular -->
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabChatbot"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="16dp"
+        android:layout_width="@dimen/chatbot_size"
+        android:layout_height="@dimen/chatbot_size"
+        android:layout_marginEnd="@dimen/chatbot_margin_end"
+        android:layout_marginBottom="@dimen/chatbot_margin_bottom"
         android:contentDescription="Abrir chatbot"
         android:src="@drawable/ic_chatbot"
         app:backgroundTint="@color/secondary_three"
-        app:fabCustomSize="80dp"
+        app:fabCustomSize="@dimen/chatbot_size"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
         app:layout_constraintEnd_toEndOf="parent"
-        app:maxImageSize="36dp"
+        app:maxImageSize="@dimen/chatbot_icon_size"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
         app:tint="@color/neutral_white" />
 
@@ -33,41 +32,46 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/bottomNavigation"
         android:layout_width="0dp"
-        android:layout_height="91dp"
-        android:layout_marginHorizontal="8dp"
-        android:layout_marginBottom="20dp"
-        app:cardCornerRadius="32dp"
-        app:cardElevation="4dp"
+        android:layout_height="@dimen/bottom_nav_height"
+        android:layout_marginHorizontal="@dimen/bottom_nav_horizontal_margin"
+        android:layout_marginBottom="@dimen/bottom_nav_bottom_margin"
+        app:cardBackgroundColor="@color/neutral_white"
+        app:cardCornerRadius="@dimen/space_32"
+        app:cardElevation="@dimen/space_4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
+        <!-- Ícones agrupados e centralizados (como no Figma), não esticados até as bordas -->
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:gravity="center"
+            android:layout_gravity="center"
+            android:gravity="center_vertical"
             android:orientation="horizontal">
 
             <!-- Início -->
             <LinearLayout
                 android:id="@+id/llHome"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/ivHome"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
+                    android:layout_width="@dimen/bottom_nav_icon_size"
+                    android:layout_height="@dimen/bottom_nav_icon_size"
                     android:contentDescription="Início"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_home_gray" />
 
+                <!-- Tab laranja: só a da tela atual fica VISIBLE (BottomNavigation.setup) -->
                 <View
                     android:id="@+id/indicatorHome"
-                    android:layout_width="34dp"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="@dimen/bottom_nav_indicator_width"
+                    android:layout_height="@dimen/bottom_nav_indicator_height"
+                    android:layout_marginTop="@dimen/bottom_nav_indicator_spacing"
                     android:background="@drawable/bg_indicator_home"
                     android:visibility="invisible" />
             </LinearLayout>
@@ -75,24 +79,26 @@
             <!-- Placas -->
             <LinearLayout
                 android:id="@+id/llPanels"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:gravity="center"
+                android:layout_marginStart="@dimen/bottom_nav_item_spacing"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/ivPanels"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
+                    android:layout_width="@dimen/bottom_nav_icon_size"
+                    android:layout_height="@dimen/bottom_nav_icon_size"
                     android:contentDescription="Placas"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_solarpanel_gray" />
 
+                <!-- Tab laranja: só a da tela atual fica VISIBLE (BottomNavigation.setup) -->
                 <View
                     android:id="@+id/indicatorPanels"
-                    android:layout_width="34dp"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="@dimen/bottom_nav_indicator_width"
+                    android:layout_height="@dimen/bottom_nav_indicator_height"
+                    android:layout_marginTop="@dimen/bottom_nav_indicator_spacing"
                     android:background="@drawable/bg_indicator_home"
                     android:visibility="invisible" />
             </LinearLayout>
@@ -100,17 +106,17 @@
             <!-- Scanner -->
             <androidx.cardview.widget.CardView
                 android:id="@+id/cvScanContainer"
-                android:layout_width="73dp"
-                android:layout_height="73dp"
-                android:layout_marginStart="24dp"
+                android:layout_width="@dimen/scanner_button_size"
+                android:layout_height="@dimen/scanner_button_size"
+                android:layout_marginStart="@dimen/bottom_nav_item_spacing"
                 android:contentDescription="Escanear placa"
                 app:cardBackgroundColor="@color/secondary_three"
-                app:cardCornerRadius="36.5dp"
+                app:cardCornerRadius="@dimen/scanner_button_radius"
                 app:cardElevation="0dp">
 
                 <ImageView
-                    android:layout_width="35dp"
-                    android:layout_height="35dp"
+                    android:layout_width="@dimen/scanner_icon_size"
+                    android:layout_height="@dimen/scanner_icon_size"
                     android:layout_gravity="center"
                     android:importantForAccessibility="no"
                     android:src="@drawable/ic_scan"
@@ -120,24 +126,26 @@
             <!-- Manutenção -->
             <LinearLayout
                 android:id="@+id/llTools"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:gravity="center"
+                android:layout_marginStart="@dimen/bottom_nav_item_spacing"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/ivTools"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
+                    android:layout_width="@dimen/bottom_nav_icon_size"
+                    android:layout_height="@dimen/bottom_nav_icon_size"
                     android:contentDescription="Manutenção"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_tools_gray" />
 
+                <!-- Tab laranja: só a da tela atual fica VISIBLE (BottomNavigation.setup) -->
                 <View
                     android:id="@+id/indicatorTools"
-                    android:layout_width="34dp"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="@dimen/bottom_nav_indicator_width"
+                    android:layout_height="@dimen/bottom_nav_indicator_height"
+                    android:layout_marginTop="@dimen/bottom_nav_indicator_spacing"
                     android:background="@drawable/bg_indicator_home"
                     android:visibility="invisible" />
             </LinearLayout>
@@ -145,24 +153,26 @@
             <!-- Configurações -->
             <LinearLayout
                 android:id="@+id/llSettings"
-                android:layout_width="34dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:gravity="center"
+                android:layout_marginStart="@dimen/bottom_nav_item_spacing"
+                android:gravity="center_horizontal"
                 android:orientation="vertical">
 
                 <ImageView
                     android:id="@+id/ivSettings"
-                    android:layout_width="34dp"
-                    android:layout_height="34dp"
+                    android:layout_width="@dimen/bottom_nav_icon_size"
+                    android:layout_height="@dimen/bottom_nav_icon_size"
                     android:contentDescription="Configurações"
+                    android:scaleType="fitCenter"
                     android:src="@drawable/ic_settings_gray" />
 
+                <!-- Tab laranja: só a da tela atual fica VISIBLE (BottomNavigation.setup) -->
                 <View
                     android:id="@+id/indicatorSettings"
-                    android:layout_width="34dp"
-                    android:layout_height="6dp"
-                    android:layout_marginTop="4dp"
+                    android:layout_width="@dimen/bottom_nav_indicator_width"
+                    android:layout_height="@dimen/bottom_nav_indicator_height"
+                    android:layout_marginTop="@dimen/bottom_nav_indicator_spacing"
                     android:background="@drawable/bg_indicator_home"
                     android:visibility="invisible" />
             </LinearLayout>

@@ -6,14 +6,14 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:orientation="vertical"
-    android:paddingBottom="24dp">
+    android:paddingBottom="@dimen/space_24">
 
     <TextView
         android:id="@+id/tvInverterGroupName"
         style="@style/apollo_label1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="12dp"
+        android:layout_marginBottom="@dimen/space_12"
         android:text="Inversor 001"
         android:textColor="@color/neutral_black" />
 
@@ -21,14 +21,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:cardBackgroundColor="@color/neutral_white"
-        app:cardCornerRadius="24dp"
+        app:cardCornerRadius="@dimen/space_24"
         app:cardElevation="2dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="20dp">
+            android:padding="@dimen/space_20">
 
             <!-- Header of the Card -->
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -37,8 +37,8 @@
 
                 <ImageView
                     android:id="@+id/ivInverterIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
                     android:src="@drawable/ic_solarpanel_black"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -48,7 +48,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="@dimen/space_12"
                     android:text="ITJ-LIM-001"
                     android:textColor="@color/neutral_black"
                     app:layout_constraintStart_toEndOf="@id/ivInverterIcon"
@@ -59,15 +59,15 @@
                     style="@style/apollo_body4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
+                    android:layout_marginStart="@dimen/space_12"
                     android:text="Capac. 42 kWp · 24 placas"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintStart_toEndOf="@id/ivInverterIcon"
                     app:layout_constraintTop_toBottomOf="@id/tvInverterId" />
 
                 <ImageView
-                    android:layout_width="24dp"
-                    android:layout_height="24dp"
+                    android:layout_width="@dimen/space_24"
+                    android:layout_height="@dimen/space_24"
                     android:src="@drawable/ic_arrow_back"
                     android:rotation="90"
                     app:layout_constraintBottom_toBottomOf="parent"
@@ -81,7 +81,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/space_20"
                 android:orientation="horizontal">
 
                 <!-- Stock -->
@@ -93,7 +93,7 @@
                     android:backgroundTint="#F2F2F2"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingVertical="12dp">
+                    android:paddingVertical="@dimen/space_12">
 
                     <TextView
                         style="@style/apollo_h5"
@@ -111,7 +111,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="12dp"
+                    android:layout_width="@dimen/space_12"
                     android:layout_height="1dp" />
 
                 <!-- In Operation -->
@@ -123,7 +123,7 @@
                     android:backgroundTint="#D1FAE5"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingVertical="12dp">
+                    android:paddingVertical="@dimen/space_12">
 
                     <TextView
                         style="@style/apollo_h5"
@@ -141,7 +141,7 @@
                 </LinearLayout>
 
                 <View
-                    android:layout_width="12dp"
+                    android:layout_width="@dimen/space_12"
                     android:layout_height="1dp" />
 
                 <!-- Attention -->
@@ -153,7 +153,7 @@
                     android:backgroundTint="#FEE2E2"
                     android:gravity="center"
                     android:orientation="vertical"
-                    android:paddingVertical="12dp">
+                    android:paddingVertical="@dimen/space_12">
 
                     <TextView
                         style="@style/apollo_h5"
@@ -177,7 +177,7 @@
                 style="@style/apollo_label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="@dimen/space_20"
                 android:text="Placas"
                 android:textColor="@color/neutral_black" />
 
@@ -185,7 +185,7 @@
                 android:id="@+id/llPlatesList"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="@dimen/space_8"
                 android:orientation="vertical">
 
                 <!-- Plate Item Placeholder -->
@@ -201,12 +201,12 @@
                 style="@style/apollo_label3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
                 android:gravity="center"
                 android:text="Ver todas as 33 placas"
                 android:textColor="@color/secondary_three"
                 android:background="?attr/selectableItemBackground"
-                android:padding="8dp"/>
+                android:padding="@dimen/space_8"/>
 
         </LinearLayout>
 

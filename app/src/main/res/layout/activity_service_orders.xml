@@ -12,15 +12,16 @@
         android:id="@+id/clHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="20dp"
-        android:paddingTop="32dp"
-        android:paddingBottom="12dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/header_top_padding"
+        android:paddingBottom="@dimen/header_bottom_padding"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivProfile"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_picture"
             app:layout_constraintStart_toStartOf="parent"
@@ -32,12 +33,14 @@
             style="@style/apollo_label4"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="12dp"
+            android:layout_marginStart="@dimen/header_item_spacing"
+            android:layout_marginEnd="@dimen/header_item_spacing"
             android:background="@drawable/edittext_bg"
+            android:ellipsize="end"
             android:gravity="center"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="6dp"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/space_12"
+            android:paddingVertical="@dimen/space_6"
             android:text="Fábrica Itajaí, Limeira - SP"
             android:textColor="@color/neutral_black"
             app:layout_constraintBottom_toBottomOf="@id/ivProfile"
@@ -47,8 +50,8 @@
 
         <ImageButton
             android:id="@+id/ibNotifications"
-            android:layout_width="44dp"
-            android:layout_height="44dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:background="@drawable/edittext_bg"
             android:src="@drawable/ic_notifications"
             app:layout_constraintEnd_toEndOf="parent"
@@ -56,34 +59,42 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/topBar"
+        android:name="org.apollo.mobile.view.common.TopBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:fillViewport="true"
         app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/clHeader">
+        app:layout_constraintTop_toBottomOf="@id/topBar">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="20dp"
-            android:paddingBottom="100dp">
+            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/content_bottom_padding">
 
             <!-- Back Button -->
             <LinearLayout
                 android:id="@+id/btnBack"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="@dimen/space_16"
+                android:minHeight="@dimen/touch_target_min_size"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
                 android:clickable="true"
                 android:focusable="true">
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="@dimen/space_16"
+                    android:layout_height="@dimen/space_16"
                     android:src="@drawable/ic_arrow_back"
                     app:tint="@color/neutral_black" />
 
@@ -91,7 +102,7 @@
                     style="@style/apollo_label3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_marginStart="@dimen/space_8"
                     android:text="@string/service_orders_back"
                     android:textColor="@color/neutral_black" />
             </LinearLayout>
@@ -101,70 +112,95 @@
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="12dp"
+                android:layout_marginTop="@dimen/space_12"
                 android:text="@string/service_orders_title"
                 android:textColor="@color/neutral_black"
                 android:textStyle="bold" />
 
             <!-- Filters -->
-            <LinearLayout
+            <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:orientation="horizontal">
+                android:layout_marginTop="@dimen/space_16"
+                android:fillViewport="false"
+                android:scrollbars="none">
 
-                <TextView
-                    style="@style/apollo_label4"
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingVertical="@dimen/space_4">
+
+                <TextView
+                    android:id="@+id/chipAll"
+                    style="@style/apollo_label4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/touch_target_min_size"
+                    android:gravity="center"
                     android:background="@drawable/bg_label_rounded"
                     android:backgroundTint="@color/secondary_three"
-                    android:paddingHorizontal="22dp"
-                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/space_22"
+                    android:paddingVertical="@dimen/space_8"
                     android:text="@string/maintenance_filter_all"
                     android:textColor="@color/neutral_white" />
 
                 <TextView
+                    android:id="@+id/chipOpen"
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="@dimen/touch_target_min_size"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/space_8"
                     android:background="@drawable/bg_label_rounded"
                     android:backgroundTint="#EBEBEB"
-                    android:paddingHorizontal="22dp"
-                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/space_22"
+                    android:paddingVertical="@dimen/space_8"
                     android:text="@string/maintenance_filter_open"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
+                    android:id="@+id/chipInProgress"
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
+                    android:layout_height="@dimen/touch_target_min_size"
+                    android:gravity="center"
+                    android:layout_marginStart="@dimen/space_8"
                     android:background="@drawable/bg_label_rounded"
                     android:backgroundTint="#EBEBEB"
-                    android:paddingHorizontal="22dp"
-                    android:paddingVertical="8dp"
+                    android:paddingHorizontal="@dimen/space_22"
+                    android:paddingVertical="@dimen/space_8"
                     android:text="@string/maintenance_filter_in_progress"
                     android:textColor="@color/neutral_gray" />
 
-            </LinearLayout>
+                </LinearLayout>
+            </HorizontalScrollView>
 
             <!-- List of Service Orders -->
             <LinearLayout
                 android:id="@+id/service_orders_list_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
-                android:orientation="vertical">
+                android:layout_marginTop="@dimen/space_20"
+                android:orientation="vertical" />
 
-                <include layout="@layout/item_service_order" />
+            <ProgressBar
+                android:id="@+id/progressOrders"
+                android:layout_width="@dimen/space_32"
+                android:layout_height="@dimen/space_32"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_24"
+                android:indeterminateTint="@color/secondary_three" />
 
-                <include layout="@layout/item_service_order" />
-
-                <include layout="@layout/item_service_order" />
-
-            </LinearLayout>
+            <TextView
+                android:id="@+id/tvEmptyOrders"
+                style="@style/apollo_body2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_32"
+                android:gravity="center"
+                android:text="Nenhuma OS encontrada."
+                android:textColor="@color/neutral_gray"
+                android:visibility="gone" />
 
         </LinearLayout>
 

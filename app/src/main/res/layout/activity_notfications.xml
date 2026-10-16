@@ -11,15 +11,16 @@
         android:id="@+id/clHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="24dp"
-        android:paddingTop="48dp"
-        android:paddingBottom="16dp"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/header_top_padding"
+        android:paddingBottom="@dimen/header_bottom_padding"
+        android:visibility="gone"
         app:layout_constraintTop_toTopOf="parent">
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/ivProfile"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:scaleType="centerCrop"
             android:src="@drawable/profile_picture"
             app:layout_constraintStart_toStartOf="parent"
@@ -29,11 +30,16 @@
         <TextView
             android:id="@+id/tvLocation"
             style="@style/apollo_label4"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/header_item_spacing"
+            android:layout_marginEnd="@dimen/header_item_spacing"
             android:background="@drawable/edittext_bg"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="8dp"
+            android:ellipsize="end"
+            android:gravity="center"
+            android:maxLines="1"
+            android:paddingHorizontal="@dimen/space_16"
+            android:paddingVertical="@dimen/space_8"
             android:text="Fazenda Silveira, Limeira - SP"
             android:textColor="@color/neutral_black"
             app:layout_constraintBottom_toBottomOf="@id/ivProfile"
@@ -43,8 +49,8 @@
 
         <ImageButton
             android:id="@+id/ibFilter"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
+            android:layout_width="@dimen/header_control_size"
+            android:layout_height="@dimen/header_control_size"
             android:background="@drawable/edittext_bg"
             android:src="@drawable/ic_options"
             app:layout_constraintEnd_toEndOf="parent"
@@ -53,21 +59,28 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/topBar"
+        android:name="org.apollo.mobile.view.common.TopBarFragment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <!-- Back Button -->
     <TextView
         android:id="@+id/btnBack"
         style="@style/apollo_label2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginStart="@dimen/screen_horizontal_padding"
+        android:layout_marginTop="@dimen/space_24"
         android:drawableStart="@drawable/ic_arrow_back"
-        android:drawablePadding="8dp"
+        android:drawablePadding="@dimen/space_8"
         android:gravity="center_vertical"
         android:text="Voltar"
         android:textColor="@color/neutral_black"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/clHeader" />
+        app:layout_constraintTop_toBottomOf="@id/topBar" />
 
     <!-- Screen Title -->
     <TextView
@@ -75,8 +88,8 @@
         style="@style/apollo_h4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="24dp"
-        android:layout_marginTop="12dp"
+        android:layout_marginStart="@dimen/screen_horizontal_padding"
+        android:layout_marginTop="@dimen/space_12"
         android:text="Notificações"
         android:textColor="@color/neutral_black"
         android:textStyle="bold"
@@ -88,8 +101,8 @@
         android:id="@+id/rvNotifications"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_marginTop="16dp"
-        android:paddingHorizontal="24dp"
+        android:layout_marginTop="@dimen/space_16"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
         android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvTitle"

@@ -6,12 +6,12 @@
     android:background="?attr/selectableItemBackground"
     android:clickable="true"
     android:focusable="true"
-    android:padding="16dp">
+    android:padding="@dimen/space_16">
 
     <View
         android:id="@+id/icon_bg"
-        android:layout_width="48dp"
-        android:layout_height="48dp"
+        android:layout_width="@dimen/space_48"
+        android:layout_height="@dimen/space_48"
         android:background="@drawable/bg_icon_rounded"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -19,8 +19,8 @@
 
     <ImageView
         android:id="@+id/icon"
-        android:layout_width="24dp"
-        android:layout_height="24dp"
+        android:layout_width="@dimen/space_24"
+        android:layout_height="@dimen/space_24"
         app:layout_constraintBottom_toBottomOf="@+id/icon_bg"
         app:layout_constraintEnd_toEndOf="@+id/icon_bg"
         app:layout_constraintStart_toStartOf="@+id/icon_bg"
@@ -31,7 +31,7 @@
         style="@style/apollo_label2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="@dimen/space_12"
         app:layout_constraintEnd_toStartOf="@+id/arrow"
         app:layout_constraintStart_toEndOf="@+id/icon_bg"
         app:layout_constraintTop_toTopOf="parent" />
@@ -48,8 +48,8 @@
 
     <ImageView
         android:id="@+id/arrow"
-        android:layout_width="20dp"
-        android:layout_height="20dp"
+        android:layout_width="@dimen/space_20"
+        android:layout_height="@dimen/space_20"
         android:src="@drawable/ic_arrow_gray"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
