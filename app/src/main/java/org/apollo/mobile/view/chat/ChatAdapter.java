@@ -31,6 +31,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final List<ChatMessage> messages = new ArrayList<>();
     private final Actions actions;
     private ChatMessage speaking;
+    private int lastAnimatedPosition = -1;
 
     ChatAdapter(Actions actions) {
         this.actions = actions;
@@ -92,19 +93,20 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-        ChatMessage message = messages.get(position);
+        int adapterPosition = holder.getBindingAdapterPosition();
+        if (adapterPosition == RecyclerView.NO_POSITION) return;
+
+        ChatMessage message = messages.get(adapterPosition);
         if (holder instanceof UserHolder) {
             ((UserHolder) holder).bind(message);
         } else if (holder instanceof BotHolder) {
             ((BotHolder) holder).bind(message);
         }
-        if (position > lastAnimatedPosition) {
-            lastAnimatedPosition = position;
+        if (adapterPosition > lastAnimatedPosition) {
+            lastAnimatedPosition = adapterPosition;
             animateIn(holder);
         }
     }
-
-    private int lastAnimatedPosition = -1;
 
     private void animateIn(RecyclerView.ViewHolder holder) {
         View view = holder.itemView;
