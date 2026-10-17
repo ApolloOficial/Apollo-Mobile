@@ -384,6 +384,48 @@
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
+            <LinearLayout
+                android:id="@+id/llAttentionPagination"
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_8"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageButton
+                    android:id="@+id/btnPrevAttention"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Página anterior"
+                    android:padding="@dimen/space_8"
+                    android:rotation="180"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/lucide_circle_chevron_right"
+                    app:tint="@color/pagination_arrow_tint" />
+
+                <LinearLayout
+                    android:id="@+id/llAttentionIndicators"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/space_12"
+                    android:gravity="center"
+                    android:orientation="horizontal" />
+
+                <ImageButton
+                    android:id="@+id/btnNextAttention"
+                    android:layout_width="@dimen/space_40"
+                    android:layout_height="@dimen/space_40"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:contentDescription="Próxima página"
+                    android:padding="@dimen/space_8"
+                    android:scaleType="fitCenter"
+                    android:src="@drawable/lucide_circle_chevron_right"
+                    app:tint="@color/pagination_arrow_tint" />
+
+            </LinearLayout>
+
             <TextView
                 style="@style/apollo_h6"
                 android:layout_width="wrap_content"

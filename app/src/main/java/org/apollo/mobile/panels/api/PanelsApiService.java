@@ -27,6 +27,13 @@ public interface PanelsApiService {
     @GET("api/v1/panels")
     Call<PageResponse<PanelItem>> bySerial(@Query("serialNumber") String serialNumber, @Query("size") int size);
 
+    @GET("api/v1/warnings")
+    Call<PageResponse<org.apollo.mobile.panels.gateway.WarningOrderItem>> warnings(
+            @Query("stringId") String stringId, @Query("size") int size);
+
+    @POST("api/v1/panels/activate")
+    Call<PanelItem> activate(@Body org.apollo.mobile.panels.gateway.PanelActivateBody body);
+
     @POST("api/v1/panels/report-issue")
     Call<ResponseBody> reportIssue(@Body PanelIssueBody body);
 }

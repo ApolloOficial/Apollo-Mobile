@@ -73,6 +73,34 @@ public final class RetrofitPanelsGateway implements PanelsGateway {
         }, false);
     }
 
+    @Override
+    public void panelOrders(String stringId, Callback<java.util.Map<Long, Long>> callback) {
+        enqueue(service.warnings(stringId, 200), callback,
+                new Mapper<PageResponse<WarningOrderItem>, java.util.Map<Long, Long>>() {
+                    @Override
+                    public java.util.Map<Long, Long> map(PageResponse<WarningOrderItem> body) {
+                        java.util.Map<Long, Long> orders = new java.util.HashMap<>();
+                        for (WarningOrderItem item : body.getContent()) {
+                            if (item.getPanelId() == null || item.getMaintenanceId() == null) continue;
+                            if ("RESOLVIDO".equals(item.getStatus())) continue;
+                            orders.putIfAbsent(item.getPanelId(), item.getMaintenanceId());
+                        }
+                        return orders;
+                    }
+                });
+    }
+
+    @Override
+    public void activate(String barcode, String installationDate, Callback<PanelItem> callback) {
+        enqueue(service.activate(new PanelActivateBody(barcode, installationDate)), callback,
+                new Mapper<PanelItem, PanelItem>() {
+                    @Override
+                    public PanelItem map(PanelItem body) {
+                        return body;
+                    }
+                }, false);
+    }
+
     private <B, R> void enqueue(Call<B> call, Callback<R> callback, Mapper<B, R> mapper) {
         enqueue(call, callback, mapper, true);
     }

@@ -277,8 +277,8 @@ public final class RetrofitServiceOrderGateway implements ServiceOrderGateway {
     }
 
     @Override
-    public void complete(long id, String report, Callback<Order> callback) {
-        enqueueOrder(api.complete(id, new CompleteBody(report.trim(), 0.0)), callback);
+    public void complete(long id, String report, double laborCost, Callback<Order> callback) {
+        enqueueOrder(api.complete(id, new CompleteBody(report.trim(), Math.max(0.0, laborCost))), callback);
     }
 
     private void enqueueOrder(Call<Order> call, Callback<Order> callback) {

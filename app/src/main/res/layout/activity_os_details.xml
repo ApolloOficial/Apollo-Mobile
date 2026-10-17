@@ -181,6 +181,30 @@
                 android:layout_marginTop="@dimen/space_24"
                 android:visibility="gone" />
 
+            <LinearLayout
+                android:id="@+id/cardReport"
+                style="@style/apollo_info_box"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    style="@style/apollo_label3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Laudo" />
+
+                <TextView
+                    android:id="@+id/tvReport"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:textColor="@color/neutral_gray" />
+            </LinearLayout>
+
             <TextView
                 android:id="@+id/btnSecondary"
                 style="@style/apollo_button_outline"

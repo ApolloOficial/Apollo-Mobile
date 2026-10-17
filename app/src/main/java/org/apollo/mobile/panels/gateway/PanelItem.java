@@ -14,6 +14,8 @@ public final class PanelItem {
     private String installationDt;
     private Double stringHealthScore;
     private Long activeWarnings;
+    private Double pmaxW;
+    private Double efficiencyPct;
 
     public PanelItem() {
     }
@@ -72,5 +74,13 @@ public final class PanelItem {
 
     public long getActiveWarnings() {
         return activeWarnings == null ? 0L : activeWarnings;
+    }
+
+    public Double getPmaxW() {
+        return pmaxW;
+    }
+
+    public Double getEfficiencyPct() {
+        return efficiencyPct;
     }
 }

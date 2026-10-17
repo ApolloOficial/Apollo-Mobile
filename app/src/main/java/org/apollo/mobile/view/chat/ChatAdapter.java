@@ -105,7 +105,16 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         if (adapterPosition > lastAnimatedPosition) {
             lastAnimatedPosition = adapterPosition;
             animateIn(holder);
+        } else {
+            resetPosition(holder.itemView);
         }
+    }
+
+    private static void resetPosition(View view) {
+        view.animate().cancel();
+        view.setAlpha(1f);
+        view.setTranslationX(0f);
+        view.setTranslationY(0f);
     }
 
     private void animateIn(RecyclerView.ViewHolder holder) {
@@ -116,7 +125,20 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         view.setTranslationX(dx);
         view.setTranslationY(12 * density);
         view.animate().alpha(1f).translationX(0f).translationY(0f).setDuration(320)
-                .setInterpolator(new android.view.animation.DecelerateInterpolator(1.8f)).start();
+                .setInterpolator(new android.view.animation.DecelerateInterpolator(1.8f))
+                .setListener(new android.animation.AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationCancel(android.animation.Animator animation) {
+                        view.setAlpha(1f);
+                        view.setTranslationX(0f);
+                        view.setTranslationY(0f);
+                    }
+
+                    @Override
+                    public void onAnimationEnd(android.animation.Animator animation) {
+                        view.animate().setListener(null);
+                    }
+                }).start();
         if (holder instanceof TypingHolder) {
             View label = view.findViewById(R.id.tvTyping);
             android.animation.ObjectAnimator blink = android.animation.ObjectAnimator.ofFloat(label, View.ALPHA, 1f, 0.45f);
@@ -130,6 +152,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     @Override
     public void onViewRecycled(@NonNull RecyclerView.ViewHolder holder) {
+        resetPosition(holder.itemView);
         View label = holder.itemView.findViewById(R.id.tvTyping);
         if (label != null && label.getTag() instanceof android.animation.Animator) {
             ((android.animation.Animator) label.getTag()).cancel();

@@ -15,19 +15,21 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 
 import org.apollo.mobile.R;
+import org.apollo.mobile.maintenance.OsVerificationStore;
+import org.apollo.mobile.view.scanner.ScannerActivity;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderError;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderGateway;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderGatewayFactory;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Details;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Order;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Panel;
-import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Scope;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.StringGroup;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Warning;
 import org.apollo.mobile.view.common.BottomNavigation;
 
 public final class OsDetailsActivity extends AppCompatActivity {
     public static final String EXTRA_ORDER_ID = "service_order_id";
+    public static final String EXTRA_COMPLETED = "service_order_completed";
 
     private ServiceOrderGateway gateway;
     private long orderId;
@@ -61,6 +63,22 @@ public final class OsDetailsActivity extends AppCompatActivity {
         secondary = findViewById(R.id.btnSecondary);
 
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
+        showCompletedToast(getIntent());
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {
+        super.onNewIntent(intent);
+        setIntent(intent);
+        showCompletedToast(intent);
+    }
+
+    private void showCompletedToast(Intent intent) {
+        if (intent != null && intent.getBooleanExtra(EXTRA_COMPLETED, false)) {
+            intent.removeExtra(EXTRA_COMPLETED);
+            primary.postDelayed(() -> org.apollo.mobile.view.common.AppToast.success(this,
+                    "OS registrada com sucesso!"), 400);
+        }
     }
 
     @Override
@@ -118,6 +136,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
         renderHistory();
         renderSummary();
         configureActions();
+        openPendingCondition();
     }
 
     private void renderInformation() {
@@ -153,24 +172,39 @@ public final class OsDetailsActivity extends AppCompatActivity {
         infoRows.addView(row);
     }
 
-    /** Placas por string (OS de string/inversor). Sem endpoint de verificação, todas aparecem pendentes. */
     private void renderGroups() {
-        boolean show = details.getScope() != Scope.PANEL;
+        java.util.List<Panel> targets = details.getTargetPanels();
+        boolean show = !targets.isEmpty();
         verifiedSection.setVisibility(show ? View.VISIBLE : View.GONE);
         if (!show) return;
 
-        int total = details.getPanels().size();
-        ((TextView) findViewById(R.id.tvVerifiedCount)).setText("0 de " + total);
+        java.util.Map<Long, OsVerificationStore.Result> results = new OsVerificationStore(this).results(orderId);
+        boolean concluded = "CONCLUIDA".equals(details.getOrder().getMaintenanceStatus());
+        int verified = 0;
+        for (Panel panel : targets) {
+            if (concluded || results.containsKey(panel.getId())) verified++;
+        }
+        ((TextView) findViewById(R.id.tvVerifiedCount)).setText(verified + " de " + targets.size());
         stringGroups.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
 
         for (StringGroup group : details.getGroups()) {
+            java.util.List<Panel> panels = new java.util.ArrayList<>();
+            for (Panel panel : group.getPanels()) {
+                if (targets.contains(panel)) panels.add(panel);
+            }
+            if (panels.isEmpty()) continue;
+            int groupVerified = 0;
+            for (Panel panel : panels) {
+                if (concluded || results.containsKey(panel.getId())) groupVerified++;
+            }
+
             View card = inflater.inflate(R.layout.item_string_group, stringGroups, false);
             ((TextView) card.findViewById(R.id.tvGroupTitle)).setText(
                     ServiceOrderUi.safe(group.getSolarString().getInverterCode()) + ", "
                             + ServiceOrderUi.safe(group.getSolarString().getCode()));
             ((TextView) card.findViewById(R.id.tvGroupCount)).setText(
-                    "0 de " + group.getPanels().size() + " placas verificadas");
+                    groupVerified + " de " + panels.size() + " placas verificadas");
 
             LinearLayout plates = card.findViewById(R.id.llPlates);
             View chevron = card.findViewById(R.id.ivChevron);
@@ -181,29 +215,82 @@ public final class OsDetailsActivity extends AppCompatActivity {
                 if (expand) Motion.refresh(plates);
             });
 
-            for (int i = 0; i < group.getPanels().size(); i++) {
-                Panel panel = group.getPanels().get(i);
+            for (int i = 0; i < panels.size(); i++) {
+                Panel panel = panels.get(i);
                 View row = inflater.inflate(R.layout.item_verified_plate, plates, false);
-                ((TextView) row.findViewById(R.id.tvNumber)).setText(String.valueOf(i + 1));
+                ((TextView) row.findViewById(R.id.tvNumber)).setText(String.valueOf(details.positionOf(panel)));
                 ((TextView) row.findViewById(R.id.tvPlateSerial)).setText(
                         ServiceOrderUi.safe(panel.getSerialNumber()));
+                OsVerificationStore.Result result = results.get(panel.getId());
+                bindPosition(row, result, concluded);
+                org.apollo.mobile.view.common.CopySerial.onLongPress(row, panel.getSerialNumber());
+                if ("EM_ANDAMENTO".equals(details.getOrder().getMaintenanceStatus())) {
+                    row.setBackgroundResource(android.R.drawable.list_selector_background);
+                    row.setOnClickListener(v -> openCondition(panel));
+                }
                 row.findViewById(R.id.vDivider).setVisibility(
-                        i == group.getPanels().size() - 1 ? View.INVISIBLE : View.VISIBLE);
+                        i == panels.size() - 1 ? View.INVISIBLE : View.VISIBLE);
                 plates.addView(row);
             }
             stringGroups.addView(card);
         }
     }
 
+    private void bindPosition(View row, OsVerificationStore.Result result, boolean concluded) {
+        View badge = row.findViewById(R.id.flPosition);
+        TextView number = row.findViewById(R.id.tvNumber);
+        ImageView icon = row.findViewById(R.id.ivPositionIcon);
+        if (result != null && result.hasProblem()) {
+            badge.setBackgroundResource(R.drawable.bg_position_problem);
+            icon.setImageResource(R.drawable.ic_exclamation);
+        } else if (result != null || concluded) {
+            badge.setBackgroundResource(R.drawable.bg_position_ok);
+            icon.setImageResource(R.drawable.ic_check_small);
+        } else {
+            badge.setBackgroundResource(R.drawable.bg_number_circle);
+            number.setVisibility(View.VISIBLE);
+            icon.setVisibility(View.GONE);
+            return;
+        }
+        number.setVisibility(View.INVISIBLE);
+        icon.setVisibility(View.VISIBLE);
+    }
+
     private void renderSummary() {
         View card = findViewById(R.id.cardSummary);
+        View reportCard = findViewById(R.id.cardReport);
         boolean done = "CONCLUIDA".equals(details.getOrder().getMaintenanceStatus());
-        card.setVisibility(done ? View.VISIBLE : View.GONE);
-        if (!done) return;
-        int total = Math.max(1, details.getPanels().size());
-        ((TextView) card.findViewById(R.id.tvVerifiedTag)).setText(total + " de " + total + " verificadas");
-        card.findViewById(R.id.tvProblemTag).setVisibility(View.GONE);
-        Motion.fadeUp(card, 120);
+        OsVerificationStore store = new OsVerificationStore(this);
+        boolean hasSummary = done && OsSummary.bind(card, details, store.results(orderId), store.isUnidentified(orderId));
+        card.setVisibility(hasSummary ? View.VISIBLE : View.GONE);
+        String report = details.getOrder().getTechnicalReport();
+        boolean hasReport = done && report != null && !report.trim().isEmpty();
+        reportCard.setVisibility(hasReport ? View.VISIBLE : View.GONE);
+        if (hasReport) {
+            int cut = report.indexOf(CompleteMaintenanceActivity.REPORT_SEPARATOR);
+            ((TextView) findViewById(R.id.tvReport)).setText((cut > 0 ? report.substring(0, cut) : report).trim());
+        }
+        if (hasSummary) Motion.fadeUp(card, 120);
+        if (hasReport) Motion.fadeUp(reportCard, 180);
+    }
+
+    private void openCondition(Panel panel) {
+        OsVerificationStore store = new OsVerificationStore(this);
+        OsVerificationStore.Result current = store.results(orderId).get(panel.getId());
+        ConditionSheet.show(this, panel.getSerialNumber(), current == null ? null : current.getProblem(), problem -> {
+            store.verify(orderId, panel.getId(), panel.getSerialNumber(), problem);
+            org.apollo.mobile.view.common.AppToast.success(this,
+                    problem == null ? "Placa sem problema aparente" : "Condição registrada");
+            renderGroups();
+            configureActions();
+        });
+    }
+
+    private void openPendingCondition() {
+        long pending = new OsVerificationStore(this).takePendingCondition(orderId);
+        if (pending <= 0 || !"EM_ANDAMENTO".equals(details.getOrder().getMaintenanceStatus())) return;
+        Panel panel = details.findPanel(pending);
+        if (panel != null) primary.postDelayed(() -> openCondition(panel), 350);
     }
 
     private void renderHistory() {
@@ -218,11 +305,11 @@ public final class OsDetailsActivity extends AppCompatActivity {
         if ("ABERTA".equals(status)) {
             addHistory("Aguardando execução", null, null, true);
         } else if ("EM_ANDAMENTO".equals(status) || "CONCLUIDA".equals(status)) {
-            addHistory("Execução iniciada", "Manutenção em atendimento pelo técnico.", null, false);
+            addHistory("Execução iniciada", "Você escaneou a placa em campo.", null, false);
         }
 
         if ("CONCLUIDA".equals(status)) {
-            addHistory("OS concluída", ServiceOrderUi.safe(order.getTechnicalReport()),
+            addHistory("OS concluída", "Laudo técnico registrado.",
                     ServiceOrderUi.date(order.getConcludedAt()), false);
         }
 
@@ -247,23 +334,47 @@ public final class OsDetailsActivity extends AppCompatActivity {
 
     private void configureActions() {
         String status = details.getOrder().getMaintenanceStatus();
+        boolean hasPanels = !details.getTargetPanels().isEmpty();
         secondary.setVisibility(View.GONE);
+        secondary.setEnabled(true);
+        primary.setEnabled(true);
 
         if ("ABERTA".equals(status)) {
             primary.setVisibility(View.VISIBLE);
-            primary.setText("Iniciar manutenção");
-            primary.setOnClickListener(view -> startMaintenance());
+            if (hasPanels) {
+                primary.setText("Escanear placa para iniciar");
+                primary.setOnClickListener(view -> openScanner());
+            } else {
+                primary.setText("Iniciar manutenção");
+                primary.setOnClickListener(view -> startMaintenance());
+            }
         } else if ("EM_ANDAMENTO".equals(status)) {
             primary.setVisibility(View.VISIBLE);
             primary.setText("Ir para conclusão");
-            primary.setOnClickListener(view -> {
-                Intent intent = new Intent(this, CompleteMaintenanceActivity.class);
-                intent.putExtra(EXTRA_ORDER_ID, orderId);
-                startActivity(intent);
-            });
+            primary.setOnClickListener(view -> openCompletion());
+            if (details.getTargetPanels().size() == 1) {
+                Panel panel = details.getTargetPanels().get(0);
+                boolean registered = new OsVerificationStore(this).results(orderId).containsKey(panel.getId());
+                secondary.setVisibility(View.VISIBLE);
+                secondary.setText(registered ? "Condição registrada!" : "Registrar condição");
+                secondary.setEnabled(!registered);
+                secondary.setOnClickListener(view -> openCondition(panel));
+            }
         } else {
             primary.setVisibility(View.GONE);
         }
+    }
+
+    private void openScanner() {
+        Intent intent = new Intent(this, ScannerActivity.class);
+        intent.putExtra(ScannerActivity.EXTRA_ORDER_ID, orderId);
+        startActivity(intent);
+    }
+
+    private void openCompletion() {
+        Intent intent = new Intent(this, CompleteMaintenanceActivity.class);
+        intent.putExtra(EXTRA_ORDER_ID, orderId);
+        startActivity(intent);
     }
 
     private void startMaintenance() {
@@ -272,6 +383,8 @@ public final class OsDetailsActivity extends AppCompatActivity {
             @Override
             public void onSuccess(Order value) {
                 primary.setEnabled(true);
+                if (isFinishing() || isDestroyed()) return;
+                org.apollo.mobile.view.common.AppToast.success(OsDetailsActivity.this, "Manutenção iniciada");
                 load();
             }
 

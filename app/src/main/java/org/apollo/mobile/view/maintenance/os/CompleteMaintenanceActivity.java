@@ -1,7 +1,7 @@
 package org.apollo.mobile.view.maintenance.os;
 
+import android.content.Intent;
 import android.os.Bundle;
-import org.apollo.mobile.view.common.Motion;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -10,17 +10,26 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.apollo.mobile.R;
+import org.apollo.mobile.maintenance.OsVerificationStore;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderError;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderGateway;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderGatewayFactory;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Details;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Order;
+import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Panel;
 import org.apollo.mobile.view.common.BottomNavigation;
+import org.apollo.mobile.view.common.Motion;
+
+import java.util.Map;
 
 public final class CompleteMaintenanceActivity extends AppCompatActivity {
+    static final String REPORT_SEPARATOR = "\n\n— ";
     private ServiceOrderGateway gateway;
+    private OsVerificationStore store;
     private long orderId;
+    private Details details;
     private EditText report;
+    private EditText laborCost;
     private TextView finishButton;
 
     @Override
@@ -37,12 +46,15 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
 
         BottomNavigation.setup(this, BottomNavigation.Tab.TOOLS);
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());
+        store = new OsVerificationStore(this);
         report = findViewById(R.id.etReport);
+        laborCost = findViewById(R.id.etLaborCost);
         finishButton = findViewById(R.id.btnFinishMaintenance);
 
         ((TextView) findViewById(R.id.tvTitle)).setText("Concluir OS" + orderId);
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
-        finishButton.setOnClickListener(view -> complete());
+        Motion.pressable(finishButton);
+        finishButton.setOnClickListener(view -> validate());
 
         loadSummary();
     }
@@ -51,37 +63,86 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         gateway.details(orderId, new ServiceOrderGateway.Callback<Details>() {
             @Override
             public void onSuccess(Details value) {
-                int total = Math.max(value.getPanels().size(), 1);
-                ((TextView) findViewById(R.id.tvVerifiedTag)).setText(
-                        total == 1 ? "1 placa" : total + " placas");
-                // Sem endpoint de verificação por placa ainda: não há contagem de problemas.
-                findViewById(R.id.tvProblemTag).setVisibility(View.GONE);
-                findViewById(R.id.llProblemPlates).setVisibility(View.GONE);
+                if (isFinishing() || isDestroyed()) return;
+                details = value;
+                renderSummary();
             }
 
             @Override
             public void onFailure(ServiceOrderError error) {
+                if (isFinishing() || isDestroyed()) return;
                 Toast.makeText(CompleteMaintenanceActivity.this,
                         "Não foi possível carregar o resumo.", Toast.LENGTH_LONG).show();
             }
         });
     }
 
-    private void complete() {
+    private void renderSummary() {
+        View card = findViewById(R.id.cardSummary);
+        boolean visible = OsSummary.bind(card, details, store.results(orderId), store.isUnidentified(orderId));
+        card.setVisibility(visible ? View.VISIBLE : View.GONE);
+        if (visible) Motion.fadeUp(card, 0);
+    }
+
+    private void validate() {
         String text = report.getText().toString().trim();
         if (text.isEmpty()) {
             report.setError("Informe o laudo da manutenção.");
             report.requestFocus();
+            Motion.shake(report);
+            return;
+        }
+        Double cost = parseCost();
+        if (cost == null) {
+            laborCost.setError("Valor inválido.");
+            laborCost.requestFocus();
+            Motion.shake(laborCost);
             return;
         }
 
+        complete(text, cost);
+    }
+
+    private Double parseCost() {
+        String raw = laborCost.getText().toString().trim().replace("R$", "").replace(" ", "");
+        if (raw.isEmpty()) return 0.0;
+        if (raw.contains(",")) raw = raw.replace(".", "").replace(',', '.');
+        try {
+            double value = Double.parseDouble(raw);
+            return value < 0 ? null : value;
+        } catch (NumberFormatException e) {
+            return null;
+        }
+    }
+
+    private String buildReport(String text) {
+        StringBuilder builder = new StringBuilder(text);
+        Map<Long, OsVerificationStore.Result> results = store.results(orderId);
+        if (details != null && !details.getTargetPanels().isEmpty()) {
+            builder.append(REPORT_SEPARATOR).append("Placas verificadas: ").append(results.size())
+                    .append(" de ").append(details.getTargetPanels().size()).append('.');
+            for (OsVerificationStore.Result result : results.values()) {
+                builder.append("\n- ").append(result.getSerial()).append(": ")
+                        .append(result.hasProblem() ? result.getProblem() : "sem problema aparente");
+            }
+        }
+        if (store.isUnidentified(orderId)) {
+            builder.append(builder.indexOf(REPORT_SEPARATOR) >= 0 ? "\n" : REPORT_SEPARATOR).append("Ressalva: placa não identificada (etiqueta ilegível). OS concluída no nível da string.");
+        }
+        return builder.toString();
+    }
+
+    private void complete(String text, double cost) {
         finishButton.setEnabled(false);
-        gateway.complete(orderId, text, new ServiceOrderGateway.Callback<Order>() {
+        gateway.complete(orderId, buildReport(text), cost, new ServiceOrderGateway.Callback<Order>() {
             @Override
             public void onSuccess(Order value) {
-                Toast.makeText(CompleteMaintenanceActivity.this,
-                        "OS concluída com sucesso.", Toast.LENGTH_LONG).show();
                 setResult(RESULT_OK);
+                Intent intent = new Intent(CompleteMaintenanceActivity.this, OsDetailsActivity.class);
+                intent.putExtra(OsDetailsActivity.EXTRA_ORDER_ID, orderId);
+                intent.putExtra(OsDetailsActivity.EXTRA_COMPLETED, true);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(intent);
                 finish();
             }
 

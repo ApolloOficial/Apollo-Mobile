@@ -75,6 +75,27 @@
                 android:textColorHint="@color/disable_gray" />
 
             <TextView
+                style="@style/apollo_label3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:text="Custo de mão de obra (R$)" />
+
+            <EditText
+                android:id="@+id/etLaborCost"
+                style="@style/apollo_label3"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/space_48"
+                android:layout_marginTop="@dimen/space_4"
+                android:background="@drawable/bg_textarea"
+                android:hint="0,00"
+                android:importantForAutofill="no"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:paddingHorizontal="@dimen/space_16"
+                android:textColorHint="@color/disable_gray" />
+
+            <TextView
                 android:id="@+id/btnFinishMaintenance"
                 style="@style/apollo_button_primary"
                 android:layout_height="@dimen/space_52"
