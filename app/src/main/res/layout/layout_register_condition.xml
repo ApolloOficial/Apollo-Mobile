@@ -1,98 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/bg_condition_modal"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-    android:paddingTop="@dimen/space_12"
+    android:background="@drawable/bg_sheet"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_16"
+    android:paddingEnd="@dimen/space_24"
     android:paddingBottom="@dimen/space_32">
 
-    <!-- BottomSheet Handle -->
     <View
         android:id="@+id/vHandle"
-        android:layout_width="@dimen/space_48"
-        android:layout_height="@dimen/space_5"
-        android:layout_marginTop="@dimen/space_8"
-        android:background="#E0DED7"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        android:layout_width="@dimen/space_111"
+        android:layout_height="@dimen/space_13"
+        android:layout_gravity="center_horizontal"
+        android:background="@drawable/bg_sheet_handle" />
 
-    <TextView
-        android:id="@+id/tvSerial"
-        style="@style/apollo_h5"
-        android:layout_width="0dp"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_24"
-        android:text="CS-2024-00765"
-        android:textColor="@color/neutral_black"
-        android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toStartOf="@id/ivClose"
-        app:layout_constraintTop_toBottomOf="@id/vHandle" />
+        android:layout_marginTop="@dimen/space_16"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
 
-    <ImageView
-        android:id="@+id/ivClose"
-        android:layout_width="@dimen/space_24"
-        android:layout_height="@dimen/space_24"
-        android:src="@drawable/ic_exit"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvSerial"
-        app:layout_constraintBottom_toBottomOf="@id/tvSerial"
-        app:tint="@color/neutral_gray" />
+        <TextView
+            android:id="@+id/tvSerial"
+            style="@style/apollo_h5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="CS-2025-00902" />
+
+        <ImageView
+            android:id="@+id/ivClose"
+            android:layout_width="@dimen/space_30"
+            android:layout_height="@dimen/space_30"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Fechar"
+            android:src="@drawable/ic_close_circle" />
+    </LinearLayout>
 
     <TextView
         android:id="@+id/tvConditionLabel"
-        style="@style/apollo_label2"
+        style="@style/apollo_label3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_24"
-        android:text="@string/register_condition_label"
-        android:textColor="@color/neutral_black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvSerial" />
+        android:text="Condição encontrada" />
 
     <EditText
         android:id="@+id/etCondition"
         style="@style/apollo_body3"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/space_120"
-        android:layout_marginTop="@dimen/space_12"
-        android:background="@drawable/edittext_bg"
-        android:gravity="top"
-        android:hint="sujeira acumulada."
+        android:layout_height="@dimen/space_118"
+        android:layout_marginTop="@dimen/space_8"
+        android:background="@drawable/bg_textarea"
+        android:gravity="top|start"
+        android:hint="Ex: sujeira acumulada, borda trincada, conector MC4 solto..."
+        android:inputType="textMultiLine|textCapSentences"
         android:padding="@dimen/space_16"
-        android:textColor="@color/neutral_black"
-        android:textColorHint="@color/neutral_gray"
-        android:inputType="textMultiLine"
-        app:layout_constraintTop_toBottomOf="@id/tvConditionLabel" />
+        android:textColorHint="@color/disable_gray" />
 
-    <Button
+    <TextView
         android:id="@+id/btnRegister"
-        style="@style/apollo_label2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_56"
-        android:layout_marginTop="@dimen/space_24"
-        android:backgroundTint="@color/secondary_three"
-        android:text="@string/register_condition_btn_register"
-        android:textAllCaps="false"
-        android:textColor="@color/neutral_white"
-        app:cornerRadius="@dimen/space_28"
-        app:layout_constraintTop_toBottomOf="@id/etCondition" />
+        style="@style/apollo_button_primary"
+        android:layout_height="@dimen/space_52"
+        android:layout_marginHorizontal="@dimen/space_minus_8"
+        android:layout_marginTop="@dimen/space_16"
+        android:text="Registrar" />
 
-    <Button
+    <TextView
         android:id="@+id/btnNoProblem"
-        style="@style/apollo_label2"
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/space_56"
-        android:layout_marginTop="@dimen/space_12"
-        android:background="@drawable/btn_outlined"
-        android:text="@string/register_condition_btn_no_problem"
-        android:textAllCaps="false"
-        android:textColor="@color/neutral_black"
-        app:backgroundTint="@null"
-        app:cornerRadius="@dimen/space_28"
-        app:layout_constraintTop_toBottomOf="@id/btnRegister" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
+        style="@style/apollo_button_outline"
+        android:layout_height="@dimen/space_52"
+        android:layout_marginHorizontal="@dimen/space_minus_8"
+        android:layout_marginTop="@dimen/space_16"
+        android:text="Sem problema aparente"
+        android:textColor="@color/neutral_black" />
+</LinearLayout>

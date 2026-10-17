@@ -107,9 +107,10 @@ public final class ChatbotActivity extends AppCompatActivity {
 
     private void applyInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.clRoot), (view, insets) -> {
-            Insets bars = insets.getInsets(WindowInsetsCompat.Type.navigationBars());
+            Insets bars = insets.getInsets(WindowInsetsCompat.Type.systemBars()
+                    | WindowInsetsCompat.Type.displayCutout());
             Insets keyboard = insets.getInsets(WindowInsetsCompat.Type.ime());
-            view.setPadding(0, 0, 0, Math.max(bars.bottom, keyboard.bottom));
+            view.setPadding(bars.left, bars.top, bars.right, Math.max(bars.bottom, keyboard.bottom));
             return insets;
         });
     }

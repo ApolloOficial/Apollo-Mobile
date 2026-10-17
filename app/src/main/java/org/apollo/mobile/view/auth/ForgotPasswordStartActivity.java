@@ -30,6 +30,7 @@ public final class ForgotPasswordStartActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password_start);
+        org.apollo.mobile.view.common.SystemBars.apply(this);
 
         identifierInput = findViewById(R.id.etIdentifier);
         inputError = findViewById(R.id.tvInputError);

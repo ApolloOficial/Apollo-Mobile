@@ -33,7 +33,7 @@ import java.util.Map;
 public final class MaintenanceActivity extends AppCompatActivity {
     private ServiceOrderGateway gateway;
     private LinearLayout historyList;
-    private TextView emptyText;
+    private org.apollo.mobile.view.common.EmptyState emptyText;
     private View loading;
     private TextView summaryText;
     private TextView chipAll;
@@ -54,7 +54,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
         BottomNavigation.setup(this, BottomNavigation.Tab.TOOLS);
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());
         historyList = findViewById(R.id.maintenanceHistoryList);
-        emptyText = findViewById(R.id.tvMaintenanceEmpty);
+        emptyText = new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llMaintenanceEmpty));
         loading = findViewById(R.id.progressMaintenanceHistory);
         summaryText = findViewById(R.id.tvOsSummary);
         chipAll = findViewById(R.id.chipMaintenanceAll);
@@ -162,10 +162,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
     }
 
     private void paintFilter(TextView chip, boolean selected) {
-        chip.setBackgroundTintList(ColorStateList.valueOf(selected
-                ? getColor(R.color.secondary_three)
-                : 0xFFEBEBEB));
-        chip.setTextColor(getColor(selected ? R.color.neutral_white : R.color.neutral_gray));
+        chip.setSelected(selected);
     }
 
     private void setTypeFiltersEnabled(boolean enabled) {
@@ -208,13 +205,25 @@ public final class MaintenanceActivity extends AppCompatActivity {
         emptyText.setVisibility(View.GONE);
         LayoutInflater inflater = LayoutInflater.from(this);
 
+        String lastSection = null;
+        int index = 0;
         for (Order order : orders) {
+            String section = sectionLabel(order.getOpeningDt());
+            if (!section.equals(lastSection)) {
+                TextView header = (TextView) inflater.inflate(R.layout.item_history_section, historyList, false);
+                header.setText(section);
+                historyList.addView(header);
+                lastSection = section;
+            }
             View card = inflater.inflate(R.layout.item_maintenance_os, historyList, false);
             ((TextView) card.findViewById(R.id.tvSubtitle)).setText(assetLabel(order));
             ((TextView) card.findViewById(R.id.tvMainId)).setText("OS" + order.getId());
             TextView tag = card.findViewById(R.id.tvTag);
-            tag.setText(typeLabel(order));
-            tag.setBackgroundTintList(ColorStateList.valueOf(statusColor(order)));
+            tag.setText(maintenanceTypeLabel(order));
+            tag.setBackgroundTintList(ColorStateList.valueOf(typeColor(order)));
+            tag.setTextColor(getColor(isCorrective(order) ? R.color.neutral_white : R.color.neutral_black));
+            Motion.fadeUp(card, Math.min(index++, 8) * 50L);
+            Motion.pressable(card.findViewById(R.id.btnDetails));
             ((TextView) card.findViewById(R.id.tvDate)).setText(formatDate(order.getOpeningDt()));
             card.findViewById(R.id.btnDetails).setOnClickListener(view -> openDetails(order.getId()));
             card.setOnClickListener(view -> openDetails(order.getId()));
@@ -260,6 +269,49 @@ public final class MaintenanceActivity extends AppCompatActivity {
         if ("EM_ANDAMENTO".equals(status)) return getColor(R.color.primary_two);
         if ("CONCLUIDA".equals(status)) return getColor(R.color.sucess_two);
         return getColor(R.color.disable_gray);
+    }
+
+    private String sectionLabel(String value) {
+        java.time.LocalDate date = parseDate(value);
+        if (date == null) return "Anteriores";
+        java.time.LocalDate today = java.time.LocalDate.now();
+        if (date.equals(today)) return "Hoje";
+        if (date.equals(today.minusDays(1))) return "Ontem";
+        if (!date.isBefore(today.minusDays(30))) return "Nos últimos 30 dias";
+        return "Anteriores";
+    }
+
+    private java.time.LocalDate parseDate(String value) {
+        if (value == null || value.trim().isEmpty()) return null;
+        try {
+            return LocalDateTime.parse(value).toLocalDate();
+        } catch (DateTimeParseException ignored) {
+            try {
+                return java.time.LocalDate.parse(value.length() >= 10 ? value.substring(0, 10) : value);
+            } catch (DateTimeParseException ignoredToo) {
+                return null;
+            }
+        }
+    }
+
+    private String maintenanceTypeLabel(Order order) {
+        String type = normalize(order.getMaintenanceTypeName());
+        if (type.contains("prevent")) return "Preventiva";
+        if (type.contains("corret")) return "Corretiva";
+        if (type.contains("predit")) return "Preditiva";
+        return typeLabel(order);
+    }
+
+    private boolean isCorrective(Order order) {
+        return normalize(order.getMaintenanceTypeName()).contains("corret");
+    }
+
+    private int typeColor(Order order) {
+        String type = normalize(order.getMaintenanceTypeName());
+        if (type.contains("prevent")) return getColor(R.color.alert_two);
+        if (type.contains("corret")) return getColor(R.color.error_one);
+        if (type.contains("predit")) return getColor(R.color.info_two);
+        return statusColor(order);
     }
 
     private String formatDate(String value) {

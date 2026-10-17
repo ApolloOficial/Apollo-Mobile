@@ -13,6 +13,7 @@ public final class AccessDeniedActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_access_denied);
+        org.apollo.mobile.view.common.SystemBars.apply(this);
 
         getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
             @Override

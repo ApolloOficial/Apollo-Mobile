@@ -6,7 +6,6 @@ import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -37,8 +36,8 @@ public final class OsDetailsActivity extends AppCompatActivity {
     private LinearLayout stringGroups;
     private LinearLayout history;
     private View verifiedSection;
-    private Button primary;
-    private Button secondary;
+    private TextView primary;
+    private TextView secondary;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +73,34 @@ public final class OsDetailsActivity extends AppCompatActivity {
         gateway.details(orderId, new ServiceOrderGateway.Callback<Details>() {
             @Override
             public void onSuccess(Details value) {
+                if (isFinishing() || isDestroyed()) return;
                 details = value;
+                findViewById(R.id.progressOsDetails).setVisibility(View.GONE);
+                findViewById(R.id.osEmptyState).setVisibility(View.GONE);
+                View content = findViewById(R.id.llOsContent);
+                if (content.getVisibility() != View.VISIBLE) {
+                    content.setVisibility(View.VISIBLE);
+                    Motion.fadeUp(content, 0);
+                }
                 render();
             }
 
             @Override
             public void onFailure(ServiceOrderError error) {
-                Toast.makeText(OsDetailsActivity.this,
-                        "Não foi possível carregar a OS.", Toast.LENGTH_LONG).show();
+                if (isFinishing() || isDestroyed()) return;
+                findViewById(R.id.progressOsDetails).setVisibility(View.GONE);
+                if (details != null) {
+                    Toast.makeText(OsDetailsActivity.this,
+                            "Não foi possível atualizar a OS.", Toast.LENGTH_LONG).show();
+                    return;
+                }
+                findViewById(R.id.llOsContent).setVisibility(View.GONE);
+                boolean missing = error.getType() == ServiceOrderError.Type.NOT_FOUND
+                        || error.getType() == ServiceOrderError.Type.UNAUTHORIZED;
+                new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.osEmptyState)).show(
+                        missing ? "OS não encontrada" : "Algo deu errado",
+                        missing ? "Essa ordem de serviço não está mais disponível para você ou foi removida."
+                                : "Não foi possível carregar a OS. Verifique sua conexão e tente novamente.");
             }
         });
     }
@@ -97,6 +116,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
         renderInformation();
         renderGroups();
         renderHistory();
+        renderSummary();
         configureActions();
     }
 
@@ -157,7 +177,8 @@ public final class OsDetailsActivity extends AppCompatActivity {
             card.findViewById(R.id.llGroupHeader).setOnClickListener(v -> {
                 boolean expand = plates.getVisibility() != View.VISIBLE;
                 plates.setVisibility(expand ? View.VISIBLE : View.GONE);
-                chevron.setRotation(expand ? 0f : 180f);
+                chevron.animate().rotation(expand ? 0f : 180f).setDuration(240).start();
+                if (expand) Motion.refresh(plates);
             });
 
             for (int i = 0; i < group.getPanels().size(); i++) {
@@ -172,6 +193,17 @@ public final class OsDetailsActivity extends AppCompatActivity {
             }
             stringGroups.addView(card);
         }
+    }
+
+    private void renderSummary() {
+        View card = findViewById(R.id.cardSummary);
+        boolean done = "CONCLUIDA".equals(details.getOrder().getMaintenanceStatus());
+        card.setVisibility(done ? View.VISIBLE : View.GONE);
+        if (!done) return;
+        int total = Math.max(1, details.getPanels().size());
+        ((TextView) card.findViewById(R.id.tvVerifiedTag)).setText(total + " de " + total + " verificadas");
+        card.findViewById(R.id.tvProblemTag).setVisibility(View.GONE);
+        Motion.fadeUp(card, 120);
     }
 
     private void renderHistory() {
@@ -260,7 +292,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
 
     static void bindStatusTag(TextView tag, String status) {
         int color;
-        if ("EM_ANDAMENTO".equals(status)) color = R.color.primary_one;
+        if ("EM_ANDAMENTO".equals(status)) color = R.color.alert_two;
         else if ("CONCLUIDA".equals(status)) color = R.color.sucess_two;
         else if ("CANCELADA".equals(status)) color = R.color.disable_gray;
         else color = R.color.info_two;
@@ -272,7 +304,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
         int color;
         if ("ALTA".equals(priority) || "CRITICA".equals(priority)) color = R.color.error_two;
         else if ("BAIXA".equals(priority)) color = R.color.sucess_two;
-        else color = R.color.primary_one;
+        else color = R.color.alert_two;
         tag.setText(ServiceOrderUi.priority(priority));
         tag.setBackgroundTintList(ColorStateList.valueOf(ContextCompat.getColor(tag.getContext(), color)));
     }

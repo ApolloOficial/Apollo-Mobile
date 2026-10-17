@@ -1,206 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/neutral_white"
-    tools:context=".view.settings.SettingsNotificationsActivity">
+    android:background="@color/neutral_white">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:id="@+id/svContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/llBottomArea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-            android:paddingTop="@dimen/space_48"
-            android:paddingBottom="@dimen/space_24">
+            android:paddingStart="@dimen/space_24"
+            android:paddingTop="@dimen/space_42"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/space_32">
 
-            <!-- Botão Voltar -->
             <TextView
                 android:id="@+id/tvBack"
-                style="@style/apollo_label2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:drawableStart="@drawable/ic_arrow_back"
-                android:drawablePadding="@dimen/space_8"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:text="Voltar"
-                android:textColor="@color/neutral_black" />
+                style="@style/apollo_back" />
 
             <TextView
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Notificações"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
+                android:layout_marginTop="@dimen/space_10"
+                android:text="Notificações" />
 
-            <!-- Separador Inicial -->
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/space_24"
-                android:background="#F0F0F0" />
-
-            <!-- Item: Manutenção Preditiva -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/space_20">
+                android:layout_marginTop="@dimen/space_16"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/space_16"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/switch_1"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginEnd="@dimen/space_24"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_title_1"
                         style="@style/apollo_label2"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Manutenção Preditiva" />
 
                     <TextView
-                        style="@style/apollo_body4"
-                        android:layout_width="match_parent"
+                        style="@style/apollo_body3"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/space_6"
                         android:text="Aviso quando um lote precisar de manutenção por queda de eficiência."
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:thumbTint="@color/neutral_white"
-                    app:trackTint="@color/switch_track_tint" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    style="@style/apollo_switch" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0" />
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@color/disable_gray" />
 
-            <!-- Item: Alerta de placa -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/space_20">
+                android:layout_marginTop="@dimen/space_16"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/space_16"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/switch_2"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginEnd="@dimen/space_24"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_title_2"
                         style="@style/apollo_label2"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Alerta de placa" />
 
                     <TextView
-                        style="@style/apollo_body4"
-                        android:layout_width="match_parent"
+                        style="@style/apollo_body3"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/space_6"
                         android:text="Aviso imediato quando uma placa atingir eficiência crítica."
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_2"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:thumbTint="@color/neutral_white"
-                    app:trackTint="@color/switch_track_tint" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    style="@style/apollo_switch" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0" />
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@color/disable_gray" />
 
-            <!-- Item: Notificações por e-mail -->
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingVertical="@dimen/space_20">
+                android:layout_marginTop="@dimen/space_16"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <LinearLayout
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="@dimen/space_16"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/switch_3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent">
+                    android:layout_marginEnd="@dimen/space_24"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
                     <TextView
                         android:id="@+id/tv_title_3"
                         style="@style/apollo_label2"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Notificações por e-mail" />
 
                     <TextView
-                        style="@style/apollo_body4"
-                        android:layout_width="match_parent"
+                        style="@style/apollo_body3"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="2dp"
+                        android:layout_marginTop="@dimen/space_6"
                         android:text="Receba um resumo por e-mail além do alerta no app."
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 
                 <androidx.appcompat.widget.SwitchCompat
                     android:id="@+id/switch_3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:checked="false"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:thumbTint="@color/neutral_white"
-                    app:trackTint="@color/switch_track_tint" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    style="@style/apollo_switch" />
+            </LinearLayout>
 
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:background="#F0F0F0" />
-
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@color/disable_gray" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/llBottomArea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/space_24"
+        android:paddingEnd="@dimen/space_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

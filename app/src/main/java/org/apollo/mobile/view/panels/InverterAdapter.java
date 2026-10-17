@@ -112,6 +112,7 @@ final class InverterAdapter extends RecyclerView.Adapter<InverterAdapter.Holder>
         private final TextView stringCode;
         private final TextView details;
         private final ImageView chevron;
+        private final ImageView icon;
         private final LinearLayout content;
         private final TextView stock;
         private final TextView operation;
@@ -125,6 +126,7 @@ final class InverterAdapter extends RecyclerView.Adapter<InverterAdapter.Holder>
             stringCode = view.findViewById(R.id.tvInverterId);
             details = view.findViewById(R.id.tvInverterDetails);
             chevron = view.findViewById(R.id.ivChevron);
+            icon = view.findViewById(R.id.ivInverterIcon);
             content = view.findViewById(R.id.llCardContent);
             header = (View) stringCode.getParent();
             stock = view.findViewById(R.id.tvStockCount);
@@ -149,7 +151,14 @@ final class InverterAdapter extends RecyclerView.Adapter<InverterAdapter.Holder>
             String percent = PanelsUi.percent(item.getHealthScore());
             health.setText(percent == null ? context.getString(R.string.panels_health_unknown) : percent);
             seeAll.setText(context.getString(R.string.panels_see_all, total));
-            chevron.setRotation(expanded ? 270f : 90f);
+            float target = expanded ? 270f : 90f;
+            if (chevron.getTag() instanceof Boolean && (Boolean) chevron.getTag() != expanded) {
+                chevron.animate().rotation(target).setDuration(260).start();
+            } else {
+                chevron.setRotation(target);
+            }
+            chevron.setTag(expanded);
+            icon.setImageResource(R.drawable.ic_inverter_expanded);
             for (int index = 1; index < content.getChildCount(); index++) {
                 content.getChildAt(index).setVisibility(expanded ? View.VISIBLE : View.GONE);
             }

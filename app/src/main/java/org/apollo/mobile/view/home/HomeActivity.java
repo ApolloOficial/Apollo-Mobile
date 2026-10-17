@@ -562,6 +562,9 @@ public final class HomeActivity extends AppCompatActivity {
     }
 
     private void handleError(HomeError error) {
+        serviceOrders = java.util.Collections.emptyList();
+        currentServiceOrderIndex = 0;
+        bindCurrentServiceOrder();
         if (error.getType()
                 == HomeError.Type.UNAUTHORIZED) {
             goToLogin();

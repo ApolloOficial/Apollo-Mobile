@@ -1,152 +1,100 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_black">
 
-    <!-- Camera Preview Placeholder -->
     <androidx.camera.view.PreviewView
         android:id="@+id/previewView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <!-- Scanner Frame -->
-    <ImageView
-        android:id="@+id/ivScannerFrame"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
-        android:src="@drawable/bg_scanner_frame"
-        app:layout_constraintDimensionRatio="5:3"
-        app:layout_constraintWidth_max="@dimen/space_300"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- Overlays for Cutout Effect -->
-    <View
-        android:layout_width="match_parent"
+    <org.apollo.mobile.view.scanner.ScannerOverlayView
+        android:id="@+id/scannerOverlay"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:background="#99000000"
-        app:layout_constraintBottom_toTopOf="@id/ivScannerFrame"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#99000000"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ivScannerFrame" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#99000000"
-        app:layout_constraintBottom_toTopOf="@id/viewBottomStub"
-        app:layout_constraintEnd_toStartOf="@id/ivScannerFrame"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/viewTopStub" />
-
-    <!-- Stubs to help constraint layout -->
-    <View android:id="@+id/viewTopStub" android:layout_width="1dp" android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toTopOf="@id/ivScannerFrame" app:layout_constraintStart_toStartOf="parent" />
-    <View android:id="@+id/viewBottomStub" android:layout_width="1dp" android:layout_height="0dp" app:layout_constraintTop_toBottomOf="@id/ivScannerFrame" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent" />
-
-    <View
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:background="#99000000"
-        app:layout_constraintBottom_toTopOf="@id/viewBottomStub"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/ivScannerFrame"
-        app:layout_constraintTop_toBottomOf="@id/viewTopStub" />
-
-    <!-- Top Bar -->
-    <LinearLayout
+    <TextView
         android:id="@+id/btnBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/screen_horizontal_padding"
-        android:layout_marginTop="@dimen/header_top_padding"
-        android:minHeight="@dimen/touch_target_min_size"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:clickable="true"
-        android:focusable="true"
+        style="@style/apollo_back"
+        android:layout_marginStart="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_34"
+        android:drawableStart="@drawable/ic_arrow_back_white"
+        android:textColor="@color/neutral_white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <ImageView
-            android:layout_width="@dimen/space_18"
-            android:layout_height="@dimen/space_18"
-            android:src="@drawable/ic_arrow_back"
-            app:tint="@color/neutral_white" />
-
-        <TextView
-            style="@style/apollo_label2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/space_8"
-            android:text="Voltar"
-            android:textColor="@color/neutral_white" />
-    </LinearLayout>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/ivFlash"
-        android:layout_width="@dimen/touch_target_min_size"
-        android:layout_height="@dimen/touch_target_min_size"
-        android:layout_marginTop="@dimen/header_top_padding"
-        android:layout_marginEnd="@dimen/screen_horizontal_padding"
-        android:padding="@dimen/space_12"
+        android:layout_width="@dimen/space_40"
+        android:layout_height="@dimen/space_40"
+        android:layout_marginEnd="@dimen/space_12"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Lanterna"
+        android:padding="@dimen/space_4"
         android:src="@drawable/ic_flash"
+        app:layout_constraintBottom_toBottomOf="@id/btnBack"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:tint="@color/neutral_white" />
+        app:layout_constraintTop_toTopOf="@id/btnBack" />
 
-    <!-- Instructions -->
     <TextView
         android:id="@+id/tvScanTitle"
         style="@style/apollo_h6"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_8"
-        android:text="Centralize o código na moldura"
+        android:layout_marginHorizontal="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_106"
         android:gravity="center"
+        android:text="Centralize o código na moldura"
         android:textColor="@color/neutral_white"
-        app:layout_constraintBottom_toTopOf="@id/tvScanSubtitle"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/btnBack" />
 
     <TextView
         android:id="@+id/tvScanSubtitle"
-        style="@style/apollo_body2"
+        style="@style/apollo_body1"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/space_40"
-        android:text="A leitura acontece automaticamente"
+        android:layout_marginHorizontal="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_7"
         android:gravity="center"
+        android:text="A leitura acontece automaticamente"
         android:textColor="@color/neutral_white"
-        android:alpha="0.8"
-        app:layout_constraintBottom_toTopOf="@id/ivScannerFrame"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvScanTitle" />
 
-    <!-- Manual Code Bottom Text -->
+    <ProgressBar
+        android:id="@+id/progressScan"
+        android:layout_width="@dimen/space_32"
+        android:layout_height="@dimen/space_32"
+        android:indeterminateTint="@color/neutral_white"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@id/tvManualCode"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="@dimen/space_24" />
+
     <TextView
         android:id="@+id/tvManualCode"
         style="@style/apollo_label2"
-        android:layout_width="0dp"
-        android:layout_height="@dimen/touch_target_min_size"
-        android:gravity="center"
-        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
-        android:layout_marginBottom="@dimen/space_64"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/space_120"
+        android:background="?attr/selectableItemBackground"
+        android:padding="@dimen/space_8"
         android:text="Digitar código manualmente"
         android:textColor="@color/neutral_white"
-        android:clickable="true"
-        android:focusable="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

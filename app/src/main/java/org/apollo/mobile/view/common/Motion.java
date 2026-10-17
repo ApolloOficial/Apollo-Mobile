@@ -34,6 +34,7 @@ public final class Motion {
     private Motion() {}
 
     public static void enterScreen(Activity activity) {
+        SystemBars.apply(activity);
         View root = activity.findViewById(android.R.id.content);
         if (!(root instanceof ViewGroup)) return;
         ViewGroup content = findContent((ViewGroup) root);

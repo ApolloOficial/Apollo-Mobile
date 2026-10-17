@@ -3,7 +3,6 @@ package org.apollo.mobile.view.maintenance.os;
 import android.os.Bundle;
 import org.apollo.mobile.view.common.Motion;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,7 +21,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
     private ServiceOrderGateway gateway;
     private long orderId;
     private EditText report;
-    private Button finishButton;
+    private TextView finishButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

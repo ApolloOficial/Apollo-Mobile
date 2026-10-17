@@ -38,7 +38,9 @@ public final class ProfileActivity extends AppCompatActivity {
         findViewById(R.id.tvBack).setOnClickListener(view -> finish());
         findViewById(R.id.btn_change_photo).setOnClickListener(view -> showPhotoMenu());
         photoView.setOnClickListener(view -> showPhotoMenu());
-        ((TextView) findViewById(R.id.tv_info_footer)).setText(R.string.settings_profile_footer);
+        ((TextView) findViewById(R.id.tv_info_footer)).setText(getText(R.string.settings_profile_footer));
+        TextView changePhoto = findViewById(R.id.btn_change_photo);
+        changePhoto.setPaintFlags(changePhoto.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
 
         load();
     }

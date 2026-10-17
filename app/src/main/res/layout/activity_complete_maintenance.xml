@@ -1,169 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white">
 
-    <!-- Header -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/header_top_padding"
-        android:paddingBottom="@dimen/header_bottom_padding"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="@dimen/header_control_size"
-            android:layout_height="@dimen/header_control_size"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_picture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
-
-        <TextView
-            android:id="@+id/tvLocation"
-            style="@style/apollo_label4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/header_item_spacing"
-            android:layout_marginEnd="@dimen/header_item_spacing"
-            android:background="@drawable/edittext_bg"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/space_12"
-            android:paddingVertical="@dimen/space_6"
-            android:text="Fábrica Itajaí, Limeira - SP"
-            android:textColor="@color/neutral_black"
-            app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-            app:layout_constraintEnd_toStartOf="@id/ibNotifications"
-            app:layout_constraintStart_toEndOf="@id/ivProfile"
-            app:layout_constraintTop_toTopOf="@id/ivProfile" />
-
-        <ImageButton
-            android:id="@+id/ibNotifications"
-            android:layout_width="@dimen/header_control_size"
-            android:layout_height="@dimen/header_control_size"
-            android:background="@drawable/edittext_bg"
-            android:src="@drawable/ic_notifications"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/topBar"
         android:name="org.apollo.mobile.view.common.TopBarFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/topBar">
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="@dimen/screen_horizontal_padding"
+            android:paddingStart="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_16"
+            android:paddingEnd="@dimen/screen_horizontal_padding"
             android:paddingBottom="@dimen/content_bottom_padding">
 
-            <!-- Back Button -->
-            <LinearLayout
+            <TextView
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16"
-                android:minHeight="@dimen/touch_target_min_size"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true">
-
-                <ImageView
-                    android:layout_width="@dimen/space_16"
-                    android:layout_height="@dimen/space_16"
-                    android:src="@drawable/ic_arrow_back"
-                    app:tint="@color/neutral_black" />
-
-                <TextView
-                    style="@style/apollo_label3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_8"
-                    android:text="@string/service_orders_back"
-                    android:textColor="@color/neutral_black" />
-            </LinearLayout>
+                style="@style/apollo_back" />
 
             <TextView
                 android:id="@+id/tvTitle"
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
-                tools:text="Concluir OS84524"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
+                android:layout_marginTop="@dimen/space_10"
+                android:text="Concluir OS" />
 
-            <!-- Resumo (preenchido no código) -->
             <include
                 android:id="@+id/cardSummary"
                 layout="@layout/item_os_summary"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_20" />
+                android:layout_marginTop="@dimen/space_16" />
 
-            <!-- Report Section -->
             <TextView
-                style="@style/apollo_label2"
+                style="@style/apollo_label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="@string/complete_maintenance_report_label"
-                android:textColor="@color/neutral_black" />
+                android:text="Laudo" />
 
             <EditText
                 android:id="@+id/etReport"
-                style="@style/apollo_body3"
+                style="@style/apollo_label3"
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/space_160"
-                android:layout_marginTop="@dimen/space_12"
-                android:background="@drawable/bg_card_white"
-                android:gravity="top"
-                android:hint="@string/complete_maintenance_report_hint"
+                android:layout_height="@dimen/space_156"
+                android:layout_marginTop="@dimen/space_4"
+                android:background="@drawable/bg_textarea"
+                android:gravity="top|start"
+                android:hint="Descreva o que foi feito: limpeza, reaperto, peças trocadas, estado final da placa..."
+                android:inputType="textMultiLine|textCapSentences"
                 android:padding="@dimen/space_16"
-                android:textColor="@color/neutral_black"
-                android:textColorHint="#CCCCCC" />
+                android:textColorHint="@color/disable_gray" />
 
-            <Button
+            <TextView
                 android:id="@+id/btnFinishMaintenance"
-                style="@style/apollo_label2"
-                android:layout_width="match_parent"
-                android:layout_height="@dimen/space_56"
+                style="@style/apollo_button_primary"
+                android:layout_height="@dimen/space_52"
                 android:layout_marginTop="@dimen/space_32"
-                android:backgroundTint="@color/secondary_three"
-                android:text="@string/complete_maintenance_btn_finish"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_white"
-                app:cornerRadius="@dimen/space_28" />
-
+                android:text="Concluir manutenção" />
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Footer + chatbot compartilhados -->
     <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

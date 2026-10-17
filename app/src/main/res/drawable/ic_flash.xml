@@ -1,0 +1,12 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="32dp"
+    android:height="32dp"
+    android:viewportWidth="32"
+    android:viewportHeight="32">
+    <path
+        android:strokeColor="#FFFFFEFC"
+        android:strokeWidth="2"
+        android:strokeLineCap="round"
+        android:strokeLineJoin="round"
+        android:pathData="M19.7 2.06L6 19H14L12.03 29.83C12.03 29.85 12.03 29.87 12.03 29.89 12.04 29.91 12.05 29.93 12.06 29.95 12.08 29.96 12.09 29.98 12.11 29.99 12.13 30 12.15 30 12.18 30 12.2 30 12.22 29.99 12.24 29.98 12.26 29.97 12.28 29.96 12.29 29.94L26 13H18L19.98 2.17C19.98 2.15 19.98 2.13 19.97 2.11 19.97 2.09 19.96 2.07 19.94 2.05 19.93 2.04 19.91 2.02 19.89 2.01 19.87 2 19.85 2 19.83 2 19.8 2 19.78 2.01 19.76 2.02 19.74 2.03 19.72 2.04 19.7 2.06Z"/>
+</vector>

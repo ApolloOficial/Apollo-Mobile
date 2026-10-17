@@ -94,7 +94,7 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
 
             int tint;
             int label;
-            int stroke = android.R.color.transparent;
+            int stroke = R.color.disable_gray;
             if (category == PanelCategory.STOCK) {
                 tint = R.color.disable_gray;
                 label = R.string.panels_in_stock;
@@ -109,9 +109,14 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
             statusTag.setBackgroundTintList(ColorStateList.valueOf(context.getColor(tint)));
             statusText.setText(label);
             statusText.setTextColor(context.getColor(category == PanelCategory.ATTENTION
-                    ? R.color.neutral_white : R.color.neutral_black));
+                    ? R.color.neutral_white : category == PanelCategory.STOCK
+                    ? R.color.neutral_gray : R.color.neutral_black));
             statusIcon.setVisibility(category == PanelCategory.ATTENTION ? View.VISIBLE : View.GONE);
             card.setStrokeColor(context.getColor(stroke));
+            boolean attention = category == PanelCategory.ATTENTION;
+            seeOrder.setVisibility(attention ? View.VISIBLE : View.GONE);
+            seeOrder.setOnClickListener(attention ? v -> context.startActivity(new android.content.Intent(
+                    context, org.apollo.mobile.view.maintenance.os.ServiceOrdersActivity.class)) : null);
 
             boolean stock = category == PanelCategory.STOCK;
             stockInfo.setVisibility(stock ? View.VISIBLE : View.GONE);
@@ -120,10 +125,13 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
             boolean showEfficiency = !stock && health != null;
             efficiency.setVisibility(showEfficiency ? View.VISIBLE : View.GONE);
             if (showEfficiency) {
-                int color = health >= 70 ? R.color.sucess_one : health >= 50 ? R.color.alert_one : R.color.error_one;
+                int color = category == PanelCategory.ATTENTION ? R.color.error_one
+                        : health >= 50 ? R.color.sucess_two : R.color.alert_one;
+                int textColor = category == PanelCategory.ATTENTION ? R.color.error_one
+                        : health >= 50 ? R.color.sucess_one : R.color.alert_three;
                 efficiencyValue.setText(PanelsUi.percent(health));
-                efficiencyValue.setTextColor(context.getColor(color));
-                progress.setProgressCompat((int) Math.round(health), false);
+                efficiencyValue.setTextColor(context.getColor(textColor));
+                progress.setProgressCompat((int) Math.round(health), true);
                 progress.setIndicatorColor(context.getColor(color));
             }
         }

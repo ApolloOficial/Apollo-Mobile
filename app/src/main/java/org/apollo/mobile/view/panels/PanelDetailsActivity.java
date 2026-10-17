@@ -130,6 +130,21 @@ public final class PanelDetailsActivity extends AppCompatActivity {
                 .setText(getString(R.string.panels_summary, power, count));
     }
 
+    private void updateHealth(List<PanelItem> panels) {
+        TextView health = findViewById(R.id.tvHealthDetail);
+        for (PanelItem panel : panels) {
+            String percent = PanelsUi.percent(panel.getStringHealthScore());
+            if (percent != null) {
+                health.setText(getString(R.string.panels_string_health, percent));
+                if (health.getVisibility() != android.view.View.VISIBLE) {
+                    health.setVisibility(android.view.View.VISIBLE);
+                    Motion.refresh(health);
+                }
+                return;
+            }
+        }
+    }
+
     private void loadPanels() {
         gateway.panels(stringId, new PanelsGateway.Callback<List<PanelItem>>() {
             @Override
@@ -140,7 +155,9 @@ public final class PanelDetailsActivity extends AppCompatActivity {
                 allPanels.clear();
                 allPanels.addAll(result);
                 updateSummary(result.size());
+                updateHealth(result);
                 render();
+                ((RecyclerView) findViewById(R.id.rvPlatesDetail)).scheduleLayoutAnimation();
             }
 
             @Override
