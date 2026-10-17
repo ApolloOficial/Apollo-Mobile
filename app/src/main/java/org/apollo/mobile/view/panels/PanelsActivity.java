@@ -25,6 +25,7 @@ import org.apollo.mobile.panels.gateway.PanelsGateway;
 import org.apollo.mobile.panels.gateway.PanelsGatewayFactory;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
@@ -131,6 +132,8 @@ public final class PanelsActivity extends AppCompatActivity {
                 filtered.add(item);
             }
         }
+        filtered.sort(Comparator.comparing(PanelStringItem::getInverterCode)
+                .thenComparing(PanelStringItem::getCode));
         adapter.submit(filtered);
         if (filtered.isEmpty() && !allStrings.isEmpty()) {
             Toast.makeText(this, R.string.panels_empty_strings, Toast.LENGTH_SHORT).show();
