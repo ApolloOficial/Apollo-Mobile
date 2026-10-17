@@ -32,6 +32,7 @@ public final class NotificationsActivity extends AppCompatActivity implements To
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notifications);
+        org.apollo.mobile.view.common.SystemBars.apply(this);
 
         repository = new NotificationRepository(this);
         list = findViewById(R.id.rvNotifications);

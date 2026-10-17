@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.material.button.MaterialButton;
 import com.google.android.material.chip.ChipGroup;
 
 import org.apollo.mobile.R;
@@ -31,7 +30,7 @@ public final class ReportIssueActivity extends AppCompatActivity {
     private int severityIndex = -1;
     private int typeIndex = -1;
     private EditText description;
-    private MaterialButton send;
+    private TextView send;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,6 +55,7 @@ public final class ReportIssueActivity extends AppCompatActivity {
         fillGroup(findViewById(R.id.cgType), TYPE_LABELS, index -> typeIndex = index);
 
         send.setOnClickListener(view -> submit());
+        PanelsUi.bindNavigation(this);
     }
 
     private interface Selection {
@@ -68,8 +68,13 @@ public final class ReportIssueActivity extends AppCompatActivity {
             TextView chip = new TextView(this);
             chip.setText(labels[index]);
             chip.setBackgroundResource(R.drawable.bg_choice_chip);
+            chip.setTextAppearance(R.style.apollo_label3);
             chip.setTextColor(getColorStateList(R.color.selector_choice_text));
-            chip.setPadding(dp(20), dp(8), dp(20), dp(8));
+            chip.setIncludeFontPadding(false);
+            chip.setGravity(android.view.Gravity.CENTER);
+            chip.setMinWidth(getResources().getDimensionPixelSize(R.dimen.space_110));
+            chip.setMinHeight(getResources().getDimensionPixelSize(R.dimen.space_39));
+            chip.setPadding(dp(16), 0, dp(16), 0);
             chip.setClickable(true);
             chip.setFocusable(true);
             final int selected = index;
@@ -106,8 +111,8 @@ public final class ReportIssueActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }
-                Toast.makeText(ReportIssueActivity.this, R.string.report_sent, Toast.LENGTH_LONG).show();
-                finish();
+                org.apollo.mobile.view.common.AppToast.success(ReportIssueActivity.this, getString(R.string.report_sent));
+                send.postDelayed(ReportIssueActivity.this::finish, 1400);
             }
 
             @Override

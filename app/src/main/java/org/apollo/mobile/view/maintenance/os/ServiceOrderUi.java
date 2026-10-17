@@ -39,6 +39,17 @@ final class ServiceOrderUi {
         }
     }
 
+    static CharSequence boldLabel(android.content.Context context, String text) {
+        android.text.SpannableString span = new android.text.SpannableString(text);
+        int colon = text.indexOf(':');
+        if (colon > 0) {
+            span.setSpan(new android.text.style.TypefaceSpan(
+                    androidx.core.content.res.ResourcesCompat.getFont(context, org.apollo.mobile.R.font.manrope_bold)),
+                    0, colon + 1, android.text.Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return span;
+    }
+
     static String safe(String value) {
         return value == null || value.trim().isEmpty() ? "-" : value.trim();
     }

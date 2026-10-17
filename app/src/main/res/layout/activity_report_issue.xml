@@ -5,121 +5,111 @@
     android:layout_height="match_parent"
     android:background="@color/neutral_white">
 
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/topBar"
+        android:name="org.apollo.mobile.view.common.TopBarFragment"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingHorizontal="24dp"
-            android:paddingTop="56dp"
-            android:paddingBottom="48dp">
+            android:paddingStart="@dimen/screen_horizontal_padding"
+            android:paddingTop="@dimen/space_16"
+            android:paddingEnd="@dimen/screen_horizontal_padding"
+            android:paddingBottom="@dimen/content_bottom_padding">
 
-            <LinearLayout
+            <TextView
                 android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
-                android:clickable="true"
-                android:focusable="true"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
-                    android:src="@drawable/ic_arrow_back"
-                    app:tint="@color/neutral_black" />
-
-                <TextView
-                    style="@style/apollo_label3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:text="@string/chat_back"
-                    android:textColor="@color/neutral_black" />
-            </LinearLayout>
+                style="@style/apollo_back" />
 
             <TextView
                 android:id="@+id/tvReportTitle"
-                style="@style/apollo_h4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:textColor="@color/neutral_black" />
-
-            <TextView
-                style="@style/apollo_label4"
+                style="@style/apollo_h5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/report_severity"
-                android:textColor="@color/neutral_black" />
+                android:layout_marginTop="@dimen/space_10"
+                android:layout_marginEnd="@dimen/space_72"
+                android:text="Relatar problema de CS-2026-00932" />
+
+            <TextView
+                style="@style/apollo_label3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_24"
+                android:text="@string/report_severity" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgSeverity"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:chipSpacingHorizontal="8dp"
-                app:chipSpacingVertical="8dp" />
+                android:layout_marginTop="@dimen/space_8"
+                app:chipSpacingHorizontal="@dimen/space_8"
+                app:chipSpacingVertical="@dimen/space_8" />
 
             <TextView
-                style="@style/apollo_label4"
+                style="@style/apollo_label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/report_type"
-                android:textColor="@color/neutral_black" />
+                android:layout_marginTop="@dimen/space_24"
+                android:text="@string/report_type" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgType"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:chipSpacingHorizontal="8dp"
-                app:chipSpacingVertical="8dp" />
+                android:layout_marginTop="@dimen/space_8"
+                app:chipSpacingHorizontal="@dimen/space_8"
+                app:chipSpacingVertical="@dimen/space_8" />
 
             <TextView
-                style="@style/apollo_label4"
+                style="@style/apollo_label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:text="@string/report_description"
-                android:textColor="@color/neutral_black" />
+                android:layout_marginTop="@dimen/space_24"
+                android:text="@string/report_description" />
 
             <EditText
                 android:id="@+id/etDescription"
+                style="@style/apollo_label3"
                 android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:layout_marginTop="8dp"
-                android:background="@drawable/edittext_bg"
+                android:layout_height="@dimen/space_79"
+                android:layout_marginTop="@dimen/space_4"
+                android:background="@drawable/bg_textarea"
                 android:gravity="top|start"
-                android:hint="@string/report_description_hint"
+                android:hint="O que você viu na placa?"
                 android:inputType="textMultiLine|textCapSentences"
-                android:maxLength="500"
-                android:padding="16dp"
-                android:textSize="14sp" />
+                android:paddingStart="@dimen/space_16"
+                android:paddingTop="@dimen/space_16"
+                android:paddingEnd="@dimen/space_16"
+                android:paddingBottom="@dimen/space_12"
+                android:textColorHint="@color/disable_gray" />
 
-            <com.google.android.material.button.MaterialButton
+            <TextView
                 android:id="@+id/btnSend"
-                style="@style/apollo_label2"
-                android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:layout_marginTop="32dp"
-                android:background="@drawable/btn_primary"
-                android:insetTop="0dp"
-                android:insetBottom="0dp"
-                android:text="@string/report_send"
-                android:textAllCaps="false"
-                android:textColor="@color/neutral_white"
-                app:backgroundTint="@null"
-                app:cornerRadius="28dp" />
-
+                style="@style/apollo_button_primary"
+                android:layout_height="@dimen/space_52"
+                android:layout_marginTop="@dimen/space_32"
+                android:text="@string/report_send" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

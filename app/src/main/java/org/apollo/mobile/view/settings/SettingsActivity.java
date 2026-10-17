@@ -67,6 +67,7 @@ public final class SettingsActivity extends AppCompatActivity {
         bindRow(R.id.t3, NotificationsSettingsActivity.class);
         bindRow(R.id.t4, LanguageActivity.class);
         bindRow(R.id.t6, StorageActivity.class);
+        bindRow(R.id.t7, org.apollo.mobile.view.chat.ChatbotActivity.class);
         rowOf(R.id.t8).setOnClickListener(view -> showAbout());
         rowOf(R.id.t9).setOnClickListener(view -> confirmLogout());
 
@@ -76,6 +77,8 @@ public final class SettingsActivity extends AppCompatActivity {
 
         // Footer + chatbot (aba Configurações ativa)
         BottomNavigation.setup(this, BottomNavigation.Tab.SETTINGS);
+        underline(findViewById(R.id.btn_edit_photo));
+        underline(syncButton);
     }
 
     @Override
@@ -147,6 +150,10 @@ public final class SettingsActivity extends AppCompatActivity {
             return;
         }
         Toast.makeText(this, R.string.settings_sync_done, Toast.LENGTH_SHORT).show();
+    }
+
+    private static void underline(TextView view) {
+        view.setPaintFlags(view.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
     }
 
     private View rowOf(int titleId) {

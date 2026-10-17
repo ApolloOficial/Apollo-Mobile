@@ -1,42 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingVertical="@dimen/space_6">
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/space_4"
+    android:paddingBottom="@dimen/space_4">
 
     <View
         android:id="@+id/vStatusDot"
-        android:layout_width="@dimen/space_8"
-        android:layout_height="@dimen/space_8"
-        android:background="@drawable/bg_status_dot"
-        android:backgroundTint="@color/sucess_one"
-        app:layout_constraintBottom_toBottomOf="@id/tvPlateName"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvPlateName" />
+        android:layout_width="@dimen/space_5"
+        android:layout_height="@dimen/space_5"
+        android:background="@drawable/bg_dot_active"
+        android:backgroundTint="@color/sucess_one" />
 
     <TextView
         android:id="@+id/tvPlateName"
-        style="@style/apollo_body3"
-        android:layout_width="wrap_content"
+        style="@style/apollo_body4"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_12"
-        android:text="CS-2025-00841"
-        android:textColor="@color/neutral_black"
-        app:layout_constraintStart_toEndOf="@id/vStatusDot"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginStart="@dimen/space_5"
+        android:layout_weight="1"
+        android:text="CS-2025-00841" />
 
     <TextView
         android:id="@+id/tvPlateValue"
-        style="@style/apollo_body3"
+        style="@style/apollo_body4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="87%"
-        android:textColor="@color/neutral_black"
-        app:layout_constraintBottom_toBottomOf="@id/tvPlateName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@id/tvPlateName" />
+        android:text="87%" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

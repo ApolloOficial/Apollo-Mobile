@@ -1,274 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/neutral_white">
 
-    <!-- Header -->
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/clHeader"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-        android:paddingTop="@dimen/header_top_padding"
-        android:paddingBottom="@dimen/header_bottom_padding"
-        android:visibility="gone"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <com.google.android.material.imageview.ShapeableImageView
-            android:id="@+id/ivProfile"
-            android:layout_width="@dimen/header_control_size"
-            android:layout_height="@dimen/header_control_size"
-            android:scaleType="centerCrop"
-            android:src="@drawable/profile_picture"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
-
-        <TextView
-            android:id="@+id/tvLocation"
-            style="@style/apollo_label4"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/header_item_spacing"
-            android:layout_marginEnd="@dimen/header_item_spacing"
-            android:background="@drawable/edittext_bg"
-            android:ellipsize="end"
-            android:gravity="center"
-            android:maxLines="1"
-            android:paddingHorizontal="@dimen/space_16"
-            android:paddingVertical="@dimen/space_8"
-            android:text=""
-            android:textColor="@color/neutral_black"
-            app:layout_constraintBottom_toBottomOf="@id/ivProfile"
-            app:layout_constraintEnd_toStartOf="@id/ibNotifications"
-            app:layout_constraintStart_toEndOf="@id/ivProfile"
-            app:layout_constraintTop_toTopOf="@id/ivProfile" />
-
-        <ImageButton
-            android:id="@+id/ibNotifications"
-            android:layout_width="@dimen/header_control_size"
-            android:layout_height="@dimen/header_control_size"
-            android:background="@drawable/edittext_bg"
-            android:src="@drawable/ic_notifications"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/topBar"
         android:name="org.apollo.mobile.view.common.TopBarFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
+    <TextView
+        android:id="@+id/tvLocation"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:fillViewport="true"
-        app:layout_constraintBottom_toTopOf="@id/bottomNavigation"
-        app:layout_constraintTop_toBottomOf="@id/topBar">
+    <LinearLayout
+        android:id="@+id/llDetailsHeader"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/space_16"
+        android:paddingEnd="@dimen/screen_horizontal_padding"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
+
+        <TextView
+            android:id="@+id/btnBack"
+            style="@style/apollo_back" />
+
+        <TextView
+            android:id="@+id/tvInverterIdDetail"
+            style="@style/apollo_h5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_10"
+            android:text="ITJ-LIM-001" />
+
+        <TextView
+            android:id="@+id/tvHealthDetail"
+            style="@style/apollo_h6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_10"
+            android:text="Saúde da String: --"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tvInverterSummaryDetail"
+            style="@style/apollo_label2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
+            android:text="Capac. 42 kWp · 24 placas"
+            android:textColor="@color/neutral_gray" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="@dimen/screen_horizontal_padding"
-            android:paddingBottom="@dimen/content_bottom_padding">
+            android:layout_marginTop="@dimen/space_16"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
 
-            <!-- Back Button -->
-            <LinearLayout
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/tvPlacasLabel"
+                style="@style/apollo_h6"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_8"
-                android:gravity="center_vertical"
-                android:orientation="horizontal"
-                android:clickable="true"
-                android:focusable="true"
-                android:background="?attr/selectableItemBackground">
+                android:layout_weight="1"
+                android:text="Placas" />
+
+            <LinearLayout style="@style/apollo_search_pill">
 
                 <ImageView
-                    android:layout_width="@dimen/space_16"
-                    android:layout_height="@dimen/space_16"
-                    android:src="@drawable/ic_arrow_back"
-                    app:tint="@color/neutral_black" />
+                    android:layout_width="@dimen/space_24"
+                    android:layout_height="@dimen/space_24"
+                    android:importantForAccessibility="no"
+                    android:src="@drawable/ic_search" />
 
-                <TextView
-                    style="@style/apollo_label3"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                <EditText
+                    android:id="@+id/etSearch"
+                    style="@style/apollo_body4"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/space_8"
-                    android:text="Voltar"
-                    android:textColor="@color/neutral_black" />
+                    android:background="@null"
+                    android:hint="Buscar por número de série..."
+                    android:imeOptions="actionSearch"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:textColorHint="@color/neutral_gray" />
             </LinearLayout>
-
-            <!-- Inverter Info -->
-            <TextView
-                android:id="@+id/tvInverterIdDetail"
-                style="@style/apollo_h4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16"
-                android:text=""
-                android:textColor="@color/neutral_black" />
-
-            <TextView
-                android:id="@+id/tvInverterSummaryDetail"
-                style="@style/apollo_body2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=""
-                android:textColor="@color/neutral_gray" />
-
-            <!-- Search Section -->
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24">
-
-                <TextView
-                    android:id="@+id/tvPlacasLabel"
-                    style="@style/apollo_h5"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Placas"
-                    android:textColor="@color/neutral_black"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <LinearLayout
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/space_40"
-                    android:layout_marginStart="@dimen/space_16"
-                    android:background="@drawable/edittext_bg"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal"
-                    android:paddingHorizontal="@dimen/space_12"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@id/tvPlacasLabel"
-                    app:layout_constraintTop_toTopOf="parent">
-
-                    <ImageView
-                        android:layout_width="@dimen/space_18"
-                        android:layout_height="@dimen/space_18"
-                        android:src="@drawable/ic_search"
-                        app:tint="@color/secondary_three" />
-
-                    <EditText
-                        android:id="@+id/etSearch"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@android:color/transparent"
-                        android:hint="Buscar por número de série..."
-                        android:imeOptions="actionSearch"
-                        android:inputType="text"
-                        android:paddingStart="@dimen/space_8"
-                        android:textSize="@dimen/text_12" />
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <!-- Filters -->
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_20"
-                android:scrollbars="none"
-                android:overScrollMode="never">
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/chipAll"
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/bg_filter_chip"
-                        android:paddingHorizontal="@dimen/space_16"
-                        android:paddingVertical="@dimen/space_5"
-                        android:text="Todas"
-                        android:textColor="@color/selector_filter_text"
-                        android:state_selected="true"
-                        android:clickable="true"
-                        android:focusable="true" />
-
-                    <TextView
-                        android:id="@+id/chipStock"
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:background="@drawable/bg_filter_chip"
-                        android:paddingHorizontal="@dimen/space_16"
-                        android:paddingVertical="@dimen/space_5"
-                        android:text="Em estoque"
-                        android:textColor="@color/selector_filter_text"
-                        android:clickable="true"
-                        android:focusable="true" />
-
-                    <TextView
-                        android:id="@+id/chipInUse"
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:background="@drawable/bg_filter_chip"
-                        android:paddingHorizontal="@dimen/space_16"
-                        android:paddingVertical="@dimen/space_5"
-                        android:text="Em uso"
-                        android:textColor="@color/selector_filter_text"
-                        android:clickable="true"
-                        android:focusable="true" />
-
-                    <TextView
-                        android:id="@+id/chipAttention"
-                        style="@style/apollo_label4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_8"
-                        android:background="@drawable/bg_filter_chip"
-                        android:paddingHorizontal="@dimen/space_16"
-                        android:paddingVertical="@dimen/space_5"
-                        android:text="Atenção"
-                        android:textColor="@color/selector_filter_text"
-                        android:clickable="true"
-                        android:focusable="true" />
-
-                </LinearLayout>
-            </HorizontalScrollView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:layout_marginTop="@dimen/space_16"
-                android:background="#F0F0F0" />
-
-            <!-- Plates List -->
-            <androidx.recyclerview.widget.RecyclerView
-        android:layoutAnimation="@anim/layout_list_enter"
-                android:id="@+id/rvPlatesDetail"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16"
-                android:nestedScrollingEnabled="false"
-                tools:itemCount="3"
-                tools:listitem="@layout/item_plate_detail" />
-
         </LinearLayout>
+    </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+    <HorizontalScrollView
+        android:id="@+id/hsFilters"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_24"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/space_18"
+        android:paddingEnd="@dimen/space_18"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llDetailsHeader"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
-    <!-- Footer + chatbot compartilhados -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/chipAll"
+                style="@style/apollo_filter_chip"
+                android:text="Todas" />
+
+            <TextView
+                android:id="@+id/chipStock"
+                style="@style/apollo_filter_chip"
+                android:text="Em estoque" />
+
+            <TextView
+                android:id="@+id/chipInUse"
+                style="@style/apollo_filter_chip"
+                android:text="Em uso" />
+
+            <TextView
+                android:id="@+id/chipAttention"
+                style="@style/apollo_filter_chip"
+                android:text="Atenção" />
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View
+        android:id="@+id/vFiltersDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/space_16"
+        android:background="@color/disable_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/hsFilters" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvPlatesDetail"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:layoutAnimation="@anim/layout_list_enter"
+        android:overScrollMode="never"
+        android:paddingStart="@dimen/space_12"
+        android:paddingTop="@dimen/space_16"
+        android:paddingEnd="@dimen/space_12"
+        android:paddingBottom="@dimen/content_bottom_padding"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vFiltersDivider"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
     <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

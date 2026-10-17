@@ -151,6 +151,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         UserHolder(View itemView) {
             super(itemView);
             text = itemView.findViewById(R.id.tvUserMessage);
+            bubble(itemView.findViewById(R.id.llUserBubble), 0xFFFE4A11, 0xFFFF672C, true);
             copy = itemView.findViewById(R.id.ivCopyUser);
             edit = itemView.findViewById(R.id.ivEditUser);
         }
@@ -171,6 +172,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         BotHolder(View itemView) {
             super(itemView);
             text = itemView.findViewById(R.id.tvBotMessage);
+            bubble(itemView.findViewById(R.id.llBotBubble), 0xFFFFFFFF, 0xB3D1CEC1, false);
             sources = itemView.findViewById(R.id.tvBotSources);
             copy = itemView.findViewById(R.id.ivCopyBot);
             speak = itemView.findViewById(R.id.ivSpeakBot);
@@ -193,6 +195,16 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private static final class TypingHolder extends RecyclerView.ViewHolder {
         TypingHolder(View itemView) {
             super(itemView);
+            bubble(itemView.findViewById(R.id.tvTyping), 0xFFFFFFFF, 0xB3D1CEC1, false);
         }
+    }
+
+    private static void bubble(View view, int fill, int stroke, boolean tailRight) {
+        float density = view.getResources().getDisplayMetrics().density;
+        view.setBackground(new ChatBubbleDrawable(density, fill, stroke, tailRight));
+        int side = Math.round(ChatBubbleDrawable.TAIL_W_DP * density);
+        view.setPadding(view.getPaddingLeft() + (tailRight ? 0 : side), view.getPaddingTop(),
+                view.getPaddingRight() + (tailRight ? side : 0),
+                view.getPaddingBottom() + Math.round(ChatBubbleDrawable.TAIL_DP * density));
     }
 }

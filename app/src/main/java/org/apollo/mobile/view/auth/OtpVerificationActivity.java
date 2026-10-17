@@ -45,6 +45,7 @@ public final class OtpVerificationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_otp_verification);
+        org.apollo.mobile.view.common.SystemBars.apply(this);
 
         mode = getIntent().getStringExtra(AuthExtras.MODE);
         challengeId = getIntent().getStringExtra(AuthExtras.CHALLENGE_ID);

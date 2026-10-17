@@ -37,7 +37,7 @@
     <string name="settings_cancel">Cancelar</string>
     <string name="settings_ok">OK</string>
 
-    <string name="settings_profile_footer">Para alterar nome, e-mail ou cargo, procure o gestor da sua unidade.</string>
+    <string name="settings_profile_footer"><b>Esses dados são cadastrados pela gestão da sua empresa.</b> Pra corrigir alguma informação, fale com o gerente responsável pela sua conta.</string>
 
     <string name="settings_phone_pending">Alteração de telefone aguardando aprovação do gestor.</string>
     <string name="settings_phone_none">Telefone não cadastrado</string>
@@ -100,4 +100,5 @@
     <string name="settings_storage_pending_title">Registros pendentes (%1$d itens)</string>
     <string name="settings_storage_cleared">Cache limpo.</string>
     <string name="settings_storage_total">%1$s de %2$s disponíveis</string>
+    <string name="settings_security_phone_info"><b>O telefone é cadastrado pela gestão da sua empresa.</b> Você pode solicitar a troca de número, a gestão da sua empresa recebe o pedido e aprova ou recusa.</string>
 </resources>

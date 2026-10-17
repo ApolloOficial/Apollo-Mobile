@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardPlate"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="@dimen/space_12"
-    app:cardBackgroundColor="@color/neutral_white"
+    android:layout_marginBottom="@dimen/space_8"
+    android:clickable="true"
+    android:focusable="true"
+    app:cardBackgroundColor="@color/surface_white"
     app:cardCornerRadius="@dimen/space_16"
-    app:cardElevation="2dp"
-    app:strokeWidth="1dp"
-    app:strokeColor="@android:color/transparent">
+    app:cardElevation="0dp"
+    app:rippleColor="@color/ripple_orange"
+    app:strokeColor="@color/disable_gray"
+    app:strokeWidth="1dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="@dimen/space_16">
+        android:paddingStart="@dimen/space_24"
+        android:paddingTop="@dimen/space_16"
+        android:paddingEnd="@dimen/space_16"
+        android:paddingBottom="@dimen/space_16">
 
         <TextView
             android:id="@+id/tvSerialNumberLabel"
-            style="@style/apollo_body4"
+            style="@style/apollo_label3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Número de série"
@@ -31,69 +35,78 @@
         <TextView
             android:id="@+id/tvSerialNumber"
             style="@style/apollo_h6"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_2"
+            android:layout_marginEnd="@dimen/space_8"
             android:text="CS-2025-00841"
-            android:textColor="@color/neutral_black"
-            android:textStyle="bold"
+            app:layout_constraintEnd_toStartOf="@id/llStatusTag"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSerialNumberLabel" />
 
         <TextView
             android:id="@+id/tvPosition"
-            style="@style/apollo_body4"
+            style="@style/apollo_label4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_4"
             android:text="Posição 1"
             android:textColor="@color/neutral_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSerialNumber" />
 
-        <!-- Status Tag -->
         <LinearLayout
             android:id="@+id/llStatusTag"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_label_rounded"
+            android:layout_height="@dimen/space_20"
+            android:background="@drawable/bg_tag"
             android:backgroundTint="@color/sucess_two"
             android:gravity="center"
+            android:minWidth="@dimen/space_80"
             android:orientation="horizontal"
-            android:paddingHorizontal="@dimen/space_12"
-            android:paddingVertical="@dimen/space_4"
+            android:paddingStart="@dimen/space_8"
+            android:paddingEnd="@dimen/space_8"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:id="@+id/ivStatusIcon"
-                android:layout_width="@dimen/space_10"
-                android:layout_height="@dimen/space_10"
-                android:layout_marginEnd="@dimen/space_4"
-                android:src="@drawable/ic_warning"
-                android:visibility="gone"
-                app:tint="@color/neutral_white" />
-
             <TextView
                 android:id="@+id/tvStatusTagText"
-                style="@style/apollo_label6"
+                style="@style/apollo_label5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Em operação"
-                android:textColor="@color/neutral_black"
-                android:textSize="@dimen/text_12" />
+                android:maxLines="1"
+                android:text="Em operação" />
 
+            <ImageView
+                android:id="@+id/ivStatusIcon"
+                android:layout_width="@dimen/space_12"
+                android:layout_height="@dimen/space_12"
+                android:layout_marginStart="@dimen/space_4"
+                android:importantForAccessibility="no"
+                android:src="@drawable/ic_warning_small"
+                android:visibility="gone" />
         </LinearLayout>
 
-        <!-- Efficiency Section -->
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrierHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="bottom"
+            app:constraint_referenced_ids="tvSerialNumber,tvPosition" />
+
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/clEfficiency"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_12"
-            app:layout_constraintTop_toBottomOf="@id/tvPosition">
+            android:layout_marginTop="@dimen/space_14"
+            android:layout_marginEnd="@dimen/space_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrierHeader">
 
             <TextView
                 android:id="@+id/tvEfficiencyLabel"
-                style="@style/apollo_body4"
+                style="@style/apollo_label5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Eficiência"
@@ -103,7 +116,7 @@
 
             <TextView
                 android:id="@+id/tvEfficiencyValue"
-                style="@style/apollo_label4"
+                style="@style/apollo_label5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="87%"
@@ -113,46 +126,37 @@
 
             <com.google.android.material.progressindicator.LinearProgressIndicator
                 android:id="@+id/progressEfficiency"
-                android:layout_width="match_parent"
+                style="@style/apollo_progress"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_4"
                 android:progress="87"
-                app:indicatorColor="@color/sucess_one"
-                app:layout_constraintTop_toBottomOf="@id/tvEfficiencyLabel"
-                app:trackColor="@color/disable_gray"
-                app:trackCornerRadius="@dimen/space_4"
-                app:trackThickness="@dimen/space_8" />
-
+                app:indicatorColor="@color/sucess_two"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvEfficiencyLabel" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Stock Info -->
         <TextView
             android:id="@+id/tvStockInfo"
-            style="@style/apollo_body3"
-            android:layout_width="match_parent"
+            style="@style/apollo_label2"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/space_12"
+            android:layout_marginTop="@dimen/space_15"
             android:text="Aguardando ativação em campo..."
             android:textColor="@color/neutral_gray"
             android:visibility="gone"
-            app:layout_constraintTop_toBottomOf="@id/tvPosition" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/barrierHeader" />
 
-        <!-- Ver OS Button -->
-        <Button
+        <TextView
             android:id="@+id/btnVerOS"
-            style="@style/apollo_label3"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/space_36"
+            style="@style/apollo_cta_outline"
             android:layout_marginTop="@dimen/space_16"
-            android:background="@drawable/btn_outlined"
-            android:insetTop="0dp"
-            android:insetBottom="0dp"
+            android:layout_marginEnd="@dimen/space_8"
             android:text="Ver OS"
-            android:textAllCaps="false"
-            android:textColor="@color/secondary_three"
             android:visibility="gone"
-            app:backgroundTint="@null"
-            app:cornerRadius="@dimen/space_18"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clEfficiency" />
 

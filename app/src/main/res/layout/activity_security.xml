@@ -1,111 +1,105 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/neutral_white"
-    tools:context=".view.security.SecurityActivity">
+    android:background="@color/neutral_white">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
+        android:id="@+id/svContent"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:overScrollMode="never"
+        app:layout_constraintBottom_toTopOf="@id/llBottomArea"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-            android:paddingTop="@dimen/space_48"
-            android:paddingBottom="@dimen/space_24">
+            android:paddingStart="@dimen/space_24"
+            android:paddingTop="@dimen/space_34"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/space_32">
 
-            <!-- Botão Voltar -->
             <TextView
                 android:id="@+id/tvBack"
-                style="@style/apollo_label2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:drawableStart="@drawable/ic_arrow_back"
-                android:drawablePadding="@dimen/space_8"
-                android:gravity="center_vertical"
-                android:text="Voltar"
-                android:textColor="@color/neutral_black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                style="@style/apollo_back" />
 
             <TextView
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_16"
-                android:text="Segurança"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
+                android:layout_marginTop="@dimen/space_10"
+                android:text="Segurança" />
 
-            <!-- Verificação de login Section -->
             <TextView
-                style="@style/apollo_label1"
+                style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Verificação de login"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
-
+                android:layout_marginTop="@dimen/space_16"
+                android:text="Verificação de login" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
+                android:layout_marginTop="@dimen/space_16"
                 android:background="@drawable/bg_settings_card"
                 android:orientation="vertical"
                 android:padding="@dimen/space_16">
-
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
 
-                    <View
+                    <FrameLayout
                         android:id="@+id/bg_ic_phone"
-                        android:layout_width="@dimen/space_48"
-                        android:layout_height="@dimen/space_48"
-                        android:background="@drawable/bg_icon_rounded"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <ImageView
-                        android:layout_width="@dimen/space_24"
-                        android:layout_height="@dimen/space_24"
-                        android:src="@drawable/ic_phone"
-                        app:layout_constraintBottom_toBottomOf="@id/bg_ic_phone"
-                        app:layout_constraintEnd_toEndOf="@id/bg_ic_phone"
-                        app:layout_constraintStart_toStartOf="@id/bg_ic_phone"
-                        app:layout_constraintTop_toTopOf="@id/bg_ic_phone" />
+                        <ImageView
+                            android:id="@+id/bg_ic_phone_icon"
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_phone" />
+                    </FrameLayout>
 
                     <TextView
                         android:id="@+id/tv_phone_title"
-                        style="@style/apollo_label2"
+                        style="@style/apollo_label3"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/space_12"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
                         android:text="Telefone para SMS"
+                        app:layout_constraintBottom_toTopOf="@id/tv_phone_value"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/bg_ic_phone"
-                        app:layout_constraintTop_toTopOf="parent" />
-
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
                     <TextView
                         android:id="@+id/tv_phone_value"
                         style="@style/apollo_body4"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
                         android:text="(85) 9**** - 4321"
                         android:textColor="@color/neutral_gray"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/tv_phone_title"
                         app:layout_constraintStart_toStartOf="@id/tv_phone_title"
                         app:layout_constraintTop_toBottomOf="@id/tv_phone_title" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
-
                 <TextView
                     android:id="@+id/btn_change_phone"
                     style="@style/apollo_label4"
@@ -113,156 +107,178 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_16"
+                    android:background="?attr/selectableItemBackground"
                     android:text="Solicitar alteração de telefone"
-                    android:textColor="@color/secondary_one" />
+                    android:textColor="@color/secondary_three" />
             </LinearLayout>
 
             <TextView
-                style="@style/apollo_body4"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                android:background="@drawable/bg_info_box"
-                android:padding="@dimen/space_16"
-                android:text="O telefone é cadastrado pela gestão da sua empresa.\nVocê pode solicitar a troca de número, a gestão da sua empresa recebe o pedido e aprova ou recusa."
-                android:textColor="@color/neutral_black" />
+                style="@style/apollo_info_box"
+                android:layout_marginTop="@dimen/space_16"
+                android:text="@string/settings_security_phone_info" />
 
-            <!-- Senha Section -->
             <TextView
-                style="@style/apollo_label1"
+                style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Senha"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="@dimen/space_16"
+                android:text="Senha" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
+                android:layout_marginTop="@dimen/space_16"
                 android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
                 android:padding="@dimen/space_16">
-
-                <View
-                    android:id="@+id/bg_ic_lock"
-                    android:layout_width="@dimen/space_48"
-                    android:layout_height="@dimen/space_48"
-                    android:background="@drawable/bg_icon_rounded"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="@dimen/space_24"
-                    android:layout_height="@dimen/space_24"
-                    android:src="@drawable/ic_lock"
-                    app:layout_constraintBottom_toBottomOf="@id/bg_ic_lock"
-                    app:layout_constraintEnd_toEndOf="@id/bg_ic_lock"
-                    app:layout_constraintStart_toStartOf="@id/bg_ic_lock"
-                    app:layout_constraintTop_toTopOf="@id/bg_ic_lock" />
-
-                <TextView
-                    android:id="@+id/tv_password_title"
-                    style="@style/apollo_label2"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_12"
-                    android:text="Trocar senha"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_arrow_password"
-                    app:layout_constraintStart_toEndOf="@id/bg_ic_lock"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
 
-                <TextView
-                    style="@style/apollo_body4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_password_value"
-                    android:text="Última alteração há 3 meses"
-                    android:textColor="@color/neutral_gray"
-                    app:layout_constraintEnd_toStartOf="@+id/iv_arrow_password"
-                    app:layout_constraintStart_toStartOf="@id/tv_password_title"
-                    app:layout_constraintTop_toBottomOf="@id/tv_password_title" />
+                    <FrameLayout
+                        android:id="@+id/bg_ic_lock"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/iv_arrow_password"
-                    android:layout_width="@dimen/space_20"
-                    android:layout_height="@dimen/space_20"
-                    android:src="@drawable/ic_arrow_gray"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/bg_ic_lock_icon"
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_lock" />
+                    </FrameLayout>
 
-            <!-- Sessão Section -->
+                    <TextView
+                        android:id="@+id/tv_password_title"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Trocar senha"
+                        app:layout_constraintBottom_toTopOf="@id/tv_password_value"
+                        app:layout_constraintEnd_toStartOf="@id/iv_arrow_password"
+                        app:layout_constraintStart_toEndOf="@id/bg_ic_lock"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/tv_password_value"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Última alteração há 3 meses"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/tv_password_title"
+                        app:layout_constraintStart_toStartOf="@id/tv_password_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_password_title" />
+                    <ImageView
+                        android:id="@+id/iv_arrow_password"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
             <TextView
-                style="@style/apollo_label1"
+                style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Sessão"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
-
-            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_marginTop="@dimen/space_16"
+                android:text="Sessão" />
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
+                android:layout_marginTop="@dimen/space_16"
                 android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
                 android:padding="@dimen/space_16">
-
-                <View
-                    android:id="@+id/bg_ic_device"
-                    android:layout_width="@dimen/space_48"
-                    android:layout_height="@dimen/space_48"
-                    android:background="@drawable/bg_icon_rounded"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:layout_width="@dimen/space_24"
-                    android:layout_height="@dimen/space_24"
-                    android:src="@drawable/ic_smartphone"
-                    app:layout_constraintBottom_toBottomOf="@id/bg_ic_device"
-                    app:layout_constraintEnd_toEndOf="@id/bg_ic_device"
-                    app:layout_constraintStart_toStartOf="@id/bg_ic_device"
-                    app:layout_constraintTop_toTopOf="@id/bg_ic_device" />
-
-                <TextView
-                    android:id="@+id/tv_device_title"
-                    style="@style/apollo_label2"
-                    android:layout_width="0dp"
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_12"
-                    android:text="Este dispositivo"
-                    app:layout_constraintEnd_toStartOf="@+id/view_status_dot"
-                    app:layout_constraintStart_toEndOf="@id/bg_ic_device"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
 
-                <TextView
-                    style="@style/apollo_body4"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/tv_device_value"
-                    android:text="Ativo agora, último login: hoje, 07:52"
-                    android:textColor="@color/neutral_gray"
-                    app:layout_constraintEnd_toStartOf="@+id/view_status_dot"
-                    app:layout_constraintStart_toStartOf="@id/tv_device_title"
-                    app:layout_constraintTop_toBottomOf="@id/tv_device_title" />
+                    <FrameLayout
+                        android:id="@+id/bg_ic_device"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                <View
-                    android:id="@+id/view_status_dot"
-                    android:layout_width="@dimen/space_8"
-                    android:layout_height="@dimen/space_8"
-                    android:background="@drawable/dot_indicator"
-                    android:backgroundTint="@color/sucess_one"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                        <ImageView
+                            android:id="@+id/bg_ic_device_icon"
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_smartphone" />
+                    </FrameLayout>
 
+                    <TextView
+                        android:id="@+id/tv_device_title"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Este dispositivo"
+                        app:layout_constraintBottom_toTopOf="@id/tv_device_value"
+                        app:layout_constraintEnd_toStartOf="@id/view_status_dot"
+                        app:layout_constraintStart_toEndOf="@id/bg_ic_device"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/tv_device_value"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Ativo agora, último login: hoje, 07:52"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/tv_device_title"
+                        app:layout_constraintStart_toStartOf="@id/tv_device_title"
+                        app:layout_constraintTop_toBottomOf="@id/tv_device_title" />
+                    <View
+                        android:id="@+id/view_status_dot"
+                        android:layout_width="@dimen/space_10"
+                        android:layout_height="@dimen/space_10"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:background="@drawable/bg_dot_active"
+                        android:backgroundTint="@color/sucess_one"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <LinearLayout
+        android:id="@+id/llBottomArea"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingStart="@dimen/space_24"
+        android:paddingEnd="@dimen/space_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

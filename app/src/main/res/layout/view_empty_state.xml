@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_16"
+    android:background="@drawable/bg_surface_card"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_32"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/space_32">
+
+    <FrameLayout
+        android:layout_width="@dimen/space_74"
+        android:layout_height="@dimen/space_74"
+        android:background="@drawable/bg_icon_box"
+        android:backgroundTint="#4DFFC8A8">
+
+        <ImageView
+            android:id="@+id/ivEmptyIcon"
+            android:layout_width="@dimen/space_48"
+            android:layout_height="@dimen/space_48"
+            android:layout_gravity="center"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_work_order" />
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvEmptyTitle"
+        style="@style/apollo_label1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_16"
+        android:gravity="center"
+        android:text="Nenhuma OS por aqui" />
+
+    <TextView
+        android:id="@+id/tvEmptyMessage"
+        style="@style/apollo_body3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_8"
+        android:gravity="center"
+        android:lineSpacingExtra="@dimen/space_2"
+        android:text="Quando uma ordem de serviço for atribuída a você, ela aparece aqui."
+        android:textColor="@color/neutral_gray" />
+</LinearLayout>

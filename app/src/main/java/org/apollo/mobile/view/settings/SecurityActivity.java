@@ -44,6 +44,10 @@ public final class SecurityActivity extends AppCompatActivity {
         passwordText = findViewById(R.id.tv_password_value);
         deviceText = findViewById(R.id.tv_device_value);
         changePhoneButton = findViewById(R.id.btn_change_phone);
+        if (changePhoneButton instanceof android.widget.TextView) {
+            android.widget.TextView link = (android.widget.TextView) changePhoneButton;
+            link.setPaintFlags(link.getPaintFlags() | android.graphics.Paint.UNDERLINE_TEXT_FLAG);
+        }
 
         findViewById(R.id.tvBack).setOnClickListener(view -> finish());
         changePhoneButton.setOnClickListener(view -> showPhoneDialog());

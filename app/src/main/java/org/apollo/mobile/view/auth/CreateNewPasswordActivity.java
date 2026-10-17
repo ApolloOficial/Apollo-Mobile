@@ -23,6 +23,7 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_new_password);
+        org.apollo.mobile.view.common.SystemBars.apply(this);
 
         resetToken = getIntent().getStringExtra(AuthExtras.RESET_TOKEN);
         gateway = SessionManagerFactory.createGateway(getApplicationContext());

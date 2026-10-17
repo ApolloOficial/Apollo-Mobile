@@ -50,7 +50,10 @@ public final class RetrofitServiceOrderGateway implements ServiceOrderGateway {
                     callback.onFailure(error(response.code()));
                     return;
                 }
-                requestOrders(status, maintenanceTypeId, response.body().getUserId(), callback);
+                SettingsSummary summary = response.body();
+                String technicianId = "TECHNICIAN".equalsIgnoreCase(summary.getRole())
+                        ? summary.getUserId() : null;
+                requestOrders(status, maintenanceTypeId, technicianId, callback);
             }
 
             @Override

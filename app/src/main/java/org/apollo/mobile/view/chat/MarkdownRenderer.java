@@ -18,7 +18,7 @@ final class MarkdownRenderer {
     }
 
     static CharSequence render(String markdown) {
-        MarkdownParser.Result result = MarkdownParser.parse(markdown);
+        MarkdownParser.Result result = MarkdownParser.parse(flattenTables(markdown));
         SpannableString output = new SpannableString(result.getText());
         for (MarkdownParser.Span span : result.getSpans()) {
             if (span.getStart() >= span.getEnd()) {
@@ -44,6 +44,50 @@ final class MarkdownRenderer {
             }
         }
         return output;
+    }
+
+    private static String flattenTables(String markdown) {
+        if (markdown == null || markdown.indexOf('|') < 0) return markdown;
+        String[] lines = markdown.split("\n", -1);
+        StringBuilder out = new StringBuilder();
+        String[] header = null;
+        for (String line : lines) {
+            String trimmed = line.trim();
+            boolean row = trimmed.startsWith("|") && trimmed.length() > 1;
+            if (!row) {
+                header = null;
+                out.append(line).append('\n');
+                continue;
+            }
+            String[] cells = cells(trimmed);
+            if (isSeparator(cells)) continue;
+            if (header == null) {
+                header = cells;
+                continue;
+            }
+            for (int i = 0; i < cells.length; i++) {
+                if (cells[i].isEmpty()) continue;
+                String label = i < header.length ? header[i] : "";
+                if (!label.isEmpty()) out.append("**").append(label).append(":** ");
+                out.append(cells[i]).append('\n');
+            }
+            out.append('\n');
+        }
+        return out.toString().replaceAll("\n{3,}", "\n\n").trim();
+    }
+
+    private static String[] cells(String row) {
+        String inner = row.replaceAll("^\\|", "").replaceAll("\\|$", "");
+        String[] parts = inner.split("\\|", -1);
+        for (int i = 0; i < parts.length; i++) parts[i] = parts[i].trim();
+        return parts;
+    }
+
+    private static boolean isSeparator(String[] cells) {
+        for (String cell : cells) {
+            if (!cell.matches(":?-{2,}:?")) return false;
+        }
+        return cells.length > 0;
     }
 
     private static void apply(SpannableString output, Object style, MarkdownParser.Span span) {

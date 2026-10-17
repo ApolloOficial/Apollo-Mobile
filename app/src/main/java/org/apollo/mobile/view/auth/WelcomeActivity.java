@@ -13,6 +13,7 @@ public final class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
+        org.apollo.mobile.view.common.SystemBars.apply(this);
 
         findViewById(R.id.btnStart).setOnClickListener(view -> openAccessInfo());
         findViewById(R.id.tvLoginLink).setOnClickListener(view -> openLogin());

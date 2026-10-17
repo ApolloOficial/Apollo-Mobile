@@ -21,4 +21,5 @@
     <string name="inverter_summary_attention">%1$s · %2$d requerem atenção</string>
     <string name="inverter_summary_in_use">%1$s · %2$d em operação</string>
     <string name="inverter_summary_stock">%1$s · %2$d em estoque</string>
+    <string name="panels_string_health">Saúde da String: %1$s</string>
 </resources>

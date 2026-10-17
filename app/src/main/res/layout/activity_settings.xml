@@ -1,37 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/neutral_white"
-    tools:context=".MainActivity">
+    android:background="@color/neutral_white">
 
     <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/space_100"
+        android:overScrollMode="never"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintWidth_max="@dimen/content_max_width">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-        android:paddingHorizontal="@dimen/screen_horizontal_padding"
-            android:paddingTop="@dimen/space_48"
-            android:paddingBottom="@dimen/space_24">
+            android:paddingStart="@dimen/space_24"
+            android:paddingTop="@dimen/space_42"
+            android:paddingEnd="@dimen/space_24"
+            android:paddingBottom="@dimen/content_bottom_padding">
 
             <TextView
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Ajustes"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
+                android:text="Ajustes" />
 
-            <!-- Profile Section -->
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -39,239 +38,690 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/img_profile"
-                    android:layout_width="@dimen/space_72"
-                    android:layout_height="@dimen/space_72"
+                    android:layout_width="@dimen/space_91"
+                    android:layout_height="@dimen/space_91"
+                    android:padding="1dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/profile_picture"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:strokeColor="@color/disable_gray"
+                    app:strokeWidth="2dp" />
 
                 <TextView
                     android:id="@+id/btn_edit_photo"
                     style="@style/apollo_label4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_6"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:background="?attr/selectableItemBackground"
                     android:text="Editar foto"
-                    android:textColor="@color/secondary_one"
-                    app:layout_constraintEnd_toEndOf="@+id/img_profile"
-                    app:layout_constraintStart_toStartOf="@+id/img_profile"
-                    app:layout_constraintTop_toBottomOf="@+id/img_profile" />
+                    android:textColor="@color/secondary_three"
+                    app:layout_constraintEnd_toEndOf="@id/img_profile"
+                    app:layout_constraintStart_toStartOf="@id/img_profile"
+                    app:layout_constraintTop_toBottomOf="@id/img_profile" />
 
                 <TextView
                     android:id="@+id/txt_user_name"
-                    style="@style/apollo_label2"
+                    style="@style/apollo_h6"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/space_16"
+                    android:layout_marginStart="@dimen/space_26"
+                    android:layout_marginTop="@dimen/space_10"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="Carlos Alves da Silva"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/img_profile"
-                    app:layout_constraintTop_toTopOf="@+id/img_profile" />
+                    app:layout_constraintStart_toEndOf="@id/img_profile"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/txt_user_email"
                     style="@style/apollo_body4"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/space_4"
+                    android:ellipsize="end"
+                    android:maxLines="1"
                     android:text="carlosalves@institucional.com"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="@+id/txt_user_name"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_user_name" />
+                    app:layout_constraintStart_toStartOf="@id/txt_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/txt_user_name" />
 
                 <TextView
+                    android:id="@+id/txt_user_role"
                     style="@style/apollo_label5"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/space_6"
-                    android:background="@drawable/bg_badge_yellow"
-                    android:includeFontPadding="false"
+                    android:layout_height="@dimen/space_22"
+                    android:layout_marginStart="@dimen/space_minus_2"
+                    android:layout_marginTop="@dimen/space_8"
+                    android:background="@drawable/bg_role_tag"
+                    android:gravity="center"
                     android:paddingHorizontal="@dimen/space_12"
-                    android:paddingVertical="@dimen/space_4"
-                    android:id="@+id/txt_user_role"
                     android:text="Técnico de Manutenção"
-                    android:textColor="@color/neutral_black"
-                    app:layout_constraintStart_toStartOf="@+id/txt_user_name"
-                    app:layout_constraintTop_toBottomOf="@+id/txt_user_email" />
-
+                    app:layout_constraintStart_toStartOf="@id/txt_user_name"
+                    app:layout_constraintTop_toBottomOf="@id/txt_user_email" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <!-- Conta Section -->
-            <TextView
-                style="@style/apollo_label1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_32"
-                android:text="Conta"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
-
-            <LinearLayout
+            <View
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                android:background="@drawable/bg_settings_card"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_user" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_user" app:layout_constraintTop_toTopOf="@id/bg_user" app:layout_constraintBottom_toBottomOf="@id/bg_user" app:layout_constraintStart_toStartOf="@id/bg_user" app:layout_constraintEnd_toEndOf="@id/bg_user"/>
-                    <TextView android:id="@+id/t1" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Meu perfil" app:layout_constraintStart_toEndOf="@id/bg_user" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/a1"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Nome, foto e dados pessoais" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t1" app:layout_constraintTop_toBottomOf="@id/t1" app:layout_constraintEnd_toStartOf="@id/a1"/>
-                    <ImageView android:id="@+id/a1" android:layout_width="@dimen/space_20" android:layout_height="@dimen/space_20" android:src="@drawable/ic_arrow_gray" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginHorizontal="@dimen/space_16" android:background="#F0F0F0" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_shield" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_shield" app:layout_constraintTop_toTopOf="@id/bg_shield" app:layout_constraintBottom_toBottomOf="@id/bg_shield" app:layout_constraintStart_toStartOf="@id/bg_shield" app:layout_constraintEnd_toEndOf="@id/bg_shield"/>
-                    <TextView android:id="@+id/t2" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Segurança" app:layout_constraintStart_toEndOf="@id/bg_shield" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/a2"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Senha, telefone de verificação" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t2" app:layout_constraintTop_toBottomOf="@id/t2" app:layout_constraintEnd_toStartOf="@id/a2"/>
-                    <ImageView android:id="@+id/a2" android:layout_width="@dimen/space_20" android:layout_height="@dimen/space_20" android:src="@drawable/ic_arrow_gray" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@color/disable_gray" />
 
             <TextView
-                style="@style/apollo_label1"
+                style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Preferências"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
-
+                android:layout_marginTop="@dimen/space_16"
+                android:text="Conta" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
+                android:layout_marginTop="@dimen/space_16"
                 android:background="@drawable/bg_settings_card"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_bell" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_notifications_gray" app:layout_constraintTop_toTopOf="@id/bg_bell" app:layout_constraintBottom_toBottomOf="@id/bg_bell" app:layout_constraintStart_toStartOf="@id/bg_bell" app:layout_constraintEnd_toEndOf="@id/bg_bell"/>
-                    <TextView android:id="@+id/t3" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Notificações" app:layout_constraintStart_toEndOf="@id/bg_bell" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/a3"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Manutenções, alerta e sistema" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t3" app:layout_constraintTop_toBottomOf="@id/t3" app:layout_constraintEnd_toStartOf="@id/a3"/>
-                    <ImageView android:id="@+id/a3" android:layout_width="@dimen/space_20" android:layout_height="@dimen/space_20" android:src="@drawable/ic_arrow_gray" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginHorizontal="@dimen/space_16" android:background="#F0F0F0" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_globe" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_global_language" app:layout_constraintTop_toTopOf="@id/bg_globe" app:layout_constraintBottom_toBottomOf="@id/bg_globe" app:layout_constraintStart_toStartOf="@id/bg_globe" app:layout_constraintEnd_toEndOf="@id/bg_globe"/>
-                    <TextView android:id="@+id/t4" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Idioma" app:layout_constraintStart_toEndOf="@id/bg_globe" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/a4"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Português (Brasil)" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t4" app:layout_constraintTop_toBottomOf="@id/t4" app:layout_constraintEnd_toStartOf="@id/a4"/>
-                    <ImageView android:id="@+id/a4" android:layout_width="@dimen/space_20" android:layout_height="@dimen/space_20" android:src="@drawable/ic_arrow_gray" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <TextView
-                style="@style/apollo_label1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:text="Sincronização e dados"
-                android:textColor="@color/neutral_black"
-                android:textStyle="bold" />
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_12"
-                android:background="@drawable/bg_settings_card"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_sync" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_sync" app:layout_constraintTop_toTopOf="@id/bg_sync" app:layout_constraintBottom_toBottomOf="@id/bg_sync" app:layout_constraintStart_toStartOf="@id/bg_sync" app:layout_constraintEnd_toEndOf="@id/bg_sync"/>
-                    <TextView android:id="@+id/t5" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Sincronização" app:layout_constraintStart_toEndOf="@id/bg_sync" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/btn_sync"/>
-                    <LinearLayout android:layout_width="0dp" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" app:layout_constraintStart_toStartOf="@id/t5" app:layout_constraintTop_toBottomOf="@id/t5" app:layout_constraintEnd_toStartOf="@id/btn_sync">
-                        <View android:id="@+id/view_sync_dot" android:layout_width="@dimen/space_6" android:layout_height="@dimen/space_6" android:background="@drawable/dot_indicator" android:backgroundTint="@color/alert_one"/>
-                        <TextView android:id="@+id/tv_sync_status" style="@style/apollo_body4" android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_4" android:text="@string/settings_sync_none" android:textColor="@color/neutral_gray"/>
-                    </LinearLayout>
-                    <TextView android:id="@+id/btn_sync" style="@style/apollo_label3" android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Sincronizar" android:textColor="@color/secondary_three" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginHorizontal="@dimen/space_16" android:background="#F0F0F0" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_storage" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_storage" app:layout_constraintTop_toTopOf="@id/bg_storage" app:layout_constraintBottom_toBottomOf="@id/bg_storage" app:layout_constraintStart_toStartOf="@id/bg_storage" app:layout_constraintEnd_toEndOf="@id/bg_storage"/>
-                    <TextView android:id="@+id/t6" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Armazenamento e dados offline" app:layout_constraintStart_toEndOf="@id/bg_storage" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/a6"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Uso de espaço, cache local" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t6" app:layout_constraintTop_toBottomOf="@id/t6" app:layout_constraintEnd_toStartOf="@id/a6"/>
-                    <ImageView android:id="@+id/a6" android:layout_width="@dimen/space_20" android:layout_height="@dimen/space_20" android:src="@drawable/ic_arrow_gray" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:background="@drawable/bg_settings_card"
-                android:orientation="vertical">
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_help" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_help_suport" app:layout_constraintTop_toTopOf="@id/bg_help" app:layout_constraintBottom_toBottomOf="@id/bg_help" app:layout_constraintStart_toStartOf="@id/bg_help" app:layout_constraintEnd_toEndOf="@id/bg_help"/>
-                    <TextView android:id="@+id/t7" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Ajuda e suporte" app:layout_constraintStart_toEndOf="@id/bg_help" app:layout_constraintTop_toTopOf="parent" app:layout_constraintEnd_toStartOf="@id/a7"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Apollo AI (Chatbot)" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t7" app:layout_constraintTop_toBottomOf="@id/t7" app:layout_constraintEnd_toStartOf="@id/a7"/>
-                    <ImageView android:id="@+id/a7" android:layout_width="@dimen/space_20" android:layout_height="@dimen/space_20" android:src="@drawable/ic_arrow_gray" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-
-                <View android:layout_width="match_parent" android:layout_height="1dp" android:layout_marginHorizontal="@dimen/space_16" android:background="#F0F0F0" />
-
-                <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="@dimen/space_16">
-                    <View android:id="@+id/bg_info" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                    <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_info" app:layout_constraintTop_toTopOf="@id/bg_info" app:layout_constraintBottom_toBottomOf="@id/bg_info" app:layout_constraintStart_toStartOf="@id/bg_info" app:layout_constraintEnd_toEndOf="@id/bg_info"/>
-                    <TextView android:id="@+id/t8" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Sobre" app:layout_constraintStart_toEndOf="@id/bg_info" app:layout_constraintTop_toTopOf="parent"/>
-                    <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Versão 1.0.0" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t8" app:layout_constraintTop_toBottomOf="@id/t8"/>
-                </androidx.constraintlayout.widget.ConstraintLayout>
-            </LinearLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/space_24"
-                android:background="@drawable/bg_logout_card"
+                android:orientation="vertical"
                 android:padding="@dimen/space_16">
-                <View android:id="@+id/bg_exit" android:layout_width="@dimen/space_48" android:layout_height="@dimen/space_48" android:background="@drawable/bg_logout_icon_rounded" app:layout_constraintStart_toStartOf="parent" app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
-                <ImageView android:layout_width="@dimen/space_24" android:layout_height="@dimen/space_24" android:src="@drawable/ic_exit" app:layout_constraintTop_toTopOf="@id/bg_exit" app:layout_constraintBottom_toBottomOf="@id/bg_exit" app:layout_constraintStart_toStartOf="@id/bg_exit" app:layout_constraintEnd_toEndOf="@id/bg_exit"/>
-                <TextView android:id="@+id/t9" style="@style/apollo_label2" android:layout_width="0dp" android:layout_height="wrap_content" android:layout_marginStart="@dimen/space_12" android:text="Sair da conta" app:layout_constraintStart_toEndOf="@id/bg_exit" app:layout_constraintTop_toTopOf="parent"/>
-                <TextView style="@style/apollo_body4" android:layout_width="0dp" android:layout_height="wrap_content" android:text="Certifique-se de que não tem nenhum registro pendente" android:textColor="@color/neutral_gray" app:layout_constraintStart_toStartOf="@id/t9" app:layout_constraintTop_toBottomOf="@id/t9" app:layout_constraintEnd_toEndOf="parent"/>
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
 
+                    <FrameLayout
+                        android:id="@+id/bg_user"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_user" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t1"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Meu perfil"
+                        app:layout_constraintBottom_toTopOf="@id/t1_sub"
+                        app:layout_constraintEnd_toStartOf="@id/a1"
+                        app:layout_constraintStart_toEndOf="@id/bg_user"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t1_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Nome, foto e dados pessoais"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t1"
+                        app:layout_constraintStart_toStartOf="@id/t1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t1" />
+                    <ImageView
+                        android:id="@+id/a1"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:layout_marginBottom="@dimen/space_16"
+                    android:background="@color/disable_gray" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_shield"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_shield" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t2"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Segurança"
+                        app:layout_constraintBottom_toTopOf="@id/t2_sub"
+                        app:layout_constraintEnd_toStartOf="@id/a2"
+                        app:layout_constraintStart_toEndOf="@id/bg_shield"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t2_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Senha, telefone de verificação"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t2"
+                        app:layout_constraintStart_toStartOf="@id/t2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t2" />
+                    <ImageView
+                        android:id="@+id/a2"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/apollo_h6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_28"
+                android:text="Preferências" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_bell"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_notifications_gray" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t3"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Notificações"
+                        app:layout_constraintBottom_toTopOf="@id/t3_sub"
+                        app:layout_constraintEnd_toStartOf="@id/a3"
+                        app:layout_constraintStart_toEndOf="@id/bg_bell"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t3_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Manutenções, alerta e sistema"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t3"
+                        app:layout_constraintStart_toStartOf="@id/t3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t3" />
+                    <ImageView
+                        android:id="@+id/a3"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:layout_marginBottom="@dimen/space_16"
+                    android:background="@color/disable_gray" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_globe"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_global_language" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t4"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Idioma"
+                        app:layout_constraintBottom_toTopOf="@id/t4_sub"
+                        app:layout_constraintEnd_toStartOf="@id/a4"
+                        app:layout_constraintStart_toEndOf="@id/bg_globe"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t4_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Português (Brasil)"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t4"
+                        app:layout_constraintStart_toStartOf="@id/t4"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t4" />
+                    <ImageView
+                        android:id="@+id/a4"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <TextView
+                style="@style/apollo_h6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:text="Sincronização e dados" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_sync"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_sync" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t5"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Sincronização"
+                        app:layout_constraintBottom_toTopOf="@id/t5_sub"
+                        app:layout_constraintEnd_toStartOf="@id/btn_sync"
+                        app:layout_constraintStart_toEndOf="@id/bg_sync"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <LinearLayout
+                        android:id="@+id/t5_sub"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_4"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="@id/t5"
+                        app:layout_constraintStart_toStartOf="@id/t5"
+                        app:layout_constraintTop_toBottomOf="@id/t5">
+
+                        <View
+                            android:id="@+id/view_sync_dot"
+                            android:layout_width="@dimen/space_5"
+                            android:layout_height="@dimen/space_5"
+                            android:background="@drawable/bg_dot_active"
+                            android:backgroundTint="@color/alert_three" />
+
+                        <TextView
+                            android:id="@+id/tv_sync_status"
+                            style="@style/apollo_body4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/space_4"
+                            android:text="@string/settings_sync_none"
+                            android:textColor="@color/neutral_gray" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/btn_sync"
+                        style="@style/apollo_label4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="?attr/selectableItemBackground"
+                        android:padding="@dimen/space_4"
+                        android:text="Sincronizar"
+                        android:textColor="@color/secondary_three"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:layout_marginBottom="@dimen/space_16"
+                    android:background="@color/disable_gray" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_storage"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_storage" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t6"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Armazenamento e dados offline"
+                        app:layout_constraintBottom_toTopOf="@id/t6_sub"
+                        app:layout_constraintEnd_toStartOf="@id/a6"
+                        app:layout_constraintStart_toEndOf="@id/bg_storage"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t6_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Uso de espaço, cache local"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t6"
+                        app:layout_constraintStart_toStartOf="@id/t6"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t6" />
+                    <ImageView
+                        android:id="@+id/a6"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_settings_card"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_help"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_help_suport" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t7"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Ajuda e suporte"
+                        app:layout_constraintBottom_toTopOf="@id/t7_sub"
+                        app:layout_constraintEnd_toStartOf="@id/a7"
+                        app:layout_constraintStart_toEndOf="@id/bg_help"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t7_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Apollo AI (Chatbot)"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t7"
+                        app:layout_constraintStart_toStartOf="@id/t7"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t7" />
+                    <ImageView
+                        android:id="@+id/a7"
+                        android:layout_width="@dimen/space_24"
+                        android:layout_height="@dimen/space_24"
+                        android:importantForAccessibility="no"
+                        android:src="@drawable/ic_arrow_gray"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginTop="@dimen/space_16"
+                    android:layout_marginBottom="@dimen/space_16"
+                    android:background="@color/disable_gray" />
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_info"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_settings_icon"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_info" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t8"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Sobre"
+                        app:layout_constraintBottom_toTopOf="@id/t8_sub"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/bg_info"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t8_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Versão 1.0.0"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t8"
+                        app:layout_constraintStart_toStartOf="@id/t8"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t8" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="@drawable/bg_logout_card"
+                android:orientation="vertical"
+                android:padding="@dimen/space_16">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackground"
+                    android:minHeight="@dimen/space_50">
+
+                    <FrameLayout
+                        android:id="@+id/bg_exit"
+                        android:layout_width="@dimen/space_50"
+                        android:layout_height="@dimen/space_50"
+                        android:background="@drawable/bg_logout_icon_rounded"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="@dimen/space_32"
+                            android:layout_height="@dimen/space_32"
+                            android:layout_gravity="center"
+                            android:importantForAccessibility="no"
+                            android:src="@drawable/ic_exit" />
+                    </FrameLayout>
+
+                    <TextView
+                        android:id="@+id/t9"
+                        style="@style/apollo_label3"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/space_16"
+                        android:layout_marginEnd="@dimen/space_8"
+                        android:text="Sair da conta"
+                        app:layout_constraintBottom_toTopOf="@id/t9_sub"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/bg_exit"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintVertical_chainStyle="packed" />
+                    <TextView
+                        android:id="@+id/t9_sub"
+                        style="@style/apollo_body4"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/space_2"
+                        android:text="Certifique-se de que não tem nenhum registro pendente"
+                        android:textColor="@color/neutral_gray"
+                        app:layout_constraintEnd_toEndOf="@id/t9"
+                        app:layout_constraintStart_toStartOf="@id/t9"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/t9" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Footer + chatbot compartilhados -->
     <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

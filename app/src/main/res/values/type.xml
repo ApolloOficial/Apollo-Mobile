@@ -193,4 +193,87 @@
         <item name="android:background">?attr/selectableItemBackground</item>
         <item name="android:text">Voltar</item>
     </style>
+
+    <style name="apollo_field_label" parent="apollo_label2">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">@dimen/space_16</item>
+    </style>
+
+    <style name="apollo_field" parent="apollo_label4">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/space_36</item>
+        <item name="android:layout_marginTop">@dimen/space_5</item>
+        <item name="android:background">@drawable/bg_field</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:paddingStart">@dimen/space_16</item>
+        <item name="android:paddingEnd">@dimen/space_16</item>
+        <item name="android:textColor">@color/neutral_gray</item>
+        <item name="android:textColorHint">@color/disable_gray</item>
+    </style>
+
+    <style name="apollo_info_box" parent="apollo_body4">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/bg_info_box</item>
+        <item name="android:padding">@dimen/space_16</item>
+        <item name="android:lineSpacingExtra">@dimen/space_2</item>
+    </style>
+
+    <style name="apollo_switch">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:thumb">@drawable/switch_thumb</item>
+        <item name="track">@drawable/switch_track</item>
+        <item name="thumbTint">@null</item>
+        <item name="trackTint">@null</item>
+        <item name="android:thumbTint">@null</item>
+        <item name="android:trackTint">@null</item>
+        <item name="android:background">@null</item>
+        <item name="android:minHeight">@dimen/space_36</item>
+        <item name="android:paddingVertical">@dimen/space_2</item>
+        <item name="switchMinWidth">@dimen/space_55</item>
+        <item name="showText">false</item>
+    </style>
+
+    <style name="apollo_radio">
+        <item name="android:layout_width">@dimen/space_22</item>
+        <item name="android:layout_height">@dimen/space_22</item>
+        <item name="android:background">@null</item>
+        <item name="android:button">@drawable/radio_apollo</item>
+        <item name="buttonTint">@null</item>
+        <item name="android:buttonTint">@null</item>
+        <item name="useMaterialThemeColors">false</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:minHeight">0dp</item>
+    </style>
+
+    <style name="apollo_filter_chip" parent="apollo_label3">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/space_30</item>
+        <item name="android:background">@drawable/bg_filter_chip</item>
+        <item name="android:gravity">center</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">@dimen/space_16</item>
+        <item name="android:paddingEnd">@dimen/space_16</item>
+        <item name="android:textColor">@color/selector_filter_text</item>
+        <item name="android:layout_marginEnd">@dimen/space_4</item>
+    </style>
+
+    <style name="apollo_search_pill">
+        <item name="android:layout_width">@dimen/space_224</item>
+        <item name="android:layout_height">@dimen/space_36</item>
+        <item name="android:background">@drawable/bg_pill_outline</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:paddingStart">@dimen/space_16</item>
+        <item name="android:paddingEnd">@dimen/space_12</item>
+    </style>
+
+    <style name="apollo_cta_filled" parent="apollo_cta_outline">
+        <item name="android:background">@drawable/bg_cta_filled</item>
+        <item name="android:textColor">@color/neutral_white</item>
+    </style>
 </resources>

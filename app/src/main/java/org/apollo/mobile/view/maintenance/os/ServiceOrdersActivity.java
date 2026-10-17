@@ -23,7 +23,7 @@ import java.util.List;
 public final class ServiceOrdersActivity extends AppCompatActivity {
     private ServiceOrderGateway gateway;
     private LinearLayout list;
-    private TextView empty;
+    private org.apollo.mobile.view.common.EmptyState empty;
     private View loading;
     private TextView chipAll;
     private TextView chipOpen;
@@ -39,7 +39,7 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
 
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());
         list = findViewById(R.id.service_orders_list_container);
-        empty = findViewById(R.id.tvEmptyOrders);
+        empty = new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llEmptyOrders));
         loading = findViewById(R.id.progressOrders);
         chipAll = findViewById(R.id.chipAll);
         chipOpen = findViewById(R.id.chipOpen);
@@ -72,9 +72,7 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
     }
 
     private void paint(TextView chip, boolean selected) {
-        chip.setBackgroundTintList(ColorStateList.valueOf(
-                selected ? getColor(R.color.secondary_three) : 0xFFEBEBEB));
-        chip.setTextColor(getColor(selected ? R.color.neutral_white : R.color.neutral_gray));
+        chip.setSelected(selected);
     }
 
     private void load() {
@@ -110,8 +108,10 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
             ((TextView) card.findViewById(R.id.tvMainId)).setText("OS" + order.getId());
             OsDetailsActivity.bindStatusTag(card.findViewById(R.id.tvStatusTag), order.getMaintenanceStatus());
             OsDetailsActivity.bindPriorityTag(card.findViewById(R.id.tvPriorityTag), order.getPriority());
-            ((TextView) card.findViewById(R.id.tvDueDate)).setText(
-                    "Prazo: " + ServiceOrderUi.date(order.getDueDate()));
+            ((TextView) card.findViewById(R.id.tvDueDate)).setText(ServiceOrderUi.boldLabel(this,
+                    "Prazo: " + ServiceOrderUi.date(order.getDueDate())));
+            Motion.fadeUp(card, Math.min(list.getChildCount(), 8) * 50L);
+            Motion.pressable(card.findViewById(R.id.btnDetails));
             card.findViewById(R.id.btnDetails).setOnClickListener(view -> open(order.getId()));
             card.setOnClickListener(view -> open(order.getId()));
             list.addView(card);

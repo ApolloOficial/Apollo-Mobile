@@ -103,6 +103,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardServiceOrder"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/space_minus_5"
@@ -208,6 +209,7 @@
 
             <LinearLayout
                 android:id="@+id/llOsPagination"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

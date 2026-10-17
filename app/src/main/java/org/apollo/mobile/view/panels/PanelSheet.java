@@ -23,6 +23,8 @@ final class PanelSheet {
         BottomSheetDialog dialog = new BottomSheetDialog(activity);
         View view = LayoutInflater.from(activity).inflate(R.layout.sheet_panel_details, null);
         dialog.setContentView(view);
+        View container = (View) view.getParent();
+        if (container != null) container.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
         ((TextView) view.findViewById(R.id.tvSheetSerial)).setText(panel.getSerialNumber());
         LinearLayout rows = view.findViewById(R.id.llSheetRows);
