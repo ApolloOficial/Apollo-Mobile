@@ -10,7 +10,7 @@ import org.apollo.mobile.session.SessionManagerFactory;
 import org.apollo.mobile.view.auth.LoginActivity;
 import org.apollo.mobile.view.common.BottomNavigation;
 
-final class PanelsUi {
+public final class PanelsUi {
     private PanelsUi() {
     }
 
@@ -18,7 +18,7 @@ final class PanelsUi {
         BottomNavigation.setup(activity, BottomNavigation.Tab.PANELS);
     }
 
-    static boolean handleFailure(Activity activity, PanelsError error) {
+    public static boolean handleFailure(Activity activity, PanelsError error) {
         if (activity.isFinishing() || activity.isDestroyed()) {
             return true;
         }

@@ -39,6 +39,31 @@ public final class RetrofitPanelsGateway implements PanelsGateway {
     }
 
     @Override
+    public void findByBarcode(String barcode, Callback<PanelItem> callback) {
+        enqueue(service.byBarcode(barcode), callback, new Mapper<PanelItem, PanelItem>() {
+            @Override
+            public PanelItem map(PanelItem body) {
+                return body;
+            }
+        });
+    }
+
+    @Override
+    public void findBySerial(String serialNumber, Callback<PanelItem> callback) {
+        enqueue(service.bySerial(serialNumber, PAGE_SIZE), callback, new Mapper<PageResponse<PanelItem>, PanelItem>() {
+            @Override
+            public PanelItem map(PageResponse<PanelItem> body) {
+                for (PanelItem item : body.getContent()) {
+                    if (item.getSerialNumber().equalsIgnoreCase(serialNumber)) {
+                        return item;
+                    }
+                }
+                return null;
+            }
+        });
+    }
+
+    @Override
     public void reportIssue(PanelIssueBody body, Callback<Void> callback) {
         enqueue(service.reportIssue(body), callback, new Mapper<okhttp3.ResponseBody, Void>() {
             @Override

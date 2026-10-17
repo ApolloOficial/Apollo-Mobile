@@ -15,11 +15,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-final class PanelSheet {
+public final class PanelSheet {
     private PanelSheet() {
     }
 
     static void show(Activity activity, PanelItem panel, String stringCode) {
+        show(activity, panel, stringCode, null);
+    }
+
+    public static void show(Activity activity, PanelItem panel, String stringCode, Runnable onDismiss) {
         BottomSheetDialog dialog = new BottomSheetDialog(activity);
         View view = LayoutInflater.from(activity).inflate(R.layout.sheet_panel_details, null);
         dialog.setContentView(view);
@@ -42,6 +46,9 @@ final class PanelSheet {
             dialog.dismiss();
             activity.startActivity(PanelDetailsActivity.reportIntent(activity, panel));
         });
+        if (onDismiss != null) {
+            dialog.setOnDismissListener(d -> onDismiss.run());
+        }
         dialog.show();
     }
 

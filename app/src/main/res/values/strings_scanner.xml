@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="scanner_permission_denied">Permita o acesso à câmera para ler o código de barras.</string>
+    <string name="scanner_camera_error">Não foi possível abrir a câmera.</string>
+    <string name="scanner_not_found">Nenhuma placa com o código %1$s.</string>
+</resources>
