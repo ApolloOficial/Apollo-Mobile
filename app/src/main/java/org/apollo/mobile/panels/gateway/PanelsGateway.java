@@ -10,6 +10,10 @@ public interface PanelsGateway {
 
     void panels(String stringId, Callback<List<PanelItem>> callback);
 
+    void findByBarcode(String barcode, Callback<PanelItem> callback);
+
+    void findBySerial(String serialNumber, Callback<PanelItem> callback);
+
     void reportIssue(PanelIssueBody body, Callback<Void> callback);
 
     interface Callback<T> {
