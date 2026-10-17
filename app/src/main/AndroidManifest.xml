@@ -75,9 +75,12 @@
             android:configChanges="screenSize|keyboardHidden"
             android:windowSoftInputMode="adjustResize" />
         <activity android:screenOrientation="portrait" android:name="org.apollo.mobile.view.scanner.ScannerActivity" />
+        <activity android:screenOrientation="portrait" android:name="org.apollo.mobile.view.scanner.PanelActivationActivity" />
+        <activity android:screenOrientation="portrait" android:name="org.apollo.mobile.view.scanner.PanelIdentifiedActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.MaintenanceActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.os.ServiceOrdersActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.os.OsDetailsActivity" />
+        <activity android:screenOrientation="portrait" android:name=".view.maintenance.os.MaintenanceIdentifiedActivity" />
         <activity android:screenOrientation="portrait"
             android:name=".view.maintenance.os.CompleteMaintenanceActivity"
             android:windowSoftInputMode="adjustResize" />

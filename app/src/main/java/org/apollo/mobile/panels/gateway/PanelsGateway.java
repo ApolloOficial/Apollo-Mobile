@@ -16,6 +16,10 @@ public interface PanelsGateway {
 
     void reportIssue(PanelIssueBody body, Callback<Void> callback);
 
+    void activate(String barcode, String installationDate, Callback<PanelItem> callback);
+
+    void panelOrders(String stringId, Callback<java.util.Map<Long, Long>> callback);
+
     interface Callback<T> {
         void onSuccess(T result);
 

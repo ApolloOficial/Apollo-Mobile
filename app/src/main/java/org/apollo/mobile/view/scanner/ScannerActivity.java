@@ -34,13 +34,22 @@ import com.google.mlkit.vision.barcode.common.Barcode;
 import com.google.mlkit.vision.common.InputImage;
 
 import org.apollo.mobile.R;
+import org.apollo.mobile.maintenance.OsPanelMatcher;
+import org.apollo.mobile.maintenance.OsVerificationStore;
+import org.apollo.mobile.maintenance.gateway.ServiceOrderError;
+import org.apollo.mobile.maintenance.gateway.ServiceOrderGateway;
+import org.apollo.mobile.maintenance.gateway.ServiceOrderGatewayFactory;
+import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Details;
+import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Panel;
+import org.apollo.mobile.view.common.AppToast;
+import org.apollo.mobile.view.maintenance.os.MaintenanceIdentifiedActivity;
+import org.apollo.mobile.view.maintenance.os.OsDetailsActivity;
 import org.apollo.mobile.panels.ScanCode;
 import org.apollo.mobile.panels.error.PanelsError;
 import org.apollo.mobile.panels.gateway.PanelItem;
 import org.apollo.mobile.panels.gateway.PanelsGateway;
 import org.apollo.mobile.panels.gateway.PanelsGatewayFactory;
 import org.apollo.mobile.view.common.Motion;
-import org.apollo.mobile.view.panels.PanelSheet;
 import org.apollo.mobile.view.panels.PanelsUi;
 
 import java.util.List;
@@ -50,7 +59,23 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class ScannerActivity extends AppCompatActivity {
 
+    public static final String EXTRA_ORDER_ID = OsDetailsActivity.EXTRA_ORDER_ID;
+
     private final AtomicBoolean busy = new AtomicBoolean(false);
+
+    private long orderId = -1L;
+    private Details orderDetails;
+    private OsVerificationStore verificationStore;
+    private final ActivityResultLauncher<android.content.Intent> identifyPanel = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(), result -> {
+                if (result.getResultCode() == RESULT_OK) {
+                    setResult(RESULT_OK);
+                    finish();
+                    return;
+                }
+                busy.set(false);
+            });
+
     private PanelsGateway gateway;
     private ExecutorService analysisExecutor;
     private BarcodeScanner scanner;
@@ -70,6 +95,14 @@ public class ScannerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_scanner);
         org.apollo.mobile.view.common.SystemBars.applyDark(this);
         gateway = PanelsGatewayFactory.create(getApplicationContext());
+        orderId = getIntent().getLongExtra(EXTRA_ORDER_ID, -1L);
+        if (isOrderMode()) {
+            verificationStore = new OsVerificationStore(this);
+            ((TextView) findViewById(R.id.tvScanTitle)).setText("Escaneie as placas da OS" + orderId);
+            ((TextView) findViewById(R.id.tvScanSubtitle)).setText("Carregando placas...");
+            busy.set(true);
+            loadOrder();
+        }
         analysisExecutor = Executors.newSingleThreadExecutor();
         scanner = BarcodeScanning.getClient(new BarcodeScannerOptions.Builder()
                 .setBarcodeFormats(
@@ -91,7 +124,6 @@ public class ScannerActivity extends AppCompatActivity {
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         findViewById(R.id.ivFlash).setOnClickListener(v -> {
             v.setSelected(!v.isSelected());
-            v.setAlpha(v.isSelected() ? 1f : 0.85f);
             if (camera != null && camera.getCameraInfo().hasFlashUnit()) {
                 camera.getCameraControl().enableTorch(v.isSelected());
             }
@@ -147,7 +179,11 @@ public class ScannerActivity extends AppCompatActivity {
         for (Barcode code : codes) {
             String value = ScanCode.normalize(code.getRawValue());
             if (value != null && busy.compareAndSet(false, true)) {
-                runOnUiThread(() -> lookup(value, false));
+                if (isOrderMode()) {
+                    runOnUiThread(() -> identifyByCode(value));
+                } else {
+                    runOnUiThread(() -> lookup(value, false));
+                }
                 return;
             }
         }
@@ -193,7 +229,11 @@ public class ScannerActivity extends AppCompatActivity {
         if (isFinishing() || isDestroyed()) {
             return;
         }
-        PanelSheet.show(this, panel, panel.getStringCode(), () -> busy.set(false));
+        ScannerOverlayView overlay = findViewById(R.id.scannerOverlay);
+        overlay.showSuccess(() -> {
+            if (isFinishing() || isDestroyed()) return;
+            ScannedPanelRouter.open(this, panel);
+        });
     }
 
     private void fail(String code, PanelsError error) {
@@ -219,6 +259,9 @@ public class ScannerActivity extends AppCompatActivity {
         if (parent != null) parent.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
         EditText input = sheet.findViewById(R.id.etManualCode);
+        if (isOrderMode()) {
+            input.setHint("Final do número de série (mín. " + OsPanelMatcher.MIN_SUFFIX + ")");
+        }
         View search = sheet.findViewById(R.id.btnSearchCode);
         sheet.findViewById(R.id.btnCloseSheet).setOnClickListener(v -> dialog.dismiss());
         input.addTextChangedListener(new TextWatcher() {
@@ -236,11 +279,22 @@ public class ScannerActivity extends AppCompatActivity {
         boolean[] submitted = {false};
         search.setOnClickListener(v -> {
             String value = ScanCode.normalize(input.getText().toString());
-            if (value != null) {
+            if (value == null) {
+                return;
+            }
+            if (isOrderMode()) {
+                if (OsPanelMatcher.canonical(value).length() < OsPanelMatcher.MIN_SUFFIX) {
+                    input.setError("Digite pelo menos " + OsPanelMatcher.MIN_SUFFIX + " caracteres.");
+                    return;
+                }
                 submitted[0] = true;
                 dialog.dismiss();
-                lookup(value, true);
+                identifyBySerialEnd(value);
+                return;
             }
+            submitted[0] = true;
+            dialog.dismiss();
+            lookup(value, true);
         });
         dialog.setOnDismissListener(d -> {
             if (!submitted[0]) {
@@ -249,6 +303,186 @@ public class ScannerActivity extends AppCompatActivity {
         });
         Motion.pressable(search);
         dialog.show();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ScannerOverlayView overlay = findViewById(R.id.scannerOverlay);
+        if (overlay != null) overlay.reset();
+        if (!isOrderMode() || orderDetails != null) busy.set(false);
+    }
+
+    private boolean isOrderMode() {
+        return orderId > 0;
+    }
+
+    private void loadOrder() {
+        ServiceOrderGatewayFactory.create(getApplicationContext()).details(orderId,
+                new ServiceOrderGateway.Callback<Details>() {
+                    @Override
+                    public void onSuccess(Details value) {
+                        if (isFinishing() || isDestroyed()) return;
+                        orderDetails = value;
+                        updateOrderProgress();
+                        busy.set(false);
+                    }
+
+                    @Override
+                    public void onFailure(ServiceOrderError error) {
+                        if (isFinishing() || isDestroyed()) return;
+                        Toast.makeText(ScannerActivity.this,
+                                "Não foi possível carregar as placas da OS.", Toast.LENGTH_LONG).show();
+                        finish();
+                    }
+                });
+    }
+
+    private void updateOrderProgress() {
+        if (orderDetails == null) return;
+        int total = orderDetails.getTargetPanels().size();
+        int done = 0;
+        java.util.Map<Long, OsVerificationStore.Result> results = verificationStore.results(orderId);
+        for (Panel panel : orderDetails.getTargetPanels()) {
+            if (results.containsKey(panel.getId())) done++;
+        }
+        ((TextView) findViewById(R.id.tvScanSubtitle)).setText(
+                done + " de " + total + (total == 1 ? " placa verificada" : " placas verificadas"));
+    }
+
+    private void identifyByCode(String code) {
+        if (orderDetails == null) {
+            busy.set(false);
+            return;
+        }
+        Panel panel = OsPanelMatcher.byCode(orderDetails.getTargetPanels(), code);
+        if (panel != null) {
+            startIfNeeded(panel);
+            return;
+        }
+        boolean sameString = OsPanelMatcher.byCode(orderDetails.getPanels(), code) != null;
+        Toast.makeText(this, sameString
+                ? "Essa não é a placa desta OS. Procure a placa " + targetSerialHint() + "."
+                : "A placa " + code + " não faz parte desta OS.", Toast.LENGTH_LONG).show();
+        findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
+    }
+
+    private String targetSerialHint() {
+        List<Panel> targets = orderDetails.getTargetPanels();
+        return targets.size() == 1 ? targets.get(0).getSerialNumber() : "indicada";
+    }
+
+    private void identifyBySerialEnd(String typed) {
+        if (orderDetails == null) {
+            busy.set(false);
+            return;
+        }
+        List<Panel> candidates = OsPanelMatcher.bySerialEnd(orderDetails.getTargetPanels(), typed);
+        if (candidates.isEmpty()) {
+            new androidx.appcompat.app.AlertDialog.Builder(this)
+                    .setTitle("Nenhuma placa encontrada")
+                    .setMessage("Pode ser erro de digitação, placa de outra string ou placa não cadastrada.")
+                    .setPositiveButton("Tentar de novo", (d, w) -> busy.set(false))
+                    .setNegativeButton("Seguir sem identificar", (d, w) -> confirmUnidentified())
+                    .setOnCancelListener(d -> busy.set(false))
+                    .show();
+            return;
+        }
+        String[] labels = new String[candidates.size()];
+        for (int i = 0; i < candidates.size(); i++) {
+            Panel panel = candidates.get(i);
+            int position = orderDetails.positionOf(panel);
+            labels[i] = panel.getSerialNumber() + (position > 0 ? "  ·  posição " + position : "");
+        }
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle(candidates.size() == 1 ? "É esta placa?" : "Compare com a etiqueta")
+                .setItems(labels, (d, which) -> startIfNeeded(candidates.get(which)))
+                .setNegativeButton("Cancelar", (d, w) -> busy.set(false))
+                .setOnCancelListener(d -> busy.set(false))
+                .show();
+    }
+
+    private void confirmUnidentified() {
+        new androidx.appcompat.app.AlertDialog.Builder(this)
+                .setTitle("Seguir sem identificar a placa?")
+                .setMessage("A OS será concluída no nível da string e a ressalva vai para o laudo.")
+                .setPositiveButton("Seguir", (d, w) -> startThen(() -> {
+                    verificationStore.markUnidentified(orderId, true);
+                    setResult(RESULT_OK);
+                    finish();
+                }))
+                .setNegativeButton("Voltar", (d, w) -> busy.set(false))
+                .setOnCancelListener(d -> busy.set(false))
+                .show();
+    }
+
+    private void startIfNeeded(Panel panel) {
+        ScannerOverlayView overlay = findViewById(R.id.scannerOverlay);
+        overlay.showSuccess(() -> {
+            if (isFinishing() || isDestroyed()) return;
+            overlay.reset();
+            openIdentified(panel);
+        });
+    }
+
+    private void startThen(Runnable next) {
+        if (!"ABERTA".equals(orderDetails.getOrder().getMaintenanceStatus())) {
+            next.run();
+            return;
+        }
+        findViewById(R.id.progressScan).setVisibility(View.VISIBLE);
+        ServiceOrderGatewayFactory.create(getApplicationContext()).start(orderId,
+                new ServiceOrderGateway.Callback<org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Order>() {
+                    @Override
+                    public void onSuccess(org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Order value) {
+                        if (isFinishing() || isDestroyed()) return;
+                        findViewById(R.id.progressScan).setVisibility(View.GONE);
+                        loadOrderSilently();
+                        AppToast.success(ScannerActivity.this, "Manutenção iniciada");
+                        next.run();
+                    }
+
+                    @Override
+                    public void onFailure(ServiceOrderError error) {
+                        if (isFinishing() || isDestroyed()) return;
+                        findViewById(R.id.progressScan).setVisibility(View.GONE);
+                        Toast.makeText(ScannerActivity.this,
+                                "Não foi possível iniciar a manutenção.", Toast.LENGTH_LONG).show();
+                        findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
+                    }
+                });
+    }
+
+    private void loadOrderSilently() {
+        ServiceOrderGatewayFactory.create(getApplicationContext()).details(orderId,
+                new ServiceOrderGateway.Callback<Details>() {
+                    @Override
+                    public void onSuccess(Details value) {
+                        if (!isFinishing() && !isDestroyed()) orderDetails = value;
+                    }
+
+                    @Override
+                    public void onFailure(ServiceOrderError error) {
+                    }
+                });
+    }
+
+    private void openIdentified(Panel panel) {
+        android.content.Intent intent = new android.content.Intent(this, MaintenanceIdentifiedActivity.class);
+        intent.putExtra(OsDetailsActivity.EXTRA_ORDER_ID, orderId);
+        intent.putExtra(MaintenanceIdentifiedActivity.EXTRA_PANEL_ID, panel.getId());
+        intent.putExtra(MaintenanceIdentifiedActivity.EXTRA_SERIAL, panel.getSerialNumber());
+        intent.putExtra(MaintenanceIdentifiedActivity.EXTRA_STRING,
+                safe(panel.getInverterCode()) + " / " + safe(panel.getStringCode()));
+        intent.putExtra(MaintenanceIdentifiedActivity.EXTRA_POSITION, orderDetails.positionOf(panel));
+        intent.putExtra(MaintenanceIdentifiedActivity.EXTRA_STATUS, panel.getOperatingStats());
+        intent.putExtra(MaintenanceIdentifiedActivity.EXTRA_OPEN,
+                "ABERTA".equals(orderDetails.getOrder().getMaintenanceStatus()));
+        identifyPanel.launch(intent);
+    }
+
+    private static String safe(String value) {
+        return value == null || value.trim().isEmpty() ? "-" : value;
     }
 
     @Override

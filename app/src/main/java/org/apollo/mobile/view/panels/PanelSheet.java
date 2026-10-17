@@ -30,7 +30,9 @@ public final class PanelSheet {
         View container = (View) view.getParent();
         if (container != null) container.setBackgroundColor(android.graphics.Color.TRANSPARENT);
 
-        ((TextView) view.findViewById(R.id.tvSheetSerial)).setText(panel.getSerialNumber());
+        TextView sheetSerial = view.findViewById(R.id.tvSheetSerial);
+        sheetSerial.setText(panel.getSerialNumber());
+        org.apollo.mobile.view.common.CopySerial.attach(sheetSerial);
         LinearLayout rows = view.findViewById(R.id.llSheetRows);
         String unavailable = activity.getString(R.string.panels_unavailable_value);
 

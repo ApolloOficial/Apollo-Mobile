@@ -26,10 +26,17 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
     }
 
     private final List<PanelItem> items = new ArrayList<>();
+    private final java.util.Map<Long, Long> orders = new java.util.HashMap<>();
     private final Listener listener;
 
     PlateAdapter(Listener listener) {
         this.listener = listener;
+    }
+
+    void setOrders(java.util.Map<Long, Long> panelOrders) {
+        orders.clear();
+        if (panelOrders != null) orders.putAll(panelOrders);
+        notifyDataSetChanged();
     }
 
     void submit(List<PanelItem> panels) {
@@ -48,7 +55,7 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         PanelItem panel = items.get(position);
-        holder.bind(panel);
+        holder.bind(panel, orders);
         holder.itemView.setOnClickListener(view -> listener.onClick(panel));
     }
 
@@ -85,10 +92,11 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
             seeOrder = view.findViewById(R.id.btnVerOS);
         }
 
-        void bind(PanelItem panel) {
+        void bind(PanelItem panel, java.util.Map<Long, Long> orders) {
             android.content.Context context = itemView.getContext();
             PanelCategory category = PanelCategory.of(panel);
             serial.setText(panel.getSerialNumber());
+            org.apollo.mobile.view.common.CopySerial.attach(serial);
             position.setVisibility(View.GONE);
             seeOrder.setVisibility(View.GONE);
 
@@ -115,8 +123,9 @@ final class PlateAdapter extends RecyclerView.Adapter<PlateAdapter.Holder> {
             card.setStrokeColor(context.getColor(stroke));
             boolean attention = category == PanelCategory.ATTENTION;
             seeOrder.setVisibility(attention ? View.VISIBLE : View.GONE);
-            seeOrder.setOnClickListener(attention ? v -> context.startActivity(new android.content.Intent(
-                    context, org.apollo.mobile.view.maintenance.os.ServiceOrdersActivity.class)) : null);
+            if (attention) {
+                org.apollo.mobile.view.common.OsButton.bind((TextView) seeOrder, orders.get(panel.getId()));
+            }
 
             boolean stock = category == PanelCategory.STOCK;
             stockInfo.setVisibility(stock ? View.VISIBLE : View.GONE);

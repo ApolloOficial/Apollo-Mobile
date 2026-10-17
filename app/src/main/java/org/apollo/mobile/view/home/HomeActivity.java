@@ -79,6 +79,8 @@ public final class HomeActivity extends AppCompatActivity {
             Collections.emptyList();
 
     private int currentServiceOrderIndex;
+    private List<HomeAttentionItem> attentionItems = java.util.Collections.emptyList();
+    private int attentionIndex;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -109,6 +111,11 @@ public final class HomeActivity extends AppCompatActivity {
         syncButton.setOnClickListener(
                 view -> syncNow()
         );
+
+        findViewById(R.id.btnPrevAttention).setOnClickListener(
+                view -> Motion.slideSwap(attentionCard, false, () -> showAttention(attentionIndex - 1)));
+        findViewById(R.id.btnNextAttention).setOnClickListener(
+                view -> Motion.slideSwap(attentionCard, true, () -> showAttention(attentionIndex + 1)));
 
         loadHome();
     }
@@ -391,16 +398,25 @@ public final class HomeActivity extends AppCompatActivity {
     private void bindAttention(
             List<HomeAttentionItem> items
     ) {
-        if (items == null || items.isEmpty()) {
+        attentionItems = items == null ? java.util.Collections.emptyList() : items;
+        View pagination = findViewById(R.id.llAttentionPagination);
+        if (attentionItems.isEmpty()) {
             attentionCard.setVisibility(View.GONE);
             attentionEmptyText.setVisibility(View.VISIBLE);
+            pagination.setVisibility(View.GONE);
             return;
         }
 
         attentionCard.setVisibility(View.VISIBLE);
         attentionEmptyText.setVisibility(View.GONE);
+        pagination.setVisibility(View.VISIBLE);
+        showAttention(Math.min(attentionIndex, attentionItems.size() - 1));
+    }
 
-        HomeAttentionItem item = items.get(0);
+    private void showAttention(int index) {
+        if (attentionItems.isEmpty()) return;
+        attentionIndex = Math.max(0, Math.min(attentionItems.size() - 1, index));
+        HomeAttentionItem item = attentionItems.get(attentionIndex);
 
         attentionSeverityText.setText(
                 formatSeverity(item.getSeverity())
@@ -427,6 +443,38 @@ public final class HomeActivity extends AppCompatActivity {
                 progress,
                 true
         );
+
+        TextView button = findViewById(R.id.btnAttentionDetails);
+        org.apollo.mobile.view.common.OsButton.bind(button, item.getServiceOrderId());
+        attentionCard.setOnClickListener(item.getServiceOrderId() > 0 ? v -> button.performClick() : null);
+
+        findViewById(R.id.btnPrevAttention).setEnabled(attentionIndex > 0);
+        findViewById(R.id.btnNextAttention).setEnabled(attentionIndex < attentionItems.size() - 1);
+        renderDots(findViewById(R.id.llAttentionIndicators), attentionItems.size(), attentionIndex,
+                selected -> showAttention(selected));
+    }
+
+    private interface DotListener {
+        void onSelected(int index);
+    }
+
+    private void renderDots(LinearLayout container, int count, int current, DotListener listener) {
+        container.removeAllViews();
+        for (int index = 0; index < count; index++) {
+            boolean active = index == current;
+            int size = getResources().getDimensionPixelSize(active ? R.dimen.space_12 : R.dimen.space_8);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(size, size);
+            int gap = getResources().getDimensionPixelSize(R.dimen.space_4);
+            params.setMargins(gap, 0, gap, 0);
+            View indicator = new View(this);
+            indicator.setLayoutParams(params);
+            indicator.setBackgroundResource(active
+                    ? R.drawable.dot_indicator_home_active
+                    : R.drawable.dot_indicator_home_inactive);
+            final int selected = index;
+            indicator.setOnClickListener(view -> listener.onSelected(selected));
+            container.addView(indicator);
+        }
     }
 
     private void bindPending(
@@ -479,8 +527,6 @@ public final class HomeActivity extends AppCompatActivity {
         serviceOrderCountText.setOnClickListener(v -> startActivity(
                 new Intent(this, org.apollo.mobile.view.maintenance.os.ServiceOrdersActivity.class)));
         View attentionButton = findViewById(R.id.btnAttentionDetails);
-        attentionButton.setOnClickListener(v -> startActivity(
-                new Intent(this, org.apollo.mobile.view.maintenance.os.ServiceOrdersActivity.class)));
         View pendingButton = findViewById(R.id.btnPendingDetails);
         pendingButton.setOnClickListener(v -> startActivity(
                 new Intent(this, org.apollo.mobile.view.panels.PanelsActivity.class)));

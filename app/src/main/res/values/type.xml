@@ -239,8 +239,8 @@
     </style>
 
     <style name="apollo_radio">
-        <item name="android:layout_width">@dimen/space_22</item>
-        <item name="android:layout_height">@dimen/space_22</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
         <item name="android:background">@null</item>
         <item name="android:button">@drawable/radio_apollo</item>
         <item name="buttonTint">@null</item>

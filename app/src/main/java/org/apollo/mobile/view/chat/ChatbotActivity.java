@@ -142,6 +142,9 @@ public final class ChatbotActivity extends AppCompatActivity {
         });
         messageList.setLayoutManager(new LinearLayoutManager(this));
         messageList.setAdapter(adapter);
+        if (messageList.getItemAnimator() instanceof androidx.recyclerview.widget.SimpleItemAnimator) {
+            ((androidx.recyclerview.widget.SimpleItemAnimator) messageList.getItemAnimator()).setSupportsChangeAnimations(false);
+        }
     }
 
     private void bindGreeting() {

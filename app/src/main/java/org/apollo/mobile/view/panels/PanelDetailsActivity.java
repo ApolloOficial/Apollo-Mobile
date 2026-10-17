@@ -28,9 +28,10 @@ import java.util.List;
 import java.util.Locale;
 
 public final class PanelDetailsActivity extends AppCompatActivity {
-    static final String EXTRA_STRING_ID = "string_id";
-    static final String EXTRA_STRING_CODE = "string_code";
-    static final String EXTRA_NOMINAL_POWER = "nominal_power";
+    public static final String EXTRA_STRING_ID = "string_id";
+    public static final String EXTRA_STRING_CODE = "string_code";
+    public static final String EXTRA_NOMINAL_POWER = "nominal_power";
+    public static final String EXTRA_QUERY = "query";
 
     private PanelsGateway gateway;
     private PlateAdapter adapter;
@@ -99,6 +100,8 @@ public final class PanelDetailsActivity extends AppCompatActivity {
             }
         });
 
+        String query = getIntent().getStringExtra(EXTRA_QUERY);
+        if (query != null) ((EditText) findViewById(R.id.etSearch)).setText(query);
         select(PanelFilter.ALL);
         loadLocation();
     }
@@ -158,11 +161,26 @@ public final class PanelDetailsActivity extends AppCompatActivity {
                 updateHealth(result);
                 render();
                 ((RecyclerView) findViewById(R.id.rvPlatesDetail)).scheduleLayoutAnimation();
+                loadOrders();
             }
 
             @Override
             public void onFailure(PanelsError error) {
                 PanelsUi.handleFailure(PanelDetailsActivity.this, error);
+            }
+        });
+    }
+
+    private void loadOrders() {
+        gateway.panelOrders(stringId, new PanelsGateway.Callback<java.util.Map<Long, Long>>() {
+            @Override
+            public void onSuccess(java.util.Map<Long, Long> result) {
+                if (isFinishing() || isDestroyed()) return;
+                adapter.setOrders(result);
+            }
+
+            @Override
+            public void onFailure(PanelsError error) {
             }
         });
     }

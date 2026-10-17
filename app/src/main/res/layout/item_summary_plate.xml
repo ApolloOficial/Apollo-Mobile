@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/space_8"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:id="@+id/llSummaryHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:gravity="center_vertical"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/ivSummaryChevron"
+            android:layout_width="@dimen/space_16"
+            android:layout_height="@dimen/space_16"
+            android:importantForAccessibility="no"
+            android:src="@drawable/ic_chevron_small_right" />
+
+        <TextView
+            android:id="@+id/tvSummaryPlate"
+            style="@style/apollo_label4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/space_4"
+            android:layout_weight="1"
+            android:text="CS-2025-00901 (ITJ-LIM-001, Posição 2)" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvSummaryCondition"
+        style="@style/apollo_body4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/space_20"
+        android:layout_marginTop="@dimen/space_2"
+        android:textColor="@color/neutral_gray"
+        android:visibility="gone" />
+</LinearLayout>

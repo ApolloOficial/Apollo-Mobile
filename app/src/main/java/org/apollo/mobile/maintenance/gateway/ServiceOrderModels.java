@@ -175,5 +175,30 @@ public final class ServiceOrderModels {
             for (StringGroup group : groups) result.addAll(group.getPanels());
             return result;
         }
+
+        public List<Panel> getTargetPanels() {
+            if (scope != Scope.PANEL) return getPanels();
+            List<Panel> result = new ArrayList<>();
+            Long target = warning == null ? null : warning.getPanelId();
+            for (Panel panel : getPanels()) {
+                if (target != null && panel.getId() == target) result.add(panel);
+            }
+            return result;
+        }
+
+        public int positionOf(Panel panel) {
+            for (StringGroup group : groups) {
+                int index = group.getPanels().indexOf(panel);
+                if (index >= 0) return index + 1;
+            }
+            return 0;
+        }
+
+        public Panel findPanel(long id) {
+            for (Panel panel : getPanels()) {
+                if (panel.getId() == id) return panel;
+            }
+            return null;
+        }
     }
 }

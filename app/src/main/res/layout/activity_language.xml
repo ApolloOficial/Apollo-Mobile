@@ -69,8 +69,8 @@
                     <RadioButton
                         style="@style/apollo_radio"
                         android:id="@+id/rbPortuguese"
-                        android:layout_width="@dimen/space_22"
-                        android:layout_height="@dimen/space_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@null"
                         android:button="@drawable/radio_apollo"
                         android:contentDescription="Português (Brasil)" />
@@ -106,8 +106,8 @@
                     <RadioButton
                         style="@style/apollo_radio"
                         android:id="@+id/rbSpanish"
-                        android:layout_width="@dimen/space_22"
-                        android:layout_height="@dimen/space_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@null"
                         android:button="@drawable/radio_apollo"
                         android:contentDescription="Espanõl" />
@@ -143,8 +143,8 @@
                     <RadioButton
                         style="@style/apollo_radio"
                         android:id="@+id/rbEnglish"
-                        android:layout_width="@dimen/space_22"
-                        android:layout_height="@dimen/space_22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
                         android:background="@null"
                         android:button="@drawable/radio_apollo"
                         android:contentDescription="English" />
