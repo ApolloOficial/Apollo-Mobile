@@ -60,10 +60,7 @@ public final class NotificationsActivity extends AppCompatActivity implements To
 
     @Override
     public void onTopBarAction() {
-        unreadOnly = !unreadOnly;
-        filterLabel.setVisibility(unreadOnly ? View.VISIBLE : View.GONE);
-        if (unreadOnly) Motion.refresh(filterLabel);
-        load();
+        startActivity(new android.content.Intent(this, org.apollo.mobile.view.settings.NotificationsSettingsActivity.class));
     }
 
     private void load() {

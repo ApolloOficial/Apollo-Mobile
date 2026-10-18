@@ -186,6 +186,14 @@ public final class SecurityActivity extends AppCompatActivity {
         org.apollo.mobile.view.auth.PasswordVisibilityToggle.attach(confirm);
         dialog.findViewById(R.id.btnSheetClose).setOnClickListener(v -> dialog.dismiss());
         TextView submit = dialog.findViewById(R.id.btnChangePassword);
+        TextView rules = dialog.findViewById(R.id.tvPasswordRules);
+        org.apollo.mobile.view.auth.AuthForm.bind(submit, () -> {
+            String value = password.getText().toString();
+            org.apollo.mobile.view.auth.AuthForm.requirements(rules, value);
+            return !current.getText().toString().isEmpty()
+                    && org.apollo.mobile.auth.policy.PasswordPolicy.isValid(value)
+                    && value.equals(confirm.getText().toString());
+        }, current, password, confirm);
         Motion.pressable(submit);
         submit.setOnClickListener(view -> {
             String currentValue = current.getText().toString();

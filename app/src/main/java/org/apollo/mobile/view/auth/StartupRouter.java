@@ -26,7 +26,7 @@ public final class StartupRouter {
 
         UserSession session = sessionManager.getActiveSession();
         if (session == null) {
-            return new Intent(context, LoginActivity.class);
+            return new Intent(context, WelcomeActivity.class);
         }
         if (!RoleAccessPolicy.canAccess(session.getRole(), AppDestination.TECHNICIAN_HOME)) {
             sessionManager.logout();

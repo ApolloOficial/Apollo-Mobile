@@ -35,6 +35,7 @@ public final class ForgotPasswordStartActivity extends AppCompatActivity {
         identifierInput = findViewById(R.id.etIdentifier);
         inputError = findViewById(R.id.tvInputError);
         continueButton = findViewById(R.id.btnContinue);
+        AuthForm.bind(continueButton, () -> AuthForm.filled(identifierInput), identifierInput);
         gateway = SessionManagerFactory.createGateway(getApplicationContext());
 
         continueButton.setOnClickListener(view -> continueRecovery());
@@ -59,7 +60,7 @@ public final class ForgotPasswordStartActivity extends AppCompatActivity {
         gateway.startRecovery(email, new AuthenticationGateway.Callback<RecoveryResponse>() {
             @Override
             public void onSuccess(RecoveryResponse response) {
-                continueButton.setEnabled(true);
+                continueButton.setEnabled(AuthForm.filled(identifierInput));
                 if (response.getChallengeId() == null || response.getMethods().isEmpty()) {
                     showError(R.string.recovery_no_methods);
                     return;
@@ -74,7 +75,7 @@ public final class ForgotPasswordStartActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(AuthError error) {
-                continueButton.setEnabled(true);
+                continueButton.setEnabled(AuthForm.filled(identifierInput));
                 showError(AuthMessages.generic(error));
             }
         });

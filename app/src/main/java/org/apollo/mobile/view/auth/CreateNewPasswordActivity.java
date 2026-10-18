@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -31,6 +32,15 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         PasswordVisibilityToggle.attach(findViewById(R.id.etNewPassword));
         PasswordVisibilityToggle.attach(findViewById(R.id.etConfirmPassword));
 
+        EditText newField = findViewById(R.id.etNewPassword);
+        EditText confirmField = findViewById(R.id.etConfirmPassword);
+        TextView requirements = findViewById(R.id.tvRequirements);
+        AuthForm.bind(resetButton, () -> {
+            String value = newField.getText().toString();
+            AuthForm.requirements(requirements, value);
+            return org.apollo.mobile.auth.policy.PasswordPolicy.isValid(value)
+                    && value.equals(confirmField.getText().toString());
+        }, newField, confirmField);
         resetButton.setOnClickListener(view -> resetPassword());
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
     }

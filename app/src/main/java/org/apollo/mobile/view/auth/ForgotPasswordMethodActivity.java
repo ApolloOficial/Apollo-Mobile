@@ -3,7 +3,7 @@ package org.apollo.mobile.view.auth;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,8 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class ForgotPasswordMethodActivity extends AppCompatActivity {
-    private CheckBox emailCheck;
-    private CheckBox smsCheck;
+    private CompoundButton emailCheck;
+    private CompoundButton smsCheck;
     private View continueButton;
     private OtpMethod emailMethod;
     private OtpMethod smsMethod;
@@ -48,12 +48,15 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
             if (checked) {
                 smsCheck.setChecked(false);
             }
+            updateContinue();
         });
         smsCheck.setOnCheckedChangeListener((button, checked) -> {
             if (checked) {
                 emailCheck.setChecked(false);
             }
+            updateContinue();
         });
+        updateContinue();
 
         continueButton.setOnClickListener(view -> sendCode());
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
@@ -101,7 +104,7 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
         gateway.sendOtp(challengeId, chosen.getMethod(), new AuthenticationGateway.Callback<OtpSentResponse>() {
             @Override
             public void onSuccess(OtpSentResponse response) {
-                continueButton.setEnabled(true);
+                updateContinue();
                 String destination = response.getDestination() != null
                         ? response.getDestination() : chosen.getDestination();
                 Intent intent = new Intent(ForgotPasswordMethodActivity.this, OtpVerificationActivity.class)
@@ -117,9 +120,13 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(AuthError error) {
-                continueButton.setEnabled(true);
+                updateContinue();
                 org.apollo.mobile.view.common.AppToast.error(ForgotPasswordMethodActivity.this, AuthMessages.generic(error));
             }
         });
+    }
+
+    private void updateContinue() {
+        continueButton.setEnabled(emailCheck.isChecked() || smsCheck.isChecked());
     }
 }

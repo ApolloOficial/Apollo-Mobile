@@ -130,6 +130,8 @@
                         android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:maxLines="1"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:textColorHint="@color/neutral_gray" />
                 </LinearLayout>
             </LinearLayout>

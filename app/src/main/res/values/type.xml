@@ -263,8 +263,8 @@
     </style>
 
     <style name="apollo_search_pill">
-        <item name="android:layout_width">@dimen/space_250</item>
-        <item name="android:layout_height">@dimen/space_40</item>
+        <item name="android:layout_width">@dimen/space_200</item>
+        <item name="android:layout_height">@dimen/space_36</item>
         <item name="android:background">@drawable/bg_pill_outline</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
@@ -275,5 +275,8 @@
     <style name="apollo_cta_filled" parent="apollo_cta_outline">
         <item name="android:background">@drawable/bg_cta_filled</item>
         <item name="android:textColor">@color/cta_filled_text</item>
+    </style>
+    <style name="apollo_auth_title" parent="apollo_h4">
+        <item name="android:textSize">@dimen/auth_title_size</item>
     </style>
 </resources>

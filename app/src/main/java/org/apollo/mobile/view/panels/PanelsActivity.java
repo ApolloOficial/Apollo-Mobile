@@ -43,7 +43,7 @@ public final class PanelsActivity extends AppCompatActivity {
         PanelsUi.bindNavigation(this);
 
         RecyclerView list = findViewById(R.id.rvInverters);
-        list.setLayoutManager(new LinearLayoutManager(this));
+        list.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, getResources().getInteger(R.integer.list_columns)));
         adapter = new InverterAdapter(new InverterAdapter.Listener() {
             @Override
             public void onExpand(PanelStringItem item) {

@@ -45,6 +45,8 @@ public final class LoginActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.btnLogin);
         loginStatus = findViewById(R.id.tvLoginStatus);
         rememberMeCheck = findViewById(R.id.cbRememberMe);
+        AuthForm.bind(loginButton, () -> !loading && AuthForm.filled(emailInput, passwordInput),
+                emailInput, passwordInput);
 
         rememberMeStore = new RememberMeStore(getApplicationContext());
         if (rememberMeStore.isRemembered()) {
@@ -114,8 +116,7 @@ public final class LoginActivity extends AppCompatActivity {
 
     private void setLoading(boolean value) {
         loading = value;
-        loginButton.setEnabled(!value);
-        loginButton.setAlpha(value ? 0.6f : 1f);
+        loginButton.setEnabled(!value && AuthForm.filled(emailInput, passwordInput));
         loginButton.setText(value ? R.string.login_connecting : R.string.login_button);
         loginStatus.setVisibility(value ? View.VISIBLE : View.GONE);
     }
@@ -161,4 +162,6 @@ public final class LoginActivity extends AppCompatActivity {
 
         passwordError.setVisibility(View.VISIBLE);
     }
+
+
 }

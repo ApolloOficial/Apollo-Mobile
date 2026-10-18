@@ -61,6 +61,7 @@ public final class OtpVerificationActivity extends AppCompatActivity {
         resendText = findViewById(R.id.tvResend);
         continueButton = findViewById(R.id.btnContinue);
         bindBoxes();
+        AuthForm.bind(continueButton, this::codeComplete, boxes);
 
         continueButton.setOnClickListener(view -> verify());
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
@@ -140,13 +141,13 @@ public final class OtpVerificationActivity extends AppCompatActivity {
             sessionManager.completeOtpLogin(challengeId, code, new SessionManager.LoginCallback() {
                 @Override
                 public void onSuccess(UserSession session) {
-                    continueButton.setEnabled(true);
+                    continueButton.setEnabled(codeComplete());
                     PostLoginRouter.route(OtpVerificationActivity.this, sessionManager, session);
                 }
 
                 @Override
                 public void onOtpRequired(String newChallengeId, ArrayList<OtpMethod> methods) {
-                    continueButton.setEnabled(true);
+                    continueButton.setEnabled(codeComplete());
                 }
 
                 @Override
@@ -160,7 +161,7 @@ public final class OtpVerificationActivity extends AppCompatActivity {
         gateway.verifyOtp(challengeId, code, new AuthenticationGateway.Callback<OtpVerifyResponse>() {
             @Override
             public void onSuccess(OtpVerifyResponse response) {
-                continueButton.setEnabled(true);
+                continueButton.setEnabled(codeComplete());
                 if (response.getResetToken() == null || response.getResetToken().isEmpty()) {
                     org.apollo.mobile.view.common.AppToast.error(OtpVerificationActivity.this, R.string.login_unavailable);
                     return;
@@ -177,7 +178,7 @@ public final class OtpVerificationActivity extends AppCompatActivity {
     }
 
     private void handleVerifyFailure(AuthError error) {
-        continueButton.setEnabled(true);
+        continueButton.setEnabled(codeComplete());
         org.apollo.mobile.view.common.AppToast.error(this, AuthMessages.generic(error));
 
         switch (error.getType()) {
@@ -243,5 +244,12 @@ public final class OtpVerificationActivity extends AppCompatActivity {
     private void showResendReady() {
         resendText.setText(R.string.otp_resend_ready);
         resendText.setEnabled(true);
+    }
+
+    private boolean codeComplete() {
+        for (EditText box : boxes) {
+            if (box == null || box.getText().toString().trim().isEmpty()) return false;
+        }
+        return true;
     }
 }

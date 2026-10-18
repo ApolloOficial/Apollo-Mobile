@@ -65,7 +65,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
         updateSummary(0);
 
         RecyclerView list = findViewById(R.id.rvPlatesDetail);
-        list.setLayoutManager(new LinearLayoutManager(this));
+        list.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, getResources().getInteger(R.integer.list_columns)));
         adapter = new PlateAdapter(panel -> PanelSheet.show(this, panel, stringCode,
                 allPanels.indexOf(panel) + 1, allPanels.size()));
         list.setAdapter(adapter);
