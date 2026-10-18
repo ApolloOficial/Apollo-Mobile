@@ -82,9 +82,9 @@ public final class SettingsActivity extends AppCompatActivity {
     public void finish() {
         super.finish();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.UPSIDE_DOWN_CAKE) {
-            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, R.anim.nav_fade_in, R.anim.nav_fade_out);
+            overrideActivityTransition(OVERRIDE_TRANSITION_CLOSE, 0, 0);
         } else {
-            overridePendingTransition(R.anim.nav_fade_in, R.anim.nav_fade_out);
+            overridePendingTransition(0, 0);
         }
     }
 

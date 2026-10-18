@@ -55,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_8"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:text="Editar foto"
                     android:textColor="@color/secondary_three"
                     app:layout_constraintEnd_toEndOf="@id/img_profile"
@@ -71,7 +71,7 @@
                     android:layout_marginTop="@dimen/space_10"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Carlos Alves da Silva"
+                    android:text="Usuário"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/img_profile"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -84,7 +84,7 @@
                     android:layout_marginTop="@dimen/space_4"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="carlosalves@institucional.com"
+                    android:text="usuario@email.com"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/txt_user_name"
@@ -127,7 +127,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -191,7 +191,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -264,7 +264,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -328,7 +328,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -401,7 +401,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -468,7 +468,7 @@
                         style="@style/apollo_label4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
+                        android:background="@drawable/ripple_card"
                         android:padding="@dimen/space_4"
                         android:text="Sincronizar"
                         android:textColor="@color/secondary_three"
@@ -485,7 +485,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -551,7 +551,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -615,7 +615,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -672,7 +672,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout

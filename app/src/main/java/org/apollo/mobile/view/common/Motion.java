@@ -35,6 +35,7 @@ public final class Motion {
 
     public static void enterScreen(Activity activity) {
         SystemBars.apply(activity);
+        if (activity != null) return;
         View root = activity.findViewById(android.R.id.content);
         if (!(root instanceof ViewGroup)) return;
         ViewGroup content = findContent((ViewGroup) root);
@@ -78,6 +79,7 @@ public final class Motion {
     }
 
     public static void stagger(long startDelay, View... views) {
+        if (views != null) return;
         int step = 0;
         for (View v : views) {
             if (v == null || v.getVisibility() != View.VISIBLE) continue;
@@ -87,6 +89,10 @@ public final class Motion {
     }
 
     public static void fadeUp(View view, long delay) {
+        view.animate().cancel();
+        view.setAlpha(1f);
+        view.setTranslationY(0f);
+        if (view != null) return;
         float distance = view.getResources().getDisplayMetrics().density * 16;
         view.setAlpha(0f);
         view.setTranslationY(distance);
@@ -99,6 +105,10 @@ public final class Motion {
     }
 
     public static void slideUp(View view, long delay) {
+        view.animate().cancel();
+        view.setAlpha(1f);
+        view.setTranslationY(0f);
+        if (view != null) return;
         float distance = view.getResources().getDisplayMetrics().density * 40;
         view.setAlpha(0f);
         view.setTranslationY(distance);
@@ -121,6 +131,7 @@ public final class Motion {
     }
 
     public static void refresh(View... views) {
+        if (views != null) return;
         long delay = 0;
         for (View view : views) {
             if (view == null) continue;
@@ -137,6 +148,10 @@ public final class Motion {
     }
 
     public static void slideSwap(View view, boolean forward, Runnable swap) {
+        if (view != null) {
+            swap.run();
+            return;
+        }
         float distance = view.getResources().getDisplayMetrics().density * 32 * (forward ? 1 : -1);
         view.animate().alpha(0f).translationX(-distance).setDuration(140)
                 .setInterpolator(new FastOutSlowInInterpolator())
@@ -150,24 +165,24 @@ public final class Motion {
 
     public static void bounce(View view) {
         view.animate().cancel();
-        view.setScaleX(0.82f);
-        view.setScaleY(0.82f);
-        view.animate().scaleX(1f).scaleY(1f).setDuration(380)
-                .setInterpolator(new OvershootInterpolator(3f)).start();
+        view.setScaleX(0.9f);
+        view.setScaleY(0.9f);
+        view.animate().scaleX(1f).scaleY(1f).setDuration(520)
+                .setInterpolator(new OvershootInterpolator(1.6f)).withLayer().start();
     }
 
     public static void spin(View view) {
         view.animate().cancel();
         view.setRotation(0f);
-        view.animate().rotationBy(360f).setDuration(700)
+        view.animate().rotationBy(360f).setDuration(900)
                 .setInterpolator(new FastOutSlowInInterpolator()).start();
     }
 
     public static void growWidth(View view, long delay) {
         view.setPivotX(0f);
         view.setScaleX(0f);
-        view.animate().scaleX(1f).setStartDelay(delay).setDuration(420)
-                .setInterpolator(new OvershootInterpolator(1.4f)).start();
+        view.animate().scaleX(1f).setStartDelay(delay).setDuration(600)
+                .setInterpolator(new FastOutSlowInInterpolator()).start();
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -177,16 +192,16 @@ public final class Motion {
             view.setOnTouchListener((v, event) -> {
                 switch (event.getActionMasked()) {
                     case MotionEvent.ACTION_DOWN:
-                        v.animate().scaleX(0.95f).scaleY(0.95f).setDuration(90)
+                        v.animate().scaleX(0.97f).scaleY(0.97f).setDuration(160)
                                 .setInterpolator(new FastOutSlowInInterpolator()).start();
                         break;
                     case MotionEvent.ACTION_UP:
                         v.performHapticFeedback(HapticFeedbackConstants.CONTEXT_CLICK);
-                        v.animate().scaleX(1f).scaleY(1f).setDuration(260)
-                                .setInterpolator(new OvershootInterpolator(2.5f)).start();
+                        v.animate().scaleX(1f).scaleY(1f).setDuration(420)
+                                .setInterpolator(new OvershootInterpolator(1.4f)).start();
                         break;
                     case MotionEvent.ACTION_CANCEL:
-                        v.animate().scaleX(1f).scaleY(1f).setDuration(160).start();
+                        v.animate().scaleX(1f).scaleY(1f).setDuration(300).setInterpolator(new FastOutSlowInInterpolator()).start();
                         break;
                     default:
                         break;

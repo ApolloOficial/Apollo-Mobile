@@ -91,7 +91,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="@dimen/space_120"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/ripple_card"
         android:padding="@dimen/space_8"
         android:text="Digitar código manualmente"
         android:textColor="@color/neutral_white"

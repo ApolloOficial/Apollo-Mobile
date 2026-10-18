@@ -248,7 +248,7 @@ public final class ChatbotActivity extends AppCompatActivity {
         suggestionCarousel.stop();
         if (initialState.getVisibility() == View.VISIBLE) {
             initialState.animate().alpha(0f).translationY(-initialState.getHeight() * 0.1f)
-                    .setDuration(200).withEndAction(() -> initialState.setVisibility(View.GONE)).start();
+                    .setDuration(320).withEndAction(() -> initialState.setVisibility(View.GONE)).start();
             messageList.setVisibility(View.VISIBLE);
             conversationInput.setVisibility(View.VISIBLE);
             Motion.slideUp(conversationInput, 120);

@@ -108,6 +108,7 @@ public final class PanelsActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }
+                findViewById(R.id.skeletonPanels).setVisibility(android.view.View.GONE);
                 allStrings.clear();
                 allStrings.addAll(result);
                 String query = ((EditText) findViewById(R.id.etSearch)).getText().toString();
@@ -117,6 +118,7 @@ public final class PanelsActivity extends AppCompatActivity {
             @Override
             public void onFailure(PanelsError error) {
                 if (isFinishing() || isDestroyed()) return;
+                findViewById(R.id.skeletonPanels).setVisibility(android.view.View.GONE);
                 if (error.getType() == PanelsError.Type.UNAUTHORIZED) {
                     PanelsUi.handleFailure(PanelsActivity.this, error);
                     return;

@@ -43,7 +43,7 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/apollo_h4"
+            style="@style/apollo_auth_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_32"

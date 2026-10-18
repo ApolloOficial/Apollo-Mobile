@@ -104,6 +104,17 @@
         app:layout_constraintTop_toBottomOf="@id/vPanelsDivider"
         app:layout_constraintWidth_max="@dimen/content_max_width" />
 
+    <org.apollo.mobile.view.common.SkeletonView
+        android:id="@+id/skeletonPanels"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+        android:layout_marginTop="@dimen/space_9"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vPanelsDivider"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
     <include
         android:id="@+id/llPanelsEmpty"
         layout="@layout/view_empty_state"

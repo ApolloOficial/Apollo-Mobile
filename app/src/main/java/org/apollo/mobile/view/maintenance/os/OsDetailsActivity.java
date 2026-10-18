@@ -219,7 +219,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
             card.findViewById(R.id.llGroupHeader).setOnClickListener(v -> {
                 boolean expand = plates.getVisibility() != View.VISIBLE;
                 plates.setVisibility(expand ? View.VISIBLE : View.GONE);
-                chevron.animate().rotation(expand ? 0f : 180f).setDuration(240).start();
+                chevron.animate().rotation(expand ? 0f : 180f).setDuration(320).start();
                 if (expand) Motion.refresh(plates);
             });
 
@@ -233,7 +233,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
                 bindPosition(row, result, concluded);
                 org.apollo.mobile.view.common.CopySerial.onLongPress(row, panel.getSerialNumber());
                 if ("EM_ANDAMENTO".equals(details.getOrder().getMaintenanceStatus())) {
-                    row.setBackgroundResource(android.R.drawable.list_selector_background);
+                    row.setBackgroundResource(R.drawable.ripple_row);
                     row.setOnClickListener(v -> openCondition(panel));
                 }
                 row.findViewById(R.id.vDivider).setVisibility(

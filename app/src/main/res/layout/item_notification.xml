@@ -14,7 +14,7 @@
         android:id="@+id/llNotificationRow"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/ripple_card"
         android:orientation="horizontal"
         android:paddingTop="@dimen/space_16"
         android:paddingBottom="@dimen/space_16">

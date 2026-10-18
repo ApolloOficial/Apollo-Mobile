@@ -46,10 +46,14 @@ public final class BottomNavigation {
             if (target == null) return;
             Intent intent = new Intent(activity, target);
             intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
-            v.postDelayed(() -> {
-                activity.startActivity(intent);
-                activity.overridePendingTransition(R.anim.nav_fade_in, R.anim.nav_fade_out);
-            }, 90);
+            pending = true;
+            View current = activity.findViewById(R.id.navIndicator);
+            if (current != null) {
+                current.animate().cancel();
+                current.setVisibility(View.INVISIBLE);
+            }
+            activity.startActivity(intent);
+            activity.overridePendingTransition(0, 0);
         });
     }
 
@@ -75,34 +79,53 @@ public final class BottomNavigation {
         }
     }
 
+    private static boolean pending = true;
+
     private static void moveIndicator(Activity activity, Tab current) {
         View indicator = activity.findViewById(R.id.navIndicator);
         if (indicator == null) return;
         int targetId = tabViewId(current);
         if (targetId == 0) {
             indicator.setVisibility(View.INVISIBLE);
-            lastTab = current;
             return;
         }
         View target = activity.findViewById(targetId);
-        int fromId = tabViewId(lastTab);
-        View from = fromId == 0 ? null : activity.findViewById(fromId);
-        lastTab = current;
-
-        indicator.post(() -> {
-            float targetX = xOf(target);
-            indicator.setVisibility(View.VISIBLE);
-            if (from != null && from != target) {
-                indicator.setTranslationX(xOf(from));
-                indicator.animate().translationX(targetX).setStartDelay(120).setDuration(420)
-                        .setInterpolator(new OvershootInterpolator(1.2f)).start();
-            } else {
-                indicator.setTranslationX(targetX);
-                indicator.setScaleX(0f);
-                indicator.animate().scaleX(1f).setStartDelay(220).setDuration(380)
-                        .setInterpolator(new OvershootInterpolator(2f)).start();
+        indicator.setVisibility(View.INVISIBLE);
+        indicator.getViewTreeObserver().addOnWindowFocusChangeListener(focused -> {
+            if (!focused) {
+                if (pending) {
+                    indicator.animate().cancel();
+                    indicator.setVisibility(View.INVISIBLE);
+                }
+                return;
+            }
+            if (pending) {
+                pending = false;
+                expand(indicator, target);
+            } else if (indicator.getVisibility() != View.VISIBLE) {
+                indicator.setScaleX(1f);
+                indicator.setAlpha(1f);
+                indicator.setVisibility(View.VISIBLE);
             }
         });
+        pending = true;
+        indicator.post(() -> {
+            if (activity.hasWindowFocus() && pending) {
+                pending = false;
+                expand(indicator, target);
+            }
+        });
+    }
+
+    private static void expand(View indicator, View target) {
+        indicator.animate().cancel();
+        indicator.setPivotX(indicator.getWidth() / 2f);
+        indicator.setTranslationX(xOf(target) + (target.getWidth() - indicator.getWidth()) / 2f);
+        indicator.setScaleX(0.15f);
+        indicator.setAlpha(0f);
+        indicator.setVisibility(View.VISIBLE);
+        indicator.animate().scaleX(1f).alpha(1f).setStartDelay(60).setDuration(520)
+                .setInterpolator(new androidx.interpolator.view.animation.FastOutSlowInInterpolator()).withLayer().start();
     }
 
     private static float xOf(View tab) {

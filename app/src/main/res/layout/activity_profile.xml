@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/space_8"
-            android:background="?attr/selectableItemBackground"
+            android:background="@drawable/ripple_card"
             android:text="Editar foto"
             android:textColor="@color/secondary_three" />
 
@@ -59,7 +59,7 @@
             <TextView
                 android:id="@+id/tv_name_value"
                 style="@style/apollo_field"
-                android:text="Carlos Alves da Silva" />
+                android:text="Usuário" />
 
             <TextView
                 style="@style/apollo_field_label"
@@ -68,7 +68,7 @@
             <TextView
                 android:id="@+id/tv_email_value"
                 style="@style/apollo_field"
-                android:text="carlosalves@institucional.com" />
+                android:text="usuario@email.com" />
 
             <TextView
                 style="@style/apollo_field_label"

@@ -122,7 +122,7 @@ final class PhotoPicker {
         View rotate = dialog.findViewById(R.id.btnCropRotate);
         rotate.setOnClickListener(v -> {
             cropView.rotate();
-            v.animate().rotationBy(90f).setDuration(220).start();
+            v.animate().rotationBy(90f).setDuration(320).start();
         });
         View save = dialog.findViewById(R.id.btnCropSave);
         Motion.pressable(save);

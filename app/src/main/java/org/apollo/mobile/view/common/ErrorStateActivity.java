@@ -27,7 +27,7 @@ public final class ErrorStateActivity extends AppCompatActivity {
         lastShownAt = now;
         Intent intent = new Intent(activity, ErrorStateActivity.class).putExtra(EXTRA_TIMEOUT, timeout);
         activity.startActivityForResult(intent, REQUEST_CODE);
-        activity.overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        activity.overridePendingTransition(0, 0);
     }
 
     @Override

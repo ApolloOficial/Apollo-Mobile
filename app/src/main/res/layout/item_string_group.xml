@@ -12,7 +12,7 @@
         android:id="@+id/llGroupHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?attr/selectableItemBackground"
+        android:background="@drawable/ripple_card"
         android:gravity="center_vertical"
         android:orientation="horizontal">
 

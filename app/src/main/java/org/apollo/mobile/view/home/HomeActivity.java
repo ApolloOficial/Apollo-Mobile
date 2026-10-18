@@ -188,11 +188,13 @@ public final class HomeActivity extends AppCompatActivity {
         homeGateway.getHome(new HomeGateway.Callback() {
             @Override
             public void onSuccess(HomeResponse response) {
+                hideSkeleton(R.id.skeletonHome);
                 bindHome(response);
             }
 
             @Override
             public void onFailure(HomeError error) {
+                hideSkeleton(R.id.skeletonHome);
                 handleError(error);
             }
         });
@@ -760,5 +762,9 @@ public final class HomeActivity extends AppCompatActivity {
                         .getDisplayMetrics()
                         .density
         );
+    }
+
+    private void hideSkeleton(int id) {
+        org.apollo.mobile.view.common.SkeletonView.hide(findViewById(id));
     }
 }

@@ -165,6 +165,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }
+                org.apollo.mobile.view.common.SkeletonView.hide(findViewById(R.id.skeletonPanelDetails));
                 allPanels.clear();
                 allPanels.addAll(result);
                 loaded = true;
@@ -177,6 +178,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(PanelsError error) {
+                org.apollo.mobile.view.common.SkeletonView.hide(findViewById(R.id.skeletonPanelDetails));
                 PanelsUi.handleFailure(PanelDetailsActivity.this, error);
             }
         });

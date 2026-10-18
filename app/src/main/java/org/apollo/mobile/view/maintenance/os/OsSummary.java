@@ -44,7 +44,7 @@ final class OsSummary {
             row.findViewById(R.id.llSummaryHeader).setOnClickListener(v -> {
                 boolean expand = condition.getVisibility() != View.VISIBLE;
                 condition.setVisibility(expand ? View.VISIBLE : View.GONE);
-                chevron.animate().rotation(expand ? 90f : 0f).setDuration(200).start();
+                chevron.animate().rotation(expand ? 90f : 0f).setDuration(320).start();
                 if (expand) Motion.fadeUp(condition, 0);
             });
             list.addView(row);
