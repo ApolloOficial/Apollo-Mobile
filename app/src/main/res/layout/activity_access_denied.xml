@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_32"
             android:gravity="center"
-            android:text="Falta pouco para começar"
+            android:text="@string/l_3abaaf6a6f"
             android:textColor="@color/neutral_black"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_12"
             android:gravity="center"
-            android:text="Sua empresa já usa o Apollo?\nPeça ao administrador para cadastrar seu acesso."
+            android:text="@string/l_04d72fb25e"
             android:textColor="@color/neutral_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Sua empresa ainda não usa o Apollo?"
+                android:text="@string/l_1fc2e4f42b"
                 android:textColor="@color/neutral_black" />
 
             <TextView
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_4"
-                android:text="Fale com a gente"
+                android:text="@string/l_15554e9309"
                 android:textColor="@color/secondary_three"
                 android:textStyle="bold" />
         </LinearLayout>

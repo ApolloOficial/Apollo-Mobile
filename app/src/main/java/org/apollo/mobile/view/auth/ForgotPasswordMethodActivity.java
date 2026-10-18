@@ -115,7 +115,7 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
                         .putExtra(AuthExtras.RESEND_SECONDS, response.getResendInSeconds())
                         .putExtra(AuthExtras.METHODS, new ArrayList<OtpMethod>(readMethods()));
                 startActivity(intent);
-                org.apollo.mobile.view.common.AppToast.success(ForgotPasswordMethodActivity.this, "Código enviado!");
+                org.apollo.mobile.view.common.AppToast.success(ForgotPasswordMethodActivity.this, org.apollo.mobile.view.common.Tr.t("Código enviado!"));
             }
 
             @Override

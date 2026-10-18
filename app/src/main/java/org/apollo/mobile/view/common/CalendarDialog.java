@@ -27,7 +27,7 @@ public final class CalendarDialog {
         void onDateSelected(LocalDate date);
     }
 
-    private static final String[] WEEKDAYS = {"Dom.", "Seg.", "Ter.", "Qua.", "Qui.", "Sex.", "Sáb."};
+    private static final String[] WEEKDAYS = {("Dom."), ("Seg."), ("Ter."), ("Qua."), ("Qui."), ("Sex."), ("Sáb.")};
     private static final DateTimeFormatter MONTH =
             DateTimeFormatter.ofPattern("MMMM 'de' yyyy", new Locale("pt", "BR"));
 
@@ -58,7 +58,7 @@ public final class CalendarDialog {
         }
         LinearLayout weekdays = dialog.findViewById(R.id.llCalWeekdays);
         for (String day : WEEKDAYS) {
-            TextView label = cell(day);
+            TextView label = cell(org.apollo.mobile.view.common.Tr.t(day));
             label.setTextColor(0xFF716764);
             weekdays.addView(label);
         }

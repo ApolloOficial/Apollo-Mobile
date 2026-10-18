@@ -100,8 +100,8 @@ public class ScannerActivity extends AppCompatActivity {
         orderId = getIntent().getLongExtra(EXTRA_ORDER_ID, -1L);
         if (isOrderMode()) {
             verificationStore = new OsVerificationStore(this);
-            ((TextView) findViewById(R.id.tvScanTitle)).setText("Escaneie as placas da OS" + orderId);
-            ((TextView) findViewById(R.id.tvScanSubtitle)).setText("Carregando placas...");
+            ((TextView) findViewById(R.id.tvScanTitle)).setText(org.apollo.mobile.view.common.Tr.t("Escaneie as placas da OS") + orderId);
+            ((TextView) findViewById(R.id.tvScanSubtitle)).setText(org.apollo.mobile.view.common.Tr.t("Carregando placas..."));
             busy.set(true);
             loadOrder();
         }
@@ -280,7 +280,7 @@ public class ScannerActivity extends AppCompatActivity {
 
         EditText input = sheet.findViewById(R.id.etManualCode);
         if (isOrderMode()) {
-            input.setHint("Final do número de série (mín. " + OsPanelMatcher.MIN_SUFFIX + ")");
+            input.setHint(org.apollo.mobile.view.common.Tr.t("Final do número de série (mín. ") + OsPanelMatcher.MIN_SUFFIX + ")");
         }
         View search = sheet.findViewById(R.id.btnSearchCode);
         sheet.findViewById(R.id.btnCloseSheet).setOnClickListener(v -> dialog.dismiss());
@@ -304,7 +304,7 @@ public class ScannerActivity extends AppCompatActivity {
             }
             if (isOrderMode()) {
                 if (OsPanelMatcher.canonical(value).length() < OsPanelMatcher.MIN_SUFFIX) {
-                    input.setError("Digite pelo menos " + OsPanelMatcher.MIN_SUFFIX + " caracteres.");
+                    input.setError(org.apollo.mobile.view.common.Tr.t("Digite pelo menos ") + OsPanelMatcher.MIN_SUFFIX + org.apollo.mobile.view.common.Tr.t(" caracteres."));
                     return;
                 }
                 submitted[0] = true;
@@ -351,7 +351,7 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
-                        org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, "Não foi possível carregar as placas da OS.");
+                        org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível carregar as placas da OS."));
                         finish();
                     }
                 });
@@ -366,7 +366,7 @@ public class ScannerActivity extends AppCompatActivity {
             if (results.containsKey(panel.getId())) done++;
         }
         ((TextView) findViewById(R.id.tvScanSubtitle)).setText(
-                done + " de " + total + (total == 1 ? " placa verificada" : " placas verificadas"));
+                done + org.apollo.mobile.view.common.Tr.t(" de ") + total + (total == 1 ? org.apollo.mobile.view.common.Tr.t(" placa verificada") : org.apollo.mobile.view.common.Tr.t(" placas verificadas")));
     }
 
     private void identifyByCode(String code) {
@@ -381,8 +381,8 @@ public class ScannerActivity extends AppCompatActivity {
         }
         boolean sameString = OsPanelMatcher.byCode(orderDetails.getPanels(), code) != null;
         org.apollo.mobile.view.common.AppToast.info(this, sameString
-                ? "Essa não é a placa desta OS. Procure a placa " + targetSerialHint() + "."
-                : "A placa " + code + " não faz parte desta OS.");
+                ? org.apollo.mobile.view.common.Tr.t("Essa não é a placa desta OS. Procure a placa ") + targetSerialHint() + "."
+                : org.apollo.mobile.view.common.Tr.t("A placa ") + code + org.apollo.mobile.view.common.Tr.t(" não faz parte desta OS."));
         findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
     }
 
@@ -399,10 +399,10 @@ public class ScannerActivity extends AppCompatActivity {
         List<Panel> candidates = OsPanelMatcher.bySerialEnd(orderDetails.getTargetPanels(), typed);
         if (candidates.isEmpty()) {
             android.app.Dialog sheet =
-                    org.apollo.mobile.view.common.AppSheets.message(this, "Nenhuma placa encontrada",
-                            "Pode ser erro de digitação, placa de outra string ou placa não cadastrada.",
-                            "Tentar de novo", () -> busy.set(false),
-                            "Seguir sem identificar", this::confirmUnidentified);
+                    org.apollo.mobile.view.common.AppSheets.message(this, org.apollo.mobile.view.common.Tr.t("Nenhuma placa encontrada"),
+                            org.apollo.mobile.view.common.Tr.t("Pode ser erro de digitação, placa de outra string ou placa não cadastrada."),
+                            org.apollo.mobile.view.common.Tr.t("Tentar de novo"), () -> busy.set(false),
+                            org.apollo.mobile.view.common.Tr.t("Seguir sem identificar"), this::confirmUnidentified);
             if (sheet != null) sheet.setOnCancelListener(d -> busy.set(false));
             return;
         }
@@ -410,11 +410,11 @@ public class ScannerActivity extends AppCompatActivity {
             Panel only = candidates.get(0);
             int position = orderDetails.positionOf(only);
             android.app.Dialog sheet =
-                    org.apollo.mobile.view.common.AppSheets.message(this, "É esta placa?",
+                    org.apollo.mobile.view.common.AppSheets.message(this, org.apollo.mobile.view.common.Tr.t("É esta placa?"),
                             "Compare com a etiqueta: " + only.getSerialNumber()
-                                    + (position > 0 ? " (posição " + position + ")." : "."),
-                            "É esta placa", () -> startIfNeeded(only),
-                            "Cancelar", () -> busy.set(false));
+                                    + (position > 0 ? org.apollo.mobile.view.common.Tr.t(" (posição ") + position + ")." : "."),
+                            org.apollo.mobile.view.common.Tr.t("É esta placa"), () -> startIfNeeded(only),
+                            org.apollo.mobile.view.common.Tr.t("Cancelar"), () -> busy.set(false));
             if (sheet != null) sheet.setOnCancelListener(d -> busy.set(false));
             return;
         }
@@ -422,25 +422,25 @@ public class ScannerActivity extends AppCompatActivity {
         for (int i = 0; i < candidates.size(); i++) {
             Panel panel = candidates.get(i);
             int position = orderDetails.positionOf(panel);
-            labels[i] = panel.getSerialNumber() + (position > 0 ? "  ·  posição " + position : "");
+            labels[i] = panel.getSerialNumber() + (position > 0 ? org.apollo.mobile.view.common.Tr.t("  ·  posição ") + position : "");
         }
         new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle(candidates.size() == 1 ? "É esta placa?" : "Compare com a etiqueta")
+                .setTitle(candidates.size() == 1 ? org.apollo.mobile.view.common.Tr.t("É esta placa?") : org.apollo.mobile.view.common.Tr.t("Compare com a etiqueta"))
                 .setItems(labels, (d, which) -> startIfNeeded(candidates.get(which)))
-                .setNegativeButton("Cancelar", (d, w) -> busy.set(false))
+                .setNegativeButton(org.apollo.mobile.view.common.Tr.t("Cancelar"), (d, w) -> busy.set(false))
                 .setOnCancelListener(d -> busy.set(false))
                 .show();
     }
 
     private void confirmUnidentified() {
         android.app.Dialog sheet =
-                org.apollo.mobile.view.common.AppSheets.message(this, "Seguir sem identificar a placa?",
-                        "A OS será concluída no nível da string e a ressalva vai para o laudo.",
-                        "Seguir", () -> startThen(() -> {
+                org.apollo.mobile.view.common.AppSheets.message(this, org.apollo.mobile.view.common.Tr.t("Seguir sem identificar a placa?"),
+                        org.apollo.mobile.view.common.Tr.t("A OS será concluída no nível da string e a ressalva vai para o laudo."),
+                        org.apollo.mobile.view.common.Tr.t("Seguir"), () -> startThen(() -> {
                             verificationStore.markUnidentified(orderId, true);
                             setResult(RESULT_OK);
                             finish();
-                        }), "Voltar", () -> busy.set(false));
+                        }), org.apollo.mobile.view.common.Tr.t("Voltar"), () -> busy.set(false));
         if (sheet != null) sheet.setOnCancelListener(d -> busy.set(false));
     }
 
@@ -466,7 +466,7 @@ public class ScannerActivity extends AppCompatActivity {
                         if (isFinishing() || isDestroyed()) return;
                         findViewById(R.id.progressScan).setVisibility(View.GONE);
                         loadOrderSilently();
-                        AppToast.success(ScannerActivity.this, "Manutenção iniciada");
+                        AppToast.success(ScannerActivity.this, org.apollo.mobile.view.common.Tr.t("Manutenção iniciada"));
                         next.run();
                     }
 
@@ -474,7 +474,7 @@ public class ScannerActivity extends AppCompatActivity {
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
                         findViewById(R.id.progressScan).setVisibility(View.GONE);
-                        org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, "Não foi possível iniciar a manutenção.");
+                        org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível iniciar a manutenção."));
                         findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
                     }
                 });

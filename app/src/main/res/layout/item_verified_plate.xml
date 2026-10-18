@@ -43,7 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_9"
             android:layout_weight="1"
-            android:text="CS-2025-00900" />
+            android:text="@string/l_deab3d2eda" />
 
         <ImageView
             android:id="@+id/ivPlateStatus"

@@ -124,7 +124,7 @@ public final class BottomNavigation {
         indicator.setScaleX(0.15f);
         indicator.setAlpha(0f);
         indicator.setVisibility(View.VISIBLE);
-        indicator.animate().scaleX(1f).alpha(1f).setStartDelay(60).setDuration(520)
+        indicator.animate().scaleX(1f).alpha(1f).setStartDelay(20).setDuration(380)
                 .setInterpolator(new androidx.interpolator.view.animation.FastOutSlowInInterpolator()).withLayer().start();
     }
 

@@ -61,17 +61,17 @@ public final class CopySerial {
         Context context = source.getContext();
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboard == null) {
-            AppToast.error(context, "Não foi possível copiar o número de série.");
+            AppToast.error(context, org.apollo.mobile.view.common.Tr.t("Não foi possível copiar o número de série."));
             return false;
         }
         try {
             clipboard.setPrimaryClip(ClipData.newPlainText("Número de série", serial.toString().trim()));
         } catch (RuntimeException e) {
-            AppToast.error(context, "Não foi possível copiar o número de série.");
+            AppToast.error(context, org.apollo.mobile.view.common.Tr.t("Não foi possível copiar o número de série."));
             return false;
         }
         source.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
-        AppToast.success(context, "Número de série copiado!");
+        AppToast.success(context, org.apollo.mobile.view.common.Tr.t("Número de série copiado!"));
         return true;
     }
 }

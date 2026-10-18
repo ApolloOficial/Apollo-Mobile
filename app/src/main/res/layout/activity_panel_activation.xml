@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/space_8"
-                android:text="Placa identificada!" />
+                android:text="@string/l_7a7c89f018" />
 
             <TextView
                 android:id="@+id/tvSubtitle"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/space_2"
-                android:text="Dados abaixo vieram do scan"
+                android:text="@string/l_37d851ebb6"
                 android:textColor="@color/neutral_gray" />
 
             <LinearLayout
@@ -95,7 +95,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Número de série"
+                    android:text="@string/l_122342a3ff"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -107,7 +107,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="CS-2026-00932" />
+                    android:text="@string/l_d926793823" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,7 +120,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Modelo"
+                    android:text="@string/l_4b3358a2cc"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="Canadian CS3W-410P" />
+                    android:text="@string/l_ee763aed09" />
             </LinearLayout>
 
             <LinearLayout
@@ -145,7 +145,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Potência de etiqueta"
+                    android:text="@string/l_5c52495062"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -157,7 +157,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="410W" />
+                    android:text="@string/l_3a9a0c1cf2" />
             </LinearLayout>
 
             <LinearLayout
@@ -170,7 +170,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Inversor / String"
+                    android:text="@string/l_12ba5b02b9"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -182,7 +182,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="Inversor 002 / ITJ-LIM-001" />
+                    android:text="@string/l_e8dcf02615" />
             </LinearLayout>
             </LinearLayout>
 
@@ -191,14 +191,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="Preencha para ativar a placa" />
+                android:text="@string/l_c5319ec453" />
 
             <TextView
                 style="@style/apollo_body3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_6"
-                android:text="Confirme os dados de instalação desta placa"
+                android:text="@string/l_56b6f2cfdb"
                 android:textColor="@color/neutral_gray" />
 
             <TextView
@@ -206,7 +206,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
-                android:text="Data de instalação" />
+                android:text="@string/l_ad7119cdc4" />
 
             <LinearLayout
                 android:id="@+id/llInstallationDate"
@@ -234,7 +234,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_16"
                     android:layout_weight="1"
-                    android:hint="Insira a data de instalação"
+                    android:hint="@string/l_d8302d6ac1"
                     android:textColorHint="@color/disable_gray" />
             </LinearLayout>
 
@@ -254,7 +254,7 @@
                     style="@style/apollo_label1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Inversor ITJ-LIM-002, String 02" />
+                    android:text="@string/l_a69e6e606f" />
 
                 <TextView
                     android:id="@+id/tvPositionSubtitle"
@@ -262,7 +262,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_8"
-                    android:text="Essa string já tem 13 das 25 placas instaladas"
+                    android:text="@string/l_b59466e58e"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -270,7 +270,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_16"
-                    android:text="Defina a posição desta placa na string:" />
+                    android:text="@string/l_d281286dd0" />
 
                 <LinearLayout
                     android:layout_width="wrap_content"
@@ -285,7 +285,7 @@
                         android:layout_width="@dimen/space_30"
                         android:layout_height="@dimen/space_30"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="Diminuir posição"
+                        android:contentDescription="@string/l_055a66316f"
                         android:src="@drawable/ic_stepper_minus" />
 
                     <TextView
@@ -294,14 +294,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginHorizontal="@dimen/space_24"
-                        android:text="14 de 24" />
+                        android:text="@string/l_f38aaadcf4" />
 
                     <ImageView
                         android:id="@+id/btnPlus"
                         android:layout_width="@dimen/space_30"
                         android:layout_height="@dimen/space_30"
                         android:background="?attr/selectableItemBackgroundBorderless"
-                        android:contentDescription="Aumentar posição"
+                        android:contentDescription="@string/l_9e5980259f"
                         android:src="@drawable/ic_stepper_plus" />
                 </LinearLayout>
 
@@ -310,7 +310,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_16"
-                    android:text="Sugerida: próxima posição livre na ordem do bipe."
+                    android:text="@string/l_4396d5c300"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -319,7 +319,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_16"
                     android:lineSpacingExtra="@dimen/space_2"
-                    android:text="Bipe na ordem física da fileira: a posição é sugerida sozinha (próxima livre). Use − / + só para corrigir.\nNão é mais preciso digitar eficiência inicial"
+                    android:text="@string/l_96bd951555"
                     android:textColor="@color/neutral_gray" />
             </LinearLayout>
 
@@ -329,7 +329,7 @@
                 android:layout_height="@dimen/space_52"
                 android:layout_marginHorizontal="@dimen/space_minus_7"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="Confirmar e ativar placa" />
+                android:text="@string/l_21545e78a5" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

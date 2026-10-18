@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Placa CS-2024-00765"
+        android:text="@string/l_ca25147964"
         android:textColor="@color/neutral_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_6"
         android:layout_marginEnd="@dimen/space_8"
-        android:text="OS84524"
+        android:text="@string/l_5f9048df2f"
         app:layout_constraintEnd_toStartOf="@id/tvTag"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
@@ -41,7 +41,7 @@
         style="@style/apollo_tag"
         android:backgroundTint="@color/alert_two"
         android:minWidth="@dimen/space_80"
-        android:text="Preventiva"
+        android:text="@string/l_1cc3a8b8fd"
         app:layout_constraintBottom_toBottomOf="@id/tvMainId"
         app:layout_constraintEnd_toEndOf="parent" />
 
@@ -49,7 +49,7 @@
         android:id="@+id/btnDetails"
         style="@style/apollo_cta_outline"
         android:layout_marginTop="@dimen/space_9"
-        android:text="Ver detalhes"
+        android:text="@string/l_129843b7b4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvMainId" />
 

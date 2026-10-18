@@ -104,7 +104,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
                 } else {
                     emptyText.error();
                 }
-                summaryText.setText("Ordens indisponíveis");
+                summaryText.setText(org.apollo.mobile.view.common.Tr.t("Ordens indisponíveis"));
             }
         });
     }
@@ -139,7 +139,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
 
         Long typeId = findTypeId(key);
         if (typeId == null) {
-            org.apollo.mobile.view.common.AppToast.error(this, "Não foi possível localizar esse tipo de manutenção.");
+            org.apollo.mobile.view.common.AppToast.error(this, org.apollo.mobile.view.common.Tr.t("Não foi possível localizar esse tipo de manutenção."));
             loadMaintenanceTypes();
             return;
         }
@@ -196,7 +196,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
             if ("EM_ANDAMENTO".equals(order.getMaintenanceStatus())) inProgress++;
         }
         if (selectedTypeId == null) {
-            summaryText.setText(open + " em aberto · " + inProgress + " em andamento");
+            summaryText.setText(open + org.apollo.mobile.view.common.Tr.t(" em aberto · ") + inProgress + org.apollo.mobile.view.common.Tr.t(" em andamento"));
         }
 
         if (orders.isEmpty()) {
@@ -252,16 +252,16 @@ public final class MaintenanceActivity extends AppCompatActivity {
     private String assetLabel(Order order) {
         String type = order.getMaintenanceTypeName();
         return type == null || type.trim().isEmpty()
-                ? "Ordem de serviço"
-                : type.trim();
+                ? org.apollo.mobile.view.common.Tr.t("Ordem de serviço")
+                : org.apollo.mobile.view.common.Tr.v(type.trim());
     }
 
     private String typeLabel(Order order) {
         String status = order.getMaintenanceStatus();
-        if ("ABERTA".equals(status)) return "Aberta";
-        if ("EM_ANDAMENTO".equals(status)) return "Em andamento";
-        if ("CONCLUIDA".equals(status)) return "Concluída";
-        if ("CANCELADA".equals(status)) return "Cancelada";
+        if ("ABERTA".equals(status)) return org.apollo.mobile.view.common.Tr.t("Aberta");
+        if ("EM_ANDAMENTO".equals(status)) return org.apollo.mobile.view.common.Tr.t("Em andamento");
+        if ("CONCLUIDA".equals(status)) return org.apollo.mobile.view.common.Tr.t("Concluída");
+        if ("CANCELADA".equals(status)) return org.apollo.mobile.view.common.Tr.t("Cancelada");
         return "OS";
     }
 
@@ -275,12 +275,12 @@ public final class MaintenanceActivity extends AppCompatActivity {
 
     private String sectionLabel(String value) {
         java.time.LocalDate date = parseDate(value);
-        if (date == null) return "Anteriores";
+        if (date == null) return org.apollo.mobile.view.common.Tr.t("Anteriores");
         java.time.LocalDate today = java.time.LocalDate.now();
-        if (date.equals(today)) return "Hoje";
-        if (date.equals(today.minusDays(1))) return "Ontem";
-        if (!date.isBefore(today.minusDays(30))) return "Nos últimos 30 dias";
-        return "Anteriores";
+        if (date.equals(today)) return org.apollo.mobile.view.common.Tr.t("Hoje");
+        if (date.equals(today.minusDays(1))) return org.apollo.mobile.view.common.Tr.t("Ontem");
+        if (!date.isBefore(today.minusDays(30))) return org.apollo.mobile.view.common.Tr.t("Nos últimos 30 dias");
+        return org.apollo.mobile.view.common.Tr.t("Anteriores");
     }
 
     private java.time.LocalDate parseDate(String value) {
@@ -298,9 +298,9 @@ public final class MaintenanceActivity extends AppCompatActivity {
 
     private String maintenanceTypeLabel(Order order) {
         String type = normalize(order.getMaintenanceTypeName());
-        if (type.contains("prevent")) return "Preventiva";
-        if (type.contains("corret")) return "Corretiva";
-        if (type.contains("predit")) return "Preditiva";
+        if (type.contains("prevent")) return org.apollo.mobile.view.common.Tr.t("Preventiva");
+        if (type.contains("corret")) return org.apollo.mobile.view.common.Tr.t("Corretiva");
+        if (type.contains("predit")) return org.apollo.mobile.view.common.Tr.t("Preditiva");
         return typeLabel(order);
     }
 

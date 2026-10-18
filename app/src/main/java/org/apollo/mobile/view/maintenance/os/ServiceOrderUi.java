@@ -11,10 +11,10 @@ final class ServiceOrderUi {
     static String status(String value) {
         if (value == null) return "-";
         switch (value) {
-            case "ABERTA": return "Aberta";
-            case "EM_ANDAMENTO": return "Em andamento";
-            case "CONCLUIDA": return "Concluída";
-            case "CANCELADA": return "Cancelada";
+            case "ABERTA": return org.apollo.mobile.view.common.Tr.t("Aberta");
+            case "EM_ANDAMENTO": return org.apollo.mobile.view.common.Tr.t("Em andamento");
+            case "CONCLUIDA": return org.apollo.mobile.view.common.Tr.t("Concluída");
+            case "CANCELADA": return org.apollo.mobile.view.common.Tr.t("Cancelada");
             default: return value;
         }
     }
@@ -22,10 +22,10 @@ final class ServiceOrderUi {
     static String priority(String value) {
         if (value == null) return "-";
         switch (value) {
-            case "BAIXA": return "Baixa";
-            case "MEDIA": return "Média";
-            case "ALTA": return "Alta";
-            case "CRITICA": return "Crítica";
+            case "BAIXA": return org.apollo.mobile.view.common.Tr.t("Baixa");
+            case "MEDIA": return org.apollo.mobile.view.common.Tr.t("Média");
+            case "ALTA": return org.apollo.mobile.view.common.Tr.t("Alta");
+            case "CRITICA": return org.apollo.mobile.view.common.Tr.t("Crítica");
             default: return value;
         }
     }

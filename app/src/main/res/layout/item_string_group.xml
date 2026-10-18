@@ -27,7 +27,7 @@
                 style="@style/apollo_label3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Inversor 01, ITJ-LIM-001" />
+                android:text="@string/l_9839f2746e" />
 
             <TextView
                 android:id="@+id/tvGroupCount"
@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_2"
-                android:text="0 de 24 placas verificadas"
+                android:text="@string/l_7e233bd24d"
                 android:textColor="@color/neutral_gray" />
         </LinearLayout>
 

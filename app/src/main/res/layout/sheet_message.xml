@@ -29,7 +29,7 @@
             android:layout_height="@dimen/space_30"
             android:layout_marginStart="@dimen/space_12"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Fechar"
+            android:contentDescription="@string/l_23781b5ede"
             android:src="@drawable/ic_close_circle" />
     </LinearLayout>
 

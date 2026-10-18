@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_10"
-            android:text="Apollo AI" />
+            android:text="@string/l_3ebdc137ab" />
     </LinearLayout>
 
     <View
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Olá! Como posso ajudar?" />
+                android:text="@string/l_32a8f257be" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgSuggestions"

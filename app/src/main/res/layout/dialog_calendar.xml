@@ -17,7 +17,7 @@
             android:layout_width="@dimen/space_32"
             android:layout_height="@dimen/space_32"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Mês anterior"
+            android:contentDescription="@string/l_4bb1cb9db8"
             android:padding="@dimen/space_4"
             android:src="@drawable/ic_cal_prev" />
 
@@ -29,7 +29,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/manrope_bold"
             android:gravity="center"
-            android:text="outubro de 2026"
+            android:text="@string/l_61d85722c6"
             android:textColor="@color/neutral_black" />
 
         <ImageView
@@ -37,7 +37,7 @@
             android:layout_width="@dimen/space_32"
             android:layout_height="@dimen/space_32"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Próximo mês"
+            android:contentDescription="@string/l_f844024976"
             android:padding="@dimen/space_4"
             android:src="@drawable/ic_cal_next" />
     </LinearLayout>

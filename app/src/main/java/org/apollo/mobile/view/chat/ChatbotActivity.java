@@ -307,14 +307,14 @@ public final class ChatbotActivity extends AppCompatActivity {
     private void copyToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
         if (clipboard == null || text == null || text.trim().isEmpty()) {
-            org.apollo.mobile.view.common.AppToast.error(this, "Não foi possível copiar o texto.");
+            org.apollo.mobile.view.common.AppToast.error(this, org.apollo.mobile.view.common.Tr.t("Não foi possível copiar o texto."));
             return;
         }
         try {
             clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.chat_title), text));
-            org.apollo.mobile.view.common.AppToast.success(this, "Texto copiado!");
+            org.apollo.mobile.view.common.AppToast.success(this, org.apollo.mobile.view.common.Tr.t("Texto copiado!"));
         } catch (RuntimeException e) {
-            org.apollo.mobile.view.common.AppToast.error(this, "Não foi possível copiar o texto.");
+            org.apollo.mobile.view.common.AppToast.error(this, org.apollo.mobile.view.common.Tr.t("Não foi possível copiar o texto."));
         }
     }
 

@@ -15,7 +15,7 @@ public final class OsButton {
     public static void bind(TextView button, Long orderId) {
         Context context = button.getContext();
         boolean hasOrder = orderId != null && orderId > 0;
-        button.setText(hasOrder ? "Ver OS" : "Aguardando OS");
+        button.setText(hasOrder ? org.apollo.mobile.view.common.Tr.t("Ver OS") : org.apollo.mobile.view.common.Tr.t("Aguardando OS"));
         button.setBackgroundResource(hasOrder ? R.drawable.bg_cta_outline : R.drawable.bg_cta_disabled);
         button.setTextColor(context.getColor(hasOrder ? R.color.secondary_one : R.color.neutral_gray));
         button.setEnabled(hasOrder);

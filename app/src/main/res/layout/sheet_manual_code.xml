@@ -27,14 +27,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Digitar código" />
+            android:text="@string/l_6565ac7f46" />
 
         <ImageView
             android:id="@+id/btnCloseSheet"
             android:layout_width="@dimen/space_30"
             android:layout_height="@dimen/space_30"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Fechar"
+            android:contentDescription="@string/l_23781b5ede"
             android:src="@drawable/ic_close_circle" />
     </LinearLayout>
 
@@ -43,7 +43,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_24"
-        android:text="Número de série ou código de barras" />
+        android:text="@string/l_95ba3521c3" />
 
     <EditText
         android:id="@+id/etManualCode"
@@ -52,7 +52,7 @@
         android:layout_height="@dimen/space_47"
         android:layout_marginTop="@dimen/space_8"
         android:background="@drawable/bg_input_large"
-        android:hint="Ex.: CS-2026-00932"
+        android:hint="@string/l_ec6b13bf98"
         android:imeOptions="actionSearch"
         android:inputType="textCapCharacters|textNoSuggestions"
         android:maxLines="1"
@@ -67,5 +67,5 @@
         android:layout_marginHorizontal="@dimen/space_minus_8"
         android:layout_marginTop="@dimen/space_16"
         android:enabled="false"
-        android:text="Buscar placa" />
+        android:text="@string/l_fb4255d52c" />
 </LinearLayout>

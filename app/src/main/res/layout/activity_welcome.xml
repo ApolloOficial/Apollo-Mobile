@@ -30,7 +30,7 @@
         android:layout_marginStart="@dimen/title_margin_horizontal"
         android:layout_marginEnd="@dimen/title_margin_horizontal"
         android:layout_marginBottom="@dimen/title_margin_bottom"
-        android:text="O futuro da sua energia\ncomeça com a gente"
+        android:text="@string/l_4d2bb2724e"
         android:textColor="@color/neutral_white"
         app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
             style="@style/apollo_auth_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Otimize."
+            android:text="@string/l_bdb385dfc2"
             android:textColor="@color/neutral_black"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -65,7 +65,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_16"
-            android:text="Tenha um controle de sua energia solar com maior transparência e controle na palma da sua mão. Tudo agora é digital."
+            android:text="@string/l_ee0e1ccc20"
             android:textColor="@color/neutral_black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -80,7 +80,7 @@
             app:backgroundTint="@color/cta_fill_tint"
             android:insetTop="0dp"
             android:insetBottom="0dp"
-            android:text="Começar agora"
+            android:text="@string/l_f8d3709a65"
             android:textAllCaps="false"
             android:textColor="@color/cta_filled_text"
             app:cornerRadius="@dimen/button_corner_radius"
@@ -102,7 +102,7 @@
                 style="@style/apollo_label4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Já possui conta?"
+                android:text="@string/l_318b8ac4e8"
                 android:textColor="@color/neutral_black" />
 
             <TextView

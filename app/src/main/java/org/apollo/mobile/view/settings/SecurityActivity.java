@@ -158,8 +158,9 @@ public final class SecurityActivity extends AppCompatActivity {
                 org.apollo.mobile.view.common.AppSheets.create(this, R.layout.sheet_phone_change);
         TextView current = dialog.findViewById(R.id.tvCurrentPhone);
         current.setText(currentPhone == null || currentPhone.trim().isEmpty()
-                ? getString(R.string.settings_phone_none) : currentPhone.trim());
+                ? getString(R.string.settings_phone_none) : org.apollo.mobile.view.common.PhoneMask.format(currentPhone.trim()));
         EditText input = dialog.findViewById(R.id.etNewPhone);
+        org.apollo.mobile.view.common.PhoneMask.attach(input);
         dialog.findViewById(R.id.btnSheetClose).setOnClickListener(v -> dialog.dismiss());
         View send = dialog.findViewById(R.id.btnSendPhone);
         Motion.pressable(send);
@@ -199,7 +200,7 @@ public final class SecurityActivity extends AppCompatActivity {
             String currentValue = current.getText().toString();
             String newValue = password.getText().toString();
             if (currentValue.isEmpty()) {
-                current.setError("Informe sua senha atual.");
+                current.setError(org.apollo.mobile.view.common.Tr.t("Informe sua senha atual."));
                 Motion.shake(current);
                 return;
             }
@@ -219,7 +220,7 @@ public final class SecurityActivity extends AppCompatActivity {
                 public void onSuccess(Void result) {
                     if (isFinishing() || isDestroyed()) return;
                     dialog.dismiss();
-                    org.apollo.mobile.view.common.AppToast.success(SecurityActivity.this, "Senha alterada com sucesso!");
+                    org.apollo.mobile.view.common.AppToast.success(SecurityActivity.this, org.apollo.mobile.view.common.Tr.t("Senha alterada com sucesso!"));
                     loadSecurity();
                 }
 
@@ -228,9 +229,9 @@ public final class SecurityActivity extends AppCompatActivity {
                     if (isFinishing() || isDestroyed()) return;
                     submit.setEnabled(true);
                     if (error.getType() == SettingsError.Type.INVALID_REQUEST) {
-                        current.setError("Senha atual incorreta ou nova senha igual à atual.");
+                        current.setError(org.apollo.mobile.view.common.Tr.t("Senha atual incorreta ou nova senha igual à atual."));
                         org.apollo.mobile.view.common.AppToast.error(SecurityActivity.this,
-                                "Não foi possível alterar a senha.\nConfira os dados e tente novamente.");
+                                org.apollo.mobile.view.common.Tr.t("Não foi possível alterar a senha.\nConfira os dados e tente novamente."));
                         return;
                     }
                     dialog.dismiss();

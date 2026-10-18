@@ -69,7 +69,7 @@ public final class AppToast {
 
     public static void offline(Context context) {
         show(context, Type.OFFLINE,
-                "Você está offline.\nNada será perdido, sincronizamos assim que a conexão voltar.");
+                org.apollo.mobile.view.common.Tr.t("Você está offline.\nNada será perdido, sincronizamos assim que a conexão voltar."));
     }
 
     public static void show(Context context, Type type, CharSequence message) {

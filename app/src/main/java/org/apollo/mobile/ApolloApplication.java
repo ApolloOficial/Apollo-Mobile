@@ -22,6 +22,7 @@ public final class ApolloApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ActivityTracker.register(this);
+        org.apollo.mobile.view.common.Tr.init(this);
         watchConnectivity();
     }
 

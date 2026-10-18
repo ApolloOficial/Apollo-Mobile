@@ -60,7 +60,7 @@ public final class EmptyState {
     }
 
     public void setText(String text) {
-        if (text != null && text.startsWith("Não foi possível")) {
+        if (text != null && text.startsWith(org.apollo.mobile.view.common.Tr.t("Não foi possível"))) {
             error();
         } else {
             empty(kind, null);
@@ -71,7 +71,7 @@ public final class EmptyState {
         kind = value;
         illustration.setImageResource(value.illustration);
         title.setVisibility(View.GONE);
-        message.setText(text == null ? value.message : text);
+        message.setText(text == null ? Tr.t(value.message) : text);
         retry.setVisibility(View.GONE);
         support.setVisibility(View.GONE);
         setVisibility(View.VISIBLE);

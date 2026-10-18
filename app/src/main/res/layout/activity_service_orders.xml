@@ -47,7 +47,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_5"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="Ordens de serviço" />
+                android:text="@string/l_023f8fcdbd" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -59,18 +59,18 @@
                 <TextView
                     android:id="@+id/chipAll"
                     style="@style/apollo_filter_chip"
-                    android:text="Todas" />
+                    android:text="@string/l_f28c2b459d" />
 
                 <TextView
                     android:id="@+id/chipOpen"
                     style="@style/apollo_filter_chip"
-                    android:text="Aberta" />
+                    android:text="@string/l_05d22f8223" />
 
                 <TextView
                     android:id="@+id/chipInProgress"
                     style="@style/apollo_filter_chip"
                     android:layout_marginEnd="0dp"
-                    android:text="Em andamento" />
+                    android:text="@string/l_976bedf5cc" />
             </LinearLayout>
 
             <org.apollo.mobile.view.common.SkeletonView

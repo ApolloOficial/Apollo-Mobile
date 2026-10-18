@@ -44,10 +44,10 @@ final class SettingsPhotos {
                 : new String[]{activity.getString(R.string.settings_photo_choose)};
         if (labels.length > 1) {
             org.apollo.mobile.view.common.AppSheets.message(activity, activity.getString(R.string.settings_photo_title),
-                    "Escolha uma nova foto de perfil ou remova a atual.", labels[0], pick, labels[1], remove);
+                    org.apollo.mobile.view.common.Tr.t("Escolha uma nova foto de perfil ou remova a atual."), labels[0], pick, labels[1], remove);
         } else {
             org.apollo.mobile.view.common.AppSheets.message(activity, activity.getString(R.string.settings_photo_title),
-                    "Escolha uma foto da galeria para o seu perfil.", labels[0], pick, null, null);
+                    org.apollo.mobile.view.common.Tr.t("Escolha uma foto da galeria para o seu perfil."), labels[0], pick, null, null);
         }
     }
 

@@ -66,7 +66,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/space_8"
-                android:text="Placa identificada!" />
+                android:text="@string/l_7a7c89f018" />
 
             <TextView
                 android:id="@+id/tvSubtitle"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/space_2"
-                android:text="Dados abaixo vieram do scan"
+                android:text="@string/l_37d851ebb6"
                 android:textColor="@color/neutral_gray" />
 
             <LinearLayout
@@ -95,7 +95,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Número de série"
+                    android:text="@string/l_122342a3ff"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -107,7 +107,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="CS-2026-00932" />
+                    android:text="@string/l_d926793823" />
             </LinearLayout>
 
             <LinearLayout
@@ -120,7 +120,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Modelo"
+                    android:text="@string/l_4b3358a2cc"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -132,7 +132,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="Canadian CS3W-410P" />
+                    android:text="@string/l_ee763aed09" />
             </LinearLayout>
 
             <LinearLayout
@@ -145,7 +145,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Potência de etiqueta"
+                    android:text="@string/l_5c52495062"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -157,7 +157,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="410W" />
+                    android:text="@string/l_3a9a0c1cf2" />
             </LinearLayout>
 
             <LinearLayout
@@ -170,7 +170,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Data de aquisição"
+                    android:text="@string/l_3d0eb1b3e2"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -195,7 +195,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Inversor / String"
+                    android:text="@string/l_12ba5b02b9"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -207,7 +207,7 @@
                     android:ellipsize="end"
                     android:gravity="end"
                     android:maxLines="1"
-                    android:text="Inversor 002 / ITJ-LIM-001" />
+                    android:text="@string/l_e8dcf02615" />
             </LinearLayout>
 
             <LinearLayout
@@ -220,7 +220,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Posição"
+                    android:text="@string/l_071f6edd72"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -245,7 +245,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Eficiência"
+                    android:text="@string/l_e187ef2a31"
                     android:textColor="@color/neutral_gray" />
 
                 <TextView
@@ -267,7 +267,7 @@
                 android:layout_height="@dimen/space_52"
                 android:layout_marginHorizontal="@dimen/space_minus_7"
                 android:layout_marginTop="@dimen/space_32"
-                android:text="Ir para string ITJ-LIM-001 · CS-2026-00932" />
+                android:text="@string/l_eda5428928" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

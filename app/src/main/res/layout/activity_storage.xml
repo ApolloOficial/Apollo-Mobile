@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="Armazenamento e\ndados offline" />
+                android:text="@string/l_f63a7ca81e" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -50,7 +50,7 @@
                     style="@style/apollo_h6"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Uso total" />
+                    android:text="@string/l_36d3c97b61" />
 
                 <TextView
                     android:id="@+id/tvStorageAvailable"
@@ -58,7 +58,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
-                    android:text="56MB de 3GB disponíveis"
+                    android:text="@string/l_f98fd02e83"
                     android:textColor="@color/neutral_gray" />
 
                 <FrameLayout
@@ -98,7 +98,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_4"
                         android:layout_marginEnd="@dimen/space_9"
-                        android:text="Uso do Apollo"
+                        android:text="@string/l_6c6db42535"
                         android:textSize="@dimen/text_8" />
                     <View
                         android:layout_width="@dimen/space_5"
@@ -112,7 +112,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_4"
                         android:layout_marginEnd="@dimen/space_9"
-                        android:text="Uso de outros aplicativos"
+                        android:text="@string/l_edb40af465"
                         android:textSize="@dimen/text_8" />
                 </LinearLayout>
             </LinearLayout>
@@ -129,7 +129,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Dados de placa offline" />
+                    android:text="@string/l_93f976fb32" />
 
                 <TextView
                     android:id="@+id/tvPlacaSize"
@@ -137,7 +137,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_8"
-                    android:text="21MB"
+                    android:text="@string/l_76a1c79132"
                     android:textColor="@color/neutral_gray" />
             </LinearLayout>
 
@@ -147,7 +147,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:lineSpacingExtra="@dimen/space_2"
-                android:text="Cópia local pra consultar placas sem internet. Limpar não afeta nada já salvo, só que a próxima consulta offline não vai funcionar até sincronizar de novo."
+                android:text="@string/l_5e93b8855d"
                 android:textColor="@color/neutral_gray" />
 
             <LinearLayout
@@ -162,7 +162,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Registros pendentes (2 itens)" />
+                    android:text="@string/l_899aacbf67" />
 
                 <TextView
                     android:id="@+id/tvPendingSize"
@@ -170,7 +170,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_8"
-                    android:text="35MB"
+                    android:text="@string/l_511c11258e"
                     android:textColor="@color/neutral_gray" />
             </LinearLayout>
 
@@ -180,7 +180,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_8"
                 android:lineSpacingExtra="@dimen/space_2"
-                android:text="Manutenções que você já registrou, mas que ainda só existem no seu celular. Ficam guardadas até serem enviadas, não têm opção de exclusão."
+                android:text="@string/l_e8cdbbeb98"
                 android:textColor="@color/neutral_gray" />
 
             <TextView
@@ -189,7 +189,7 @@
                 android:layout_height="@dimen/space_52"
                 android:layout_marginHorizontal="@dimen/space_minus_8"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="Limpar cache de placas"
+                android:text="@string/l_5061a6be6b"
                 android:textColor="@color/neutral_black" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

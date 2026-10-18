@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_10"
-            android:text="Meu perfil" />
+            android:text="@string/l_5c0500ff66" />
 
         <com.google.android.material.imageview.ShapeableImageView
             android:id="@+id/iv_profile_large"
@@ -49,44 +49,44 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/space_8"
             android:background="@drawable/ripple_card"
-            android:text="Editar foto"
+            android:text="@string/l_9001032448"
             android:textColor="@color/secondary_three" />
 
             <TextView
                 style="@style/apollo_field_label"
-                android:text="Nome completo" />
+                android:text="@string/l_74e606f33a" />
 
             <TextView
                 android:id="@+id/tv_name_value"
                 style="@style/apollo_field"
-                android:text="Usuário" />
+                android:text="@string/l_aa8672d1e4" />
 
             <TextView
                 style="@style/apollo_field_label"
-                android:text="E-mail" />
+                android:text="@string/l_1e884e3078" />
 
             <TextView
                 android:id="@+id/tv_email_value"
                 style="@style/apollo_field"
-                android:text="usuario@email.com" />
+                android:text="@string/l_38ae40c822" />
 
             <TextView
                 style="@style/apollo_field_label"
-                android:text="Empresa" />
+                android:text="@string/l_9bc720ee84" />
 
             <TextView
                 android:id="@+id/tv_company_value"
                 style="@style/apollo_field"
-                android:text="Fábrica Itajaí, Limeira - SP" />
+                android:text="@string/l_3dec30e183" />
 
             <TextView
                 style="@style/apollo_field_label"
-                android:text="Cargo" />
+                android:text="@string/l_e9769d75d7" />
 
             <TextView
                 android:id="@+id/tv_role_value"
                 style="@style/apollo_field"
-                android:text="Técnico de Manutenção" />
+                android:text="@string/l_b26a3ff1c3" />
 
         <TextView
             android:id="@+id/tv_info_footer"

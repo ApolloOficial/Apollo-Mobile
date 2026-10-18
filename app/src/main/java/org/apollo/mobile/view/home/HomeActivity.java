@@ -565,7 +565,7 @@ public final class HomeActivity extends AppCompatActivity {
 
             if (synchronizedSuccessfully) {
                 showSyncSuccessIcon();
-                org.apollo.mobile.view.common.AppToast.success(this, "Sincronização concluída!");
+                org.apollo.mobile.view.common.AppToast.success(this, org.apollo.mobile.view.common.Tr.t("Sincronização concluída!"));
                 loadHome();
                 return;
             }
@@ -575,7 +575,7 @@ public final class HomeActivity extends AppCompatActivity {
                 org.apollo.mobile.view.common.AppToast.offline(this);
             } else {
                 org.apollo.mobile.view.common.AppToast.error(this,
-                        "Falha ao sincronizar.\nTentaremos novamente em instantes.");
+                        org.apollo.mobile.view.common.Tr.t("Falha ao sincronizar.\nTentaremos novamente em instantes."));
             }
         });
     }
@@ -688,16 +688,16 @@ public final class HomeActivity extends AppCompatActivity {
 
         switch (status.trim().toUpperCase()) {
             case "IN_PROGRESS":
-                return "Em andamento";
+                return org.apollo.mobile.view.common.Tr.t("Em andamento");
 
             case "PENDING":
-                return "Pendente";
+                return org.apollo.mobile.view.common.Tr.t("Pendente");
 
             case "COMPLETED":
-                return "Concluída";
+                return org.apollo.mobile.view.common.Tr.t("Concluída");
 
             case "CANCELLED":
-                return "Cancelada";
+                return org.apollo.mobile.view.common.Tr.t("Cancelada");
 
             default:
                 return status;
@@ -711,16 +711,16 @@ public final class HomeActivity extends AppCompatActivity {
 
         switch (priority.trim().toUpperCase()) {
             case "LOW":
-                return "Baixa";
+                return org.apollo.mobile.view.common.Tr.t("Baixa");
 
             case "MEDIUM":
-                return "Média";
+                return org.apollo.mobile.view.common.Tr.t("Média");
 
             case "HIGH":
-                return "Alta";
+                return org.apollo.mobile.view.common.Tr.t("Alta");
 
             case "CRITICAL":
-                return "Crítica";
+                return org.apollo.mobile.view.common.Tr.t("Crítica");
 
             default:
                 return priority;
@@ -729,21 +729,21 @@ public final class HomeActivity extends AppCompatActivity {
 
     private String formatSeverity(String severity) {
         if (severity == null) {
-            return "Atenção";
+            return org.apollo.mobile.view.common.Tr.t("Atenção");
         }
 
         switch (severity.trim().toUpperCase()) {
             case "CRITICAL":
-                return "Crítico";
+                return org.apollo.mobile.view.common.Tr.t("Crítico");
 
             case "HIGH":
-                return "Alto";
+                return org.apollo.mobile.view.common.Tr.t("Alto");
 
             case "MEDIUM":
-                return "Médio";
+                return org.apollo.mobile.view.common.Tr.t("Médio");
 
             case "LOW":
-                return "Baixo";
+                return org.apollo.mobile.view.common.Tr.t("Baixo");
 
             default:
                 return severity;

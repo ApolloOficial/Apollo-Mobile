@@ -29,14 +29,14 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="CS-2025-00902" />
+            android:text="@string/l_8f6f88035b" />
 
         <ImageView
             android:id="@+id/ivClose"
             android:layout_width="@dimen/space_30"
             android:layout_height="@dimen/space_30"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Fechar"
+            android:contentDescription="@string/l_23781b5ede"
             android:src="@drawable/ic_close_circle" />
     </LinearLayout>
 
@@ -46,7 +46,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_24"
-        android:text="Condição encontrada" />
+        android:text="@string/l_4c684f65a9" />
 
     <EditText
         android:id="@+id/etCondition"
@@ -56,7 +56,7 @@
         android:layout_marginTop="@dimen/space_8"
         android:background="@drawable/bg_textarea"
         android:gravity="top|start"
-        android:hint="Ex: sujeira acumulada, borda trincada, conector MC4 solto..."
+        android:hint="@string/l_cb3831dcb9"
         android:inputType="textMultiLine|textCapSentences"
         android:padding="@dimen/space_16"
         android:textColorHint="@color/disable_gray" />
@@ -67,7 +67,7 @@
         android:layout_height="@dimen/space_52"
         android:layout_marginHorizontal="@dimen/space_minus_8"
         android:layout_marginTop="@dimen/space_16"
-        android:text="Registrar" />
+        android:text="@string/l_3df9a4e363" />
 
     <TextView
         android:id="@+id/btnNoProblem"
@@ -75,6 +75,6 @@
         android:layout_height="@dimen/space_52"
         android:layout_marginHorizontal="@dimen/space_minus_8"
         android:layout_marginTop="@dimen/space_16"
-        android:text="Sem problema aparente"
+        android:text="@string/l_d1c38f93eb"
         android:textColor="@color/neutral_black" />
 </LinearLayout>

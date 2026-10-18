@@ -35,14 +35,14 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="Segurança" />
+                android:text="@string/l_3354f9676d" />
 
             <TextView
                 style="@style/apollo_h6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
-                android:text="Verificação de login" />
+                android:text="@string/l_dae0778d9f" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -81,7 +81,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_16"
                         android:layout_marginEnd="@dimen/space_8"
-                        android:text="Telefone para SMS"
+                        android:text="@string/l_e950b933b8"
                         app:layout_constraintBottom_toTopOf="@id/tv_phone_value"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toEndOf="@id/bg_ic_phone"
@@ -108,7 +108,7 @@
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_16"
                     android:background="@drawable/ripple_card"
-                    android:text="Solicitar alteração de telefone"
+                    android:text="@string/l_2811615a25"
                     android:textColor="@color/secondary_three" />
             </LinearLayout>
 
@@ -122,7 +122,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
-                android:text="Senha" />
+                android:text="@string/l_ff64a1c434" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_16"
                         android:layout_marginEnd="@dimen/space_8"
-                        android:text="Trocar senha"
+                        android:text="@string/l_fa7e5a081b"
                         app:layout_constraintBottom_toTopOf="@id/tv_password_value"
                         app:layout_constraintEnd_toStartOf="@id/iv_arrow_password"
                         app:layout_constraintStart_toEndOf="@id/bg_ic_lock"
@@ -173,7 +173,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_2"
-                        android:text="Última alteração há 3 meses"
+                        android:text="@string/l_8ec34b8083"
                         android:textColor="@color/neutral_gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/tv_password_title"
@@ -196,7 +196,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
-                android:text="Sessão" />
+                android:text="@string/l_b689b2146b" />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -235,7 +235,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_16"
                         android:layout_marginEnd="@dimen/space_8"
-                        android:text="Este dispositivo"
+                        android:text="@string/l_a4a25ec0de"
                         app:layout_constraintBottom_toTopOf="@id/tv_device_value"
                         app:layout_constraintEnd_toStartOf="@id/view_status_dot"
                         app:layout_constraintStart_toEndOf="@id/bg_ic_device"
@@ -247,7 +247,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_2"
-                        android:text="Ativo agora, último login: hoje, 07:52"
+                        android:text="@string/l_1a35c8f620"
                         android:textColor="@color/neutral_gray"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="@id/tv_device_title"

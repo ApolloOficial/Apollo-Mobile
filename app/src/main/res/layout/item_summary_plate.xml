@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_4"
             android:layout_weight="1"
-            android:text="CS-2025-00901 (ITJ-LIM-001, Posição 2)" />
+            android:text="@string/l_203a1cec37" />
     </LinearLayout>
 
     <TextView

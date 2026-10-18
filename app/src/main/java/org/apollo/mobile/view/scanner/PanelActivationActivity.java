@@ -72,8 +72,8 @@ public final class PanelActivationActivity extends AppCompatActivity {
         addRow(rows, "Inversor / String", safe(inverter) + " / " + safe(stringCode));
 
         ((TextView) findViewById(R.id.tvPositionTitle)).setText(
-                "Inversor " + safe(inverter) + ", String " + safe(stringCode));
-        ((TextView) findViewById(R.id.tvPositionSubtitle)).setText("Carregando placas da string...");
+                org.apollo.mobile.view.common.Tr.t("Inversor ") + safe(inverter) + org.apollo.mobile.view.common.Tr.t(", String ") + safe(stringCode));
+        ((TextView) findViewById(R.id.tvPositionSubtitle)).setText(org.apollo.mobile.view.common.Tr.t("Carregando placas da string..."));
 
         Motion.popIn(findViewById(R.id.ivSuccessIcon), 120);
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -111,7 +111,7 @@ public final class PanelActivationActivity extends AppCompatActivity {
                 }
                 total = Math.max(1, panels.size());
                 ((TextView) findViewById(R.id.tvPositionSubtitle)).setText(
-                        "Essa string já tem " + installed + " das " + total + " placas instaladas");
+                        org.apollo.mobile.view.common.Tr.t("Essa string já tem ") + installed + org.apollo.mobile.view.common.Tr.t(" das ") + total + org.apollo.mobile.view.common.Tr.t(" placas instaladas"));
                 setPosition(Math.min(total, installed + 1));
             }
 
@@ -125,7 +125,7 @@ public final class PanelActivationActivity extends AppCompatActivity {
 
     private void setPosition(int value) {
         position = Math.max(1, Math.min(total, value));
-        ((TextView) findViewById(R.id.tvPositionValue)).setText(position + " de " + total);
+        ((TextView) findViewById(R.id.tvPositionValue)).setText(position + org.apollo.mobile.view.common.Tr.t(" de ") + total);
         ImageView minus = findViewById(R.id.btnMinus);
         ImageView plus = findViewById(R.id.btnPlus);
         minus.setImageResource(position > 1 ? R.drawable.ic_stepper_minus : R.drawable.ic_stepper_minus_disabled);
@@ -151,7 +151,7 @@ public final class PanelActivationActivity extends AppCompatActivity {
             @Override
             public void onSuccess(PanelItem panel) {
                 if (isFinishing() || isDestroyed()) return;
-                org.apollo.mobile.view.common.AppToast.success(PanelActivationActivity.this, "Placa instalada com sucesso!");
+                org.apollo.mobile.view.common.AppToast.success(PanelActivationActivity.this, org.apollo.mobile.view.common.Tr.t("Placa instalada com sucesso!"));
                 if (panel != null && panel.getStringId() != null) {
                     ScannedPanelRouter.openString(PanelActivationActivity.this, panel.getStringId(),
                             panel.getStringCode(), panel.getSerialNumber(), gateway, true);

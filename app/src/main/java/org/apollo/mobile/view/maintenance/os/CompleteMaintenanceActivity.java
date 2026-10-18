@@ -50,7 +50,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         laborCost = findViewById(R.id.etLaborCost);
         finishButton = findViewById(R.id.btnFinishMaintenance);
 
-        ((TextView) findViewById(R.id.tvTitle)).setText("Concluir OS" + orderId);
+        ((TextView) findViewById(R.id.tvTitle)).setText(org.apollo.mobile.view.common.Tr.t("Concluir OS") + orderId);
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
         Motion.pressable(finishButton);
         finishButton.setOnClickListener(view -> validate());
@@ -70,7 +70,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
             @Override
             public void onFailure(ServiceOrderError error) {
                 if (isFinishing() || isDestroyed()) return;
-                org.apollo.mobile.view.common.AppToast.error(CompleteMaintenanceActivity.this, "Não foi possível carregar o resumo.");
+                org.apollo.mobile.view.common.AppToast.error(CompleteMaintenanceActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível carregar o resumo."));
             }
         });
     }
@@ -85,14 +85,14 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
     private void validate() {
         String text = report.getText().toString().trim();
         if (text.isEmpty()) {
-            report.setError("Informe o laudo da manutenção.");
+            report.setError(org.apollo.mobile.view.common.Tr.t("Informe o laudo da manutenção."));
             report.requestFocus();
             Motion.shake(report);
             return;
         }
         Double cost = parseCost();
         if (cost == null) {
-            laborCost.setError("Valor inválido.");
+            laborCost.setError(org.apollo.mobile.view.common.Tr.t("Valor inválido."));
             laborCost.requestFocus();
             Motion.shake(laborCost);
             return;
@@ -118,10 +118,10 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         Map<Long, OsVerificationStore.Result> results = store.results(orderId);
         if (details != null && !details.getTargetPanels().isEmpty()) {
             builder.append(REPORT_SEPARATOR).append("Placas verificadas: ").append(results.size())
-                    .append(" de ").append(details.getTargetPanels().size()).append('.');
+                    .append(org.apollo.mobile.view.common.Tr.t(" de ")).append(details.getTargetPanels().size()).append('.');
             for (OsVerificationStore.Result result : results.values()) {
                 builder.append("\n- ").append(result.getSerial()).append(": ")
-                        .append(result.hasProblem() ? result.getProblem() : "sem problema aparente");
+                        .append(result.hasProblem() ? result.getProblem() : org.apollo.mobile.view.common.Tr.t("sem problema aparente"));
             }
         }
         if (store.isUnidentified(orderId)) {

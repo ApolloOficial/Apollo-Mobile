@@ -111,7 +111,7 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
         for (Order order : orders) {
             View card = inflater.inflate(R.layout.item_service_order, list, false);
             ((TextView) card.findViewById(R.id.tvSubtitle)).setText(
-                    ServiceOrderUi.safe(order.getMaintenanceTypeName()));
+                    org.apollo.mobile.view.common.Tr.v(ServiceOrderUi.safe(order.getMaintenanceTypeName())));
             ((TextView) card.findViewById(R.id.tvMainId)).setText("OS" + order.getId());
             OsDetailsActivity.bindStatusTag(card.findViewById(R.id.tvStatusTag), order.getMaintenanceStatus());
             OsDetailsActivity.bindPriorityTag(card.findViewById(R.id.tvPriorityTag), order.getPriority());
@@ -136,7 +136,7 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(ServiceOrderError error) {
-                target.setText(ServiceOrderUi.safe(order.getMaintenanceTypeName()));
+                target.setText(org.apollo.mobile.view.common.Tr.v(ServiceOrderUi.safe(order.getMaintenanceTypeName())));
             }
         });
     }

@@ -35,21 +35,21 @@
         android:gravity="center"
         android:lineSpacingExtra="@dimen/space_2"
         android:maxWidth="@dimen/space_300"
-        android:text="Nenhuma OS encontrada."
+        android:text="@string/l_61950cae0e"
         android:textColor="@color/neutral_gray" />
 
     <TextView
         android:id="@+id/btnEmptyRetry"
         style="@style/apollo_button_primary"
         android:layout_marginTop="@dimen/space_24"
-        android:text="Tentar novamente"
+        android:text="@string/l_836a00c1e6"
         android:visibility="gone" />
 
     <TextView
         android:id="@+id/btnEmptySupport"
         style="@style/apollo_button_outline"
         android:layout_marginTop="@dimen/space_12"
-        android:text="Falar com o suporte"
+        android:text="@string/l_c436fe2bdc"
         android:textColor="@color/secondary_three"
         android:visibility="gone" />
 </LinearLayout>

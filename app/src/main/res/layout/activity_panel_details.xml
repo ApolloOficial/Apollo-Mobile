@@ -46,7 +46,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_10"
-            android:text="ITJ-LIM-001" />
+            android:text="@string/l_307299e0a8" />
 
         <TextView
             android:id="@+id/tvHealthDetail"
@@ -54,7 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_10"
-            android:text="Saúde da String: --"
+            android:text="@string/l_e935292c08"
             android:visibility="gone" />
 
         <TextView
@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_4"
-            android:text="Capac. 42 kWp · 24 placas"
+            android:text="@string/l_9bdaeb416f"
             android:textColor="@color/neutral_gray" />
 
         <LinearLayout
@@ -79,7 +79,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Placas" />
+                android:text="@string/l_1a1a776e9f" />
 
             <LinearLayout style="@style/apollo_search_pill">
 
@@ -96,7 +96,7 @@
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/space_8"
                     android:background="@null"
-                    android:hint="Buscar por número de série..."
+                    android:hint="@string/l_7507bf4b28"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
@@ -130,22 +130,22 @@
             <TextView
                 android:id="@+id/chipAll"
                 style="@style/apollo_filter_chip"
-                android:text="Todas" />
+                android:text="@string/l_f28c2b459d" />
 
             <TextView
                 android:id="@+id/chipStock"
                 style="@style/apollo_filter_chip"
-                android:text="Em estoque" />
+                android:text="@string/l_1783c970b4" />
 
             <TextView
                 android:id="@+id/chipInUse"
                 style="@style/apollo_filter_chip"
-                android:text="Em uso" />
+                android:text="@string/l_5171bff63a" />
 
             <TextView
                 android:id="@+id/chipAttention"
                 style="@style/apollo_filter_chip"
-                android:text="Atenção" />
+                android:text="@string/l_d45f3feee7" />
         </LinearLayout>
     </HorizontalScrollView>
 

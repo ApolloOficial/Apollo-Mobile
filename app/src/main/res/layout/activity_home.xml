@@ -46,8 +46,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="@dimen/space_12"
                     android:ellipsize="end"
-                    android:maxLines="1"
-                    android:text="Bom dia, Usuário"
+                    android:maxLines="2"
+                    android:breakStrategy="balanced"
+                    android:text="@string/l_61248e52e4"
                     app:layout_constraintEnd_toStartOf="@id/ivSync"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -58,7 +59,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_4"
-                    android:text="Vamos manter tudo funcionando"
+                    android:text="@string/l_96de5babb5"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvGreeting" />
 
@@ -70,7 +71,6 @@
                     android:background="?attr/selectableItemBackgroundBorderless"
                     android:contentDescription="@string/home_sync_content_description"
                     android:src="@drawable/ic_sync"
-                    app:layout_constraintBottom_toBottomOf="@id/tvGreeting"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="@id/tvGreeting" />
 
@@ -88,7 +88,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Suas OS" />
+                    android:text="@string/l_a7d5c925b2" />
 
                 <TextView
                     android:id="@+id/tvServiceOrderCount"
@@ -120,7 +120,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text="Placa CS-2024-00765"
+                    android:text="@string/l_ca25147964"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -132,7 +132,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
-                    android:text="OS84524"
+                    android:text="@string/l_5f9048df2f"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvPlacaLabel" />
@@ -159,14 +159,14 @@
                         android:id="@+id/tvStatusTag"
                         style="@style/apollo_tag"
                         android:backgroundTint="@color/alert_two"
-                        android:text="Em andamento" />
+                        android:text="@string/l_976bedf5cc" />
 
                     <TextView
                         android:id="@+id/tvPriorityTag"
                         style="@style/apollo_tag"
                         android:layout_marginStart="@dimen/space_4"
                         android:backgroundTint="@color/error_two"
-                        android:text="Alta" />
+                        android:text="@string/l_6472ef326e" />
 
                 </LinearLayout>
 
@@ -174,7 +174,7 @@
                     android:id="@+id/btnOsDetails"
                     style="@style/apollo_cta_outline"
                     android:layout_marginTop="@dimen/space_8"
-                    android:text="Ver detalhes"
+                    android:text="@string/l_129843b7b4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/llTags" />
 
@@ -185,7 +185,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_1"
                     android:layout_marginEnd="@dimen/space_8"
-                    android:text="Prazo: 03/10/2026"
+                    android:text="@string/l_4f956b2fe5"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintBottom_toBottomOf="@id/btnOsDetails"
                     app:layout_constraintEnd_toStartOf="@id/btnOsDetails"
@@ -205,7 +205,7 @@
                 android:padding="@dimen/space_24"
                 android:drawableTop="@drawable/empty_orders_small"
                 android:drawablePadding="@dimen/space_12"
-                android:text="Nenhuma OS encontrada."
+                android:text="@string/l_61950cae0e"
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
@@ -224,7 +224,7 @@
                     android:layout_width="@dimen/space_40"
                     android:layout_height="@dimen/space_40"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Página anterior"
+                    android:contentDescription="@string/l_d21ccc6d93"
                     android:padding="@dimen/space_8"
                     android:rotation="180"
                     android:scaleType="fitCenter"
@@ -243,7 +243,7 @@
                     android:layout_width="@dimen/space_40"
                     android:layout_height="@dimen/space_40"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Próxima página"
+                    android:contentDescription="@string/l_eeec33c090"
                     android:padding="@dimen/space_8"
                     android:scaleType="fitCenter"
                     android:src="@drawable/lucide_circle_chevron_right"
@@ -263,7 +263,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Requer atenção" />
+                    android:text="@string/l_39c0faf65f" />
 
                 <TextView
                     android:id="@+id/tvAttentionCount"
@@ -313,7 +313,7 @@
                     android:layout_marginStart="@dimen/space_16"
                     android:backgroundTint="@color/error_one"
                     android:minWidth="@dimen/space_73"
-                    android:text="Crítico"
+                    android:text="@string/l_d7b6ed755d"
                     app:layout_constraintStart_toEndOf="@id/cvAlertIcon"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -325,7 +325,7 @@
                     android:layout_marginTop="@dimen/space_4"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:text="Inversor 02, String ITJ-LIM-003 caiu eficiência."
+                    android:text="@string/l_ac35785c86"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tvCriticoTag"
                     app:layout_constraintTop_toBottomOf="@id/tvCriticoTag" />
@@ -336,7 +336,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_8"
-                    android:text="Eficiência"
+                    android:text="@string/l_e187ef2a31"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintStart_toStartOf="@id/tvAlertTitle"
                     app:layout_constraintTop_toBottomOf="@id/tvAlertTitle" />
@@ -367,7 +367,7 @@
                     android:id="@+id/btnAttentionDetails"
                     style="@style/apollo_cta_outline"
                     android:layout_marginTop="@dimen/space_16"
-                    android:text="Ver OS"
+                    android:text="@string/l_892e7513e4"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/progressAlert" />
 
@@ -384,7 +384,7 @@
                 android:padding="@dimen/space_24"
                 android:drawableTop="@drawable/empty_panels_small"
                 android:drawablePadding="@dimen/space_12"
-                android:text="Nenhuma placa precisa de atenção."
+                android:text="@string/l_7f1b7ad8eb"
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
@@ -403,7 +403,7 @@
                     android:layout_width="@dimen/space_40"
                     android:layout_height="@dimen/space_40"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Página anterior"
+                    android:contentDescription="@string/l_d21ccc6d93"
                     android:padding="@dimen/space_8"
                     android:rotation="180"
                     android:scaleType="fitCenter"
@@ -422,7 +422,7 @@
                     android:layout_width="@dimen/space_40"
                     android:layout_height="@dimen/space_40"
                     android:background="?attr/selectableItemBackgroundBorderless"
-                    android:contentDescription="Próxima página"
+                    android:contentDescription="@string/l_eeec33c090"
                     android:padding="@dimen/space_8"
                     android:scaleType="fitCenter"
                     android:src="@drawable/lucide_circle_chevron_right"
@@ -435,7 +435,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_26"
-                android:text="Registros pendentes" />
+                android:text="@string/l_3476e5c06f" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cardPending"
@@ -474,7 +474,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_16"
                     android:layout_marginTop="@dimen/space_3"
-                    android:text="Lote ITJ-LIM-02"
+                    android:text="@string/l_8a86f09e13"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/cvPendingIcon"
@@ -486,7 +486,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_2"
-                    android:text="Faltam 8 placas para registrar"
+                    android:text="@string/l_b963a08f42"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tvPendingLote"
                     app:layout_constraintTop_toBottomOf="@id/tvPendingLote" />
@@ -497,7 +497,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_8"
-                    android:text="Registros"
+                    android:text="@string/l_b8d9d5eec7"
                     android:textColor="@color/neutral_gray"
                     app:layout_constraintStart_toStartOf="@id/tvPendingTitle"
                     app:layout_constraintTop_toBottomOf="@id/tvPendingTitle" />
@@ -528,7 +528,7 @@
                     android:id="@+id/btnPendingDetails"
                     style="@style/apollo_cta_outline"
                     android:layout_marginTop="@dimen/space_16"
-                    android:text="Ver detalhes"
+                    android:text="@string/l_129843b7b4"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/progressPending" />
@@ -546,7 +546,7 @@
                 android:padding="@dimen/space_24"
                 android:drawableTop="@drawable/empty_strings_small"
                 android:drawablePadding="@dimen/space_12"
-                android:text="Nenhum registro pendente."
+                android:text="@string/l_0e10e4e8aa"
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 

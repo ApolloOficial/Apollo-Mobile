@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Ajustar foto"
+            android:text="@string/l_08d3106109"
             android:textColor="@color/neutral_black" />
 
         <ImageView
@@ -29,7 +29,7 @@
             android:layout_height="@dimen/space_36"
             android:layout_marginEnd="@dimen/space_8"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Girar foto"
+            android:contentDescription="@string/l_018a36a701"
             android:padding="@dimen/space_6"
             android:src="@drawable/ic_rotate" />
 
@@ -38,7 +38,7 @@
             android:layout_width="@dimen/space_30"
             android:layout_height="@dimen/space_30"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Fechar"
+            android:contentDescription="@string/l_23781b5ede"
             android:src="@drawable/ic_close_circle" />
     </LinearLayout>
 
@@ -47,7 +47,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_4"
-        android:text="Arraste e use dois dedos para ajustar o zoom."
+        android:text="@string/l_c119a12dde"
         android:textColor="@color/neutral_gray" />
 
     <org.apollo.mobile.view.settings.CropImageView
@@ -72,7 +72,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_cta_outline"
             android:gravity="center"
-            android:text="Cancelar"
+            android:text="@string/l_847607d75e"
             android:textColor="@color/cta_outline_text" />
 
         <TextView
@@ -83,7 +83,7 @@
             android:layout_weight="1"
             android:background="@drawable/bg_cta_filled"
             android:gravity="center"
-            android:text="Salvar foto"
+            android:text="@string/l_f9e2e1189e"
             android:textColor="@color/cta_filled_text" />
     </LinearLayout>
 </LinearLayout>

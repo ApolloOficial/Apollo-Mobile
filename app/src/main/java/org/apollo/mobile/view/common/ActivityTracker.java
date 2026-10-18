@@ -43,6 +43,7 @@ public final class ActivityTracker implements Application.ActivityLifecycleCallb
 
     @Override
     public void onActivityCreated(@NonNull Activity activity, @Nullable Bundle state) {
+        current = new WeakReference<>(activity);
     }
 
     @Override
