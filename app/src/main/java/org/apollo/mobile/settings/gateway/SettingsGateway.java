@@ -29,6 +29,8 @@ public interface SettingsGateway {
 
     void sessions(Callback<List<SessionInfo>> callback);
 
+    void changePassword(String currentPassword, String newPassword, Callback<Void> callback);
+
     interface Callback<T> {
         void onSuccess(T result);
 

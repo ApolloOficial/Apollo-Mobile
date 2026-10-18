@@ -58,6 +58,9 @@ public interface SettingsApiService {
     @POST("api/v1/settings/security/phone-change-requests")
     Call<Void> requestPhoneChange(@Body PhoneChangeBody body);
 
+    @retrofit2.http.PATCH("api/v1/auth/password")
+    Call<Void> changePassword(@Body org.apollo.mobile.settings.gateway.ChangePasswordBody body);
+
     @GET("api/v1/settings/sessions")
     Call<List<SessionInfo>> sessions();
 }

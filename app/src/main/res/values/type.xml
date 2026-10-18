@@ -149,7 +149,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/secondary_one</item>
+        <item name="android:textColor">@color/cta_outline_text</item>
     </style>
 
     <style name="apollo_button_primary" parent="apollo_label2">
@@ -160,7 +160,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/neutral_white</item>
+        <item name="android:textColor">@color/cta_filled_text</item>
     </style>
 
     <style name="apollo_button_outline" parent="apollo_label2">
@@ -171,7 +171,7 @@
         <item name="android:maxLines">1</item>
         <item name="android:clickable">true</item>
         <item name="android:focusable">true</item>
-        <item name="android:textColor">@color/secondary_one</item>
+        <item name="android:textColor">@color/cta_outline_text</item>
     </style>
 
     <style name="apollo_progress" parent="Widget.Material3.LinearProgressIndicator">
@@ -263,8 +263,8 @@
     </style>
 
     <style name="apollo_search_pill">
-        <item name="android:layout_width">@dimen/space_224</item>
-        <item name="android:layout_height">@dimen/space_36</item>
+        <item name="android:layout_width">@dimen/space_250</item>
+        <item name="android:layout_height">@dimen/space_40</item>
         <item name="android:background">@drawable/bg_pill_outline</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
@@ -274,6 +274,6 @@
 
     <style name="apollo_cta_filled" parent="apollo_cta_outline">
         <item name="android:background">@drawable/bg_cta_filled</item>
-        <item name="android:textColor">@color/neutral_white</item>
+        <item name="android:textColor">@color/cta_filled_text</item>
     </style>
 </resources>

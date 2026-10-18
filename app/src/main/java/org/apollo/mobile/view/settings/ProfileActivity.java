@@ -6,7 +6,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -23,8 +22,7 @@ public final class ProfileActivity extends AppCompatActivity {
     private ImageView photoView;
     private boolean hasPhoto;
 
-    private final ActivityResultLauncher<String> photoPicker =
-            registerForActivityResult(new ActivityResultContracts.GetContent(), this::onPhotoPicked);
+    private final PhotoPicker photoPicker = new PhotoPicker(this, this::onPhotoPicked);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,7 +113,7 @@ public final class ProfileActivity extends AppCompatActivity {
     }
 
     private void showPhotoMenu() {
-        SettingsPhotos.showMenu(this, hasPhoto, () -> photoPicker.launch("image/*"), this::removePhoto);
+        photoPicker.showMenu(hasPhoto, this::removePhoto);
     }
 
     private void onPhotoPicked(Uri uri) {
@@ -127,13 +125,13 @@ public final class ProfileActivity extends AppCompatActivity {
                 return;
             }
             if (data == null) {
-                Toast.makeText(this, R.string.settings_photo_invalid, Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(this, R.string.settings_photo_invalid);
                 return;
             }
             gateway.uploadPhoto(data, SettingsPhotos.MIME_JPEG, new SettingsGateway.Callback<Void>() {
                 @Override
                 public void onSuccess(Void result) {
-                    Toast.makeText(ProfileActivity.this, R.string.settings_photo_updated, Toast.LENGTH_SHORT).show();
+                    org.apollo.mobile.view.common.AppToast.success(ProfileActivity.this, R.string.settings_photo_updated);
                     hasPhoto = true;
                     loadPhoto();
                 }
@@ -150,7 +148,7 @@ public final class ProfileActivity extends AppCompatActivity {
         gateway.removePhoto(new SettingsGateway.Callback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                Toast.makeText(ProfileActivity.this, R.string.settings_photo_removed, Toast.LENGTH_SHORT).show();
+                org.apollo.mobile.view.common.AppToast.success(ProfileActivity.this, R.string.settings_photo_removed);
                 hasPhoto = false;
                 loadPhoto();
             }

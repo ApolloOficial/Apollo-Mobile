@@ -46,8 +46,8 @@
             android:text="Strings" />
 
         <LinearLayout
-            android:layout_width="@dimen/space_224"
-            android:layout_height="@dimen/space_36"
+            android:layout_width="@dimen/space_250"
+            android:layout_height="@dimen/space_40"
             android:background="@drawable/bg_pill_outline"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -75,6 +75,16 @@
         </LinearLayout>
     </LinearLayout>
 
+    <View
+        android:id="@+id/vPanelsDivider"
+        android:layout_width="0dp"
+        android:layout_height="1dp"
+        android:layout_marginTop="@dimen/space_16"
+        android:background="@color/disable_gray"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/llPanelsHeader" />
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvInverters"
         android:layout_width="0dp"
@@ -89,8 +99,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/llPanelsHeader"
+        app:layout_constraintTop_toBottomOf="@id/vPanelsDivider"
         app:layout_constraintWidth_max="@dimen/content_max_width" />
+
+    <include
+        android:id="@+id/llPanelsEmpty"
+        layout="@layout/view_empty_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_32"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vPanelsDivider" />
 
     <include layout="@layout/layout_bottom_nav" />
 

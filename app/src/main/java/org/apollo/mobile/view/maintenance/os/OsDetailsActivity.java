@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
@@ -77,7 +76,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
         if (intent != null && intent.getBooleanExtra(EXTRA_COMPLETED, false)) {
             intent.removeExtra(EXTRA_COMPLETED);
             primary.postDelayed(() -> org.apollo.mobile.view.common.AppToast.success(this,
-                    "OS registrada com sucesso!"), 400);
+                    "Manutenção registrada com sucesso!"), 400);
         }
     }
 
@@ -108,17 +107,26 @@ public final class OsDetailsActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) return;
                 findViewById(R.id.progressOsDetails).setVisibility(View.GONE);
                 if (details != null) {
-                    Toast.makeText(OsDetailsActivity.this,
-                            "Não foi possível atualizar a OS.", Toast.LENGTH_LONG).show();
+                    org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, "Não foi possível atualizar a OS.");
                     return;
                 }
                 findViewById(R.id.llOsContent).setVisibility(View.GONE);
                 boolean missing = error.getType() == ServiceOrderError.Type.NOT_FOUND
                         || error.getType() == ServiceOrderError.Type.UNAUTHORIZED;
-                new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.osEmptyState)).show(
-                        missing ? "OS não encontrada" : "Algo deu errado",
-                        missing ? "Essa ordem de serviço não está mais disponível para você ou foi removida."
-                                : "Não foi possível carregar a OS. Verifique sua conexão e tente novamente.");
+                org.apollo.mobile.view.common.EmptyState state =
+                        new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.osEmptyState)).onRetry(() -> {
+                            findViewById(R.id.osEmptyState).setVisibility(View.GONE);
+                            findViewById(R.id.progressOsDetails).setVisibility(View.VISIBLE);
+                            load();
+                        });
+                if (missing) {
+                    state.empty(org.apollo.mobile.view.common.EmptyState.Kind.ORDERS,
+                            "Essa ordem de serviço não está mais disponível para você ou foi removida.");
+                } else if (error.getType() == ServiceOrderError.Type.NETWORK) {
+                    state.timeout();
+                } else {
+                    state.error();
+                }
             }
         });
     }
@@ -391,8 +399,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
             @Override
             public void onFailure(ServiceOrderError error) {
                 primary.setEnabled(true);
-                Toast.makeText(OsDetailsActivity.this,
-                        "Não foi possível iniciar a manutenção.", Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, "Não foi possível iniciar a manutenção.");
             }
         });
     }

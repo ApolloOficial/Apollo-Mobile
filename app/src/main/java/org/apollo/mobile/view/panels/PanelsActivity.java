@@ -7,7 +7,6 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -117,7 +116,22 @@ public final class PanelsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(PanelsError error) {
-                PanelsUi.handleFailure(PanelsActivity.this, error);
+                if (isFinishing() || isDestroyed()) return;
+                if (error.getType() == PanelsError.Type.UNAUTHORIZED) {
+                    PanelsUi.handleFailure(PanelsActivity.this, error);
+                    return;
+                }
+                if (error.getType() == PanelsError.Type.NETWORK) {
+                    org.apollo.mobile.view.common.AppToast.offline(PanelsActivity.this);
+                }
+                org.apollo.mobile.view.common.EmptyState state =
+                        new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPanelsEmpty))
+                                .onRetry(PanelsActivity.this::loadStrings);
+                if (error.getType() == PanelsError.Type.TIMEOUT || error.getType() == PanelsError.Type.NETWORK) {
+                    state.timeout();
+                } else {
+                    state.error();
+                }
             }
         });
     }
@@ -135,8 +149,12 @@ public final class PanelsActivity extends AppCompatActivity {
         filtered.sort(Comparator.comparing(PanelStringItem::getInverterCode)
                 .thenComparing(PanelStringItem::getCode));
         adapter.submit(filtered);
-        if (filtered.isEmpty() && !allStrings.isEmpty()) {
-            Toast.makeText(this, R.string.panels_empty_strings, Toast.LENGTH_SHORT).show();
+        org.apollo.mobile.view.common.EmptyState empty =
+                new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPanelsEmpty));
+        if (filtered.isEmpty()) {
+            empty.empty(org.apollo.mobile.view.common.EmptyState.Kind.STRINGS, null);
+        } else {
+            empty.setVisibility(android.view.View.GONE);
         }
     }
 

@@ -50,7 +50,7 @@
                 android:layout_marginEnd="@dimen/space_8"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/chat_copy"
-                android:src="@drawable/ic_copypaste"
+                android:src="@drawable/selector_copy"
                 app:tint="@color/neutral_gray" />
 
             <ImageView
@@ -59,7 +59,7 @@
                 android:layout_height="@dimen/space_20"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/chat_speak"
-                android:src="@drawable/ic_sound"
+                android:src="@drawable/selector_speak"
                 app:tint="@color/neutral_gray" />
         </LinearLayout>
     </LinearLayout>

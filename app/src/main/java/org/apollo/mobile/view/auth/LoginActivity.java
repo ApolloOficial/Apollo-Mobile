@@ -151,6 +151,7 @@ public final class LoginActivity extends AppCompatActivity {
 
             case NETWORK:
                 passwordError.setText(R.string.login_network_error);
+                org.apollo.mobile.view.common.AppToast.offline(this);
                 break;
 
             default:

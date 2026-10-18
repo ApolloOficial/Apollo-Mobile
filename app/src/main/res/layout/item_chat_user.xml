@@ -42,7 +42,7 @@
                 android:layout_marginEnd="@dimen/space_8"
                 android:background="?attr/selectableItemBackgroundBorderless"
                 android:contentDescription="@string/chat_copy"
-                android:src="@drawable/ic_copypaste"
+                android:src="@drawable/selector_copy"
                 app:tint="@color/neutral_white" />
 
             <ImageView

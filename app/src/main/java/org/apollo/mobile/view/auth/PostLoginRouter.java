@@ -2,7 +2,6 @@ package org.apollo.mobile.view.auth;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
 import org.apollo.mobile.R;
 import org.apollo.mobile.auth.navigation.AppDestination;
@@ -25,11 +24,7 @@ final class PostLoginRouter {
                 session.getRole(),
                 AppDestination.TECHNICIAN_HOME
         )) {
-            Toast.makeText(
-                    activity,
-                    R.string.login_success,
-                    Toast.LENGTH_SHORT
-            ).show();
+            org.apollo.mobile.view.common.AppToast.success(activity, R.string.login_success);
 
             Intent intent = new Intent(
                     activity,

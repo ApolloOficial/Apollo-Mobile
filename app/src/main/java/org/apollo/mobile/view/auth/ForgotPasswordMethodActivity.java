@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -94,7 +93,7 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
     private void sendCode() {
         OtpMethod chosen = emailCheck.isChecked() ? emailMethod : smsCheck.isChecked() ? smsMethod : null;
         if (chosen == null || challengeId == null) {
-            Toast.makeText(this, R.string.otp_choose_method, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.otp_choose_method);
             return;
         }
 
@@ -113,13 +112,13 @@ public final class ForgotPasswordMethodActivity extends AppCompatActivity {
                         .putExtra(AuthExtras.RESEND_SECONDS, response.getResendInSeconds())
                         .putExtra(AuthExtras.METHODS, new ArrayList<OtpMethod>(readMethods()));
                 startActivity(intent);
+                org.apollo.mobile.view.common.AppToast.success(ForgotPasswordMethodActivity.this, "Código enviado!");
             }
 
             @Override
             public void onFailure(AuthError error) {
                 continueButton.setEnabled(true);
-                Toast.makeText(ForgotPasswordMethodActivity.this, AuthMessages.generic(error),
-                        Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(ForgotPasswordMethodActivity.this, AuthMessages.generic(error));
             }
         });
     }

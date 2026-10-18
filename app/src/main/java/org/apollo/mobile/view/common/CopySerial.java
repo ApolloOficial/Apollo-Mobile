@@ -4,10 +4,8 @@ import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.core.graphics.drawable.DrawableCompat;
@@ -49,12 +47,18 @@ public final class CopySerial {
         if (serial == null || serial.toString().trim().isEmpty() || "-".contentEquals(serial)) return;
         Context context = source.getContext();
         ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
-        if (clipboard == null) return;
-        clipboard.setPrimaryClip(ClipData.newPlainText("Número de série", serial.toString().trim()));
+        if (clipboard == null) {
+            AppToast.error(context, "Não foi possível copiar o número de série.");
+            return;
+        }
+        try {
+            clipboard.setPrimaryClip(ClipData.newPlainText("Número de série", serial.toString().trim()));
+        } catch (RuntimeException e) {
+            AppToast.error(context, "Não foi possível copiar o número de série.");
+            return;
+        }
         source.performHapticFeedback(android.view.HapticFeedbackConstants.LONG_PRESS);
         Motion.bounce(source);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) {
-            Toast.makeText(context, "Número de série copiado", Toast.LENGTH_SHORT).show();
-        }
+        AppToast.success(context, "Número de série copiado!");
     }
 }

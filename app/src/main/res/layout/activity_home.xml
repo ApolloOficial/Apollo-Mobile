@@ -203,7 +203,9 @@
                 android:background="@drawable/bg_surface_card"
                 android:gravity="center"
                 android:padding="@dimen/space_24"
-                android:text="@string/home_empty_service_orders"
+                android:drawableTop="@drawable/empty_orders_small"
+                android:drawablePadding="@dimen/space_12"
+                android:text="Nenhuma OS encontrada."
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
@@ -380,7 +382,9 @@
                 android:background="@drawable/bg_surface_card_lg"
                 android:gravity="center"
                 android:padding="@dimen/space_24"
-                android:text="@string/home_empty_attention"
+                android:drawableTop="@drawable/empty_panels_small"
+                android:drawablePadding="@dimen/space_12"
+                android:text="Nenhuma placa precisa de atenção."
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
@@ -540,7 +544,9 @@
                 android:background="@drawable/bg_surface_card_lg"
                 android:gravity="center"
                 android:padding="@dimen/space_24"
-                android:text="@string/home_empty_pending"
+                android:drawableTop="@drawable/empty_strings_small"
+                android:drawablePadding="@dimen/space_12"
+                android:text="Nenhum registro pendente."
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 

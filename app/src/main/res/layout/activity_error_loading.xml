@@ -86,7 +86,7 @@
             android:id="@+id/ivErrorIllustration"
             android:layout_width="@dimen/space_209"
             android:layout_height="@dimen/space_203"
-            android:src="@drawable/image_error_time" />
+            android:src="@drawable/state_timeout" />
 
         <TextView
             android:id="@+id/tvErrorTitle"

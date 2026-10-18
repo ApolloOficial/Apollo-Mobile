@@ -225,7 +225,7 @@
                     android:layout_width="@dimen/space_24"
                     android:layout_height="@dimen/space_24"
                     android:importantForAccessibility="no"
-                    android:src="@drawable/ic_calendar" />
+                    android:src="@drawable/ic_calendar_field" />
 
                 <TextView
                     android:id="@+id/tvInstallationDate"

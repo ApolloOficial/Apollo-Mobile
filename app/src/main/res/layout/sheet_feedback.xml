@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_calendar_card"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_24"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/space_32">
+
+    <ImageView
+        android:id="@+id/btnFeedbackClose"
+        android:layout_width="@dimen/space_30"
+        android:layout_height="@dimen/space_30"
+        android:layout_gravity="end|top"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:contentDescription="Fechar"
+        android:src="@drawable/ic_close_circle" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <ImageView
+            android:id="@+id/ivFeedbackIllustration"
+            android:layout_width="@dimen/space_120"
+            android:layout_height="@dimen/space_120"
+            android:layout_marginTop="@dimen/space_8"
+            android:adjustViewBounds="true"
+            android:importantForAccessibility="no"
+            android:scaleType="fitCenter"
+            android:src="@drawable/ill_error" />
+
+        <TextView
+            android:id="@+id/tvFeedbackTitle"
+            style="@style/apollo_h6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20"
+            android:gravity="center"
+            android:maxWidth="@dimen/space_280"
+            android:textColor="@color/neutral_black"
+            android:text="Não foi possível identificar a placa." />
+
+        <TextView
+            android:id="@+id/tvFeedbackMessage"
+            style="@style/apollo_body3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_6"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/space_2"
+            android:maxWidth="@dimen/space_280"
+            android:textColor="@color/neutral_black"
+            android:text="Verifique o código de barras e tente novamente." />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/space_20"
+            android:gravity="end"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/btnFeedbackSecondary"
+                style="@style/apollo_label3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_34"
+                android:layout_marginEnd="@dimen/space_8"
+                android:layout_weight="1"
+                android:background="@drawable/bg_cta_outline"
+                android:gravity="center"
+                android:text="Agora não"
+                android:textColor="@color/secondary_one"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btnFeedbackPrimary"
+                style="@style/apollo_label3"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/space_32"
+                android:layout_weight="1"
+                android:background="@drawable/bg_cta_filled"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/space_16"
+                android:text="Tentar novamente"
+                android:textColor="@color/neutral_white" />
+        </LinearLayout>
+    </LinearLayout>
+</FrameLayout>

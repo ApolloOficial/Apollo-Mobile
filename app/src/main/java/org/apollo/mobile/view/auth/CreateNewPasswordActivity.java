@@ -4,7 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -44,15 +43,15 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         String confirmation = confirmPasswordInput.getText().toString();
 
         if (!password.equals(confirmation)) {
-            Toast.makeText(this, R.string.recovery_password_mismatch, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.recovery_password_mismatch);
             return;
         }
         if (!PasswordPolicy.isValid(password)) {
-            Toast.makeText(this, R.string.recovery_password_invalid, Toast.LENGTH_LONG).show();
+            org.apollo.mobile.view.common.AppToast.error(this, R.string.recovery_password_invalid);
             return;
         }
         if (resetToken == null || resetToken.isEmpty()) {
-            Toast.makeText(this, R.string.recovery_reset_rejected, Toast.LENGTH_LONG).show();
+            org.apollo.mobile.view.common.AppToast.error(this, R.string.recovery_reset_rejected);
             return;
         }
 
@@ -60,8 +59,7 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         gateway.resetPassword(resetToken, password, new AuthenticationGateway.Callback<Void>() {
             @Override
             public void onSuccess(Void response) {
-                Toast.makeText(CreateNewPasswordActivity.this, R.string.recovery_password_success,
-                        Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.success(CreateNewPasswordActivity.this, R.string.recovery_password_success);
 
                 Intent intent = new Intent(CreateNewPasswordActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -72,8 +70,7 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
             @Override
             public void onFailure(AuthError error) {
                 resetButton.setEnabled(true);
-                Toast.makeText(CreateNewPasswordActivity.this, AuthMessages.generic(error),
-                        Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(CreateNewPasswordActivity.this, AuthMessages.generic(error));
             }
         });
     }

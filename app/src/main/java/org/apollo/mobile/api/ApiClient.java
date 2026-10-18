@@ -92,6 +92,19 @@ public final class ApiClient {
                                 new EncryptedSessionStorage(context)
                         )
                 )
+                .addInterceptor(chain -> {
+                    okhttp3.Response response = chain.proceed(chain.request());
+                    if (response.code() == 426) {
+                        new android.os.Handler(android.os.Looper.getMainLooper()).post(() -> {
+                            android.app.Activity activity =
+                                    org.apollo.mobile.view.common.ActivityTracker.current();
+                            if (activity != null) {
+                                org.apollo.mobile.view.common.AppSheets.updateRequired(activity);
+                            }
+                        });
+                    }
+                    return response;
+                })
                 .addInterceptor(loggingInterceptor)
                 .build();
 

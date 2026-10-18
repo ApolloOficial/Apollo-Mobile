@@ -2,47 +2,54 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="@dimen/space_16"
-    android:background="@drawable/bg_surface_card"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    android:paddingStart="@dimen/space_24"
-    android:paddingTop="@dimen/space_32"
-    android:paddingEnd="@dimen/space_24"
-    android:paddingBottom="@dimen/space_32">
+    android:paddingVertical="@dimen/space_24">
 
-    <FrameLayout
-        android:layout_width="@dimen/space_74"
-        android:layout_height="@dimen/space_74"
-        android:background="@drawable/bg_icon_box"
-        android:backgroundTint="#4DFFC8A8">
-
-        <ImageView
-            android:id="@+id/ivEmptyIcon"
-            android:layout_width="@dimen/space_48"
-            android:layout_height="@dimen/space_48"
-            android:layout_gravity="center"
-            android:importantForAccessibility="no"
-            android:src="@drawable/ic_work_order" />
-    </FrameLayout>
+    <ImageView
+        android:id="@+id/ivEmptyIllustration"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/space_140"
+        android:adjustViewBounds="true"
+        android:importantForAccessibility="no"
+        android:maxWidth="@dimen/space_280"
+        android:scaleType="fitCenter"
+        android:src="@drawable/empty_orders" />
 
     <TextView
         android:id="@+id/tvEmptyTitle"
-        style="@style/apollo_label1"
+        style="@style/apollo_h5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_16"
+        android:layout_marginTop="@dimen/space_24"
         android:gravity="center"
-        android:text="Nenhuma OS por aqui" />
+        android:textColor="@color/neutral_black"
+        android:visibility="gone" />
 
     <TextView
         android:id="@+id/tvEmptyMessage"
         style="@style/apollo_body3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="@dimen/space_8"
+        android:layout_marginTop="@dimen/space_12"
         android:gravity="center"
         android:lineSpacingExtra="@dimen/space_2"
-        android:text="Quando uma ordem de serviço for atribuída a você, ela aparece aqui."
+        android:maxWidth="@dimen/space_300"
+        android:text="Nenhuma OS encontrada."
         android:textColor="@color/neutral_gray" />
+
+    <TextView
+        android:id="@+id/btnEmptyRetry"
+        style="@style/apollo_button_primary"
+        android:layout_marginTop="@dimen/space_24"
+        android:text="Tentar novamente"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/btnEmptySupport"
+        style="@style/apollo_button_outline"
+        android:layout_marginTop="@dimen/space_12"
+        android:text="Falar com o suporte"
+        android:textColor="@color/secondary_three"
+        android:visibility="gone" />
 </LinearLayout>

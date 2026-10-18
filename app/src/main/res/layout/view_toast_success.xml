@@ -3,29 +3,30 @@
     android:id="@+id/llAppToast"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginHorizontal="@dimen/space_27"
     android:background="@drawable/bg_toast_success"
-    android:elevation="@dimen/space_8"
+    android:elevation="@dimen/space_4"
     android:gravity="center_vertical"
-    android:minHeight="@dimen/space_53"
+    android:minHeight="53dp"
     android:orientation="horizontal"
-    android:paddingStart="@dimen/space_24"
-    android:paddingEnd="@dimen/space_16">
+    android:paddingStart="24dp"
+    android:paddingEnd="16dp">
 
     <ImageView
         android:id="@+id/ivAppToastIcon"
-        android:layout_width="@dimen/space_26"
-        android:layout_height="@dimen/space_26"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:importantForAccessibility="no"
-        android:src="@drawable/ic_check_green" />
+        android:src="@drawable/ic_toast_success" />
 
     <TextView
         android:id="@+id/tvAppToast"
         style="@style/apollo_label3"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/space_16"
+        android:layout_marginStart="16dp"
         android:layout_weight="1"
-        android:paddingVertical="@dimen/space_12"
+        android:lineSpacingExtra="2dp"
+        android:paddingVertical="10dp"
+        android:textColor="#FF1C1C1C"
         android:text="Placa instalada com sucesso!" />
 </LinearLayout>

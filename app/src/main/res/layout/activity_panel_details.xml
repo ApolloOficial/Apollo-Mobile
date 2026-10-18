@@ -174,6 +174,18 @@
         app:layout_constraintTop_toBottomOf="@id/vFiltersDivider"
         app:layout_constraintWidth_max="@dimen/content_max_width" />
 
+    <include
+        android:id="@+id/llPlatesEmpty"
+        layout="@layout/view_empty_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_32"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vFiltersDivider" />
+
     <include layout="@layout/layout_bottom_nav" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

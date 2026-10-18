@@ -9,11 +9,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.apollo.mobile.BuildConfig;
@@ -42,8 +40,7 @@ public final class SettingsActivity extends AppCompatActivity {
     private PendingSyncRunner syncRunner;
     private boolean hasPhoto;
 
-    private final ActivityResultLauncher<String> photoPicker =
-            registerForActivityResult(new ActivityResultContracts.GetContent(), this::onPhotoPicked);
+    private final PhotoPicker photoPicker = new PhotoPicker(this, this::onPhotoPicked);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,6 +109,9 @@ public final class SettingsActivity extends AppCompatActivity {
         boolean attention = pending > 0 || failed > 0;
         syncDot.setBackgroundTintList(android.content.res.ColorStateList.valueOf(
                 getColor(attention ? R.color.alert_one : R.color.sucess_one)));
+        boolean canSync = pending > 0 && !syncRunner.isRunning();
+        syncButton.setEnabled(canSync);
+        syncButton.setTextColor(getColor(canSync ? R.color.secondary_three : R.color.disable_gray));
     }
 
     private void syncNow() {
@@ -119,7 +119,7 @@ public final class SettingsActivity extends AppCompatActivity {
             return;
         }
         if (pendingQueue.pendingCount() == 0) {
-            Toast.makeText(this, R.string.settings_sync_nothing, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.settings_sync_nothing);
             load();
             return;
         }
@@ -137,19 +137,18 @@ public final class SettingsActivity extends AppCompatActivity {
 
     private void onSyncFinished(SyncReport report) {
         if (report.getStop() == SyncReport.Stop.UNAUTHORIZED) {
-            SettingsUi.goToLogin(this);
+            org.apollo.mobile.view.common.AppSheets.sessionExpired(this);
             return;
         }
         if (report.getStop() == SyncReport.Stop.NETWORK) {
-            Toast.makeText(this, R.string.settings_sync_offline, Toast.LENGTH_LONG).show();
+            org.apollo.mobile.view.common.AppToast.offline(this);
             return;
         }
         if (report.getRejected() > 0) {
-            Toast.makeText(this, getString(R.string.settings_sync_with_errors, report.getRejected()),
-                    Toast.LENGTH_LONG).show();
+            org.apollo.mobile.view.common.AppToast.error(this, "Falha ao sincronizar.\nTentaremos novamente em instantes.");
             return;
         }
-        Toast.makeText(this, R.string.settings_sync_done, Toast.LENGTH_SHORT).show();
+        org.apollo.mobile.view.common.AppToast.success(this, R.string.settings_sync_done);
     }
 
     private static void underline(TextView view) {
@@ -212,7 +211,7 @@ public final class SettingsActivity extends AppCompatActivity {
     }
 
     private void showPhotoMenu() {
-        SettingsPhotos.showMenu(this, hasPhoto, () -> photoPicker.launch("image/*"), this::removePhoto);
+        photoPicker.showMenu(hasPhoto, this::removePhoto);
     }
 
     private void onPhotoPicked(Uri uri) {
@@ -224,13 +223,13 @@ public final class SettingsActivity extends AppCompatActivity {
                 return;
             }
             if (data == null) {
-                Toast.makeText(this, R.string.settings_photo_invalid, Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(this, R.string.settings_photo_invalid);
                 return;
             }
             gateway.uploadPhoto(data, SettingsPhotos.MIME_JPEG, new SettingsGateway.Callback<Void>() {
                 @Override
                 public void onSuccess(Void result) {
-                    Toast.makeText(SettingsActivity.this, R.string.settings_photo_updated, Toast.LENGTH_SHORT).show();
+                    org.apollo.mobile.view.common.AppToast.success(SettingsActivity.this, R.string.settings_photo_updated);
                     hasPhoto = true;
                     loadPhoto();
                 }
@@ -247,7 +246,7 @@ public final class SettingsActivity extends AppCompatActivity {
         gateway.removePhoto(new SettingsGateway.Callback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                Toast.makeText(SettingsActivity.this, R.string.settings_photo_removed, Toast.LENGTH_SHORT).show();
+                org.apollo.mobile.view.common.AppToast.success(SettingsActivity.this, R.string.settings_photo_removed);
                 hasPhoto = false;
                 loadPhoto();
             }
@@ -260,23 +259,19 @@ public final class SettingsActivity extends AppCompatActivity {
     }
 
     private void showAbout() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_about_title)
-                .setMessage(getString(R.string.settings_about_message, BuildConfig.VERSION_NAME))
-                .setPositiveButton(R.string.settings_ok, null)
-                .show();
+        org.apollo.mobile.view.common.AppSheets.message(this, getString(R.string.settings_about_title),
+                "Apollo é a plataforma de gestão de ativos fotovoltaicos que une o desempenho medido pelo inversor "
+                        + "à gestão das placas, manutenções e ordens de serviço.\n\nVersão " + BuildConfig.VERSION_NAME,
+                "Entendi", null, null, null);
     }
 
     private void confirmLogout() {
-        new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_logout_title)
-                .setMessage(R.string.settings_logout_message)
-                .setNegativeButton(R.string.settings_cancel, null)
-                .setPositiveButton(R.string.settings_logout_confirm, (dialog, which) -> {
+        org.apollo.mobile.view.common.AppSheets.message(this, getString(R.string.settings_logout_title),
+                "Tem certeza que deseja sair? Certifique-se de que não há nenhum registro pendente de sincronização.",
+                getString(R.string.settings_logout_confirm), () -> {
                     SessionManagerFactory.create(getApplicationContext()).logout();
                     SettingsUi.goToLogin(this);
-                })
-                .show();
+                }, getString(R.string.settings_cancel), null);
     }
 
     private static String blankTo(String value, String fallback) {

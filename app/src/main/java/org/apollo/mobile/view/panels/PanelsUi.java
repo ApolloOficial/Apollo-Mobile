@@ -2,7 +2,6 @@ package org.apollo.mobile.view.panels;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
 import org.apollo.mobile.R;
 import org.apollo.mobile.panels.error.PanelsError;
@@ -23,14 +22,14 @@ public final class PanelsUi {
             return true;
         }
         if (error.getType() == PanelsError.Type.UNAUTHORIZED) {
-            SessionManagerFactory.create(activity.getApplicationContext()).logout();
-            Intent intent = new Intent(activity, LoginActivity.class);
-            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            activity.startActivity(intent);
-            activity.finish();
+            org.apollo.mobile.view.common.AppSheets.sessionExpired(activity);
             return true;
         }
-        Toast.makeText(activity, messageFor(error), Toast.LENGTH_LONG).show();
+        if (error.getType() == PanelsError.Type.NETWORK) {
+            org.apollo.mobile.view.common.AppToast.offline(activity);
+            return false;
+        }
+        org.apollo.mobile.view.common.AppToast.error(activity, messageFor(error));
         return false;
     }
 

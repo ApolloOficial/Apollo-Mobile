@@ -4,7 +4,6 @@ import android.os.Bundle;
 import org.apollo.mobile.view.common.Motion;
 import android.os.StatFs;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -36,7 +35,7 @@ public final class StorageActivity extends AppCompatActivity {
         findViewById(R.id.btnClearCache).setOnClickListener(view -> {
             clear(getCacheDir());
             clear(getExternalCacheDir());
-            Toast.makeText(this, R.string.settings_storage_cleared, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.success(this, R.string.settings_storage_cleared);
             refresh();
         });
 

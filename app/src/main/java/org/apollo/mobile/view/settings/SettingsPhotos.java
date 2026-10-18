@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
 
-import androidx.appcompat.app.AlertDialog;
 
 import org.apollo.mobile.R;
 
@@ -43,17 +42,13 @@ final class SettingsPhotos {
                         activity.getString(R.string.settings_photo_choose),
                         activity.getString(R.string.settings_photo_remove)}
                 : new String[]{activity.getString(R.string.settings_photo_choose)};
-        new AlertDialog.Builder(activity)
-                .setTitle(R.string.settings_photo_title)
-                .setItems(labels, (dialog, which) -> {
-                    if (which == 0) {
-                        pick.run();
-                    } else {
-                        remove.run();
-                    }
-                })
-                .setNegativeButton(R.string.settings_cancel, null)
-                .show();
+        if (labels.length > 1) {
+            org.apollo.mobile.view.common.AppSheets.message(activity, activity.getString(R.string.settings_photo_title),
+                    "Escolha uma nova foto de perfil ou remova a atual.", labels[0], pick, labels[1], remove);
+        } else {
+            org.apollo.mobile.view.common.AppSheets.message(activity, activity.getString(R.string.settings_photo_title),
+                    "Escolha uma foto da galeria para o seu perfil.", labels[0], pick, null, null);
+        }
     }
 
     private static byte[] prepareForUpload(ContentResolver resolver, Uri uri) {

@@ -39,6 +39,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
     private String stringCode;
     private double nominalPower;
     private final List<PanelItem> allPanels = new ArrayList<>();
+    private boolean loaded;
     private PanelFilter filter = PanelFilter.ALL;
     private TextView[] chips;
     private PanelFilter[] filters;
@@ -65,7 +66,8 @@ public final class PanelDetailsActivity extends AppCompatActivity {
 
         RecyclerView list = findViewById(R.id.rvPlatesDetail);
         list.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PlateAdapter(panel -> PanelSheet.show(this, panel, stringCode));
+        adapter = new PlateAdapter(panel -> PanelSheet.show(this, panel, stringCode,
+                allPanels.indexOf(panel) + 1, allPanels.size()));
         list.setAdapter(adapter);
 
         chips = new TextView[]{
@@ -124,7 +126,15 @@ public final class PanelDetailsActivity extends AppCompatActivity {
 
     private void render() {
         String query = ((EditText) findViewById(R.id.etSearch)).getText().toString();
-        adapter.submit(filter.apply(allPanels, query));
+        List<PanelItem> visible = filter.apply(allPanels, query);
+        adapter.submit(visible);
+        org.apollo.mobile.view.common.EmptyState empty =
+                new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPlatesEmpty));
+        if (visible.isEmpty() && loaded) {
+            empty.empty(org.apollo.mobile.view.common.EmptyState.Kind.PANELS, null);
+        } else {
+            empty.setVisibility(android.view.View.GONE);
+        }
     }
 
     private void updateSummary(int count) {
@@ -157,6 +167,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
                 }
                 allPanels.clear();
                 allPanels.addAll(result);
+                loaded = true;
                 updateSummary(result.size());
                 updateHealth(result);
                 render();

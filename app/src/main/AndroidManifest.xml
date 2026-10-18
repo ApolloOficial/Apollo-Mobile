@@ -5,6 +5,7 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -21,6 +22,7 @@
     </queries>
 
     <application
+        android:name=".ApolloApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -78,6 +80,7 @@
         <activity android:screenOrientation="portrait" android:name="org.apollo.mobile.view.scanner.PanelActivationActivity" />
         <activity android:screenOrientation="portrait" android:name="org.apollo.mobile.view.scanner.PanelIdentifiedActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.MaintenanceActivity" />
+        <activity android:screenOrientation="portrait" android:name=".view.common.ErrorStateActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.os.ServiceOrdersActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.os.OsDetailsActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.maintenance.os.MaintenanceIdentifiedActivity" />
@@ -88,6 +91,15 @@
         <activity android:screenOrientation="portrait" android:name=".view.panels.PanelDetailsActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.panels.ReportIssueActivity" />
         <activity android:screenOrientation="portrait" android:name=".view.notifications.NotificationsActivity" />
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.photos"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/photo_paths" />
+        </provider>
     </application>
 
 </manifest>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_calendar_card"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_24"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/space_32">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="top"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/tvMessageTitle"
+            style="@style/apollo_h5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:textColor="@color/neutral_black" />
+
+        <ImageView
+            android:id="@+id/btnMessageClose"
+            android:layout_width="@dimen/space_30"
+            android:layout_height="@dimen/space_30"
+            android:layout_marginStart="@dimen/space_12"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:contentDescription="Fechar"
+            android:src="@drawable/ic_close_circle" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvMessageBody"
+        style="@style/apollo_body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_12"
+        android:lineSpacingExtra="@dimen/space_4"
+        android:textColor="@color/neutral_black" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_24"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/btnMessageSecondary"
+            style="@style/apollo_label3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_44"
+            android:layout_marginEnd="@dimen/space_8"
+            android:layout_weight="1"
+            android:background="@drawable/bg_cta_outline"
+            android:gravity="center"
+            android:textColor="@color/cta_outline_text"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/btnMessagePrimary"
+            style="@style/apollo_label3"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/space_44"
+            android:layout_weight="1"
+            android:background="@drawable/bg_cta_filled"
+            android:gravity="center"
+            android:textColor="@color/cta_filled_text" />
+    </LinearLayout>
+</LinearLayout>

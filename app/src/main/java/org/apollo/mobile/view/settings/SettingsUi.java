@@ -2,7 +2,6 @@ package org.apollo.mobile.view.settings;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.widget.Toast;
 
 import org.apollo.mobile.R;
 import org.apollo.mobile.session.SessionManagerFactory;
@@ -19,10 +18,14 @@ final class SettingsUi {
             return true;
         }
         if (error.getType() == SettingsError.Type.SESSION_EXPIRED) {
-            goToLogin(activity);
+            org.apollo.mobile.view.common.AppSheets.sessionExpired(activity);
             return true;
         }
-        Toast.makeText(activity, messageFor(error), Toast.LENGTH_LONG).show();
+        if (error.getType() == SettingsError.Type.NETWORK) {
+            org.apollo.mobile.view.common.AppToast.offline(activity);
+            return false;
+        }
+        org.apollo.mobile.view.common.AppToast.error(activity, messageFor(error));
         return false;
     }
 

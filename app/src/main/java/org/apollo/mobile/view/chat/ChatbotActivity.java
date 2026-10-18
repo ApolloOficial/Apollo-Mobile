@@ -10,7 +10,6 @@ import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -227,8 +226,7 @@ public final class ChatbotActivity extends AppCompatActivity {
                     return;
                 }
                 if (error.getType() == ChatError.Type.SESSION_EXPIRED) {
-                    sessionManager.logout();
-                    openLogin();
+                    org.apollo.mobile.view.common.AppSheets.sessionExpired(ChatbotActivity.this);
                     return;
                 }
                 if (error.getType() == ChatError.Type.FORBIDDEN) {
@@ -284,7 +282,7 @@ public final class ChatbotActivity extends AppCompatActivity {
             return;
         }
         if (!speechReader.speak(message.getText())) {
-            Toast.makeText(this, R.string.chat_speech_unavailable, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.chat_speech_unavailable);
             return;
         }
         speakingMessage = message;
@@ -308,11 +306,16 @@ public final class ChatbotActivity extends AppCompatActivity {
 
     private void copyToClipboard(String text) {
         ClipboardManager clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
-        if (clipboard == null) {
+        if (clipboard == null || text == null || text.trim().isEmpty()) {
+            org.apollo.mobile.view.common.AppToast.error(this, "Não foi possível copiar o texto.");
             return;
         }
-        clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.chat_title), text));
-        Toast.makeText(this, R.string.chat_copied, Toast.LENGTH_SHORT).show();
+        try {
+            clipboard.setPrimaryClip(ClipData.newPlainText(getString(R.string.chat_title), text));
+            org.apollo.mobile.view.common.AppToast.success(this, "Texto copiado!");
+        } catch (RuntimeException e) {
+            org.apollo.mobile.view.common.AppToast.error(this, "Não foi possível copiar o texto.");
+        }
     }
 
     private void openLogin() {

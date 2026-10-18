@@ -181,7 +181,12 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
         void bind(ChatMessage message) {
             text.setText(message.getText());
-            copy.setOnClickListener(view -> actions.onCopy(message));
+            copy.setOnClickListener(view -> {
+                actions.onCopy(message);
+                view.setActivated(true);
+                org.apollo.mobile.view.common.Motion.bounce(view);
+                view.postDelayed(() -> view.setActivated(false), 1600);
+            });
             edit.setOnClickListener(view -> actions.onEdit(message));
         }
     }
@@ -208,10 +213,14 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
             if (hasSources) {
                 sources.setText(itemView.getContext().getString(R.string.chat_sources, message.getSources()));
             }
-            copy.setOnClickListener(view -> actions.onCopy(message));
+            copy.setOnClickListener(view -> {
+                actions.onCopy(message);
+                view.setActivated(true);
+                org.apollo.mobile.view.common.Motion.bounce(view);
+                view.postDelayed(() -> view.setActivated(false), 1600);
+            });
             speak.setOnClickListener(view -> actions.onSpeak(message));
-            int tint = message == speaking ? R.color.secondary_three : R.color.neutral_gray;
-            speak.setColorFilter(ContextCompat.getColor(itemView.getContext(), tint));
+            speak.setActivated(message == speaking);
         }
     }
 
