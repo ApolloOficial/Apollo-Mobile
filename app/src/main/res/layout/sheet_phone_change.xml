@@ -27,7 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Solicitar alteração"
+            android:text="@string/l_c3dc88e302"
             android:textColor="@color/neutral_black" />
 
         <ImageView
@@ -35,7 +35,7 @@
             android:layout_width="@dimen/space_30"
             android:layout_height="@dimen/space_30"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Fechar"
+            android:contentDescription="@string/l_23781b5ede"
             android:src="@drawable/ic_close_circle" />
     </LinearLayout>
 
@@ -44,7 +44,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
-        android:text="Telefone atual"
+        android:text="@string/l_ed5ee5d472"
         android:textColor="@color/neutral_black" />
 
     <TextView
@@ -64,7 +64,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_20"
-        android:text="Novo telefone desejado"
+        android:text="@string/l_75559a42b4"
         android:textColor="@color/neutral_black" />
 
     <EditText
@@ -74,7 +74,7 @@
         android:layout_height="@dimen/space_48"
         android:layout_marginTop="@dimen/space_8"
         android:background="@drawable/edittext_bg"
-        android:hint="Ex: 11912345678"
+        android:hint="@string/l_3a4ccd3c4d"
         android:importantForAutofill="no"
         android:inputType="phone"
         android:maxLines="1"
@@ -87,7 +87,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_12"
         android:lineSpacingExtra="@dimen/space_2"
-        android:text="Esse número (se aprovado) vai passar a receber o código de verificação (SMS) no seu login."
+        android:text="@string/l_1fe034a6f1"
         android:textColor="@color/neutral_gray" />
 
     <TextView
@@ -95,5 +95,5 @@
         style="@style/apollo_button_primary"
         android:layout_marginHorizontal="@dimen/space_minus_8"
         android:layout_marginTop="@dimen/space_24"
-        android:text="Enviar solicitação" />
+        android:text="@string/l_290b081c2b" />
 </LinearLayout>

@@ -76,14 +76,14 @@ public final class OsDetailsActivity extends AppCompatActivity {
         if (intent != null && intent.getBooleanExtra(EXTRA_COMPLETED, false)) {
             intent.removeExtra(EXTRA_COMPLETED);
             primary.postDelayed(() -> org.apollo.mobile.view.common.AppToast.success(this,
-                    "Manutenção registrada com sucesso!"), 400);
+                    org.apollo.mobile.view.common.Tr.t("Manutenção registrada com sucesso!")), 400);
         }
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-        if (gateway != null) load(); // volta da conclusão já como "Concluída"
+        if (gateway != null) load(); // volta da conclusão já como org.apollo.mobile.view.common.Tr.t("Concluída")
     }
 
     private void load() {
@@ -107,7 +107,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) return;
                 findViewById(R.id.progressOsDetails).setVisibility(View.GONE);
                 if (details != null) {
-                    org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, "Não foi possível atualizar a OS.");
+                    org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível atualizar a OS."));
                     return;
                 }
                 findViewById(R.id.llOsContent).setVisibility(View.GONE);
@@ -121,7 +121,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
                         });
                 if (missing) {
                     state.empty(org.apollo.mobile.view.common.EmptyState.Kind.ORDERS,
-                            "Essa ordem de serviço não está mais disponível para você ou foi removida.");
+                            org.apollo.mobile.view.common.Tr.t("Essa ordem de serviço não está mais disponível para você ou foi removida."));
                 } else if (error.getType() == ServiceOrderError.Type.NETWORK) {
                     state.timeout();
                 } else {
@@ -155,21 +155,21 @@ public final class OsDetailsActivity extends AppCompatActivity {
         switch (details.getScope()) {
             case PANEL:
                 addInfo("Inversor / String", join(warning.getInverterCode(), warning.getStringCode()));
-                addInfo("Número de série", warning.getPanelSerial());
+                addInfo(org.apollo.mobile.view.common.Tr.t("Número de série"), warning.getPanelSerial());
                 break;
             case STRING:
                 addInfo("Inversor / String", join(warning.getInverterCode(), warning.getStringCode()));
                 break;
             default:
-                addInfo("Inversor", ServiceOrderUi.safe(warning.getInverterCode()) + ", todas as strings");
+                addInfo(org.apollo.mobile.view.common.Tr.t("Inversor"), ServiceOrderUi.safe(warning.getInverterCode()) + org.apollo.mobile.view.common.Tr.t(", todas as strings"));
                 break;
         }
 
-        addInfo("Tipo de manutenção", order.getMaintenanceTypeName());
+        addInfo(org.apollo.mobile.view.common.Tr.t("Tipo de manutenção"), org.apollo.mobile.view.common.Tr.v(order.getMaintenanceTypeName()));
         if ("CONCLUIDA".equals(order.getMaintenanceStatus())) {
-            addInfo("Prazo de conclusão", "Concluída em\n" + ServiceOrderUi.date(order.getConcludedAt()));
+            addInfo(org.apollo.mobile.view.common.Tr.t("Prazo de conclusão"), org.apollo.mobile.view.common.Tr.t("Concluída em\n") + ServiceOrderUi.date(order.getConcludedAt()));
         } else {
-            addInfo("Prazo de conclusão", ServiceOrderUi.date(order.getDueDate()));
+            addInfo(org.apollo.mobile.view.common.Tr.t("Prazo de conclusão"), ServiceOrderUi.date(order.getDueDate()));
         }
     }
 
@@ -192,7 +192,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
         for (Panel panel : targets) {
             if (concluded || results.containsKey(panel.getId())) verified++;
         }
-        ((TextView) findViewById(R.id.tvVerifiedCount)).setText(verified + " de " + targets.size());
+        ((TextView) findViewById(R.id.tvVerifiedCount)).setText(verified + org.apollo.mobile.view.common.Tr.t(" de ") + targets.size());
         stringGroups.removeAllViews();
         LayoutInflater inflater = LayoutInflater.from(this);
 
@@ -212,7 +212,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
                     ServiceOrderUi.safe(group.getSolarString().getInverterCode()) + ", "
                             + ServiceOrderUi.safe(group.getSolarString().getCode()));
             ((TextView) card.findViewById(R.id.tvGroupCount)).setText(
-                    groupVerified + " de " + panels.size() + " placas verificadas");
+                    groupVerified + org.apollo.mobile.view.common.Tr.t(" de ") + panels.size() + org.apollo.mobile.view.common.Tr.t(" placas verificadas"));
 
             LinearLayout plates = card.findViewById(R.id.llPlates);
             View chevron = card.findViewById(R.id.ivChevron);
@@ -288,7 +288,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
         ConditionSheet.show(this, panel.getSerialNumber(), current == null ? null : current.getProblem(), problem -> {
             store.verify(orderId, panel.getId(), panel.getSerialNumber(), problem);
             org.apollo.mobile.view.common.AppToast.success(this,
-                    problem == null ? "Placa sem problema aparente" : "Condição registrada");
+                    problem == null ? org.apollo.mobile.view.common.Tr.t("Placa sem problema aparente") : org.apollo.mobile.view.common.Tr.t("Condição registrada"));
             renderGroups();
             configureActions();
         });
@@ -306,18 +306,18 @@ public final class OsDetailsActivity extends AppCompatActivity {
         Order order = details.getOrder();
         String status = order.getMaintenanceStatus();
 
-        addHistory("OS criada", "Aberta a partir de alerta. Técnico: "
+        addHistory(org.apollo.mobile.view.common.Tr.t("OS criada"), "Aberta a partir de alerta. Técnico: "
                         + ServiceOrderUi.safe(order.getTechnicianName()) + ".",
                 ServiceOrderUi.date(order.getOpeningDt()), false);
 
         if ("ABERTA".equals(status)) {
-            addHistory("Aguardando execução", null, null, true);
+            addHistory(org.apollo.mobile.view.common.Tr.t("Aguardando execução"), null, null, true);
         } else if ("EM_ANDAMENTO".equals(status) || "CONCLUIDA".equals(status)) {
-            addHistory("Execução iniciada", "Você escaneou a placa em campo.", null, false);
+            addHistory(org.apollo.mobile.view.common.Tr.t("Execução iniciada"), org.apollo.mobile.view.common.Tr.t("Você escaneou a placa em campo."), null, false);
         }
 
         if ("CONCLUIDA".equals(status)) {
-            addHistory("OS concluída", "Laudo técnico registrado.",
+            addHistory(org.apollo.mobile.view.common.Tr.t("OS concluída"), org.apollo.mobile.view.common.Tr.t("Laudo técnico registrado."),
                     ServiceOrderUi.date(order.getConcludedAt()), false);
         }
 
@@ -350,21 +350,21 @@ public final class OsDetailsActivity extends AppCompatActivity {
         if ("ABERTA".equals(status)) {
             primary.setVisibility(View.VISIBLE);
             if (hasPanels) {
-                primary.setText("Escanear placa para iniciar");
+                primary.setText(org.apollo.mobile.view.common.Tr.t("Escanear placa para iniciar"));
                 primary.setOnClickListener(view -> openScanner());
             } else {
-                primary.setText("Iniciar manutenção");
+                primary.setText(org.apollo.mobile.view.common.Tr.t("Iniciar manutenção"));
                 primary.setOnClickListener(view -> startMaintenance());
             }
         } else if ("EM_ANDAMENTO".equals(status)) {
             primary.setVisibility(View.VISIBLE);
-            primary.setText("Ir para conclusão");
+            primary.setText(org.apollo.mobile.view.common.Tr.t("Ir para conclusão"));
             primary.setOnClickListener(view -> openCompletion());
             if (details.getTargetPanels().size() == 1) {
                 Panel panel = details.getTargetPanels().get(0);
                 boolean registered = new OsVerificationStore(this).results(orderId).containsKey(panel.getId());
                 secondary.setVisibility(View.VISIBLE);
-                secondary.setText(registered ? "Condição registrada!" : "Registrar condição");
+                secondary.setText(registered ? org.apollo.mobile.view.common.Tr.t("Condição registrada!") : org.apollo.mobile.view.common.Tr.t("Registrar condição"));
                 secondary.setEnabled(!registered);
                 secondary.setOnClickListener(view -> openCondition(panel));
             }
@@ -392,14 +392,14 @@ public final class OsDetailsActivity extends AppCompatActivity {
             public void onSuccess(Order value) {
                 primary.setEnabled(true);
                 if (isFinishing() || isDestroyed()) return;
-                org.apollo.mobile.view.common.AppToast.success(OsDetailsActivity.this, "Manutenção iniciada");
+                org.apollo.mobile.view.common.AppToast.success(OsDetailsActivity.this, org.apollo.mobile.view.common.Tr.t("Manutenção iniciada"));
                 load();
             }
 
             @Override
             public void onFailure(ServiceOrderError error) {
                 primary.setEnabled(true);
-                org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, "Não foi possível iniciar a manutenção.");
+                org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível iniciar a manutenção."));
             }
         });
     }

@@ -14,7 +14,7 @@
         android:layout_height="@dimen/space_30"
         android:layout_gravity="end|top"
         android:background="?attr/selectableItemBackgroundBorderless"
-        android:contentDescription="Fechar"
+        android:contentDescription="@string/l_23781b5ede"
         android:src="@drawable/ic_close_circle" />
 
     <LinearLayout
@@ -42,7 +42,7 @@
             android:gravity="center"
             android:maxWidth="@dimen/space_280"
             android:textColor="@color/neutral_black"
-            android:text="Não foi possível identificar a placa." />
+            android:text="@string/l_b6c7839966" />
 
         <TextView
             android:id="@+id/tvFeedbackMessage"
@@ -54,7 +54,7 @@
             android:lineSpacingExtra="@dimen/space_2"
             android:maxWidth="@dimen/space_280"
             android:textColor="@color/neutral_black"
-            android:text="Verifique o código de barras e tente novamente." />
+            android:text="@string/l_792d4bf575" />
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -72,7 +72,7 @@
                 android:layout_weight="1"
                 android:background="@drawable/bg_cta_outline"
                 android:gravity="center"
-                android:text="Agora não"
+                android:text="@string/l_107548b432"
                 android:textColor="@color/secondary_one"
                 android:visibility="gone" />
 
@@ -85,7 +85,7 @@
                 android:background="@drawable/bg_cta_filled"
                 android:gravity="center"
                 android:paddingHorizontal="@dimen/space_16"
-                android:text="Tentar novamente"
+                android:text="@string/l_836a00c1e6"
                 android:textColor="@color/neutral_white" />
         </LinearLayout>
     </LinearLayout>

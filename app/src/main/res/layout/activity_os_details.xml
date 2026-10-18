@@ -67,7 +67,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="OS84524" />
+                android:text="@string/l_5f9048df2f" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -80,7 +80,7 @@
                     style="@style/apollo_tag"
                     android:backgroundTint="@color/info_two"
                     android:minWidth="@dimen/space_103"
-                    android:text="Aberta" />
+                    android:text="@string/l_05d22f8223" />
 
                 <TextView
                     android:id="@+id/tvPriorityTag"
@@ -88,7 +88,7 @@
                     android:layout_marginStart="@dimen/space_4"
                     android:backgroundTint="@color/alert_two"
                     android:minWidth="@dimen/space_80"
-                    android:text="Média" />
+                    android:text="@string/l_10cf998631" />
             </LinearLayout>
 
             <LinearLayout
@@ -109,7 +109,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Descrição" />
+                    android:text="@string/l_c1c2501bcc" />
 
                 <TextView
                     android:id="@+id/tvDescription"
@@ -140,14 +140,14 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:text="Placas verificadas" />
+                        android:text="@string/l_c0f04aa2b4" />
 
                     <TextView
                         android:id="@+id/tvVerifiedCount"
                         style="@style/apollo_body3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="0 de 0"
+                        android:text="@string/l_2feebf64d0"
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 
@@ -163,7 +163,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="Histórico de andamento" />
+                android:text="@string/l_42861f453f" />
 
             <LinearLayout
                 android:id="@+id/llHistory"
@@ -193,7 +193,7 @@
                     style="@style/apollo_label3"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Laudo" />
+                    android:text="@string/l_281fe8098f" />
 
                 <TextView
                     android:id="@+id/tvReport"

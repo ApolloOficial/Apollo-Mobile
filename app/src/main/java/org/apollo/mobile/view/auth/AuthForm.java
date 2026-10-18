@@ -45,8 +45,8 @@ public final class AuthForm {
 
     public static void requirements(TextView target, String password) {
         String value = password == null ? "" : password;
-        String[] labels = {"Mínimo 8 caracteres;", "Pelo menos 1 letra maiúscula e 1 minúscula;",
-                "1 número;", "1 caractere especial"};
+        String[] labels = {org.apollo.mobile.view.common.Tr.t("Mínimo 8 caracteres;"), org.apollo.mobile.view.common.Tr.t("Pelo menos 1 letra maiúscula e 1 minúscula;"),
+                org.apollo.mobile.view.common.Tr.t("1 número;"), org.apollo.mobile.view.common.Tr.t("1 caractere especial")};
         boolean[] ok = {
                 value.length() >= 8,
                 value.matches(".*[a-z].*") && value.matches(".*[A-Z].*"),

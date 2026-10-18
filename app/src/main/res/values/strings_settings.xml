@@ -30,7 +30,7 @@
     </plurals>
 
     <string name="settings_about_title">Sobre o Apollo</string>
-    <string name="settings_about_message">Apollo-Mobile\nVersão %1$s</string>
+    <string name="settings_about_message">Apollo\nVersão %1$s</string>
     <string name="settings_logout_title">Sair da conta</string>
     <string name="settings_logout_message">Deseja encerrar a sessão neste aparelho?</string>
     <string name="settings_logout_confirm">Sair</string>
@@ -101,4 +101,6 @@
     <string name="settings_storage_cleared">Cache limpo com sucesso!</string>
     <string name="settings_storage_total">%1$s de %2$s disponíveis</string>
     <string name="settings_security_phone_info"><b>O telefone é cadastrado pela gestão da sua empresa.</b> Você pode solicitar a troca de número, a gestão da sua empresa recebe o pedido e aprova ou recusa.</string>
+    <string name="settings_language_failed">Não foi possível salvar o idioma. Tente novamente.</string>
+    <string name="settings_language_current">Português (Brasil)</string>
 </resources>

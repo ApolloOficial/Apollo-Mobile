@@ -13,7 +13,7 @@
         style="@style/apollo_h5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Sua sessão expirou"
+        android:text="@string/l_fab3f8eccb"
         android:textColor="@color/neutral_black" />
 
     <TextView
@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_16"
         android:lineSpacingExtra="@dimen/space_4"
-        android:text="Por segurança, você precisa fazer login novamente."
+        android:text="@string/l_a78009df42"
         android:textColor="@color/neutral_black" />
 
     <TextView
@@ -30,5 +30,5 @@
         style="@style/apollo_button_primary"
         android:layout_marginHorizontal="@dimen/space_minus_8"
         android:layout_marginTop="@dimen/space_32"
-        android:text="Fazer login" />
+        android:text="@string/l_16f691fbfd" />
 </LinearLayout>

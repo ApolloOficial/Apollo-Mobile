@@ -27,7 +27,7 @@
             style="@style/apollo_label3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Número de série"
+            android:text="@string/l_122342a3ff"
             android:textColor="@color/neutral_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_2"
             android:layout_marginEnd="@dimen/space_8"
-            android:text="CS-2025-00841"
+            android:text="@string/l_cd83fbaec6"
             app:layout_constraintEnd_toStartOf="@id/llStatusTag"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSerialNumberLabel" />
@@ -50,7 +50,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_4"
-            android:text="Posição 1"
+            android:text="@string/l_9d20949e04"
             android:textColor="@color/neutral_gray"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tvSerialNumber" />
@@ -75,7 +75,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:maxLines="1"
-                android:text="Em operação" />
+                android:text="@string/l_efa2e9d7d0" />
 
             <ImageView
                 android:id="@+id/ivStatusIcon"
@@ -109,7 +109,7 @@
                 style="@style/apollo_label5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Eficiência"
+                android:text="@string/l_e187ef2a31"
                 android:textColor="@color/neutral_gray"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -143,7 +143,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_15"
-            android:text="Aguardando ativação em campo..."
+            android:text="@string/l_3463c49e25"
             android:textColor="@color/neutral_gray"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
@@ -155,7 +155,7 @@
             style="@style/apollo_cta_outline"
             android:layout_marginTop="@dimen/space_16"
             android:layout_marginEnd="@dimen/space_8"
-            android:text="Ver OS"
+            android:text="@string/l_892e7513e4"
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/clEfficiency" />

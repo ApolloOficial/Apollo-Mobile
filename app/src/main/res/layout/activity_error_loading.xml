@@ -41,7 +41,7 @@
             android:maxLines="1"
             android:paddingHorizontal="@dimen/space_16"
             android:paddingVertical="@dimen/space_8"
-            android:text="Fábrica Itajaí, Limeira - SP"
+            android:text="@string/l_3dec30e183"
             android:textColor="@color/neutral_black"
             app:layout_constraintBottom_toBottomOf="@id/ivProfile"
             app:layout_constraintEnd_toStartOf="@id/ibNotifications"

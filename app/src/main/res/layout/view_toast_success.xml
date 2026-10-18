@@ -28,5 +28,5 @@
         android:lineSpacingExtra="2dp"
         android:paddingVertical="10dp"
         android:textColor="#FF1C1C1C"
-        android:text="Placa instalada com sucesso!" />
+        android:text="@string/l_c9304939cb" />
 </LinearLayout>

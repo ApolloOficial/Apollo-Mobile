@@ -35,9 +35,18 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="Idioma" />
+                android:text="@string/l_d62a3259ec" />
+
+            <org.apollo.mobile.view.common.SkeletonView
+                android:id="@+id/skeletonLanguage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:max="3" />
 
             <LinearLayout
+                android:id="@+id/llLanguageOptions"
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
@@ -55,7 +64,7 @@
                         android:id="@+id/ivBrazil"
                         android:layout_width="@dimen/space_50"
                         android:layout_height="@dimen/space_50"
-                        android:contentDescription="Português (Brasil)"
+                        android:contentDescription="@string/l_c91e897d4a"
                         android:src="@drawable/ic_brazil" />
 
                     <TextView
@@ -64,7 +73,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_16"
                         android:layout_weight="1"
-                        android:text="Português (Brasil)" />
+                        android:text="@string/l_c91e897d4a" />
 
                     <RadioButton
                         style="@style/apollo_radio"
@@ -73,7 +82,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:button="@drawable/radio_apollo"
-                        android:contentDescription="Português (Brasil)" />
+                        android:contentDescription="@string/l_c91e897d4a" />
                 </LinearLayout>
 
                 <View
@@ -92,7 +101,7 @@
                         android:id="@+id/ivSpain"
                         android:layout_width="@dimen/space_50"
                         android:layout_height="@dimen/space_50"
-                        android:contentDescription="Espanõl"
+                        android:contentDescription="@string/l_e864359532"
                         android:src="@drawable/ic_spain" />
 
                     <TextView
@@ -101,7 +110,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_16"
                         android:layout_weight="1"
-                        android:text="Espanõl" />
+                        android:text="@string/l_e864359532" />
 
                     <RadioButton
                         style="@style/apollo_radio"
@@ -110,7 +119,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:button="@drawable/radio_apollo"
-                        android:contentDescription="Espanõl" />
+                        android:contentDescription="@string/l_e864359532" />
                 </LinearLayout>
 
                 <View
@@ -129,7 +138,7 @@
                         android:id="@+id/ivEnglish"
                         android:layout_width="@dimen/space_50"
                         android:layout_height="@dimen/space_50"
-                        android:contentDescription="English"
+                        android:contentDescription="@string/l_78463a384a"
                         android:src="@drawable/ic_usa_uk" />
 
                     <TextView
@@ -138,7 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/space_16"
                         android:layout_weight="1"
-                        android:text="English" />
+                        android:text="@string/l_78463a384a" />
 
                     <RadioButton
                         style="@style/apollo_radio"
@@ -147,7 +156,7 @@
                         android:layout_height="wrap_content"
                         android:background="@null"
                         android:button="@drawable/radio_apollo"
-                        android:contentDescription="English" />
+                        android:contentDescription="@string/l_78463a384a" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

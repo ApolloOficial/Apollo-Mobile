@@ -24,24 +24,44 @@ public final class LanguageActivity extends AppCompatActivity {
     private RadioButton english;
     private String selected = PORTUGUESE;
     private boolean busy;
+    private static boolean announce;
+    private View skeleton;
+    private View options;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        gateway = SettingsGatewayFactory.create(getApplicationContext());
+        bindUi();
+        load();
+    }
+
+    @Override
+    public void onConfigurationChanged(@androidx.annotation.NonNull android.content.res.Configuration newConfig) {
+        super.onConfigurationChanged(newConfig);
+        bindUi();
+        select(selected);
+        skeleton.setVisibility(View.GONE);
+        options.setVisibility(View.VISIBLE);
+        if (announce) {
+            announce = false;
+            org.apollo.mobile.view.common.AppToast.success(this, R.string.settings_language_saved);
+        }
+    }
+
+    private void bindUi() {
         setContentView(R.layout.activity_language);
         Motion.enterScreen(this);
-
-        gateway = SettingsGatewayFactory.create(getApplicationContext());
         portuguese = findViewById(R.id.rbPortuguese);
         spanish = findViewById(R.id.rbSpanish);
         english = findViewById(R.id.rbEnglish);
+        skeleton = findViewById(R.id.skeletonLanguage);
+        options = findViewById(R.id.llLanguageOptions);
 
         findViewById(R.id.tvBack).setOnClickListener(view -> finish());
         bindOption(portuguese, R.id.ivBrazil, PORTUGUESE);
         bindOption(spanish, R.id.ivSpain, SPANISH);
         bindOption(english, R.id.ivEnglish, ENGLISH);
-
-        load();
     }
 
     private void bindOption(RadioButton button, int flagId, String code) {
@@ -59,10 +79,22 @@ public final class LanguageActivity extends AppCompatActivity {
                     return;
                 }
                 select(settings.getSelected());
+                showOptions();
+                if (announce) {
+                    announce = false;
+                    org.apollo.mobile.view.common.AppToast.success(LanguageActivity.this, R.string.settings_language_saved);
+                }
+                apply(selected);
             }
 
             @Override
             public void onFailure(SettingsError error) {
+                if (isFinishing() || isDestroyed()) return;
+                showOptions();
+                if (announce) {
+                    announce = false;
+                    org.apollo.mobile.view.common.AppToast.success(LanguageActivity.this, R.string.settings_language_saved);
+                }
                 SettingsUi.handleFailure(LanguageActivity.this, error);
             }
         });
@@ -83,6 +115,7 @@ public final class LanguageActivity extends AppCompatActivity {
         busy = true;
         String previous = selected;
         select(code);
+        showSkeleton();
         gateway.updateLanguage(code, new SettingsGateway.Callback<LanguageSettings>() {
             @Override
             public void onSuccess(LanguageSettings settings) {
@@ -90,8 +123,15 @@ public final class LanguageActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }
-                select(settings.getSelected() == null ? code : settings.getSelected());
-                org.apollo.mobile.view.common.AppToast.success(LanguageActivity.this, R.string.settings_language_saved);
+                String applied = settings.getSelected() == null ? code : settings.getSelected();
+                select(applied);
+                if (sameAsApp(applied)) {
+                    showOptions();
+                    org.apollo.mobile.view.common.AppToast.success(LanguageActivity.this, R.string.settings_language_saved);
+                } else {
+                    announce = true;
+                    apply(applied);
+                }
             }
 
             @Override
@@ -101,8 +141,36 @@ public final class LanguageActivity extends AppCompatActivity {
                     return;
                 }
                 select(previous);
-                SettingsUi.handleFailure(LanguageActivity.this, error);
+                showOptions();
+                org.apollo.mobile.view.common.AppToast.error(LanguageActivity.this, R.string.settings_language_failed);
             }
         });
+    }
+
+    private void showSkeleton() {
+        options.setVisibility(View.GONE);
+        skeleton.setAlpha(1f);
+        skeleton.setVisibility(View.VISIBLE);
+    }
+
+    private void showOptions() {
+        org.apollo.mobile.view.common.SkeletonView.hide(skeleton);
+        if (options.getVisibility() == View.VISIBLE) return;
+        options.setAlpha(0f);
+        options.setVisibility(View.VISIBLE);
+        options.animate().alpha(1f).setDuration(320).start();
+    }
+
+    private static boolean sameAsApp(String code) {
+        androidx.core.os.LocaleListCompat current = androidx.appcompat.app.AppCompatDelegate.getApplicationLocales();
+        if (current.isEmpty()) return false;
+        String tag = current.toLanguageTags();
+        return tag.toLowerCase(java.util.Locale.ROOT).startsWith(code.toLowerCase(java.util.Locale.ROOT).substring(0, 2));
+    }
+
+    private static void apply(String code) {
+        if (code == null || sameAsApp(code)) return;
+        androidx.appcompat.app.AppCompatDelegate.setApplicationLocales(
+                androidx.core.os.LocaleListCompat.forLanguageTags(code));
     }
 }

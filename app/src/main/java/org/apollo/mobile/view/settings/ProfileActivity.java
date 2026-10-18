@@ -53,7 +53,7 @@ public final class ProfileActivity extends AppCompatActivity {
                 setText(R.id.tv_name_value, profile.getFullName());
                 setText(R.id.tv_email_value, profile.getEmail());
                 setText(R.id.tv_company_value, companyLine(profile));
-                setText(R.id.tv_role_value, profile.getRoleLabel());
+                setText(R.id.tv_role_value, org.apollo.mobile.view.common.Tr.v(profile.getRoleLabel()));
                 hasPhoto = profile.hasPhoto();
                 loadPhoto();
             }

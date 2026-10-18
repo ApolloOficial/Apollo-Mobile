@@ -18,7 +18,7 @@
         android:layout_height="wrap_content"
         android:ellipsize="end"
         android:maxLines="1"
-        android:text="Placa CS-2024-00765"
+        android:text="@string/l_ca25147964"
         android:textColor="@color/neutral_gray"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +29,7 @@
         style="@style/apollo_h5"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="OS84524"
+        android:text="@string/l_5f9048df2f"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
@@ -48,7 +48,7 @@
             style="@style/apollo_tag"
             android:backgroundTint="@color/info_two"
             android:minWidth="@dimen/space_103"
-            android:text="Aberta" />
+            android:text="@string/l_05d22f8223" />
 
         <TextView
             android:id="@+id/tvPriorityTag"
@@ -56,14 +56,14 @@
             android:layout_marginStart="@dimen/space_4"
             android:backgroundTint="@color/alert_two"
             android:minWidth="@dimen/space_80"
-            android:text="Média" />
+            android:text="@string/l_10cf998631" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/btnDetails"
         style="@style/apollo_cta_outline"
         android:layout_marginTop="@dimen/space_8"
-        android:text="Ver detalhes"
+        android:text="@string/l_129843b7b4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/llTags" />
 
@@ -74,7 +74,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/space_1"
         android:layout_marginEnd="@dimen/space_8"
-        android:text="Prazo: 30/09/2026"
+        android:text="@string/l_d821d6108d"
         android:textColor="@color/neutral_gray"
         app:layout_constraintBottom_toBottomOf="@id/btnDetails"
         app:layout_constraintEnd_toStartOf="@id/btnDetails"

@@ -54,7 +54,7 @@ final class PhotoPicker {
             if (granted) {
                 openCamera();
             } else {
-                AppToast.error(activity, "Permita o acesso à câmera para tirar a foto.");
+                AppToast.error(activity, org.apollo.mobile.view.common.Tr.t("Permita o acesso à câmera para tirar a foto."));
             }
         });
     }
@@ -95,7 +95,7 @@ final class PhotoPicker {
             cameraUri = FileProvider.getUriForFile(activity, activity.getPackageName() + ".photos", file);
             camera.launch(cameraUri);
         } catch (RuntimeException e) {
-            AppToast.error(activity, "Não foi possível abrir a câmera.");
+            AppToast.error(activity, org.apollo.mobile.view.common.Tr.t("Não foi possível abrir a câmera."));
         }
     }
 

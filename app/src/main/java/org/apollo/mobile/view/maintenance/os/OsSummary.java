@@ -37,9 +37,9 @@ final class OsSummary {
             String string = ServiceOrderUi.safe(panel.getStringCode());
             ((TextView) row.findViewById(R.id.tvSummaryPlate)).setText(
                     ServiceOrderUi.safe(panel.getSerialNumber()) + " (" + string
-                            + (position > 0 ? ", Posição " + position : "") + ")");
+                            + (position > 0 ? org.apollo.mobile.view.common.Tr.t(", Posição ") + position : "") + ")");
             TextView condition = row.findViewById(R.id.tvSummaryCondition);
-            condition.setText(result.hasProblem() ? result.getProblem() : "Sem problema aparente.");
+            condition.setText(result.hasProblem() ? result.getProblem() : org.apollo.mobile.view.common.Tr.t("Sem problema aparente."));
             View chevron = row.findViewById(R.id.ivSummaryChevron);
             row.findViewById(R.id.llSummaryHeader).setOnClickListener(v -> {
                 boolean expand = condition.getVisibility() != View.VISIBLE;
@@ -52,12 +52,12 @@ final class OsSummary {
 
         TextView verifiedTag = card.findViewById(R.id.tvVerifiedTag);
         if (verified == 0 && unidentified) {
-            verifiedTag.setText("Placa não identificada");
+            verifiedTag.setText(org.apollo.mobile.view.common.Tr.t("Placa não identificada"));
         } else {
-            verifiedTag.setText(verified + " de " + targets.size() + " verificadas");
+            verifiedTag.setText(verified + org.apollo.mobile.view.common.Tr.t(" de ") + targets.size() + org.apollo.mobile.view.common.Tr.t(" verificadas"));
         }
         TextView problemTag = card.findViewById(R.id.tvProblemTag);
-        problemTag.setText(problems == 1 ? "1 com problema" : problems + " com problema");
+        problemTag.setText(problems == 1 ? org.apollo.mobile.view.common.Tr.t("1 com problema") : problems + org.apollo.mobile.view.common.Tr.t(" com problema"));
         problemTag.setVisibility(problems > 0 ? View.VISIBLE : View.GONE);
         list.setVisibility(verified > 0 ? View.VISIBLE : View.GONE);
         return verified > 0 || unidentified;

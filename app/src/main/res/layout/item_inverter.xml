@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_15"
         android:layout_marginBottom="@dimen/space_8"
-        android:text="Inversor 001" />
+        android:text="@string/l_87cd65dbc3" />
 
     <LinearLayout
         android:id="@+id/llCardContent"
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/space_16"
                 android:layout_marginEnd="@dimen/space_8"
-                android:text="ITJ-LIM-001"
+                android:text="@string/l_307299e0a8"
                 app:layout_constraintEnd_toStartOf="@id/ivChevron"
                 app:layout_constraintStart_toEndOf="@id/ivInverterIcon"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -61,7 +61,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_1"
-                android:text="Capac. 42 kWp  ·  24 placas"
+                android:text="@string/l_457f04ba2f"
                 android:textColor="@color/neutral_gray"
                 app:layout_constraintEnd_toEndOf="@id/tvInverterId"
                 app:layout_constraintStart_toStartOf="@id/tvInverterId"
@@ -106,7 +106,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/space_3"
-                            android:text="Em estoque" />
+                            android:text="@string/l_1783c970b4" />
                     </LinearLayout>
 
                     <Space
@@ -133,7 +133,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/space_3"
-                            android:text="Em operação" />
+                            android:text="@string/l_efa2e9d7d0" />
                     </LinearLayout>
 
                     <Space
@@ -160,7 +160,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="@dimen/space_3"
-                            android:text="Atenção" />
+                            android:text="@string/l_d45f3feee7" />
                     </LinearLayout>
         </LinearLayout>
 
@@ -178,7 +178,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Saúde da string" />
+                android:text="@string/l_4e63f92eb3" />
 
             <TextView
                 android:id="@+id/tvHealthValue"
@@ -194,7 +194,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/space_53"
             android:layout_marginTop="@dimen/space_18"
-            android:text="Placas" />
+            android:text="@string/l_1a1a776e9f" />
 
         <LinearLayout
             android:id="@+id/llPlatesList"
@@ -215,7 +215,7 @@
             android:layout_marginEnd="@dimen/space_53"
             android:layout_marginBottom="@dimen/space_7"
             android:background="@drawable/ripple_card"
-            android:text="Ver todas as 33 placas"
+            android:text="@string/l_bbf29a4909"
             android:textColor="@color/secondary_three" />
     </LinearLayout>
 

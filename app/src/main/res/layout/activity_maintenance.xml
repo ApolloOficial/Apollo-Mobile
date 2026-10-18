@@ -69,7 +69,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/space_16"
                     android:layout_marginTop="@dimen/space_3"
-                    android:text="Ordens de serviço"
+                    android:text="@string/l_023f8fcdbd"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@id/cvOsIcon"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/space_8"
-                    android:text="0 em aberto · 0 em andamento"
+                    android:text="@string/l_547738db37"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="@id/tvOsTitle"
                     app:layout_constraintTop_toBottomOf="@id/tvOsTitle" />
@@ -89,7 +89,7 @@
                     android:id="@+id/btnVerOrdens"
                     style="@style/apollo_cta_filled"
                     android:layout_marginTop="@dimen/space_16"
-                    android:text="Ver ordens"
+                    android:text="@string/l_216605fe9a"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/tvOsSummary" />
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -109,7 +109,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:text="Histórico" />
+                    android:text="@string/l_67748f8e52" />
 
                 <LinearLayout style="@style/apollo_search_pill">
 
@@ -126,7 +126,7 @@
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/space_8"
                         android:background="@null"
-                        android:hint="Buscar por n° da OS"
+                        android:hint="@string/l_472e30c7e0"
                         android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:maxLines="1"
@@ -151,22 +151,22 @@
                     <TextView
                         android:id="@+id/chipMaintenanceAll"
                         style="@style/apollo_filter_chip"
-                        android:text="Todas" />
+                        android:text="@string/l_f28c2b459d" />
 
                     <TextView
                         android:id="@+id/chipMaintenancePreventive"
                         style="@style/apollo_filter_chip"
-                        android:text="Preventiva" />
+                        android:text="@string/l_1cc3a8b8fd" />
 
                     <TextView
                         android:id="@+id/chipMaintenanceCorrective"
                         style="@style/apollo_filter_chip"
-                        android:text="Corretiva" />
+                        android:text="@string/l_0f48211088" />
 
                     <TextView
                         android:id="@+id/chipMaintenancePredictive"
                         style="@style/apollo_filter_chip"
-                        android:text="Preditiva" />
+                        android:text="@string/l_30be503b85" />
                 </LinearLayout>
             </HorizontalScrollView>
 

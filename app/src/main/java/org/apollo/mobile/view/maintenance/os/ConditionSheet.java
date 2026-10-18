@@ -35,7 +35,7 @@ final class ConditionSheet {
         sheet.findViewById(R.id.btnRegister).setOnClickListener(v -> {
             String text = condition.getText().toString().trim();
             if (text.isEmpty()) {
-                condition.setError("Descreva a condição encontrada.");
+                condition.setError(org.apollo.mobile.view.common.Tr.t("Descreva a condição encontrada."));
                 Motion.shake(condition);
                 return;
             }

@@ -48,7 +48,7 @@
                     android:layout_weight="1"
                     android:maxLines="2"
                     android:ellipsize="end"
-                    android:text="Manutenção preditiva recomendada" />
+                    android:text="@string/l_282c2aaae4" />
 
                 <TextView
                     android:id="@+id/tvNotificationTime"
@@ -75,7 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_4"
                 android:layout_marginEnd="@dimen/space_40"
-                android:text="Recomendamos inspeção nas próximas 48h."
+                android:text="@string/l_c7a1c55075"
                 android:textColor="@color/neutral_gray" />
         </LinearLayout>
     </LinearLayout>

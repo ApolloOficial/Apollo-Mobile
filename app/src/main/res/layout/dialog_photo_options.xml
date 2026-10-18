@@ -20,7 +20,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Foto de perfil"
+            android:text="@string/l_082aa435b2"
             android:textColor="@color/neutral_black" />
 
         <ImageView
@@ -28,7 +28,7 @@
             android:layout_width="@dimen/space_30"
             android:layout_height="@dimen/space_30"
             android:background="?attr/selectableItemBackgroundBorderless"
-            android:contentDescription="Fechar"
+            android:contentDescription="@string/l_23781b5ede"
             android:src="@drawable/ic_close_circle" />
     </LinearLayout>
 
@@ -37,20 +37,20 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_12"
-        android:text="Escolha como deseja alterar sua foto."
+        android:text="@string/l_464c75dce4"
         android:textColor="@color/neutral_black" />
 
     <TextView
         android:id="@+id/btnPhotoGallery"
         style="@style/apollo_button_primary"
         android:layout_marginTop="@dimen/space_24"
-        android:text="Escolher da galeria" />
+        android:text="@string/l_b8828415d3" />
 
     <TextView
         android:id="@+id/btnPhotoCamera"
         style="@style/apollo_button_outline"
         android:layout_marginTop="@dimen/space_12"
-        android:text="Tirar foto" />
+        android:text="@string/l_686c333c5e" />
 
     <TextView
         android:id="@+id/btnPhotoRemove"
@@ -60,7 +60,7 @@
         android:layout_marginTop="@dimen/space_8"
         android:background="@drawable/ripple_card"
         android:gravity="center"
-        android:text="Remover foto atual"
+        android:text="@string/l_efc4b88f8a"
         android:textColor="@color/error_one"
         android:visibility="gone" />
 </LinearLayout>

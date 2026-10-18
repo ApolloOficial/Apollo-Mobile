@@ -66,19 +66,19 @@ public final class PanelIdentifiedActivity extends AppCompatActivity {
 
         LinearLayout rows = findViewById(R.id.llInfoRows);
         rows.removeAllViews();
-        addRow(rows, "Número de série", serial);
+        addRow(rows, org.apollo.mobile.view.common.Tr.t("Número de série"), serial);
         addRow(rows, "Modelo", getIntent().getStringExtra(EXTRA_MODEL));
-        addRow(rows, "Potência de etiqueta", power >= 0 ? String.format(Locale.US, "%.0fW", power) : null);
+        addRow(rows, org.apollo.mobile.view.common.Tr.t("Potência de etiqueta"), power >= 0 ? String.format(Locale.US, "%.0fW", power) : null);
         addRow(rows, "Data de instalação", formatDate(getIntent().getStringExtra(EXTRA_DATE)));
         addRow(rows, "Inversor / String",
                 safe(getIntent().getStringExtra(EXTRA_INVERTER)) + " / " + safe(stringCode));
-        positionValue = addRow(rows, "Posição", "...");
-        addRow(rows, "Eficiência", efficiency >= 0 ? Math.round(efficiency) + "%" : null);
+        positionValue = addRow(rows, org.apollo.mobile.view.common.Tr.t("Posição"), "...");
+        addRow(rows, org.apollo.mobile.view.common.Tr.t("Eficiência"), efficiency >= 0 ? Math.round(efficiency) + "%" : null);
 
         Motion.popIn(findViewById(R.id.ivSuccessIcon), 120);
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
         TextView go = findViewById(R.id.btnGoToString);
-        go.setText("Ir para string " + safe(stringCode) + " · " + safe(serial));
+        go.setText(org.apollo.mobile.view.common.Tr.t("Ir para string ") + safe(stringCode) + " · " + safe(serial));
         Motion.pressable(go);
         go.setOnClickListener(v -> openString());
 

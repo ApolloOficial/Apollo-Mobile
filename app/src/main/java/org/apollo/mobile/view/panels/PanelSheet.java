@@ -49,7 +49,7 @@ public final class PanelSheet {
         addRow(activity, rows, R.string.panels_sheet_string,
                 orDash(joinInverter(panel, stringCode), unavailable));
         if (position > 0 && total > 0) {
-            addRow(activity, rows, "Posição", String.format(java.util.Locale.ROOT, "%02d de %02d", position, total));
+            addRow(activity, rows, org.apollo.mobile.view.common.Tr.t("Posição"), String.format(java.util.Locale.ROOT, "%02d de %02d", position, total));
         }
         addRow(activity, rows, R.string.panels_sheet_installation, formatDate(panel.getInstallationDt(), unavailable));
         Double value = panel.getEfficiencyPct() != null ? panel.getEfficiencyPct() : panel.getStringHealthScore();

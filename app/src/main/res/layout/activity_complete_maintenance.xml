@@ -45,7 +45,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="Concluir OS" />
+                android:text="@string/l_d22c4bf30c" />
 
             <include
                 android:id="@+id/cardSummary"
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_24"
-                android:text="Laudo" />
+                android:text="@string/l_281fe8098f" />
 
             <EditText
                 android:id="@+id/etReport"
@@ -69,7 +69,7 @@
                 android:layout_marginTop="@dimen/space_4"
                 android:background="@drawable/bg_textarea"
                 android:gravity="top|start"
-                android:hint="Descreva o que foi feito: limpeza, reaperto, peças trocadas, estado final da placa..."
+                android:hint="@string/l_fa436dd50c"
                 android:inputType="textMultiLine|textCapSentences"
                 android:padding="@dimen/space_16"
                 android:textColorHint="@color/disable_gray" />
@@ -79,7 +79,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_16"
-                android:text="Custo de mão de obra (R$)" />
+                android:text="@string/l_18126e5c73" />
 
             <EditText
                 android:id="@+id/etLaborCost"
@@ -100,7 +100,7 @@
                 style="@style/apollo_button_primary"
                 android:layout_height="@dimen/space_52"
                 android:layout_marginTop="@dimen/space_32"
-                android:text="Concluir manutenção" />
+                android:text="@string/l_c3874996a1" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 

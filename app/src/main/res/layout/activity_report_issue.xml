@@ -46,7 +46,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
                 android:layout_marginEnd="@dimen/space_72"
-                android:text="Relatar problema de CS-2026-00932" />
+                android:text="@string/l_b45119ad86" />
 
             <TextView
                 style="@style/apollo_label3"
@@ -93,7 +93,7 @@
                 android:layout_marginTop="@dimen/space_4"
                 android:background="@drawable/bg_textarea"
                 android:gravity="top|start"
-                android:hint="O que você viu na placa?"
+                android:hint="@string/l_89cade7692"
                 android:inputType="textMultiLine|textCapSentences"
                 android:paddingStart="@dimen/space_16"
                 android:paddingTop="@dimen/space_16"

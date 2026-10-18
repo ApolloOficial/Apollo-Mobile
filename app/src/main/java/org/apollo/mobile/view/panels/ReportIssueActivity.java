@@ -20,9 +20,9 @@ public final class ReportIssueActivity extends AppCompatActivity {
     static final String EXTRA_SERIAL = "serial";
 
     private static final String[] SEVERITY_VALUES = {"BAIXA", "MEDIA", "ALTA", "CRITICA"};
-    private static final String[] SEVERITY_LABELS = {"Baixa", "Média", "Alta", "Crítica"};
+    private final String[] SEVERITY_LABELS = {org.apollo.mobile.view.common.Tr.t("Baixa"), org.apollo.mobile.view.common.Tr.t("Média"), org.apollo.mobile.view.common.Tr.t("Alta"), org.apollo.mobile.view.common.Tr.t("Crítica")};
     private static final String[] TYPE_VALUES = {"DANO_FISICO", "SUJIDADE", "PONTO_QUENTE", "CONEXAO"};
-    private static final String[] TYPE_LABELS = {"Dano físico", "Sujidade", "Ponto quente", "Conexão"};
+    private final String[] TYPE_LABELS = {org.apollo.mobile.view.common.Tr.t("Dano físico"), org.apollo.mobile.view.common.Tr.t("Sujidade"), org.apollo.mobile.view.common.Tr.t("Ponto quente"), org.apollo.mobile.view.common.Tr.t("Conexão")};
 
     private PanelsGateway gateway;
     private String barcode;

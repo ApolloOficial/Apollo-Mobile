@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_10"
-                android:text="Notificações" />
+                android:text="@string/l_c5786b6257" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,14 +56,14 @@
                         style="@style/apollo_label2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Manutenção Preditiva" />
+                        android:text="@string/l_cc6217ea5e" />
 
                     <TextView
                         style="@style/apollo_body3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_6"
-                        android:text="Aviso quando um lote precisar de manutenção por queda de eficiência."
+                        android:text="@string/l_7dabf7580a"
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 
@@ -97,14 +97,14 @@
                         style="@style/apollo_label2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Alerta de placa" />
+                        android:text="@string/l_49298d90c7" />
 
                     <TextView
                         style="@style/apollo_body3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_6"
-                        android:text="Aviso imediato quando uma placa atingir eficiência crítica."
+                        android:text="@string/l_df12ea7b44"
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 
@@ -138,14 +138,14 @@
                         style="@style/apollo_label2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Notificações por e-mail" />
+                        android:text="@string/l_fec353c1be" />
 
                     <TextView
                         style="@style/apollo_body3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/space_6"
-                        android:text="Receba um resumo por e-mail além do alerta no app."
+                        android:text="@string/l_4458df5e3c"
                         android:textColor="@color/neutral_gray" />
                 </LinearLayout>
 

@@ -119,34 +119,34 @@ public final class AppSheets {
     }
 
     public static void plateNotFound(Activity activity, Runnable retry, Runnable close) {
-        feedback(activity, R.drawable.ill_not_found, "Placa não encontrada",
-                "Confira o código e tente novamente.", "Tentar novamente", retry, null, null, close);
+        feedback(activity, R.drawable.ill_not_found, org.apollo.mobile.view.common.Tr.t("Placa não encontrada"),
+                org.apollo.mobile.view.common.Tr.t("Confira o código e tente novamente."), org.apollo.mobile.view.common.Tr.t("Tentar novamente"), retry, null, null, close);
     }
 
     public static void activationFailed(Activity activity, Runnable retry) {
-        feedback(activity, R.drawable.ill_error, "Não foi possível\nativar a placa.",
-                "Verifique os dados e tente novamente.", "Tentar novamente", retry, null, null, null);
+        feedback(activity, R.drawable.ill_error, org.apollo.mobile.view.common.Tr.t("Não foi possível\nativar a placa."),
+                org.apollo.mobile.view.common.Tr.t("Verifique os dados e tente novamente."), org.apollo.mobile.view.common.Tr.t("Tentar novamente"), retry, null, null, null);
     }
 
     public static void completionFailed(Activity activity, Runnable retry) {
-        feedback(activity, R.drawable.ill_error, "Não foi possível\nconcluir a OS.",
-                "Seus dados estão seguros, tente novamente em alguns instantes.",
-                "Tentar novamente", retry, null, null, null);
+        feedback(activity, R.drawable.ill_error, org.apollo.mobile.view.common.Tr.t("Não foi possível\nconcluir a OS."),
+                org.apollo.mobile.view.common.Tr.t("Seus dados estão seguros, tente novamente em alguns instantes."),
+                org.apollo.mobile.view.common.Tr.t("Tentar novamente"), retry, null, null, null);
     }
 
     public static void cameraPermission(Activity activity, Runnable allow, Runnable deny) {
-        feedback(activity, R.drawable.ill_camera, "Permita o acesso à câmera",
-                "O Apollo usa a câmera do seu celular pra escanear códigos em campo. Sem essa permissão, "
-                        + "algumas funções não vão funcionar direito.",
-                "Permitir", allow, "Agora não", deny, deny);
+        feedback(activity, R.drawable.ill_camera, org.apollo.mobile.view.common.Tr.t("Permita o acesso à câmera"),
+                org.apollo.mobile.view.common.Tr.t("O Apollo usa a câmera do seu celular pra escanear códigos em campo. Sem essa permissão, ")
+                        + org.apollo.mobile.view.common.Tr.t("algumas funções não vão funcionar direito."),
+                org.apollo.mobile.view.common.Tr.t("Permitir"), allow, org.apollo.mobile.view.common.Tr.t("Agora não"), deny, deny);
     }
 
     public static void updateRequired(Activity activity) {
         if (updateSheetVisible || activity.isFinishing() || activity.isDestroyed()) return;
         updateSheetVisible = true;
-        android.app.Dialog dialog = feedback(activity, R.drawable.ill_update, "Atualize o Apollo pra continuar",
-                "Essa versão do app não é mais compatível. Atualize pra voltar a usar.",
-                "Atualizar agora", () -> openStore(activity), null, null, null);
+        android.app.Dialog dialog = feedback(activity, R.drawable.ill_update, org.apollo.mobile.view.common.Tr.t("Atualize o Apollo pra continuar"),
+                org.apollo.mobile.view.common.Tr.t("Essa versão do app não é mais compatível. Atualize pra voltar a usar."),
+                org.apollo.mobile.view.common.Tr.t("Atualizar agora"), () -> openStore(activity), null, null, null);
         if (dialog == null) {
             updateSheetVisible = false;
             return;

@@ -145,7 +145,7 @@ public final class SettingsActivity extends AppCompatActivity {
             return;
         }
         if (report.getRejected() > 0) {
-            org.apollo.mobile.view.common.AppToast.error(this, "Falha ao sincronizar.\nTentaremos novamente em instantes.");
+            org.apollo.mobile.view.common.AppToast.error(this, org.apollo.mobile.view.common.Tr.t("Falha ao sincronizar.\nTentaremos novamente em instantes."));
             return;
         }
         org.apollo.mobile.view.common.AppToast.success(this, R.string.settings_sync_done);
@@ -172,7 +172,7 @@ public final class SettingsActivity extends AppCompatActivity {
                 }
                 nameText.setText(blankTo(summary.getFullName(), getString(R.string.settings_default_name)));
                 emailText.setText(blankTo(summary.getEmail(), ""));
-                roleText.setText(blankTo(summary.getRoleLabel(), ""));
+                roleText.setText(org.apollo.mobile.view.common.Tr.v(blankTo(summary.getRoleLabel(), "")));
                 hasPhoto = summary.hasPhoto();
                 loadPhoto();
             }
@@ -260,14 +260,14 @@ public final class SettingsActivity extends AppCompatActivity {
 
     private void showAbout() {
         org.apollo.mobile.view.common.AppSheets.message(this, getString(R.string.settings_about_title),
-                "Apollo é a plataforma de gestão de ativos fotovoltaicos que une o desempenho medido pelo inversor "
-                        + "à gestão das placas, manutenções e ordens de serviço.\n\nVersão " + BuildConfig.VERSION_NAME,
-                "Entendi", null, null, null);
+                org.apollo.mobile.view.common.Tr.t("Apollo é a plataforma de gestão de ativos fotovoltaicos que une o desempenho medido pelo inversor ")
+                        + org.apollo.mobile.view.common.Tr.t("à gestão das placas, manutenções e ordens de serviço.\n\nVersão ") + BuildConfig.VERSION_NAME,
+                org.apollo.mobile.view.common.Tr.t("Entendi"), null, null, null);
     }
 
     private void confirmLogout() {
         org.apollo.mobile.view.common.AppSheets.message(this, getString(R.string.settings_logout_title),
-                "Tem certeza que deseja sair? Certifique-se de que não há nenhum registro pendente de sincronização.",
+                org.apollo.mobile.view.common.Tr.t("Tem certeza que deseja sair? Certifique-se de que não há nenhum registro pendente de sincronização."),
                 getString(R.string.settings_logout_confirm), () -> {
                     SessionManagerFactory.create(getApplicationContext()).logout();
                     SettingsUi.goToLogin(this);

@@ -47,10 +47,10 @@ public final class MaintenanceIdentifiedActivity extends AppCompatActivity {
         rows.removeAllViews();
         int position = getIntent().getIntExtra(EXTRA_POSITION, 0);
         addRow(rows, "Inversor / String", getIntent().getStringExtra(EXTRA_STRING));
-        addRow(rows, "Posição", position > 0 ? String.valueOf(position) : null);
-        addRow(rows, "Número de série", serial);
+        addRow(rows, org.apollo.mobile.view.common.Tr.t("Posição"), position > 0 ? String.valueOf(position) : null);
+        addRow(rows, org.apollo.mobile.view.common.Tr.t("Número de série"), serial);
         addRow(rows, "Status", statusLabel(getIntent().getStringExtra(EXTRA_STATUS)));
-        addRow(rows, "Ordem de serviço", "OS" + orderId);
+        addRow(rows, org.apollo.mobile.view.common.Tr.t("Ordem de serviço"), "OS" + orderId);
 
         Motion.popIn(findViewById(R.id.ivSuccessIcon), 120);
         findViewById(R.id.btnBack).setOnClickListener(v -> finish());
@@ -84,7 +84,7 @@ public final class MaintenanceIdentifiedActivity extends AppCompatActivity {
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
                         button.setEnabled(true);
-                        org.apollo.mobile.view.common.AppToast.error(MaintenanceIdentifiedActivity.this, "Não foi possível iniciar a manutenção.");
+                        org.apollo.mobile.view.common.AppToast.error(MaintenanceIdentifiedActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível iniciar a manutenção."));
                     }
                 });
     }
@@ -99,15 +99,15 @@ public final class MaintenanceIdentifiedActivity extends AppCompatActivity {
         if (status == null) return null;
         switch (status) {
             case "EM_OPERACAO":
-                return "Em operação";
+                return org.apollo.mobile.view.common.Tr.t("Em operação");
             case "EM_ESTOQUE":
-                return "Em estoque";
+                return org.apollo.mobile.view.common.Tr.t("Em estoque");
             case "MANUTENCAO":
             case "EM_MANUTENCAO":
-                return "Em manutenção";
+                return org.apollo.mobile.view.common.Tr.t("Em manutenção");
             case "INATIVA":
             case "DESATIVADA":
-                return "Desativada";
+                return org.apollo.mobile.view.common.Tr.t("Desativada");
             default:
                 return status.charAt(0) + status.substring(1).toLowerCase().replace('_', ' ');
         }
