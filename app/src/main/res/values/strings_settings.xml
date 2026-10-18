@@ -10,7 +10,7 @@
 
     <string name="settings_default_name">Usuário</string>
     <string name="settings_value_empty">Não informado</string>
-    <string name="settings_photo_updated">Foto atualizada.</string>
+    <string name="settings_photo_updated">Foto atualizada com sucesso!</string>
     <string name="settings_photo_removed">Foto removida.</string>
     <string name="settings_photo_invalid">Não foi possível usar essa imagem.</string>
     <string name="settings_photo_title">Foto de perfil</string>
@@ -19,7 +19,7 @@
     <string name="settings_sync_none">Tudo sincronizado</string>
     <string name="settings_sync_running">Sincronizando…</string>
     <string name="settings_sync_nothing">Não há registros pendentes.</string>
-    <string name="settings_sync_done">Sincronização concluída.</string>
+    <string name="settings_sync_done">Sincronização concluída!</string>
     <string name="settings_sync_offline">Sem conexão. Os registros continuam salvos no aparelho.</string>
     <string name="settings_sync_with_errors">%1$d registro(s) foram recusados pelo servidor.</string>
     <string name="settings_sync_failed_suffix">%1$d com erro</string>
@@ -45,7 +45,7 @@
     <string name="settings_phone_dialog_hint">(85) 98765-4321</string>
     <string name="settings_phone_send">Solicitar</string>
     <string name="settings_phone_invalid">Informe um telefone válido com DDD.</string>
-    <string name="settings_phone_requested">Solicitação enviada ao gestor.</string>
+    <string name="settings_phone_requested">Solicitação enviada com sucesso!</string>
     <string name="settings_password_unknown">Senha alterada: sem registro</string>
     <string name="settings_password_changed_now">Alterada agora há pouco</string>
     <string name="settings_device_unknown">Sem dispositivos registrados</string>
@@ -94,11 +94,11 @@
         <item quantity="other">visto há %d anos</item>
     </plurals>
 
-    <string name="settings_language_saved">Idioma salvo.</string>
+    <string name="settings_language_saved">Idioma salvo com sucesso!</string>
 
     <string name="settings_storage_cache_value">Cache do aplicativo: %1$s</string>
     <string name="settings_storage_pending_title">Registros pendentes (%1$d itens)</string>
-    <string name="settings_storage_cleared">Cache limpo.</string>
+    <string name="settings_storage_cleared">Cache limpo com sucesso!</string>
     <string name="settings_storage_total">%1$s de %2$s disponíveis</string>
     <string name="settings_security_phone_info"><b>O telefone é cadastrado pela gestão da sua empresa.</b> Você pode solicitar a troca de número, a gestão da sua empresa recebe o pedido e aprova ou recusa.</string>
 </resources>

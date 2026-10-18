@@ -4,7 +4,6 @@ import android.os.Bundle;
 import org.apollo.mobile.view.common.Motion;
 import android.view.View;
 import android.widget.RadioButton;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -92,7 +91,7 @@ public final class LanguageActivity extends AppCompatActivity {
                     return;
                 }
                 select(settings.getSelected() == null ? code : settings.getSelected());
-                Toast.makeText(LanguageActivity.this, R.string.settings_language_saved, Toast.LENGTH_SHORT).show();
+                org.apollo.mobile.view.common.AppToast.success(LanguageActivity.this, R.string.settings_language_saved);
             }
 
             @Override

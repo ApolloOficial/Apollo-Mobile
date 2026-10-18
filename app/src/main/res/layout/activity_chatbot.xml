@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="Oi Carlos! Como posso ajudar?" />
+                android:text="Olá! Como posso ajudar?" />
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/cgSuggestions"

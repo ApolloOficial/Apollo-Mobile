@@ -7,7 +7,6 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -84,8 +83,11 @@ public class ScannerActivity extends AppCompatActivity {
             new ActivityResultContracts.RequestPermission(), granted -> {
                 if (granted) {
                     startCamera();
+                } else if (!shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)) {
+                    org.apollo.mobile.view.common.AppSheets.cameraPermission(this, this::openAppSettings, this::finish);
                 } else {
-                    Toast.makeText(this, R.string.scanner_permission_denied, Toast.LENGTH_LONG).show();
+                    org.apollo.mobile.view.common.AppToast.error(this, R.string.scanner_permission_denied);
+                    finish();
                 }
             });
 
@@ -138,8 +140,17 @@ public class ScannerActivity extends AppCompatActivity {
                 == android.content.pm.PackageManager.PERMISSION_GRANTED) {
             startCamera();
         } else {
-            cameraPermission.launch(android.Manifest.permission.CAMERA);
+            org.apollo.mobile.view.common.AppSheets.cameraPermission(this,
+                    () -> cameraPermission.launch(android.Manifest.permission.CAMERA), this::finish);
         }
+    }
+
+    private void openAppSettings() {
+        android.content.Intent intent = new android.content.Intent(
+                android.provider.Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                android.net.Uri.fromParts("package", getPackageName(), null));
+        startActivity(intent);
+        finish();
     }
 
     private void startCamera() {
@@ -158,7 +169,7 @@ public class ScannerActivity extends AppCompatActivity {
                 camera = provider.bindToLifecycle(this, CameraSelector.DEFAULT_BACK_CAMERA, preview, analysis);
             } catch (Exception ignored) {
                 camera = null;
-                Toast.makeText(this, R.string.scanner_camera_error, Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(this, R.string.scanner_camera_error);
             }
         }, ContextCompat.getMainExecutor(this));
     }
@@ -240,12 +251,21 @@ public class ScannerActivity extends AppCompatActivity {
         if (isFinishing() || isDestroyed()) {
             return;
         }
+        Runnable resume = () -> busy.set(false);
         if (error.getType() == PanelsError.Type.NOT_FOUND) {
-            Toast.makeText(this, getString(R.string.scanner_not_found, code), Toast.LENGTH_LONG).show();
-        } else if (PanelsUi.handleFailure(this, error)) {
+            org.apollo.mobile.view.common.AppSheets.plateNotFound(this, resume, resume);
             return;
         }
-        findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
+        if (error.getType() == PanelsError.Type.UNAUTHORIZED) {
+            PanelsUi.handleFailure(this, error);
+            return;
+        }
+        if (error.getType() == PanelsError.Type.NETWORK) {
+            org.apollo.mobile.view.common.AppToast.offline(this);
+            findViewById(R.id.previewView).postDelayed(resume, 1500);
+            return;
+        }
+        org.apollo.mobile.view.common.AppSheets.plateNotFound(this, resume, resume);
     }
 
     private void showManualCodeSheet() {
@@ -331,8 +351,7 @@ public class ScannerActivity extends AppCompatActivity {
                     @Override
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
-                        Toast.makeText(ScannerActivity.this,
-                                "Não foi possível carregar as placas da OS.", Toast.LENGTH_LONG).show();
+                        org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, "Não foi possível carregar as placas da OS.");
                         finish();
                     }
                 });
@@ -361,9 +380,9 @@ public class ScannerActivity extends AppCompatActivity {
             return;
         }
         boolean sameString = OsPanelMatcher.byCode(orderDetails.getPanels(), code) != null;
-        Toast.makeText(this, sameString
+        org.apollo.mobile.view.common.AppToast.info(this, sameString
                 ? "Essa não é a placa desta OS. Procure a placa " + targetSerialHint() + "."
-                : "A placa " + code + " não faz parte desta OS.", Toast.LENGTH_LONG).show();
+                : "A placa " + code + " não faz parte desta OS.");
         findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
     }
 
@@ -379,13 +398,24 @@ public class ScannerActivity extends AppCompatActivity {
         }
         List<Panel> candidates = OsPanelMatcher.bySerialEnd(orderDetails.getTargetPanels(), typed);
         if (candidates.isEmpty()) {
-            new androidx.appcompat.app.AlertDialog.Builder(this)
-                    .setTitle("Nenhuma placa encontrada")
-                    .setMessage("Pode ser erro de digitação, placa de outra string ou placa não cadastrada.")
-                    .setPositiveButton("Tentar de novo", (d, w) -> busy.set(false))
-                    .setNegativeButton("Seguir sem identificar", (d, w) -> confirmUnidentified())
-                    .setOnCancelListener(d -> busy.set(false))
-                    .show();
+            android.app.Dialog sheet =
+                    org.apollo.mobile.view.common.AppSheets.message(this, "Nenhuma placa encontrada",
+                            "Pode ser erro de digitação, placa de outra string ou placa não cadastrada.",
+                            "Tentar de novo", () -> busy.set(false),
+                            "Seguir sem identificar", this::confirmUnidentified);
+            if (sheet != null) sheet.setOnCancelListener(d -> busy.set(false));
+            return;
+        }
+        if (candidates.size() == 1) {
+            Panel only = candidates.get(0);
+            int position = orderDetails.positionOf(only);
+            android.app.Dialog sheet =
+                    org.apollo.mobile.view.common.AppSheets.message(this, "É esta placa?",
+                            "Compare com a etiqueta: " + only.getSerialNumber()
+                                    + (position > 0 ? " (posição " + position + ")." : "."),
+                            "É esta placa", () -> startIfNeeded(only),
+                            "Cancelar", () -> busy.set(false));
+            if (sheet != null) sheet.setOnCancelListener(d -> busy.set(false));
             return;
         }
         String[] labels = new String[candidates.size()];
@@ -403,17 +433,15 @@ public class ScannerActivity extends AppCompatActivity {
     }
 
     private void confirmUnidentified() {
-        new androidx.appcompat.app.AlertDialog.Builder(this)
-                .setTitle("Seguir sem identificar a placa?")
-                .setMessage("A OS será concluída no nível da string e a ressalva vai para o laudo.")
-                .setPositiveButton("Seguir", (d, w) -> startThen(() -> {
-                    verificationStore.markUnidentified(orderId, true);
-                    setResult(RESULT_OK);
-                    finish();
-                }))
-                .setNegativeButton("Voltar", (d, w) -> busy.set(false))
-                .setOnCancelListener(d -> busy.set(false))
-                .show();
+        android.app.Dialog sheet =
+                org.apollo.mobile.view.common.AppSheets.message(this, "Seguir sem identificar a placa?",
+                        "A OS será concluída no nível da string e a ressalva vai para o laudo.",
+                        "Seguir", () -> startThen(() -> {
+                            verificationStore.markUnidentified(orderId, true);
+                            setResult(RESULT_OK);
+                            finish();
+                        }), "Voltar", () -> busy.set(false));
+        if (sheet != null) sheet.setOnCancelListener(d -> busy.set(false));
     }
 
     private void startIfNeeded(Panel panel) {
@@ -446,8 +474,7 @@ public class ScannerActivity extends AppCompatActivity {
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
                         findViewById(R.id.progressScan).setVisibility(View.GONE);
-                        Toast.makeText(ScannerActivity.this,
-                                "Não foi possível iniciar a manutenção.", Toast.LENGTH_LONG).show();
+                        org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, "Não foi possível iniciar a manutenção.");
                         findViewById(R.id.previewView).postDelayed(() -> busy.set(false), 1500);
                     }
                 });

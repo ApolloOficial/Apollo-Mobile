@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_sheet"
+    android:orientation="vertical"
+    android:paddingStart="@dimen/space_24"
+    android:paddingTop="@dimen/space_32"
+    android:paddingEnd="@dimen/space_24"
+    android:paddingBottom="@dimen/space_40">
+
+    <TextView
+        style="@style/apollo_h5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sua sessão expirou"
+        android:textColor="@color/neutral_black" />
+
+    <TextView
+        style="@style/apollo_body2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/space_16"
+        android:lineSpacingExtra="@dimen/space_4"
+        android:text="Por segurança, você precisa fazer login novamente."
+        android:textColor="@color/neutral_black" />
+
+    <TextView
+        android:id="@+id/btnSessionLogin"
+        style="@style/apollo_button_primary"
+        android:layout_marginHorizontal="@dimen/space_minus_8"
+        android:layout_marginTop="@dimen/space_32"
+        android:text="Fazer login" />
+</LinearLayout>

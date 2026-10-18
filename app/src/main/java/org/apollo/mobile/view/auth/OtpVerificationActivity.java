@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -62,6 +61,7 @@ public final class OtpVerificationActivity extends AppCompatActivity {
         resendText = findViewById(R.id.tvResend);
         continueButton = findViewById(R.id.btnContinue);
         bindBoxes();
+        AuthForm.bind(continueButton, this::codeComplete, boxes);
 
         continueButton.setOnClickListener(view -> verify());
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
@@ -132,7 +132,7 @@ public final class OtpVerificationActivity extends AppCompatActivity {
     private void verify() {
         String code = readCode();
         if (code.length() != CODE_LENGTH || challengeId == null) {
-            Toast.makeText(this, R.string.otp_incomplete, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.otp_incomplete);
             return;
         }
 
@@ -141,13 +141,13 @@ public final class OtpVerificationActivity extends AppCompatActivity {
             sessionManager.completeOtpLogin(challengeId, code, new SessionManager.LoginCallback() {
                 @Override
                 public void onSuccess(UserSession session) {
-                    continueButton.setEnabled(true);
+                    continueButton.setEnabled(codeComplete());
                     PostLoginRouter.route(OtpVerificationActivity.this, sessionManager, session);
                 }
 
                 @Override
                 public void onOtpRequired(String newChallengeId, ArrayList<OtpMethod> methods) {
-                    continueButton.setEnabled(true);
+                    continueButton.setEnabled(codeComplete());
                 }
 
                 @Override
@@ -161,10 +161,9 @@ public final class OtpVerificationActivity extends AppCompatActivity {
         gateway.verifyOtp(challengeId, code, new AuthenticationGateway.Callback<OtpVerifyResponse>() {
             @Override
             public void onSuccess(OtpVerifyResponse response) {
-                continueButton.setEnabled(true);
+                continueButton.setEnabled(codeComplete());
                 if (response.getResetToken() == null || response.getResetToken().isEmpty()) {
-                    Toast.makeText(OtpVerificationActivity.this, R.string.login_unavailable,
-                            Toast.LENGTH_LONG).show();
+                    org.apollo.mobile.view.common.AppToast.error(OtpVerificationActivity.this, R.string.login_unavailable);
                     return;
                 }
                 startActivity(new Intent(OtpVerificationActivity.this, CreateNewPasswordActivity.class)
@@ -179,8 +178,8 @@ public final class OtpVerificationActivity extends AppCompatActivity {
     }
 
     private void handleVerifyFailure(AuthError error) {
-        continueButton.setEnabled(true);
-        Toast.makeText(this, AuthMessages.generic(error), Toast.LENGTH_LONG).show();
+        continueButton.setEnabled(codeComplete());
+        org.apollo.mobile.view.common.AppToast.error(this, AuthMessages.generic(error));
 
         switch (error.getType()) {
             case OTP_INVALID:
@@ -208,14 +207,13 @@ public final class OtpVerificationActivity extends AppCompatActivity {
             public void onSuccess(OtpSentResponse response) {
                 clearCode();
                 startResendTimer(response.getResendInSeconds() > 0 ? response.getResendInSeconds() : 30);
-                Toast.makeText(OtpVerificationActivity.this, R.string.otp_resent, Toast.LENGTH_SHORT).show();
+                org.apollo.mobile.view.common.AppToast.success(OtpVerificationActivity.this, R.string.otp_resent);
             }
 
             @Override
             public void onFailure(AuthError error) {
                 resendText.setEnabled(true);
-                Toast.makeText(OtpVerificationActivity.this, AuthMessages.generic(error),
-                        Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(OtpVerificationActivity.this, AuthMessages.generic(error));
             }
         });
     }
@@ -246,5 +244,12 @@ public final class OtpVerificationActivity extends AppCompatActivity {
     private void showResendReady() {
         resendText.setText(R.string.otp_resend_ready);
         resendText.setEnabled(true);
+    }
+
+    private boolean codeComplete() {
+        for (EditText box : boxes) {
+            if (box == null || box.getText().toString().trim().isEmpty()) return false;
+        }
+        return true;
     }
 }

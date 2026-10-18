@@ -18,7 +18,8 @@
     <dimen name="screen_title_spacing">@dimen/space_8</dimen>
 
     <dimen name="bottom_nav_height">@dimen/space_91</dimen>
-    <dimen name="bottom_nav_horizontal_margin">@dimen/space_4</dimen>
+    <dimen name="bottom_nav_horizontal_margin">20dp</dimen>
+    <dimen name="bottom_nav_max_width">2000dp</dimen>
     <dimen name="bottom_nav_bottom_margin">@dimen/space_24</dimen>
     <dimen name="bottom_nav_radius">@dimen/space_45</dimen>
     <dimen name="bottom_nav_icon_size">@dimen/space_34</dimen>
@@ -39,4 +40,6 @@
     <dimen name="cta_height">@dimen/space_32</dimen>
     <dimen name="cta_width">@dimen/space_137</dimen>
     <dimen name="button_primary_height">@dimen/space_48</dimen>
+    <integer name="list_columns">1</integer>
+    <dimen name="auth_title_size">@dimen/text_24</dimen>
 </resources>

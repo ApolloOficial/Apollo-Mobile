@@ -1,10 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ripple xmlns:android="http://schemas.android.com/apk/res/android" android:color="@color/ripple_orange">
-    <item>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_enabled="false">
         <shape android:shape="rectangle">
             <solid android:color="@android:color/transparent" />
-            <stroke android:width="2dp" android:color="@color/secondary_one" />
+            <stroke android:width="2dp" android:color="#FFFFC8A8" />
             <corners android:radius="@dimen/space_25" />
         </shape>
     </item>
-</ripple>
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <solid android:color="#14FE4A11" />
+            <stroke android:width="2dp" android:color="#FFFE4A11" />
+            <corners android:radius="@dimen/space_25" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="@android:color/transparent" />
+            <stroke android:width="2dp" android:color="#FFFF672C" />
+            <corners android:radius="@dimen/space_25" />
+        </shape>
+    </item>
+</selector>

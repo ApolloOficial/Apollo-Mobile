@@ -130,6 +130,8 @@
                         android:imeOptions="actionSearch"
                         android:inputType="text"
                         android:maxLines="1"
+                        android:singleLine="true"
+                        android:ellipsize="end"
                         android:textColorHint="@color/neutral_gray" />
                 </LinearLayout>
             </LinearLayout>
@@ -168,13 +170,12 @@
                 </LinearLayout>
             </HorizontalScrollView>
 
-            <ProgressBar
-                android:id="@+id/progressMaintenanceHistory"
-                android:layout_width="@dimen/space_32"
-                android:layout_height="@dimen/space_32"
+            <org.apollo.mobile.view.common.SkeletonView
+        android:id="@+id/progressMaintenanceHistory"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_32"
-                android:indeterminateTint="@color/secondary_three"
+                android:layout_marginTop="@dimen/space_8"
                 android:visibility="gone" />
 
             <include

@@ -24,7 +24,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
-        style="@style/apollo_h4"
+        style="@style/apollo_auth_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/title_margin_horizontal"
@@ -51,7 +51,7 @@
 
         <TextView
             android:id="@+id/tvSubtitle"
-            style="@style/apollo_h4"
+            style="@style/apollo_auth_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Otimize."
@@ -77,12 +77,12 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/button_height"
             android:layout_marginTop="@dimen/space_40"
-            android:backgroundTint="@color/secondary_three"
+            app:backgroundTint="@color/cta_fill_tint"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Começar agora"
             android:textAllCaps="false"
-            android:textColor="@color/neutral_white"
+            android:textColor="@color/cta_filled_text"
             app:cornerRadius="@dimen/button_corner_radius"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

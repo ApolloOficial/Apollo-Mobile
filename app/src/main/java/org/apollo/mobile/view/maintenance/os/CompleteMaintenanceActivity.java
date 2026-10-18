@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -71,8 +70,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
             @Override
             public void onFailure(ServiceOrderError error) {
                 if (isFinishing() || isDestroyed()) return;
-                Toast.makeText(CompleteMaintenanceActivity.this,
-                        "Não foi possível carregar o resumo.", Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(CompleteMaintenanceActivity.this, "Não foi possível carregar o resumo.");
             }
         });
     }
@@ -148,9 +146,13 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(ServiceOrderError error) {
+                if (isFinishing() || isDestroyed()) return;
                 finishButton.setEnabled(true);
-                Toast.makeText(CompleteMaintenanceActivity.this,
-                        "Não foi possível concluir a OS.", Toast.LENGTH_LONG).show();
+                if (error.getType() == ServiceOrderError.Type.NETWORK) {
+                    org.apollo.mobile.view.common.AppToast.offline(CompleteMaintenanceActivity.this);
+                }
+                org.apollo.mobile.view.common.AppSheets.completionFailed(CompleteMaintenanceActivity.this,
+                        () -> complete(text, cost));
             }
         });
     }

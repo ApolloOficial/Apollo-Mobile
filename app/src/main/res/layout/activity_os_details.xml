@@ -39,13 +39,12 @@
                 android:id="@+id/btnBack"
                 style="@style/apollo_back" />
 
-            <ProgressBar
-                android:id="@+id/progressOsDetails"
-                android:layout_width="@dimen/space_32"
-                android:layout_height="@dimen/space_32"
+            <org.apollo.mobile.view.common.SkeletonView
+        android:id="@+id/progressOsDetails"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="@dimen/space_48"
-                android:indeterminateTint="@color/secondary_three" />
+                android:layout_marginTop="@dimen/space_8" />
 
             <include
                 android:id="@+id/osEmptyState"

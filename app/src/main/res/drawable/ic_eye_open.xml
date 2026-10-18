@@ -3,14 +3,16 @@
     android:height="24dp"
     android:viewportWidth="24"
     android:viewportHeight="24">
-    <path
-        android:pathData="M2.06,12.35a1,1 0,0 1,0 -0.7a10.75,10.75 0,0 1,19.88 0a1,1 0,0 1,0 0.7a10.75,10.75 0,0 1,-19.88 0"
-        android:strokeWidth="1.8"
-        android:strokeColor="#FF716764"
-        android:strokeLineCap="round"
-        android:strokeLineJoin="round" />
-    <path
-        android:pathData="M12,12m-3,0a3,3 0,1 1,6 0a3,3 0,1 1,-6 0"
-        android:strokeWidth="1.8"
-        android:strokeColor="#FF716764" />
+    <group
+        android:translateX="-20"
+        android:translateY="-18">
+        <path
+            android:strokeColor="#FF716764"
+            android:strokeWidth="1.5"
+            android:pathData="M24.73 32.75C24.02 31.83 23.67 31.37 23.67 30 23.67 28.63 24.02 28.17 24.73 27.25 26.14 25.42 28.51 23.33 32 23.33 35.48 23.33 37.86 25.42 39.27 27.25 39.98 28.18 40.33 28.63 40.33 30 40.33 31.37 39.98 31.83 39.27 32.75 37.86 34.58 35.48 36.67 32 36.67 28.51 36.67 26.14 34.58 24.73 32.75Z"/>
+        <path
+            android:strokeColor="#FF716764"
+            android:strokeWidth="1.5"
+            android:pathData="M34.5 30C34.5 30.66 34.24 31.3 33.77 31.77 33.3 32.24 32.66 32.5 32 32.5 31.34 32.5 30.7 32.24 30.23 31.77 29.76 31.3 29.5 30.66 29.5 30 29.5 29.34 29.76 28.7 30.23 28.23 30.7 27.76 31.34 27.5 32 27.5 32.66 27.5 33.3 27.76 33.77 28.23 34.24 28.7 34.5 29.34 34.5 30Z"/>
+    </group>
 </vector>

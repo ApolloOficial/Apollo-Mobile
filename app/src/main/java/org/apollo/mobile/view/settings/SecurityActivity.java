@@ -3,14 +3,10 @@ package org.apollo.mobile.view.settings;
 import android.content.Intent;
 import org.apollo.mobile.view.common.Motion;
 import android.os.Bundle;
-import android.text.InputType;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.FrameLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import org.apollo.mobile.R;
@@ -21,7 +17,6 @@ import org.apollo.mobile.settings.gateway.SecurityInfo;
 import org.apollo.mobile.settings.gateway.SessionInfo;
 import org.apollo.mobile.settings.gateway.SettingsGateway;
 import org.apollo.mobile.settings.gateway.SettingsGatewayFactory;
-import org.apollo.mobile.view.auth.ForgotPasswordStartActivity;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -32,6 +27,7 @@ public final class SecurityActivity extends AppCompatActivity {
     private TextView passwordText;
     private TextView deviceText;
     private View changePhoneButton;
+    private String currentPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +48,7 @@ public final class SecurityActivity extends AppCompatActivity {
         findViewById(R.id.tvBack).setOnClickListener(view -> finish());
         changePhoneButton.setOnClickListener(view -> showPhoneDialog());
         ((View) findViewById(R.id.tv_password_title).getParent()).setOnClickListener(
-                view -> startActivity(new Intent(this, ForgotPasswordStartActivity.class)));
+                view -> showPasswordSheet());
 
         loadSecurity();
         loadSessions();
@@ -78,6 +74,7 @@ public final class SecurityActivity extends AppCompatActivity {
 
     private void bindPhone(SecurityInfo info) {
         String phone = info.getMaskedPhone();
+        currentPhone = phone;
         String base = phone == null || phone.trim().isEmpty()
                 ? getString(R.string.settings_phone_none)
                 : phone.trim();
@@ -157,31 +154,90 @@ public final class SecurityActivity extends AppCompatActivity {
     }
 
     private void showPhoneDialog() {
-        EditText input = new EditText(this);
-        input.setInputType(InputType.TYPE_CLASS_PHONE);
-        input.setHint(R.string.settings_phone_dialog_hint);
-        FrameLayout container = new FrameLayout(this);
-        int margin = Math.round(24 * getResources().getDisplayMetrics().density);
-        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(
-                FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        params.setMargins(margin, margin / 2, margin, 0);
-        container.addView(input, params);
-
-        AlertDialog dialog = new AlertDialog.Builder(this)
-                .setTitle(R.string.settings_phone_dialog_title)
-                .setView(container)
-                .setNegativeButton(R.string.settings_cancel, null)
-                .setPositiveButton(R.string.settings_phone_send, null)
-                .create();
-        dialog.setOnShowListener(shown -> dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(view -> {
+        com.google.android.material.bottomsheet.BottomSheetDialog dialog =
+                org.apollo.mobile.view.common.AppSheets.create(this, R.layout.sheet_phone_change);
+        TextView current = dialog.findViewById(R.id.tvCurrentPhone);
+        current.setText(currentPhone == null || currentPhone.trim().isEmpty()
+                ? getString(R.string.settings_phone_none) : currentPhone.trim());
+        EditText input = dialog.findViewById(R.id.etNewPhone);
+        dialog.findViewById(R.id.btnSheetClose).setOnClickListener(v -> dialog.dismiss());
+        View send = dialog.findViewById(R.id.btnSendPhone);
+        Motion.pressable(send);
+        send.setOnClickListener(view -> {
             String raw = input.getText().toString();
             if (!PhoneInput.isValid(raw)) {
-                Toast.makeText(this, R.string.settings_phone_invalid, Toast.LENGTH_LONG).show();
+                input.setError(getString(R.string.settings_phone_invalid));
+                Motion.shake(input);
                 return;
             }
             dialog.dismiss();
             sendPhoneChange(PhoneInput.digits(raw));
-        }));
+        });
+        dialog.show();
+    }
+
+    private void showPasswordSheet() {
+        com.google.android.material.bottomsheet.BottomSheetDialog dialog =
+                org.apollo.mobile.view.common.AppSheets.create(this, R.layout.sheet_change_password);
+        EditText current = dialog.findViewById(R.id.etCurrentPassword);
+        EditText password = dialog.findViewById(R.id.etNewPassword);
+        EditText confirm = dialog.findViewById(R.id.etConfirmPassword);
+        org.apollo.mobile.view.auth.PasswordVisibilityToggle.attach(password);
+        org.apollo.mobile.view.auth.PasswordVisibilityToggle.attach(confirm);
+        dialog.findViewById(R.id.btnSheetClose).setOnClickListener(v -> dialog.dismiss());
+        TextView submit = dialog.findViewById(R.id.btnChangePassword);
+        TextView rules = dialog.findViewById(R.id.tvPasswordRules);
+        org.apollo.mobile.view.auth.AuthForm.bind(submit, () -> {
+            String value = password.getText().toString();
+            org.apollo.mobile.view.auth.AuthForm.requirements(rules, value);
+            return !current.getText().toString().isEmpty()
+                    && org.apollo.mobile.auth.policy.PasswordPolicy.isValid(value)
+                    && value.equals(confirm.getText().toString());
+        }, current, password, confirm);
+        Motion.pressable(submit);
+        submit.setOnClickListener(view -> {
+            String currentValue = current.getText().toString();
+            String newValue = password.getText().toString();
+            if (currentValue.isEmpty()) {
+                current.setError("Informe sua senha atual.");
+                Motion.shake(current);
+                return;
+            }
+            if (!org.apollo.mobile.auth.policy.PasswordPolicy.isValid(newValue)) {
+                password.setError(getString(R.string.recovery_password_invalid));
+                Motion.shake(password);
+                return;
+            }
+            if (!newValue.equals(confirm.getText().toString())) {
+                confirm.setError(getString(R.string.recovery_password_mismatch));
+                Motion.shake(confirm);
+                return;
+            }
+            submit.setEnabled(false);
+            gateway.changePassword(currentValue, newValue, new SettingsGateway.Callback<Void>() {
+                @Override
+                public void onSuccess(Void result) {
+                    if (isFinishing() || isDestroyed()) return;
+                    dialog.dismiss();
+                    org.apollo.mobile.view.common.AppToast.success(SecurityActivity.this, "Senha alterada com sucesso!");
+                    loadSecurity();
+                }
+
+                @Override
+                public void onFailure(SettingsError error) {
+                    if (isFinishing() || isDestroyed()) return;
+                    submit.setEnabled(true);
+                    if (error.getType() == SettingsError.Type.INVALID_REQUEST) {
+                        current.setError("Senha atual incorreta ou nova senha igual à atual.");
+                        org.apollo.mobile.view.common.AppToast.error(SecurityActivity.this,
+                                "Não foi possível alterar a senha.\nConfira os dados e tente novamente.");
+                        return;
+                    }
+                    dialog.dismiss();
+                    SettingsUi.handleFailure(SecurityActivity.this, error);
+                }
+            });
+        });
         dialog.show();
     }
 
@@ -189,7 +245,7 @@ public final class SecurityActivity extends AppCompatActivity {
         gateway.requestPhoneChange(digits, new SettingsGateway.Callback<Void>() {
             @Override
             public void onSuccess(Void result) {
-                Toast.makeText(SecurityActivity.this, R.string.settings_phone_requested, Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.success(SecurityActivity.this, R.string.settings_phone_requested);
                 loadSecurity();
             }
 

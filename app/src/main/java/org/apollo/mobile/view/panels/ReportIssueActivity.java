@@ -4,7 +4,6 @@ import android.os.Bundle;
 import org.apollo.mobile.view.common.Motion;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -92,15 +91,15 @@ public final class ReportIssueActivity extends AppCompatActivity {
     private void submit() {
         String message = description.getText().toString().trim();
         if (severityIndex < 0) {
-            Toast.makeText(this, R.string.report_pick_severity, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.report_pick_severity);
             return;
         }
         if (typeIndex < 0) {
-            Toast.makeText(this, R.string.report_pick_type, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.report_pick_type);
             return;
         }
         if (message.isEmpty()) {
-            Toast.makeText(this, R.string.report_write_description, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.report_write_description);
             return;
         }
         setSending(true);

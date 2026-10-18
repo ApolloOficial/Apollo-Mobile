@@ -12,14 +12,14 @@ import androidx.core.content.ContextCompat;
 
 import org.apollo.mobile.R;
 
-final class PasswordVisibilityToggle {
+public final class PasswordVisibilityToggle {
     private static final int TOUCH_SLOP_DP = 12;
 
     private PasswordVisibilityToggle() {
     }
 
     @SuppressLint("ClickableViewAccessibility")
-    static void attach(EditText field) {
+    public static void attach(EditText field) {
         field.setOnTouchListener((view, event) -> {
             if (event.getAction() != MotionEvent.ACTION_UP || !hitsEndIcon(field, event)) {
                 return false;

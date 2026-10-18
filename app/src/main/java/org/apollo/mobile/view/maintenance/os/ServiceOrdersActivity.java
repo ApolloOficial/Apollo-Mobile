@@ -39,7 +39,7 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
 
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());
         list = findViewById(R.id.service_orders_list_container);
-        empty = new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llEmptyOrders));
+        empty = new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llEmptyOrders)).onRetry(this::load);
         loading = findViewById(R.id.progressOrders);
         chipAll = findViewById(R.id.chipAll);
         chipOpen = findViewById(R.id.chipOpen);
@@ -89,16 +89,23 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
             public void onFailure(ServiceOrderError error) {
                 loading.setVisibility(View.GONE);
                 list.removeAllViews();
-                empty.setVisibility(View.VISIBLE);
-                empty.setText("Não foi possível carregar as ordens de serviço.");
+                if (error.getType() == ServiceOrderError.Type.NETWORK) {
+                    org.apollo.mobile.view.common.AppToast.offline(ServiceOrdersActivity.this);
+                    empty.timeout();
+                } else {
+                    empty.error();
+                }
             }
         });
     }
 
     private void render(List<Order> orders) {
         list.removeAllViews();
-        empty.setVisibility(orders.isEmpty() ? View.VISIBLE : View.GONE);
-        empty.setText("Nenhuma OS encontrada.");
+        if (orders.isEmpty()) {
+            empty.empty(org.apollo.mobile.view.common.EmptyState.Kind.ORDERS, null);
+        } else {
+            empty.setVisibility(View.GONE);
+        }
 
         LayoutInflater inflater = LayoutInflater.from(this);
         for (Order order : orders) {

@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:layout_marginBottom="@dimen/space_8"
     android:background="@drawable/bg_surface_card"
-    android:foreground="?attr/selectableItemBackground"
+    android:foreground="@drawable/ripple_card"
     android:paddingStart="@dimen/space_16"
     android:paddingTop="@dimen/space_16"
     android:paddingEnd="@dimen/space_18"

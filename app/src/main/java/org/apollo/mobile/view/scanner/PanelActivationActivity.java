@@ -1,6 +1,5 @@
 package org.apollo.mobile.view.scanner;
 
-import android.app.DatePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,7 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -137,12 +135,10 @@ public final class PanelActivationActivity extends AppCompatActivity {
     }
 
     private void pickDate() {
-        DatePickerDialog dialog = new DatePickerDialog(this, (picker, year, month, day) -> {
-            installationDate = LocalDate.of(year, month + 1, day);
+        org.apollo.mobile.view.common.CalendarDialog.show(this, installationDate, null, LocalDate.now(), date -> {
+            installationDate = date;
             showDate();
-        }, installationDate.getYear(), installationDate.getMonthValue() - 1, installationDate.getDayOfMonth());
-        dialog.getDatePicker().setMaxDate(System.currentTimeMillis());
-        dialog.show();
+        });
     }
 
     private void showDate() {
@@ -155,7 +151,7 @@ public final class PanelActivationActivity extends AppCompatActivity {
             @Override
             public void onSuccess(PanelItem panel) {
                 if (isFinishing() || isDestroyed()) return;
-                Toast.makeText(PanelActivationActivity.this, "Placa ativada com sucesso!", Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.success(PanelActivationActivity.this, "Placa instalada com sucesso!");
                 if (panel != null && panel.getStringId() != null) {
                     ScannedPanelRouter.openString(PanelActivationActivity.this, panel.getStringId(),
                             panel.getStringCode(), panel.getSerialNumber(), gateway, true);
@@ -168,7 +164,13 @@ public final class PanelActivationActivity extends AppCompatActivity {
             public void onFailure(PanelsError error) {
                 if (isFinishing() || isDestroyed()) return;
                 confirm.setEnabled(true);
-                PanelsUi.handleFailure(PanelActivationActivity.this, error);
+                if (error.getType() == PanelsError.Type.UNAUTHORIZED
+                        || error.getType() == PanelsError.Type.NETWORK) {
+                    PanelsUi.handleFailure(PanelActivationActivity.this, error);
+                    return;
+                }
+                org.apollo.mobile.view.common.AppSheets.activationFailed(PanelActivationActivity.this,
+                        () -> activate(barcode));
             }
         });
     }

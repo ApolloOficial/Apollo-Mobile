@@ -4,7 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -32,6 +32,15 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         PasswordVisibilityToggle.attach(findViewById(R.id.etNewPassword));
         PasswordVisibilityToggle.attach(findViewById(R.id.etConfirmPassword));
 
+        EditText newField = findViewById(R.id.etNewPassword);
+        EditText confirmField = findViewById(R.id.etConfirmPassword);
+        TextView requirements = findViewById(R.id.tvRequirements);
+        AuthForm.bind(resetButton, () -> {
+            String value = newField.getText().toString();
+            AuthForm.requirements(requirements, value);
+            return org.apollo.mobile.auth.policy.PasswordPolicy.isValid(value)
+                    && value.equals(confirmField.getText().toString());
+        }, newField, confirmField);
         resetButton.setOnClickListener(view -> resetPassword());
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
     }
@@ -44,15 +53,15 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         String confirmation = confirmPasswordInput.getText().toString();
 
         if (!password.equals(confirmation)) {
-            Toast.makeText(this, R.string.recovery_password_mismatch, Toast.LENGTH_SHORT).show();
+            org.apollo.mobile.view.common.AppToast.info(this, R.string.recovery_password_mismatch);
             return;
         }
         if (!PasswordPolicy.isValid(password)) {
-            Toast.makeText(this, R.string.recovery_password_invalid, Toast.LENGTH_LONG).show();
+            org.apollo.mobile.view.common.AppToast.error(this, R.string.recovery_password_invalid);
             return;
         }
         if (resetToken == null || resetToken.isEmpty()) {
-            Toast.makeText(this, R.string.recovery_reset_rejected, Toast.LENGTH_LONG).show();
+            org.apollo.mobile.view.common.AppToast.error(this, R.string.recovery_reset_rejected);
             return;
         }
 
@@ -60,8 +69,7 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
         gateway.resetPassword(resetToken, password, new AuthenticationGateway.Callback<Void>() {
             @Override
             public void onSuccess(Void response) {
-                Toast.makeText(CreateNewPasswordActivity.this, R.string.recovery_password_success,
-                        Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.success(CreateNewPasswordActivity.this, R.string.recovery_password_success);
 
                 Intent intent = new Intent(CreateNewPasswordActivity.this, LoginActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
@@ -72,8 +80,7 @@ public final class CreateNewPasswordActivity extends AppCompatActivity {
             @Override
             public void onFailure(AuthError error) {
                 resetButton.setEnabled(true);
-                Toast.makeText(CreateNewPasswordActivity.this, AuthMessages.generic(error),
-                        Toast.LENGTH_LONG).show();
+                org.apollo.mobile.view.common.AppToast.error(CreateNewPasswordActivity.this, AuthMessages.generic(error));
             }
         });
     }

@@ -20,10 +20,19 @@ public final class PanelSheet {
     }
 
     static void show(Activity activity, PanelItem panel, String stringCode) {
-        show(activity, panel, stringCode, null);
+        show(activity, panel, stringCode, 0, 0, null);
+    }
+
+    static void show(Activity activity, PanelItem panel, String stringCode, int position, int total) {
+        show(activity, panel, stringCode, position, total, null);
     }
 
     public static void show(Activity activity, PanelItem panel, String stringCode, Runnable onDismiss) {
+        show(activity, panel, stringCode, 0, 0, onDismiss);
+    }
+
+    public static void show(Activity activity, PanelItem panel, String stringCode, int position, int total,
+                            Runnable onDismiss) {
         BottomSheetDialog dialog = new BottomSheetDialog(activity);
         View view = LayoutInflater.from(activity).inflate(R.layout.sheet_panel_details, null);
         dialog.setContentView(view);
@@ -39,8 +48,12 @@ public final class PanelSheet {
         addRow(activity, rows, R.string.panels_sheet_model, orDash(joinModel(panel), unavailable));
         addRow(activity, rows, R.string.panels_sheet_string,
                 orDash(joinInverter(panel, stringCode), unavailable));
+        if (position > 0 && total > 0) {
+            addRow(activity, rows, "Posição", String.format(java.util.Locale.ROOT, "%02d de %02d", position, total));
+        }
         addRow(activity, rows, R.string.panels_sheet_installation, formatDate(panel.getInstallationDt(), unavailable));
-        String efficiency = PanelsUi.percent(panel.getStringHealthScore());
+        Double value = panel.getEfficiencyPct() != null ? panel.getEfficiencyPct() : panel.getStringHealthScore();
+        String efficiency = PanelsUi.percent(value);
         addRow(activity, rows, R.string.panels_sheet_efficiency, efficiency == null ? unavailable : efficiency);
 
         view.findViewById(R.id.btnSheetClose).setOnClickListener(v -> dialog.dismiss());
@@ -55,6 +68,10 @@ public final class PanelSheet {
     }
 
     private static void addRow(Activity activity, LinearLayout rows, int label, String value) {
+        addRow(activity, rows, activity.getString(label), value);
+    }
+
+    private static void addRow(Activity activity, LinearLayout rows, String label, String value) {
         View row = LayoutInflater.from(activity).inflate(R.layout.item_activation_info, rows, false);
         ((TextView) row.findViewById(R.id.tvLabel)).setText(label);
         ((TextView) row.findViewById(R.id.tvValue)).setText(value);

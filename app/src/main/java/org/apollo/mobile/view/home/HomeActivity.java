@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -189,11 +188,13 @@ public final class HomeActivity extends AppCompatActivity {
         homeGateway.getHome(new HomeGateway.Callback() {
             @Override
             public void onSuccess(HomeResponse response) {
+                hideSkeleton(R.id.skeletonHome);
                 bindHome(response);
             }
 
             @Override
             public void onFailure(HomeError error) {
+                hideSkeleton(R.id.skeletonHome);
                 handleError(error);
             }
         });
@@ -553,7 +554,7 @@ public final class HomeActivity extends AppCompatActivity {
 
             if (report.getStop()
                     == SyncReport.Stop.UNAUTHORIZED) {
-                goToLogin();
+                org.apollo.mobile.view.common.AppSheets.sessionExpired(this);
                 return;
             }
 
@@ -564,11 +565,18 @@ public final class HomeActivity extends AppCompatActivity {
 
             if (synchronizedSuccessfully) {
                 showSyncSuccessIcon();
+                org.apollo.mobile.view.common.AppToast.success(this, "Sincronização concluída!");
                 loadHome();
                 return;
             }
 
             showSyncIcon();
+            if (report.getStop() == SyncReport.Stop.NETWORK) {
+                org.apollo.mobile.view.common.AppToast.offline(this);
+            } else {
+                org.apollo.mobile.view.common.AppToast.error(this,
+                        "Falha ao sincronizar.\nTentaremos novamente em instantes.");
+            }
         });
     }
 
@@ -613,7 +621,11 @@ public final class HomeActivity extends AppCompatActivity {
         bindCurrentServiceOrder();
         if (error.getType()
                 == HomeError.Type.UNAUTHORIZED) {
-            goToLogin();
+            org.apollo.mobile.view.common.AppSheets.sessionExpired(this);
+            return;
+        }
+        if (error.getType() == HomeError.Type.NETWORK) {
+            org.apollo.mobile.view.common.AppToast.offline(this);
             return;
         }
 
@@ -637,11 +649,20 @@ public final class HomeActivity extends AppCompatActivity {
                 break;
         }
 
-        Toast.makeText(
-                this,
-                message,
-                Toast.LENGTH_LONG
-        ).show();
+        if (error.getType() == HomeError.Type.TIMEOUT || error.getType() == HomeError.Type.SERVER
+                || error.getType() == HomeError.Type.INVALID_RESPONSE) {
+            org.apollo.mobile.view.common.ErrorStateActivity.open(this, error.getType() == HomeError.Type.TIMEOUT);
+            return;
+        }
+        org.apollo.mobile.view.common.AppToast.error(this, message);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == org.apollo.mobile.view.common.ErrorStateActivity.REQUEST_CODE && resultCode == RESULT_OK) {
+            loadHome();
+        }
     }
 
     private String formatDate(String value) {
@@ -741,5 +762,9 @@ public final class HomeActivity extends AppCompatActivity {
                         .getDisplayMetrics()
                         .density
         );
+    }
+
+    private void hideSkeleton(int id) {
+        org.apollo.mobile.view.common.SkeletonView.hide(findViewById(id));
     }
 }

@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -85,8 +84,7 @@ public final class MaintenanceIdentifiedActivity extends AppCompatActivity {
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
                         button.setEnabled(true);
-                        Toast.makeText(MaintenanceIdentifiedActivity.this,
-                                "Não foi possível iniciar a manutenção.", Toast.LENGTH_LONG).show();
+                        org.apollo.mobile.view.common.AppToast.error(MaintenanceIdentifiedActivity.this, "Não foi possível iniciar a manutenção.");
                     }
                 });
     }

@@ -64,6 +64,9 @@ public final class NotificationAdapter extends RecyclerView.Adapter<Notification
         holder.body.setVisibility(item.getBody().isEmpty() ? View.GONE : View.VISIBLE);
         holder.time.setText(formatTime(context, item.createdAtLocal()));
         holder.unread.setVisibility(item.isRead() ? View.GONE : View.VISIBLE);
+        android.graphics.Typeface face = androidx.core.content.res.ResourcesCompat.getFont(context, item.isRead() ? R.font.manrope_regular : R.font.manrope_bold);
+        holder.title.setTypeface(face);
+        holder.time.setTypeface(face);
         holder.row.setOnClickListener(v -> listener.onClick(item, holder.getBindingAdapterPosition()));
     }
 

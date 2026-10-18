@@ -47,7 +47,7 @@
                     android:layout_marginEnd="@dimen/space_12"
                     android:ellipsize="end"
                     android:maxLines="1"
-                    android:text="Bom dia, Carlos"
+                    android:text="Bom dia, Usuário"
                     app:layout_constraintEnd_toStartOf="@id/ivSync"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -95,7 +95,7 @@
                     style="@style/apollo_label2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:text="@string/home_view_all_sample"
                     android:textColor="@color/secondary_three" />
 
@@ -109,7 +109,7 @@
                 android:layout_marginHorizontal="@dimen/space_minus_5"
                 android:layout_marginTop="@dimen/space_16"
                 android:background="@drawable/bg_surface_card"
-                android:foreground="?attr/selectableItemBackground"
+                android:foreground="@drawable/ripple_card"
                 android:paddingStart="@dimen/space_15"
                 android:paddingTop="@dimen/space_15"
                 android:paddingEnd="@dimen/space_19"
@@ -203,7 +203,9 @@
                 android:background="@drawable/bg_surface_card"
                 android:gravity="center"
                 android:padding="@dimen/space_24"
-                android:text="@string/home_empty_service_orders"
+                android:drawableTop="@drawable/empty_orders_small"
+                android:drawablePadding="@dimen/space_12"
+                android:text="Nenhuma OS encontrada."
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
@@ -380,7 +382,9 @@
                 android:background="@drawable/bg_surface_card_lg"
                 android:gravity="center"
                 android:padding="@dimen/space_24"
-                android:text="@string/home_empty_attention"
+                android:drawableTop="@drawable/empty_panels_small"
+                android:drawablePadding="@dimen/space_12"
+                android:text="Nenhuma placa precisa de atenção."
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
@@ -540,13 +544,30 @@
                 android:background="@drawable/bg_surface_card_lg"
                 android:gravity="center"
                 android:padding="@dimen/space_24"
-                android:text="@string/home_empty_pending"
+                android:drawableTop="@drawable/empty_strings_small"
+                android:drawablePadding="@dimen/space_12"
+                android:text="Nenhum registro pendente."
                 android:textColor="@color/neutral_gray"
                 android:visibility="gone" />
 
         </LinearLayout>
 
     </androidx.core.widget.NestedScrollView>
+
+    <org.apollo.mobile.view.common.SkeletonView
+        android:id="@+id/skeletonHome"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="5"
+        android:background="?android:attr/colorBackground"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/space_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/topBar"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
 
     <include layout="@layout/layout_bottom_nav" />
 

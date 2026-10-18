@@ -100,6 +100,8 @@
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:maxLines="1"
+                    android:singleLine="true"
+                    android:ellipsize="end"
                     android:textColorHint="@color/neutral_gray" />
             </LinearLayout>
         </LinearLayout>
@@ -173,6 +175,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vFiltersDivider"
         app:layout_constraintWidth_max="@dimen/content_max_width" />
+
+    <org.apollo.mobile.view.common.SkeletonView
+        android:id="@+id/skeletonPanelDetails"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:max="5"
+        android:background="?android:attr/colorBackground"
+        android:paddingHorizontal="@dimen/screen_horizontal_padding"
+        android:paddingTop="@dimen/space_12"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vFiltersDivider"
+        app:layout_constraintWidth_max="@dimen/content_max_width" />
+
+
+    <include
+        android:id="@+id/llPlatesEmpty"
+        layout="@layout/view_empty_state"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/space_24"
+        android:layout_marginTop="@dimen/space_32"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/vFiltersDivider" />
 
     <include layout="@layout/layout_bottom_nav" />
 

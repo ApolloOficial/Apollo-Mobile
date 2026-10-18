@@ -51,7 +51,7 @@
                 style="@style/apollo_label4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="?attr/selectableItemBackground"
+                android:background="@drawable/ripple_card"
                 android:padding="@dimen/space_4"
                 android:text="@string/notifications_mark_all"
                 android:textColor="@color/secondary_three"
@@ -116,11 +116,12 @@
             android:textColor="@color/neutral_gray" />
     </LinearLayout>
 
-    <ProgressBar
+    <org.apollo.mobile.view.common.SkeletonView
         android:id="@+id/progressNotifications"
-        android:layout_width="@dimen/space_32"
-        android:layout_height="@dimen/space_32"
-        android:indeterminateTint="@color/secondary_three"
+        android:layout_width="0dp"
+        android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
+        app:layout_constraintVertical_bias="0"
+        android:layout_height="wrap_content"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -39,6 +39,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
     private String stringCode;
     private double nominalPower;
     private final List<PanelItem> allPanels = new ArrayList<>();
+    private boolean loaded;
     private PanelFilter filter = PanelFilter.ALL;
     private TextView[] chips;
     private PanelFilter[] filters;
@@ -64,8 +65,9 @@ public final class PanelDetailsActivity extends AppCompatActivity {
         updateSummary(0);
 
         RecyclerView list = findViewById(R.id.rvPlatesDetail);
-        list.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new PlateAdapter(panel -> PanelSheet.show(this, panel, stringCode));
+        list.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, getResources().getInteger(R.integer.list_columns)));
+        adapter = new PlateAdapter(panel -> PanelSheet.show(this, panel, stringCode,
+                allPanels.indexOf(panel) + 1, allPanels.size()));
         list.setAdapter(adapter);
 
         chips = new TextView[]{
@@ -124,7 +126,15 @@ public final class PanelDetailsActivity extends AppCompatActivity {
 
     private void render() {
         String query = ((EditText) findViewById(R.id.etSearch)).getText().toString();
-        adapter.submit(filter.apply(allPanels, query));
+        List<PanelItem> visible = filter.apply(allPanels, query);
+        adapter.submit(visible);
+        org.apollo.mobile.view.common.EmptyState empty =
+                new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPlatesEmpty));
+        if (visible.isEmpty() && loaded) {
+            empty.empty(org.apollo.mobile.view.common.EmptyState.Kind.PANELS, null);
+        } else {
+            empty.setVisibility(android.view.View.GONE);
+        }
     }
 
     private void updateSummary(int count) {
@@ -155,8 +165,10 @@ public final class PanelDetailsActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }
+                org.apollo.mobile.view.common.SkeletonView.hide(findViewById(R.id.skeletonPanelDetails));
                 allPanels.clear();
                 allPanels.addAll(result);
+                loaded = true;
                 updateSummary(result.size());
                 updateHealth(result);
                 render();
@@ -166,6 +178,7 @@ public final class PanelDetailsActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(PanelsError error) {
+                org.apollo.mobile.view.common.SkeletonView.hide(findViewById(R.id.skeletonPanelDetails));
                 PanelsUi.handleFailure(PanelDetailsActivity.this, error);
             }
         });

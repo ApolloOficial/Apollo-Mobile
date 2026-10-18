@@ -34,7 +34,7 @@
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/apollo_h4"
+            style="@style/apollo_auth_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Informe o código\nde segurança"
@@ -187,12 +187,12 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/button_height"
             android:layout_marginTop="@dimen/space_24"
-            android:backgroundTint="@color/secondary_three"
+            app:backgroundTint="@color/cta_fill_tint"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="Continuar"
             android:textAllCaps="false"
-            android:textColor="@color/neutral_white"
+            android:textColor="@color/cta_filled_text"
             app:cornerRadius="@dimen/button_corner_radius"
             app:layout_constraintTop_toBottomOf="@id/tvResend" />
 

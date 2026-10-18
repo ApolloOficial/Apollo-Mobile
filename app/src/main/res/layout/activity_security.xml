@@ -53,7 +53,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -107,7 +107,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="end"
                     android:layout_marginTop="@dimen/space_16"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:text="Solicitar alteração de telefone"
                     android:textColor="@color/secondary_three" />
             </LinearLayout>
@@ -133,7 +133,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout
@@ -207,7 +207,7 @@
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="?attr/selectableItemBackground"
+                    android:background="@drawable/ripple_card"
                     android:minHeight="@dimen/space_50">
 
                     <FrameLayout

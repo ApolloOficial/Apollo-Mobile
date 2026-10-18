@@ -36,14 +36,14 @@
             android:id="@+id/ivDeniedIllustration"
             android:layout_width="@dimen/space_220"
             android:layout_height="@dimen/space_180"
-            android:src="@drawable/denied_image"
+            android:src="@drawable/ill_access_denied"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tvTitle"
-            style="@style/apollo_h4"
+            style="@style/apollo_auth_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/space_32"

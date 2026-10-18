@@ -54,7 +54,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
         BottomNavigation.setup(this, BottomNavigation.Tab.TOOLS);
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());
         historyList = findViewById(R.id.maintenanceHistoryList);
-        emptyText = new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llMaintenanceEmpty));
+        emptyText = new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llMaintenanceEmpty)).onRetry(this::loadOrders);
         loading = findViewById(R.id.progressMaintenanceHistory);
         summaryText = findViewById(R.id.tvOsSummary);
         chipAll = findViewById(R.id.chipMaintenanceAll);
@@ -98,8 +98,12 @@ public final class MaintenanceActivity extends AppCompatActivity {
                 if (requestVersion != loadVersion) return;
                 loading.setVisibility(View.GONE);
                 historyList.removeAllViews();
-                emptyText.setText("Não foi possível carregar as ordens de serviço.");
-                emptyText.setVisibility(View.VISIBLE);
+                if (error.getType() == ServiceOrderError.Type.NETWORK) {
+                    org.apollo.mobile.view.common.AppToast.offline(MaintenanceActivity.this);
+                    emptyText.timeout();
+                } else {
+                    emptyText.error();
+                }
                 summaryText.setText("Ordens indisponíveis");
             }
         });
@@ -135,8 +139,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
 
         Long typeId = findTypeId(key);
         if (typeId == null) {
-            emptyText.setText("Não foi possível localizar esse tipo de manutenção.");
-            emptyText.setVisibility(View.VISIBLE);
+            org.apollo.mobile.view.common.AppToast.error(this, "Não foi possível localizar esse tipo de manutenção.");
             loadMaintenanceTypes();
             return;
         }
@@ -197,8 +200,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
         }
 
         if (orders.isEmpty()) {
-            emptyText.setText("Nenhuma OS encontrada.");
-            emptyText.setVisibility(View.VISIBLE);
+            emptyText.empty(org.apollo.mobile.view.common.EmptyState.Kind.ORDERS, null);
             return;
         }
 

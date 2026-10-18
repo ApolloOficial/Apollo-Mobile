@@ -124,6 +124,11 @@ public final class RetrofitSettingsGateway implements SettingsGateway {
         enqueue(() -> service.sessions(), callback, false);
     }
 
+    @Override
+    public void changePassword(String currentPassword, String newPassword, Callback<Void> callback) {
+        enqueue(() -> service.changePassword(new ChangePasswordBody(currentPassword, newPassword)), callback, true);
+    }
+
     private interface CallFactory<T> {
         Call<T> create();
     }

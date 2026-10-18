@@ -1,6 +1,8 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <style name="Base.Theme.ApolloMobile" parent="Theme.Material3.Light.NoActionBar">
         <item name="colorPrimary">@color/secondary_three</item>
+        <item name="colorControlHighlight">@color/ripple_orange</item>
+        <item name="android:colorControlHighlight">@color/ripple_orange</item>
         <item name="android:windowBackground">@color/neutral_white</item>
         <item name="android:statusBarColor">@color/neutral_white</item>
         <item name="android:windowLightStatusBar">true</item>
@@ -9,7 +11,12 @@
         <item name="android:windowAnimationStyle">@style/ApolloWindowAnimation</item>
     </style>
 
-    <style name="Theme.ApolloMobile" parent="Base.Theme.ApolloMobile" />
+    <style name="Theme.ApolloMobile" parent="Base.Theme.ApolloMobile">
+        <item name="android:scrollbarThumbVertical">@drawable/scroll_thumb</item>
+        <item name="android:scrollbarTrackVertical">@drawable/scroll_track</item>
+        <item name="android:scrollbarSize">6dp</item>
+        <item name="android:scrollbarFadeDuration">600</item>
+    </style>
 
     <style name="ApolloWindowAnimation" parent="@android:style/Animation.Activity">
         <item name="android:activityOpenEnterAnimation">@anim/screen_enter</item>
