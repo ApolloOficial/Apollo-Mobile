@@ -6,6 +6,7 @@ import android.os.Build;
 import org.apollo.mobile.BuildConfig;
 import org.apollo.mobile.auth.securty.AuthInterceptor;
 import org.apollo.mobile.session.EncryptedSessionStorage;
+import org.apollo.mobile.tracking.TrackingManager;
 
 import java.util.concurrent.TimeUnit;
 
@@ -64,6 +65,7 @@ public final class ApiClient {
         );
 
         OkHttpClient httpClient = new OkHttpClient.Builder()
+                .addInterceptor(new org.apollo.mobile.tracking.api.TrackingNetworkInterceptor())
                 .connectTimeout(
                         timeoutSeconds,
                         TimeUnit.SECONDS
@@ -87,6 +89,17 @@ public final class ApiClient {
                                         .build()
                         )
                 )
+                .addInterceptor(chain -> {
+                    okhttp3.Request request = chain.request();
+                    String path = request.url().encodedPath();
+                    if ("PATCH".equals(request.method())
+                            && path.matches("/api/v1/maintenance-registers/[0-9]+/(start|complete)")) {
+                        okhttp3.Request.Builder builder = request.newBuilder();
+                        TrackingManager.attachBusinessContext(builder);
+                        request = builder.build();
+                    }
+                    return chain.proceed(request);
+                })
                 .addInterceptor(
                         new AuthInterceptor(
                                 new EncryptedSessionStorage(context)

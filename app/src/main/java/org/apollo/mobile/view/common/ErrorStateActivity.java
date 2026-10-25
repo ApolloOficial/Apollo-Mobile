@@ -38,6 +38,8 @@ public final class ErrorStateActivity extends AppCompatActivity {
         Motion.enterScreen(this);
         Motion.popIn(findViewById(R.id.ivErrorIllustration), 120);
         findViewById(R.id.btnTryAgain).setOnClickListener(v -> {
+            org.apollo.mobile.tracking.TrackingManager.trackCurrent("retry_clicked",
+                    org.apollo.mobile.tracking.TrackingManager.properties("target", "error_screen"));
             setResult(RESULT_OK);
             Runnable retry = pendingRetry;
             pendingRetry = null;

@@ -2,6 +2,8 @@ package org.apollo.mobile.view.scanner;
 
 import android.graphics.Paint;
 import android.os.Bundle;
+import org.apollo.mobile.tracking.TrackingEvents;
+import org.apollo.mobile.tracking.TrackingManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
@@ -81,6 +83,8 @@ public class ScannerActivity extends AppCompatActivity {
     private Camera camera;
     private final ActivityResultLauncher<String> cameraPermission = registerForActivityResult(
             new ActivityResultContracts.RequestPermission(), granted -> {
+                TrackingManager.track("permission_result", "ScannerActivity",
+                        TrackingManager.properties("permission", "camera", "granted", Boolean.toString(granted)));
                 if (granted) {
                     startCamera();
                 } else if (!shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA)) {
@@ -190,6 +194,10 @@ public class ScannerActivity extends AppCompatActivity {
         for (Barcode code : codes) {
             String value = ScanCode.normalize(code.getRawValue());
             if (value != null && busy.compareAndSet(false, true)) {
+                java.util.Map<String, String> scanProperties = new java.util.HashMap<>();
+                scanProperties.put("input_method", "camera");
+                if (isOrderMode()) scanProperties.put("work_order_id", Long.toString(orderId));
+                TrackingManager.track(TrackingEvents.BARCODE_SCANNED, "ScannerActivity", scanProperties);
                 if (isOrderMode()) {
                     runOnUiThread(() -> identifyByCode(value));
                 } else {
@@ -251,6 +259,7 @@ public class ScannerActivity extends AppCompatActivity {
         if (isFinishing() || isDestroyed()) {
             return;
         }
+        TrackingManager.failure("ScannerActivity", "identify_panel", error.getType().name(), orderId);
         Runnable resume = () -> busy.set(false);
         if (error.getType() == PanelsError.Type.NOT_FOUND) {
             org.apollo.mobile.view.common.AppSheets.plateNotFound(this, resume, resume);
@@ -352,6 +361,7 @@ public class ScannerActivity extends AppCompatActivity {
                     public void onFailure(ServiceOrderError error) {
                         if (isFinishing() || isDestroyed()) return;
                         org.apollo.mobile.view.common.AppToast.error(ScannerActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível carregar as placas da OS."));
+                        TrackingManager.failure("ScannerActivity", "load_work_order", error.getType().name(), orderId);
                         finish();
                     }
                 });

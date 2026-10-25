@@ -48,6 +48,13 @@ public final class ReportIssueActivity extends AppCompatActivity {
         ((TextView) findViewById(R.id.tvReportTitle)).setText(getString(R.string.report_title, serial));
         findViewById(R.id.btnBack).setOnClickListener(view -> finish());
         description = findViewById(R.id.etDescription);
+        description.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) {}
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (count > 0) org.apollo.mobile.tracking.lifecycle.TrackingForm.started(ReportIssueActivity.this);
+            }
+            @Override public void afterTextChanged(android.text.Editable s) {}
+        });
         send = findViewById(R.id.btnSend);
 
         fillGroup(findViewById(R.id.cgSeverity), SEVERITY_LABELS, index -> severityIndex = index);
@@ -89,16 +96,20 @@ public final class ReportIssueActivity extends AppCompatActivity {
     }
 
     private void submit() {
+        org.apollo.mobile.tracking.lifecycle.TrackingForm.submitted(this);
         String message = description.getText().toString().trim();
         if (severityIndex < 0) {
+            org.apollo.mobile.tracking.lifecycle.TrackingForm.invalid(this, "severity", "required");
             org.apollo.mobile.view.common.AppToast.info(this, R.string.report_pick_severity);
             return;
         }
         if (typeIndex < 0) {
+            org.apollo.mobile.tracking.lifecycle.TrackingForm.invalid(this, "type", "required");
             org.apollo.mobile.view.common.AppToast.info(this, R.string.report_pick_type);
             return;
         }
         if (message.isEmpty()) {
+            org.apollo.mobile.tracking.lifecycle.TrackingForm.invalid(this, "description", "required");
             org.apollo.mobile.view.common.AppToast.info(this, R.string.report_write_description);
             return;
         }
@@ -107,6 +118,7 @@ public final class ReportIssueActivity extends AppCompatActivity {
         gateway.reportIssue(body, new PanelsGateway.Callback<Void>() {
             @Override
             public void onSuccess(Void result) {
+                org.apollo.mobile.tracking.lifecycle.TrackingForm.succeeded(ReportIssueActivity.this);
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }

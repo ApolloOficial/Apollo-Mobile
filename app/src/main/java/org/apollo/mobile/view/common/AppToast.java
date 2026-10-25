@@ -104,6 +104,8 @@ public final class AppToast {
     }
 
     private static void attach(Activity activity, Type type, CharSequence message) {
+        org.apollo.mobile.tracking.TrackingManager.trackCurrent("feedback_shown",
+                org.apollo.mobile.tracking.TrackingManager.properties("feedback_type", type.name()));
         ViewGroup decor = activity.findViewById(android.R.id.content);
         if (decor == null) return;
         for (int i = decor.getChildCount() - 1; i >= 0; i--) {

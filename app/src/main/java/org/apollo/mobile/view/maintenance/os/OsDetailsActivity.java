@@ -1,6 +1,8 @@
 package org.apollo.mobile.view.maintenance.os;
 
 import android.content.Intent;
+import org.apollo.mobile.tracking.TrackingEvents;
+import org.apollo.mobile.tracking.TrackingManager;
 import org.apollo.mobile.view.common.Motion;
 import android.content.res.ColorStateList;
 import android.os.Bundle;
@@ -33,6 +35,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
     private ServiceOrderGateway gateway;
     private long orderId;
     private Details details;
+    private boolean trackingOrderViewed;
     private LinearLayout infoRows;
     private LinearLayout stringGroups;
     private LinearLayout history;
@@ -43,6 +46,8 @@ public final class OsDetailsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        trackingOrderViewed = savedInstanceState != null
+                && savedInstanceState.getBoolean("tracking.order_viewed", false);
         setContentView(R.layout.activity_os_details);
         Motion.enterScreen(this);
 
@@ -92,6 +97,10 @@ public final class OsDetailsActivity extends AppCompatActivity {
             public void onSuccess(Details value) {
                 if (isFinishing() || isDestroyed()) return;
                 details = value;
+                if (!trackingOrderViewed) {
+                    trackingOrderViewed = true;
+                    TrackingManager.order(TrackingEvents.WORK_ORDER_VIEWED, "OsDetailsActivity", orderId);
+                }
                 findViewById(R.id.progressOsDetails).setVisibility(View.GONE);
                 findViewById(R.id.osEmptyState).setVisibility(View.GONE);
                 View content = findViewById(R.id.llOsContent);
@@ -105,6 +114,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
             @Override
             public void onFailure(ServiceOrderError error) {
                 if (isFinishing() || isDestroyed()) return;
+                TrackingManager.failure("OsDetailsActivity", "load_work_order", error.getType().name(), orderId);
                 findViewById(R.id.progressOsDetails).setVisibility(View.GONE);
                 if (details != null) {
                     org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this, org.apollo.mobile.view.common.Tr.t("Não foi possível atualizar a OS."));
@@ -129,6 +139,12 @@ public final class OsDetailsActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("tracking.order_viewed", trackingOrderViewed);
+        super.onSaveInstanceState(outState);
     }
 
     private void render() {
