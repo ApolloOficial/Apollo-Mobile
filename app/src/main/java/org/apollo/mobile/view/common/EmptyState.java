@@ -97,7 +97,7 @@ public final class EmptyState {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof Activity) {
-            ErrorStateActivity.open((Activity) context, timeout, retryAction);
+            ErrorStateActivity.open((Activity) context, true, retryAction);
         }
     }
 

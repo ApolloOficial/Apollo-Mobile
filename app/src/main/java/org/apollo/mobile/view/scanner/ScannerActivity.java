@@ -270,8 +270,7 @@ public class ScannerActivity extends AppCompatActivity {
             return;
         }
         if (error.getType() == PanelsError.Type.NETWORK) {
-            org.apollo.mobile.view.common.AppToast.offline(this);
-            findViewById(R.id.previewView).postDelayed(resume, 1500);
+            org.apollo.mobile.view.common.ErrorStateActivity.open(this, true, resume);
             return;
         }
         org.apollo.mobile.view.common.AppSheets.plateNotFound(this, resume, resume);

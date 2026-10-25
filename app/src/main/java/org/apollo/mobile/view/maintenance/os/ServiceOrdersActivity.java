@@ -93,7 +93,6 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
                 loading.setVisibility(View.GONE);
                 list.removeAllViews();
                 if (error.getType() == ServiceOrderError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(ServiceOrdersActivity.this);
                     empty.timeout();
                 } else {
                     empty.error();

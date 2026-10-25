@@ -86,13 +86,13 @@
                 android:gravity="center"
                 android:text="@string/l_32a8f257be" />
 
-            <com.google.android.material.chip.ChipGroup
+            <LinearLayout
                 android:id="@+id/cgSuggestions"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_26"
-                app:chipSpacingHorizontal="@dimen/space_8"
-                app:chipSpacingVertical="@dimen/space_8" />
+                android:gravity="start"
+                android:orientation="vertical" />
 
             <FrameLayout
                 android:id="@+id/cvInitialInput"

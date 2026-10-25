@@ -147,17 +147,10 @@ public final class LoginActivity extends AppCompatActivity {
                 break;
 
             case TIMEOUT:
-                passwordError.setText(R.string.login_timeout);
-                break;
-
             case NETWORK:
-                passwordError.setText(R.string.login_network_error);
-                org.apollo.mobile.view.common.AppToast.offline(this);
-                break;
-
             default:
-                passwordError.setText(R.string.login_unavailable);
-                break;
+                org.apollo.mobile.view.common.AppToast.error(this, R.string.error_login_connection);
+                return;
         }
 
         passwordError.setVisibility(View.VISIBLE);

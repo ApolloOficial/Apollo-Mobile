@@ -25,8 +25,10 @@ public final class PanelsUi {
             org.apollo.mobile.view.common.AppSheets.sessionExpired(activity);
             return true;
         }
-        if (error.getType() == PanelsError.Type.NETWORK) {
-            org.apollo.mobile.view.common.AppToast.offline(activity);
+        if (error.getType() == PanelsError.Type.NETWORK
+                || error.getType() == PanelsError.Type.TIMEOUT
+                || error.getType() == PanelsError.Type.SERVER) {
+            org.apollo.mobile.view.common.ErrorStateActivity.open(activity, true, activity::recreate);
             return false;
         }
         org.apollo.mobile.view.common.AppToast.error(activity, messageFor(error));

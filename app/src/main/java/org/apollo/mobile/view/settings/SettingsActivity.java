@@ -141,7 +141,7 @@ public final class SettingsActivity extends AppCompatActivity {
             return;
         }
         if (report.getStop() == SyncReport.Stop.NETWORK) {
-            org.apollo.mobile.view.common.AppToast.offline(this);
+            org.apollo.mobile.view.common.AppToast.error(this, R.string.error_sync_connection);
             return;
         }
         if (report.getRejected() > 0) {

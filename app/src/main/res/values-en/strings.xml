@@ -109,7 +109,7 @@
     <string name="l_e935292c08">String health: --</string>
     <string name="l_9bdaeb416f">Capac. 42 kWp · 24 panels</string>
     <string name="l_1a1a776e9f">Panels</string>
-    <string name="l_7507bf4b28">Search by serial number...</string>
+    <string name="l_7507bf4b28">Search by serial no.</string>
     <string name="l_1783c970b4">In stock</string>
     <string name="l_5171bff63a">In use</string>
     <string name="l_d45f3feee7">Warning</string>
@@ -492,7 +492,9 @@
     <string name="error_btn_try_again">Try again</string>
     <string name="error_btn_support">Contact support</string>
     <string name="error_loading_title">Could not load</string>
-    <string name="error_loading_description">Something went wrong on our side. Please try again. If the problem continues, contact our support.</string>
+    <string name="error_loading_description">We could not load the information right now. Try again in a few moments. If the problem continues, contact support.</string>
+    <string name="error_login_connection">Could not connect to Apollo right now. Try again in a few moments.</string>
+    <string name="error_sync_connection">Could not sync right now. Your records remain saved on this device. Try again in a few moments.</string>
     <string name="maintenance_title">Maintenance</string>
     <string name="maintenance_history_title">History</string>
     <string name="maintenance_os_card_title">Service orders</string>
@@ -572,7 +574,7 @@
     <string name="os_condition_required">Describe the condition or tap \"No apparent issue\".</string>
     <string name="panels_back">Back</string>
     <string name="panels_title">Panels</string>
-    <string name="panels_search_hint">Search by serial number...</string>
+    <string name="panels_search_hint">Search by serial no.</string>
     <string name="panels_filter_all">All</string>
     <string name="panels_filter_stock">In stock</string>
     <string name="panels_filter_in_use">In use</string>
@@ -628,7 +630,7 @@
     <string name="scanner_permission_denied">Allow camera access to read the barcode.</string>
     <string name="scanner_camera_error">Could not open the camera.</string>
     <string name="scanner_not_found">No panel with code %1$s.</string>
-    <string name="settings_error_network">No connection. Check your internet and try again.</string>
+    <string name="settings_error_network">Could not connect to Apollo right now. Try again in a few moments.</string>
     <string name="settings_error_timeout">The server took a while to respond. Please try again.</string>
     <string name="settings_error_unavailable">Service unavailable right now.</string>
     <string name="settings_error_server">Server error. Please try again later.</string>
@@ -647,7 +649,7 @@
     <string name="settings_sync_running">Syncing…</string>
     <string name="settings_sync_nothing">There are no pending records.</string>
     <string name="settings_sync_done">Sync completed!</string>
-    <string name="settings_sync_offline">No connection. Records remain saved on the device.</string>
+    <string name="settings_sync_offline">Could not sync right now. Records remain saved on the device.</string>
     <string name="settings_sync_with_errors">%1$d record(s) were rejected by the server.</string>
     <string name="settings_sync_failed_suffix">%1$d with errors</string>
     <string name="settings_sync_status_join">%1$s · %2$s</string>

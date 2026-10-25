@@ -125,9 +125,6 @@ public final class PanelsActivity extends AppCompatActivity {
                     PanelsUi.handleFailure(PanelsActivity.this, error);
                     return;
                 }
-                if (error.getType() == PanelsError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(PanelsActivity.this);
-                }
                 org.apollo.mobile.view.common.EmptyState state =
                         new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPanelsEmpty))
                                 .onRetry(PanelsActivity.this::loadStrings);

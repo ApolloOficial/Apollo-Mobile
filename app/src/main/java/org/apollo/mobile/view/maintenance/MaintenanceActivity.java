@@ -99,7 +99,6 @@ public final class MaintenanceActivity extends AppCompatActivity {
                 loading.setVisibility(View.GONE);
                 historyList.removeAllViews();
                 if (error.getType() == ServiceOrderError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(MaintenanceActivity.this);
                     emptyText.timeout();
                 } else {
                     emptyText.error();

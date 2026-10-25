@@ -175,9 +175,6 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
             public void onFailure(ServiceOrderError error) {
                 if (isFinishing() || isDestroyed()) return;
                 finishButton.setEnabled(true);
-                if (error.getType() == ServiceOrderError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(CompleteMaintenanceActivity.this);
-                }
                 org.apollo.mobile.view.common.AppSheets.completionFailed(CompleteMaintenanceActivity.this,
                         () -> complete(text, cost));
             }
