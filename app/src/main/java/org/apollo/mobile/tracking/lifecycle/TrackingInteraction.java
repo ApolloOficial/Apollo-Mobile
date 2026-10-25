@@ -6,13 +6,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import androidx.appcompat.view.WindowCallbackWrapper;
+
 import java.util.Map;
 import org.apollo.mobile.tracking.TrackingEvents;
 import org.apollo.mobile.tracking.TrackingManager;
 
 /** Tracks stable control identifiers, never labels, input text or touch coordinates. */
-public final class TrackingInteraction extends WindowCallbackWrapper {
+public final class TrackingInteraction extends TrackingWindowCallback {
     private final Activity activity;
     private String lastTarget = "";
     private long lastAt;
