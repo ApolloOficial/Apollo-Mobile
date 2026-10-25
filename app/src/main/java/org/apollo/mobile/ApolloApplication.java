@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 
 import org.apollo.mobile.view.common.ActivityTracker;
 import org.apollo.mobile.view.common.AppToast;
+import org.apollo.mobile.tracking.TrackingManager;
 
 public final class ApolloApplication extends Application {
 
@@ -23,6 +24,7 @@ public final class ApolloApplication extends Application {
         super.onCreate();
         ActivityTracker.register(this);
         org.apollo.mobile.view.common.Tr.init(this);
+        TrackingManager.install(this);
         watchConnectivity();
     }
 

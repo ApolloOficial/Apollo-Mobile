@@ -236,6 +236,7 @@
         <item name="android:paddingVertical">@dimen/space_2</item>
         <item name="switchMinWidth">@dimen/space_55</item>
         <item name="showText">false</item>
+        <item name="splitTrack">true</item>
     </style>
 
     <style name="apollo_radio">

@@ -32,6 +32,8 @@ public final class PanelsActivity extends AppCompatActivity {
     private PanelsGateway gateway;
     private InverterAdapter adapter;
     private final List<PanelStringItem> allStrings = new ArrayList<>();
+    private final android.os.Handler trackingHandler = new android.os.Handler(android.os.Looper.getMainLooper());
+    private Runnable trackingSearch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,9 +125,6 @@ public final class PanelsActivity extends AppCompatActivity {
                     PanelsUi.handleFailure(PanelsActivity.this, error);
                     return;
                 }
-                if (error.getType() == PanelsError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(PanelsActivity.this);
-                }
                 org.apollo.mobile.view.common.EmptyState state =
                         new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPanelsEmpty))
                                 .onRetry(PanelsActivity.this::loadStrings);
@@ -151,6 +150,19 @@ public final class PanelsActivity extends AppCompatActivity {
         filtered.sort(Comparator.comparing(PanelStringItem::getInverterCode)
                 .thenComparing(PanelStringItem::getCode));
         adapter.submit(filtered);
+        if (trackingSearch != null) trackingHandler.removeCallbacks(trackingSearch);
+        if (!needle.isEmpty()) {
+            int length = needle.length();
+            int count = filtered.size();
+            trackingSearch = () -> {
+                if (!isFinishing() && !isDestroyed()) {
+                    org.apollo.mobile.tracking.TrackingManager.track("search_completed", "PanelsActivity",
+                            org.apollo.mobile.tracking.TrackingManager.properties("query_length", Integer.toString(length),
+                                    "result_count", Integer.toString(count)));
+                }
+            };
+            trackingHandler.postDelayed(trackingSearch, 600);
+        }
         org.apollo.mobile.view.common.EmptyState empty =
                 new org.apollo.mobile.view.common.EmptyState(findViewById(R.id.llPanelsEmpty));
         if (filtered.isEmpty()) {

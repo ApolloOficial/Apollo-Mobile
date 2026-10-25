@@ -109,7 +109,7 @@
     <string name="l_e935292c08">Salud del string: --</string>
     <string name="l_9bdaeb416f">Capac. 42 kWp · 24 placas</string>
     <string name="l_1a1a776e9f">Placas</string>
-    <string name="l_7507bf4b28">Buscar por número de serie...</string>
+    <string name="l_7507bf4b28">Buscar por N° de serie</string>
     <string name="l_1783c970b4">En stock</string>
     <string name="l_5171bff63a">En uso</string>
     <string name="l_d45f3feee7">Atención</string>
@@ -492,7 +492,9 @@
     <string name="error_btn_try_again">Intentar de nuevo</string>
     <string name="error_btn_support">Hablar con soporte</string>
     <string name="error_loading_title">No fue posible cargar</string>
-    <string name="error_loading_description">Algo salió mal de nuestro lado. Inténtalo de nuevo. Si el problema continúa, habla con nuestro soporte.</string>
+    <string name="error_loading_description">No pudimos cargar la información ahora. Inténtalo de nuevo en unos instantes. Si el problema continúa, contacta con soporte.</string>
+    <string name="error_login_connection">No fue posible conectar con Apollo ahora. Inténtalo de nuevo en unos instantes.</string>
+    <string name="error_sync_connection">No fue posible sincronizar ahora. Tus registros siguen guardados en el dispositivo. Inténtalo de nuevo en unos instantes.</string>
     <string name="maintenance_title">Mantenimiento</string>
     <string name="maintenance_history_title">Historial</string>
     <string name="maintenance_os_card_title">Órdenes de servicio</string>
@@ -572,7 +574,7 @@
     <string name="os_condition_required">Describe la condición o toca \"Sin problema aparente\".</string>
     <string name="panels_back">Volver</string>
     <string name="panels_title">Placas</string>
-    <string name="panels_search_hint">Buscar por número de serie...</string>
+    <string name="panels_search_hint">Buscar por N° de serie</string>
     <string name="panels_filter_all">Todas</string>
     <string name="panels_filter_stock">En stock</string>
     <string name="panels_filter_in_use">En uso</string>
@@ -628,7 +630,7 @@
     <string name="scanner_permission_denied">Permite el acceso a la cámara para leer el código de barras.</string>
     <string name="scanner_camera_error">No fue posible abrir la cámara.</string>
     <string name="scanner_not_found">Ninguna placa con el código %1$s.</string>
-    <string name="settings_error_network">Sin conexión. Revisa tu internet e inténtalo de nuevo.</string>
+    <string name="settings_error_network">No fue posible conectar con Apollo ahora. Inténtalo de nuevo en unos instantes.</string>
     <string name="settings_error_timeout">El servidor tardó en responder. Inténtalo de nuevo.</string>
     <string name="settings_error_unavailable">Servicio no disponible en este momento.</string>
     <string name="settings_error_server">Error en el servidor. Inténtalo más tarde.</string>
@@ -647,7 +649,7 @@
     <string name="settings_sync_running">Sincronizando…</string>
     <string name="settings_sync_nothing">No hay registros pendientes.</string>
     <string name="settings_sync_done">¡Sincronización completada!</string>
-    <string name="settings_sync_offline">Sin conexión. Los registros siguen guardados en el dispositivo.</string>
+    <string name="settings_sync_offline">No fue posible sincronizar ahora. Los registros siguen guardados en el dispositivo.</string>
     <string name="settings_sync_with_errors">%1$d registro(s) fueron rechazados por el servidor.</string>
     <string name="settings_sync_failed_suffix">%1$d con error</string>
     <string name="settings_sync_status_join">%1$s · %2$s</string>

@@ -44,6 +44,7 @@ public final class EmptyState {
         this.support = root.findViewById(R.id.btnEmptySupport);
         support.setOnClickListener(v -> openSupport());
         retry.setOnClickListener(v -> {
+            org.apollo.mobile.tracking.TrackingManager.trackCurrent("retry_clicked", org.apollo.mobile.tracking.TrackingManager.properties("target", "empty_state"));
             if (retryAction != null) retryAction.run();
         });
         Motion.pressable(retry, support);
@@ -68,6 +69,8 @@ public final class EmptyState {
     }
 
     public void empty(Kind value, String text) {
+        org.apollo.mobile.tracking.TrackingManager.trackCurrent("empty_state_viewed",
+                org.apollo.mobile.tracking.TrackingManager.properties("state", value.name()));
         kind = value;
         illustration.setImageResource(value.illustration);
         title.setVisibility(View.GONE);
@@ -86,13 +89,15 @@ public final class EmptyState {
     }
 
     private void fullScreen(boolean timeout) {
+        org.apollo.mobile.tracking.TrackingManager.trackCurrent("empty_state_viewed",
+                org.apollo.mobile.tracking.TrackingManager.properties("state", timeout ? "timeout" : "error"));
         root.setVisibility(View.GONE);
         Context context = root.getContext();
         while (context instanceof ContextWrapper && !(context instanceof Activity)) {
             context = ((ContextWrapper) context).getBaseContext();
         }
         if (context instanceof Activity) {
-            ErrorStateActivity.open((Activity) context, timeout, retryAction);
+            ErrorStateActivity.open((Activity) context, true, retryAction);
         }
     }
 

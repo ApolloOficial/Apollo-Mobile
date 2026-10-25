@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="settings_error_network">Sem conexão. Verifique a internet e tente de novo.</string>
+    <string name="settings_error_network">Não foi possível conectar ao Apollo agora. Tente novamente em instantes.</string>
     <string name="settings_error_timeout">O servidor demorou para responder. Tente novamente.</string>
     <string name="settings_error_unavailable">Serviço indisponível no momento.</string>
     <string name="settings_error_server">Erro no servidor. Tente novamente mais tarde.</string>
@@ -20,7 +20,7 @@
     <string name="settings_sync_running">Sincronizando…</string>
     <string name="settings_sync_nothing">Não há registros pendentes.</string>
     <string name="settings_sync_done">Sincronização concluída!</string>
-    <string name="settings_sync_offline">Sem conexão. Os registros continuam salvos no aparelho.</string>
+    <string name="settings_sync_offline">Não foi possível sincronizar agora. Os registros continuam salvos no aparelho.</string>
     <string name="settings_sync_with_errors">%1$d registro(s) foram recusados pelo servidor.</string>
     <string name="settings_sync_failed_suffix">%1$d com erro</string>
     <string name="settings_sync_status_join">%1$s · %2$s</string>

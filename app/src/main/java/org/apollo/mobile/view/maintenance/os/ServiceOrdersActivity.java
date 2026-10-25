@@ -60,6 +60,9 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
     }
 
     private void select(String selectedStatus) {
+        org.apollo.mobile.tracking.TrackingManager.trackCurrent("filter_changed",
+                org.apollo.mobile.tracking.TrackingManager.properties("filter_name", "order_status",
+                        "filter_value", selectedStatus == null ? "all" : selectedStatus));
         status = selectedStatus;
         paintChips();
         load();
@@ -90,7 +93,6 @@ public final class ServiceOrdersActivity extends AppCompatActivity {
                 loading.setVisibility(View.GONE);
                 list.removeAllViews();
                 if (error.getType() == ServiceOrderError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(ServiceOrdersActivity.this);
                     empty.timeout();
                 } else {
                     empty.error();

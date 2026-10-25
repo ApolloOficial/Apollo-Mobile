@@ -1,6 +1,8 @@
 package org.apollo.mobile.maintenance.gateway;
 
 import org.apollo.mobile.maintenance.api.ServiceOrderApiService;
+import org.apollo.mobile.tracking.TrackingEvents;
+import org.apollo.mobile.tracking.TrackingManager;
 import org.apollo.mobile.settings.api.SettingsApiService;
 import org.apollo.mobile.settings.gateway.SettingsSummary;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.CompleteBody;
@@ -273,12 +275,29 @@ public final class RetrofitServiceOrderGateway implements ServiceOrderGateway {
 
     @Override
     public void start(long id, Callback<Order> callback) {
-        enqueueOrder(api.start(id), callback);
+        TrackingManager.order(TrackingEvents.WORK_ORDER_START_CLICKED, "WorkOrderStart", id);
+        enqueueOrder(api.start(id), tracked(callback, "start_work_order", id));
     }
 
     @Override
     public void complete(long id, String report, double laborCost, Callback<Order> callback) {
-        enqueueOrder(api.complete(id, new CompleteBody(report.trim(), Math.max(0.0, laborCost))), callback);
+        enqueueOrder(api.complete(id, new CompleteBody(report.trim(), Math.max(0.0, laborCost))),
+                tracked(callback, "complete_work_order", id));
+    }
+
+    private Callback<Order> tracked(Callback<Order> callback, String action, long id) {
+        return new Callback<Order>() {
+            @Override
+            public void onSuccess(Order order) {
+                callback.onSuccess(order);
+            }
+
+            @Override
+            public void onFailure(ServiceOrderError error) {
+                TrackingManager.failure("WorkOrderOperation", action, error.getType().name(), id);
+                callback.onFailure(error);
+            }
+        };
     }
 
     private void enqueueOrder(Call<Order> call, Callback<Order> callback) {

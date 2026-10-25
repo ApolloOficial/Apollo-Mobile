@@ -21,8 +21,11 @@ final class SettingsUi {
             org.apollo.mobile.view.common.AppSheets.sessionExpired(activity);
             return true;
         }
-        if (error.getType() == SettingsError.Type.NETWORK) {
-            org.apollo.mobile.view.common.AppToast.offline(activity);
+        if (error.getType() == SettingsError.Type.NETWORK
+                || error.getType() == SettingsError.Type.TIMEOUT
+                || error.getType() == SettingsError.Type.SERVER
+                || error.getType() == SettingsError.Type.UNAVAILABLE) {
+            org.apollo.mobile.view.common.ErrorStateActivity.open(activity, true, activity::recreate);
             return false;
         }
         org.apollo.mobile.view.common.AppToast.error(activity, messageFor(error));

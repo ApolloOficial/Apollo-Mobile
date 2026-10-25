@@ -1,6 +1,8 @@
 package org.apollo.mobile.view.maintenance.os;
 
 import android.content.Intent;
+import org.apollo.mobile.tracking.TrackingEvents;
+import org.apollo.mobile.tracking.TrackingManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
@@ -30,6 +32,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
     private EditText report;
     private EditText laborCost;
     private TextView finishButton;
+    private boolean trackingReportStarted;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +50,20 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         gateway = ServiceOrderGatewayFactory.create(getApplicationContext());
         store = new OsVerificationStore(this);
         report = findViewById(R.id.etReport);
+        trackingReportStarted = savedInstanceState != null
+                && savedInstanceState.getBoolean("tracking.report_started", false);
+        report.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (!trackingReportStarted && s.toString().trim().length() > 0) {
+                    org.apollo.mobile.tracking.lifecycle.TrackingForm.started(CompleteMaintenanceActivity.this);
+                    trackingReportStarted = true;
+                    TrackingManager.order(TrackingEvents.REPORT_STARTED,
+                            "CompleteMaintenanceActivity", orderId);
+                }
+            }
+            @Override public void afterTextChanged(android.text.Editable s) { }
+        });
         laborCost = findViewById(R.id.etLaborCost);
         finishButton = findViewById(R.id.btnFinishMaintenance);
 
@@ -56,6 +73,12 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         finishButton.setOnClickListener(view -> validate());
 
         loadSummary();
+    }
+
+    @Override
+    protected void onSaveInstanceState(Bundle outState) {
+        outState.putBoolean("tracking.report_started", trackingReportStarted);
+        super.onSaveInstanceState(outState);
     }
 
     private void loadSummary() {
@@ -83,8 +106,10 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
     }
 
     private void validate() {
+        org.apollo.mobile.tracking.lifecycle.TrackingForm.submitted(this);
         String text = report.getText().toString().trim();
         if (text.isEmpty()) {
+            org.apollo.mobile.tracking.lifecycle.TrackingForm.invalid(this, "report", "required");
             report.setError(org.apollo.mobile.view.common.Tr.t("Informe o laudo da manutenção."));
             report.requestFocus();
             Motion.shake(report);
@@ -92,6 +117,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         }
         Double cost = parseCost();
         if (cost == null) {
+            org.apollo.mobile.tracking.lifecycle.TrackingForm.invalid(this, "labor_cost", "invalid");
             laborCost.setError(org.apollo.mobile.view.common.Tr.t("Valor inválido."));
             laborCost.requestFocus();
             Motion.shake(laborCost);
@@ -135,6 +161,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         gateway.complete(orderId, buildReport(text), cost, new ServiceOrderGateway.Callback<Order>() {
             @Override
             public void onSuccess(Order value) {
+                org.apollo.mobile.tracking.lifecycle.TrackingForm.succeeded(CompleteMaintenanceActivity.this);
                 setResult(RESULT_OK);
                 Intent intent = new Intent(CompleteMaintenanceActivity.this, OsDetailsActivity.class);
                 intent.putExtra(OsDetailsActivity.EXTRA_ORDER_ID, orderId);
@@ -148,9 +175,6 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
             public void onFailure(ServiceOrderError error) {
                 if (isFinishing() || isDestroyed()) return;
                 finishButton.setEnabled(true);
-                if (error.getType() == ServiceOrderError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(CompleteMaintenanceActivity.this);
-                }
                 org.apollo.mobile.view.common.AppSheets.completionFailed(CompleteMaintenanceActivity.this,
                         () -> complete(text, cost));
             }

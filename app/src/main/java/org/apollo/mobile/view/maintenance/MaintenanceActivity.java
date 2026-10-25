@@ -99,7 +99,6 @@ public final class MaintenanceActivity extends AppCompatActivity {
                 loading.setVisibility(View.GONE);
                 historyList.removeAllViews();
                 if (error.getType() == ServiceOrderError.Type.NETWORK) {
-                    org.apollo.mobile.view.common.AppToast.offline(MaintenanceActivity.this);
                     emptyText.timeout();
                 } else {
                     emptyText.error();
@@ -129,6 +128,9 @@ public final class MaintenanceActivity extends AppCompatActivity {
     }
 
     private void selectType(String key) {
+        org.apollo.mobile.tracking.TrackingManager.trackCurrent("filter_changed",
+                org.apollo.mobile.tracking.TrackingManager.properties("filter_name", "maintenance_type",
+                        "filter_value", key == null ? "all" : key));
         if (key == null) {
             selectedTypeKey = null;
             selectedTypeId = null;

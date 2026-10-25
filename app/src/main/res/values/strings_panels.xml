@@ -2,7 +2,7 @@
 <resources>
     <string name="panels_back">Voltar</string>
     <string name="panels_title">Placas</string>
-    <string name="panels_search_hint">Buscar por número de série...</string>
+    <string name="panels_search_hint">Buscar por N° de série</string>
     <string name="panels_filter_all">Todas</string>
     <string name="panels_filter_stock">Em estoque</string>
     <string name="panels_filter_in_use">Em uso</string>

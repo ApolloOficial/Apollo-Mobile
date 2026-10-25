@@ -572,7 +572,7 @@ public final class HomeActivity extends AppCompatActivity {
 
             showSyncIcon();
             if (report.getStop() == SyncReport.Stop.NETWORK) {
-                org.apollo.mobile.view.common.AppToast.offline(this);
+                org.apollo.mobile.view.common.AppToast.error(this, R.string.error_sync_connection);
             } else {
                 org.apollo.mobile.view.common.AppToast.error(this,
                         org.apollo.mobile.view.common.Tr.t("Falha ao sincronizar.\nTentaremos novamente em instantes."));
@@ -624,10 +624,6 @@ public final class HomeActivity extends AppCompatActivity {
             org.apollo.mobile.view.common.AppSheets.sessionExpired(this);
             return;
         }
-        if (error.getType() == HomeError.Type.NETWORK) {
-            org.apollo.mobile.view.common.AppToast.offline(this);
-            return;
-        }
 
         int message;
 
@@ -649,9 +645,9 @@ public final class HomeActivity extends AppCompatActivity {
                 break;
         }
 
-        if (error.getType() == HomeError.Type.TIMEOUT || error.getType() == HomeError.Type.SERVER
+        if (error.getType() == HomeError.Type.NETWORK || error.getType() == HomeError.Type.TIMEOUT || error.getType() == HomeError.Type.SERVER
                 || error.getType() == HomeError.Type.INVALID_RESPONSE) {
-            org.apollo.mobile.view.common.ErrorStateActivity.open(this, error.getType() == HomeError.Type.TIMEOUT);
+            org.apollo.mobile.view.common.ErrorStateActivity.open(this, true);
             return;
         }
         org.apollo.mobile.view.common.AppToast.error(this, message);

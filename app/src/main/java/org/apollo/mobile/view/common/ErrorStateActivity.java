@@ -21,9 +21,10 @@ public final class ErrorStateActivity extends AppCompatActivity {
     }
 
     public static void open(Activity activity, boolean timeout, Runnable retry) {
-        pendingRetry = retry;
         long now = System.currentTimeMillis();
-        if (now - lastShownAt < 1500 || activity.isFinishing()) return;
+        if (now - lastShownAt < 1500 || activity.isFinishing() || activity.isDestroyed()
+                || activity instanceof ErrorStateActivity) return;
+        pendingRetry = retry;
         lastShownAt = now;
         Intent intent = new Intent(activity, ErrorStateActivity.class).putExtra(EXTRA_TIMEOUT, timeout);
         activity.startActivityForResult(intent, REQUEST_CODE);
@@ -38,6 +39,8 @@ public final class ErrorStateActivity extends AppCompatActivity {
         Motion.enterScreen(this);
         Motion.popIn(findViewById(R.id.ivErrorIllustration), 120);
         findViewById(R.id.btnTryAgain).setOnClickListener(v -> {
+            org.apollo.mobile.tracking.TrackingManager.trackCurrent("retry_clicked",
+                    org.apollo.mobile.tracking.TrackingManager.properties("target", "error_screen"));
             setResult(RESULT_OK);
             Runnable retry = pendingRetry;
             pendingRetry = null;
@@ -48,4 +51,5 @@ public final class ErrorStateActivity extends AppCompatActivity {
                 startActivity(new Intent(this, ChatbotActivity.class)));
         Motion.pressable(findViewById(R.id.btnTryAgain), findViewById(R.id.btnSupport));
     }
+
 }
