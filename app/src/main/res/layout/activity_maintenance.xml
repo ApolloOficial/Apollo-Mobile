@@ -30,15 +30,15 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/space_12"
+            android:paddingStart="@dimen/list_horizontal_padding"
             android:paddingTop="@dimen/space_24"
-            android:paddingEnd="@dimen/space_12"
+            android:paddingEnd="@dimen/list_horizontal_padding"
             android:paddingBottom="@dimen/content_bottom_padding">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/space_4"
+                android:layout_marginHorizontal="@dimen/section_inline_padding"
                 android:background="@drawable/bg_surface_card"
                 android:paddingStart="@dimen/space_24"
                 android:paddingTop="@dimen/space_16"
@@ -100,8 +100,8 @@
                 android:layout_marginTop="@dimen/space_24"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
-                android:paddingStart="@dimen/space_4"
-                android:paddingEnd="@dimen/space_4">
+                android:paddingStart="@dimen/section_inline_padding"
+                android:paddingEnd="@dimen/section_inline_padding">
 
                 <TextView
                     android:id="@+id/tvHistoryTitle"
@@ -121,7 +121,7 @@
 
                     <EditText
                         android:id="@+id/etMaintenanceSearch"
-                        style="@style/apollo_body4"
+                        style="@style/apollo_search_input"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
                         android:layout_marginStart="@dimen/space_8"
@@ -140,12 +140,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/space_20"
+                android:fillViewport="true"
                 android:overScrollMode="never"
                 android:scrollbars="none">
 
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
                     <TextView
@@ -166,6 +168,7 @@
                     <TextView
                         android:id="@+id/chipMaintenancePredictive"
                         style="@style/apollo_filter_chip"
+                        android:layout_marginEnd="0dp"
                         android:text="@string/l_30be503b85" />
                 </LinearLayout>
             </HorizontalScrollView>

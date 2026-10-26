@@ -66,6 +66,8 @@ public final class PanelDetailsActivity extends AppCompatActivity {
 
         RecyclerView list = findViewById(R.id.rvPlatesDetail);
         list.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, getResources().getInteger(R.integer.list_columns)));
+        list.addItemDecoration(new org.apollo.mobile.view.common.GridSpacingDecoration(
+                getResources().getDimensionPixelSize(R.dimen.list_column_spacing)));
         adapter = new PlateAdapter(panel -> PanelSheet.show(this, panel, stringCode,
                 allPanels.indexOf(panel) + 1, allPanels.size()));
         list.setAdapter(adapter);

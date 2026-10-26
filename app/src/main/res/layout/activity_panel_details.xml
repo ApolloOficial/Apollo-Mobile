@@ -91,7 +91,7 @@
 
                 <EditText
                     android:id="@+id/etSearch"
-                    style="@style/apollo_body4"
+                    style="@style/apollo_search_input"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginStart="@dimen/space_8"
@@ -113,9 +113,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/space_24"
         android:clipToPadding="false"
+        android:fillViewport="true"
         android:overScrollMode="never"
-        android:paddingStart="@dimen/space_18"
-        android:paddingEnd="@dimen/space_18"
+        android:paddingStart="@dimen/filter_horizontal_padding"
+        android:paddingEnd="@dimen/filter_horizontal_padding"
         android:scrollbars="none"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -125,6 +126,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
             android:orientation="horizontal">
 
             <TextView
@@ -145,6 +147,7 @@
             <TextView
                 android:id="@+id/chipAttention"
                 style="@style/apollo_filter_chip"
+                android:layout_marginEnd="0dp"
                 android:text="@string/l_d45f3feee7" />
         </LinearLayout>
     </HorizontalScrollView>
@@ -166,9 +169,9 @@
         android:clipToPadding="false"
         android:layoutAnimation="@anim/layout_list_enter"
         android:overScrollMode="never"
-        android:paddingStart="@dimen/space_12"
+        android:paddingStart="@dimen/list_horizontal_padding"
         android:paddingTop="@dimen/space_16"
-        android:paddingEnd="@dimen/space_12"
+        android:paddingEnd="@dimen/list_horizontal_padding"
         android:paddingBottom="@dimen/content_bottom_padding"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -178,10 +181,11 @@
 
     <org.apollo.mobile.view.common.SkeletonView
         android:id="@+id/skeletonPanelDetails"
+        android:tag="grid"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:max="5"
-        android:background="?android:attr/colorBackground"
+        android:background="@color/neutral_white"
         android:paddingHorizontal="@dimen/screen_horizontal_padding"
         android:paddingTop="@dimen/space_12"
         app:layout_constraintBottom_toBottomOf="parent"
