@@ -52,10 +52,16 @@ public final class SkeletonView extends View {
         return 104 * density;
     }
 
+    private int columns() {
+        return "grid".equals(getTag())
+                ? Math.max(1, getResources().getInteger(org.apollo.mobile.R.integer.list_columns)) : 1;
+    }
+
     @Override
     protected void onMeasure(int widthSpec, int heightSpec) {
         int width = MeasureSpec.getSize(widthSpec);
-        int height = (int) (rows * rowHeight() + 8 * density) + getPaddingTop() + getPaddingBottom();
+        int visualRows = (rows + columns() - 1) / columns();
+        int height = (int) (visualRows * rowHeight() + 8 * density) + getPaddingTop() + getPaddingBottom();
         setMeasuredDimension(width, resolveSize(height, heightSpec));
     }
 
@@ -75,19 +81,24 @@ public final class SkeletonView extends View {
         canvas.save();
         canvas.translate(getPaddingLeft(), getPaddingTop());
         w -= getPaddingLeft() + getPaddingRight();
-        float pad = 4 * density;
+        int columns = columns();
+        float gap = getResources().getDimension(org.apollo.mobile.R.dimen.list_column_spacing);
+        float cellWidth = (w - (columns - 1) * gap) / columns;
+        float pad = columns > 1 ? 0 : 4 * density;
         float r = 16 * density;
         for (int i = 0; i < rows; i++) {
-            float top = i * rowHeight() + pad;
-            rect.set(pad, top, w - pad, top + rowHeight() - 12 * density);
+            float left = (i % columns) * (cellWidth + gap) + pad;
+            float right = left + cellWidth - 2 * pad;
+            float top = (i / columns) * rowHeight() + pad;
+            rect.set(left, top, right, top + rowHeight() - 12 * density);
             canvas.drawRoundRect(rect, r, r, card);
             float x = rect.left + 16 * density;
             float y = rect.top + 16 * density;
-            bar(canvas, x, y, (w - 2 * pad) * 0.45f, 12);
-            bar(canvas, x, y + 24 * density, (w - 2 * pad) * 0.3f, 18);
-            bar(canvas, x, y + 52 * density, (w - 2 * pad) * 0.22f, 10);
+            bar(canvas, x, y, (cellWidth - 2 * pad) * 0.45f, 12);
+            bar(canvas, x, y + 24 * density, (cellWidth - 2 * pad) * 0.3f, 18);
+            bar(canvas, x, y + 52 * density, (cellWidth - 2 * pad) * 0.22f, 10);
             float bw = 96 * density;
-            rect.set(w - pad - 16 * density - bw, y + 48 * density, w - pad - 16 * density, y + 66 * density);
+            rect.set(right - 16 * density - bw, y + 48 * density, right - 16 * density, y + 66 * density);
             canvas.drawRoundRect(rect, 9 * density, 9 * density, block);
         }
         canvas.restore();

@@ -1,6 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="screen_horizontal_padding">@dimen/space_16</dimen>
+    <dimen name="search_pill_width">@dimen/space_200</dimen>
+    <dimen name="search_pill_height">@dimen/space_36</dimen>
+    <dimen name="search_pill_text_size">@dimen/text_12</dimen>
+    <dimen name="filter_horizontal_padding">@dimen/space_18</dimen>
+    <dimen name="list_horizontal_padding">@dimen/space_12</dimen>
+    <dimen name="panel_search_width">@dimen/space_250</dimen>
+    <dimen name="panel_search_height">@dimen/space_40</dimen>
+    <dimen name="list_column_spacing">0dp</dimen>
+    <dimen name="orders_horizontal_padding">@dimen/space_11</dimen>
+    <dimen name="orders_title_inset">@dimen/space_5</dimen>
+    <dimen name="section_inline_padding">@dimen/space_4</dimen>
     <dimen name="content_max_width">600dp</dimen>
 
     <dimen name="header_top_padding">@dimen/space_32</dimen>

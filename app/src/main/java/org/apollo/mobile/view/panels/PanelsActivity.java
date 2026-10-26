@@ -46,6 +46,8 @@ public final class PanelsActivity extends AppCompatActivity {
 
         RecyclerView list = findViewById(R.id.rvInverters);
         list.setLayoutManager(new androidx.recyclerview.widget.GridLayoutManager(this, getResources().getInteger(R.integer.list_columns)));
+        list.addItemDecoration(new org.apollo.mobile.view.common.GridSpacingDecoration(
+                getResources().getDimensionPixelSize(R.dimen.list_column_spacing)));
         adapter = new InverterAdapter(new InverterAdapter.Listener() {
             @Override
             public void onExpand(PanelStringItem item) {

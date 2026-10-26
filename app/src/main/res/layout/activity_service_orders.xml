@@ -30,22 +30,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:paddingStart="@dimen/space_11"
+            android:paddingStart="@dimen/orders_horizontal_padding"
             android:paddingTop="@dimen/space_16"
-            android:paddingEnd="@dimen/space_11"
+            android:paddingEnd="@dimen/orders_horizontal_padding"
             android:paddingBottom="@dimen/content_bottom_padding">
 
             <TextView
                 android:id="@+id/btnBack"
                 style="@style/apollo_back"
-                android:layout_marginStart="@dimen/space_5" />
+                android:layout_marginStart="@dimen/orders_title_inset" />
 
             <TextView
                 android:id="@+id/tvTitle"
                 style="@style/apollo_h4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/space_5"
+                android:layout_marginStart="@dimen/orders_title_inset"
                 android:layout_marginTop="@dimen/space_10"
                 android:text="@string/l_023f8fcdbd" />
 

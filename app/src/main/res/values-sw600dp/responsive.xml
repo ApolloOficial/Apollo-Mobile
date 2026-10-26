@@ -2,6 +2,14 @@
 <resources>
     <dimen name="content_max_width">1400dp</dimen>
     <dimen name="screen_horizontal_padding">32dp</dimen>
+    <dimen name="search_pill_width">320dp</dimen>
+    <dimen name="filter_horizontal_padding">32dp</dimen>
+    <dimen name="list_horizontal_padding">32dp</dimen>
+    <dimen name="panel_search_width">@dimen/search_pill_width</dimen>
+    <dimen name="list_column_spacing">16dp</dimen>
+    <dimen name="orders_horizontal_padding">32dp</dimen>
+    <dimen name="orders_title_inset">0dp</dimen>
+    <dimen name="section_inline_padding">0dp</dimen>
     <integer name="list_columns">2</integer>
     <dimen name="bottom_nav_max_width">520dp</dimen>
     <dimen name="bottom_nav_item_spacing">48dp</dimen>

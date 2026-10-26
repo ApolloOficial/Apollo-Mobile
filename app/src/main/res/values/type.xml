@@ -264,13 +264,17 @@
     </style>
 
     <style name="apollo_search_pill">
-        <item name="android:layout_width">@dimen/space_200</item>
-        <item name="android:layout_height">@dimen/space_36</item>
+        <item name="android:layout_width">@dimen/search_pill_width</item>
+        <item name="android:layout_height">@dimen/search_pill_height</item>
         <item name="android:background">@drawable/bg_pill_outline</item>
         <item name="android:gravity">center_vertical</item>
         <item name="android:orientation">horizontal</item>
         <item name="android:paddingStart">@dimen/space_16</item>
         <item name="android:paddingEnd">@dimen/space_12</item>
+    </style>
+
+    <style name="apollo_search_input" parent="apollo_body4">
+        <item name="android:textSize">@dimen/search_pill_text_size</item>
     </style>
 
     <style name="apollo_cta_filled" parent="apollo_cta_outline">

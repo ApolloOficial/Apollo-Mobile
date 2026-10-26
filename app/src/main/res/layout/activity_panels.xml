@@ -46,8 +46,8 @@
             android:text="@string/l_89be943364" />
 
         <LinearLayout
-            android:layout_width="@dimen/space_250"
-            android:layout_height="@dimen/space_40"
+            android:layout_width="@dimen/panel_search_width"
+            android:layout_height="@dimen/panel_search_height"
             android:background="@drawable/bg_pill_outline"
             android:gravity="center_vertical"
             android:orientation="horizontal"
@@ -62,7 +62,7 @@
 
             <EditText
                 android:id="@+id/etSearch"
-                style="@style/apollo_body4"
+                style="@style/apollo_search_input"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginStart="@dimen/space_8"
@@ -106,6 +106,7 @@
 
     <org.apollo.mobile.view.common.SkeletonView
         android:id="@+id/skeletonPanels"
+        android:tag="grid"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/screen_horizontal_padding"
