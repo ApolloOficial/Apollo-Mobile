@@ -26,6 +26,20 @@ O Apollo Mobile apoia o trabalho dos técnicos na plataforma Apollo, com consult
 Técnico → aplicativo Android → Apollo API → dados operacionais / ApolloAI
 ```
 
+### Arquitetura do aplicativo
+
+O aplicativo é organizado em um único módulo Android (`app`). As telas são `Activity` agrupadas por funcionalidade em `view/`; cada funcionalidade mantém seus próprios contratos de API e gateways quando aplicável. O fluxo de rede passa pelo cliente compartilhado `ApiClient`, que configura Retrofit, OkHttp e a autenticação da sessão.
+
+```text
+MainActivity → StartupRouter → telas em view/
+                                  ↓
+                 gateway/API da funcionalidade → ApiClient → Apollo API
+                                                    ↑
+                                      sessão criptografada (session/)
+```
+
+O `WorkManager` executa tarefas em segundo plano, incluindo sincronizações. Câmera e leitura de códigos ficam nos fluxos de scanner. Essa organização descreve o código existente sem pressupor camadas ou padrões que o projeto não implementa.
+
 ## Início rápido
 
 Requisitos: Android Studio, SDK 36 e emulador ou dispositivo com Android 10 (API 29) ou superior. O CI usa JDK 21; o código do módulo está configurado com compatibilidade Java 11.
