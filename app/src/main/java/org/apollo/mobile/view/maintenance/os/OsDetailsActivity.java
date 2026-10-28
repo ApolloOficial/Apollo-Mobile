@@ -334,17 +334,18 @@ public final class OsDetailsActivity extends AppCompatActivity {
 
         addHistory(org.apollo.mobile.view.common.Tr.t("OS criada"), "Aberta a partir de alerta. Técnico: "
                         + ServiceOrderUi.safe(order.getTechnicianName()) + ".",
-                ServiceOrderUi.date(order.getOpeningDt()), false);
+                ServiceOrderUi.dateTime(order.getOpeningDt()), false);
 
         if ("ABERTA".equals(status)) {
             addHistory(org.apollo.mobile.view.common.Tr.t("Aguardando execução"), null, null, true);
         } else if ("EM_ANDAMENTO".equals(status) || "CONCLUIDA".equals(status)) {
-            addHistory(org.apollo.mobile.view.common.Tr.t("Execução iniciada"), org.apollo.mobile.view.common.Tr.t("Você escaneou a placa em campo."), null, false);
+            addHistory(org.apollo.mobile.view.common.Tr.t("Execução iniciada"), org.apollo.mobile.view.common.Tr.t("Você escaneou a placa em campo."),
+                    ServiceOrderUi.dateTime(order.getStartedAt()), false);
         }
 
         if ("CONCLUIDA".equals(status)) {
             addHistory(org.apollo.mobile.view.common.Tr.t("OS concluída"), org.apollo.mobile.view.common.Tr.t("Laudo técnico registrado."),
-                    ServiceOrderUi.date(order.getConcludedAt()), false);
+                    ServiceOrderUi.dateTime(order.getConcludedAt()), false);
         }
 
         int last = history.getChildCount() - 1;

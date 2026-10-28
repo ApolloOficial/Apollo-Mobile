@@ -49,6 +49,7 @@ public final class ServiceOrderModels {
         private boolean overdue;
         private String openingDt;
         private String dueDate;
+        private String startedAt;
         private String concludedAt;
 
         public long getId() { return id; }
@@ -62,6 +63,7 @@ public final class ServiceOrderModels {
         public boolean isOverdue() { return overdue; }
         public String getOpeningDt() { return openingDt; }
         public String getDueDate() { return dueDate; }
+        public String getStartedAt() { return startedAt; }
         public String getConcludedAt() { return concludedAt; }
     }
 
