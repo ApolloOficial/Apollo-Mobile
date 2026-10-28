@@ -436,7 +436,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
 
     // ---- Tags coloridas (também usadas na lista de OS) ----
 
-    static void bindStatusTag(TextView tag, String status) {
+    public static void bindStatusTag(TextView tag, String status) {
         int color;
         if ("EM_ANDAMENTO".equals(status)) color = R.color.alert_two;
         else if ("CONCLUIDA".equals(status)) color = R.color.sucess_two;

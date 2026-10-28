@@ -32,9 +32,18 @@
         android:layout_marginTop="@dimen/space_6"
         android:layout_marginEnd="@dimen/space_8"
         android:text="@string/l_5f9048df2f"
-        app:layout_constraintEnd_toStartOf="@id/tvTag"
+        app:layout_constraintEnd_toStartOf="@id/tvStatusTag"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvSubtitle" />
+
+    <TextView
+        android:id="@+id/tvStatusTag"
+        style="@style/apollo_tag"
+        android:layout_marginEnd="@dimen/space_4"
+        android:backgroundTint="@color/info_two"
+        android:text="@string/l_05d22f8223"
+        app:layout_constraintBottom_toBottomOf="@id/tvMainId"
+        app:layout_constraintEnd_toStartOf="@id/tvTag" />
 
     <TextView
         android:id="@+id/tvTag"

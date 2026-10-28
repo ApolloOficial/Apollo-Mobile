@@ -222,6 +222,7 @@ public final class MaintenanceActivity extends AppCompatActivity {
             View card = inflater.inflate(R.layout.item_maintenance_os, historyList, false);
             ((TextView) card.findViewById(R.id.tvSubtitle)).setText(assetLabel(order));
             ((TextView) card.findViewById(R.id.tvMainId)).setText("OS" + order.getId());
+            org.apollo.mobile.view.maintenance.os.OsDetailsActivity.bindStatusTag(card.findViewById(R.id.tvStatusTag), order.getMaintenanceStatus());
             TextView tag = card.findViewById(R.id.tvTag);
             tag.setText(maintenanceTypeLabel(order));
             tag.setBackgroundTintList(ColorStateList.valueOf(typeColor(order)));
