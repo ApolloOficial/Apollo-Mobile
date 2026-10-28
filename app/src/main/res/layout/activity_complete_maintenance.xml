@@ -88,9 +88,10 @@
                 android:layout_height="@dimen/space_48"
                 android:layout_marginTop="@dimen/space_4"
                 android:background="@drawable/bg_textarea"
-                android:hint="0,00"
+                android:hint="R$0,00"
                 android:importantForAutofill="no"
-                android:inputType="numberDecimal"
+                android:digits="0123456789R$.,"
+                android:inputType="number"
                 android:maxLines="1"
                 android:paddingHorizontal="@dimen/space_16"
                 android:textColorHint="@color/disable_gray" />

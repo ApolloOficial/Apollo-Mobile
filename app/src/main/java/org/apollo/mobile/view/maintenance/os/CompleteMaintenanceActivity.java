@@ -25,6 +25,7 @@ import java.util.Map;
 
 public final class CompleteMaintenanceActivity extends AppCompatActivity {
     static final String REPORT_SEPARATOR = "\n\n— ";
+    static final String COST_LABEL = "Custo:";
     private ServiceOrderGateway gateway;
     private OsVerificationStore store;
     private long orderId;
@@ -65,6 +66,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
             @Override public void afterTextChanged(android.text.Editable s) { }
         });
         laborCost = findViewById(R.id.etLaborCost);
+        laborCost.addTextChangedListener(new CurrencyMask(laborCost));
         finishButton = findViewById(R.id.btnFinishMaintenance);
 
         ((TextView) findViewById(R.id.tvTitle)).setText(org.apollo.mobile.view.common.Tr.t("Concluir OS") + orderId);
@@ -124,7 +126,41 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
             return;
         }
 
-        complete(text, cost);
+        complete(text, cost, hasCost());
+    }
+
+    private boolean hasCost() {
+        return !laborCost.getText().toString().trim().isEmpty();
+    }
+
+    static String formatCurrency(double value) {
+        java.text.DecimalFormat format = new java.text.DecimalFormat("#,##0.00",
+                java.text.DecimalFormatSymbols.getInstance(new java.util.Locale("pt", "BR")));
+        return "R$" + format.format(value);
+    }
+
+    private static final class CurrencyMask implements android.text.TextWatcher {
+        private final EditText field;
+        private boolean editing;
+
+        CurrencyMask(EditText field) {
+            this.field = field;
+        }
+
+        @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+        @Override public void onTextChanged(CharSequence s, int start, int before, int count) { }
+
+        @Override
+        public void afterTextChanged(android.text.Editable s) {
+            if (editing) return;
+            editing = true;
+            String digits = s.toString().replaceAll("\\D", "");
+            if (digits.length() > 12) digits = digits.substring(0, 12);
+            String formatted = digits.isEmpty() ? "" : formatCurrency(Long.parseLong(digits) / 100.0);
+            s.replace(0, s.length(), formatted);
+            field.setSelection(s.length());
+            editing = false;
+        }
     }
 
     private Double parseCost() {
@@ -139,8 +175,9 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         }
     }
 
-    private String buildReport(String text) {
+    private String buildReport(String text, double cost, boolean withCost) {
         StringBuilder builder = new StringBuilder(text);
+        if (withCost) builder.append("\n\n").append(COST_LABEL).append(' ').append(formatCurrency(cost));
         Map<Long, OsVerificationStore.Result> results = store.results(orderId);
         if (details != null && !details.getTargetPanels().isEmpty()) {
             builder.append(REPORT_SEPARATOR).append("Placas verificadas: ").append(results.size())
@@ -156,9 +193,9 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
         return builder.toString();
     }
 
-    private void complete(String text, double cost) {
+    private void complete(String text, double cost, boolean withCost) {
         finishButton.setEnabled(false);
-        gateway.complete(orderId, buildReport(text), cost, new ServiceOrderGateway.Callback<Order>() {
+        gateway.complete(orderId, buildReport(text, cost, withCost), cost, new ServiceOrderGateway.Callback<Order>() {
             @Override
             public void onSuccess(Order value) {
                 org.apollo.mobile.tracking.lifecycle.TrackingForm.succeeded(CompleteMaintenanceActivity.this);
@@ -176,7 +213,7 @@ public final class CompleteMaintenanceActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) return;
                 finishButton.setEnabled(true);
                 org.apollo.mobile.view.common.AppSheets.completionFailed(CompleteMaintenanceActivity.this,
-                        () -> complete(text, cost));
+                        () -> complete(text, cost, withCost));
             }
         });
     }

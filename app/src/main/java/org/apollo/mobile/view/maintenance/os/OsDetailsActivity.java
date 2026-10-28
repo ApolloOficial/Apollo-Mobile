@@ -292,10 +292,20 @@ public final class OsDetailsActivity extends AppCompatActivity {
         reportCard.setVisibility(hasReport ? View.VISIBLE : View.GONE);
         if (hasReport) {
             int cut = report.indexOf(CompleteMaintenanceActivity.REPORT_SEPARATOR);
-            ((TextView) findViewById(R.id.tvReport)).setText((cut > 0 ? report.substring(0, cut) : report).trim());
+            ((TextView) findViewById(R.id.tvReport)).setText(boldCost((cut > 0 ? report.substring(0, cut) : report).trim()));
         }
         if (hasSummary) Motion.fadeUp(card, 120);
         if (hasReport) Motion.fadeUp(reportCard, 180);
+    }
+
+    private CharSequence boldCost(String report) {
+        android.text.SpannableString text = new android.text.SpannableString(report);
+        int start = report.lastIndexOf(CompleteMaintenanceActivity.COST_LABEL);
+        if (start >= 0) {
+            text.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), start,
+                    start + CompleteMaintenanceActivity.COST_LABEL.length(), android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return text;
     }
 
     private void openCondition(Panel panel) {
