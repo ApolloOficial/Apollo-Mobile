@@ -292,10 +292,20 @@ public final class OsDetailsActivity extends AppCompatActivity {
         reportCard.setVisibility(hasReport ? View.VISIBLE : View.GONE);
         if (hasReport) {
             int cut = report.indexOf(CompleteMaintenanceActivity.REPORT_SEPARATOR);
-            ((TextView) findViewById(R.id.tvReport)).setText((cut > 0 ? report.substring(0, cut) : report).trim());
+            ((TextView) findViewById(R.id.tvReport)).setText(boldCost((cut > 0 ? report.substring(0, cut) : report).trim()));
         }
         if (hasSummary) Motion.fadeUp(card, 120);
         if (hasReport) Motion.fadeUp(reportCard, 180);
+    }
+
+    private CharSequence boldCost(String report) {
+        android.text.SpannableString text = new android.text.SpannableString(report);
+        int start = report.lastIndexOf(CompleteMaintenanceActivity.COST_LABEL);
+        if (start >= 0) {
+            text.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), start,
+                    start + CompleteMaintenanceActivity.COST_LABEL.length(), android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        }
+        return text;
     }
 
     private void openCondition(Panel panel) {
@@ -324,17 +334,18 @@ public final class OsDetailsActivity extends AppCompatActivity {
 
         addHistory(org.apollo.mobile.view.common.Tr.t("OS criada"), "Aberta a partir de alerta. Técnico: "
                         + ServiceOrderUi.safe(order.getTechnicianName()) + ".",
-                ServiceOrderUi.date(order.getOpeningDt()), false);
+                ServiceOrderUi.dateTime(order.getOpeningDt()), false);
 
         if ("ABERTA".equals(status)) {
             addHistory(org.apollo.mobile.view.common.Tr.t("Aguardando execução"), null, null, true);
         } else if ("EM_ANDAMENTO".equals(status) || "CONCLUIDA".equals(status)) {
-            addHistory(org.apollo.mobile.view.common.Tr.t("Execução iniciada"), org.apollo.mobile.view.common.Tr.t("Você escaneou a placa em campo."), null, false);
+            addHistory(org.apollo.mobile.view.common.Tr.t("Execução iniciada"), org.apollo.mobile.view.common.Tr.t("Você escaneou a placa em campo."),
+                    ServiceOrderUi.dateTime(order.getStartedAt()), false);
         }
 
         if ("CONCLUIDA".equals(status)) {
             addHistory(org.apollo.mobile.view.common.Tr.t("OS concluída"), org.apollo.mobile.view.common.Tr.t("Laudo técnico registrado."),
-                    ServiceOrderUi.date(order.getConcludedAt()), false);
+                    ServiceOrderUi.dateTime(order.getConcludedAt()), false);
         }
 
         int last = history.getChildCount() - 1;
@@ -426,7 +437,7 @@ public final class OsDetailsActivity extends AppCompatActivity {
 
     // ---- Tags coloridas (também usadas na lista de OS) ----
 
-    static void bindStatusTag(TextView tag, String status) {
+    public static void bindStatusTag(TextView tag, String status) {
         int color;
         if ("EM_ANDAMENTO".equals(status)) color = R.color.alert_two;
         else if ("CONCLUIDA".equals(status)) color = R.color.sucess_two;

@@ -39,6 +39,15 @@ final class ServiceOrderUi {
         }
     }
 
+    static String dateTime(String value) {
+        if (value == null || value.trim().isEmpty()) return null;
+        try {
+            return LocalDateTime.parse(value).format(DateTimeFormatter.ofPattern("dd/MM/yyyy '·' HH:mm"));
+        } catch (DateTimeParseException ignored) {
+            return date(value);
+        }
+    }
+
     static CharSequence boldLabel(android.content.Context context, String text) {
         android.text.SpannableString span = new android.text.SpannableString(text);
         int colon = text.indexOf(':');
