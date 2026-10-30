@@ -10,7 +10,7 @@
     <dimen name="orders_horizontal_padding">32dp</dimen>
     <dimen name="orders_title_inset">0dp</dimen>
     <dimen name="section_inline_padding">0dp</dimen>
-    <integer name="list_columns">2</integer>
+    <integer name="list_columns">1</integer>
     <dimen name="bottom_nav_max_width">520dp</dimen>
     <dimen name="bottom_nav_item_spacing">48dp</dimen>
 </resources>
