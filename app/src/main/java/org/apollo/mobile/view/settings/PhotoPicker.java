@@ -5,6 +5,8 @@ import android.app.Dialog;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Matrix;
+import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Handler;
 import android.os.Looper;
@@ -158,13 +160,43 @@ final class PhotoPicker {
             if (bounds.outWidth <= 0 || bounds.outHeight <= 0) return null;
             BitmapFactory.Options options = new BitmapFactory.Options();
             options.inSampleSize = PhotoSizing.sampleSize(bounds.outWidth, bounds.outHeight, 1600);
+            Bitmap decoded;
             try (InputStream input = activity.getContentResolver().openInputStream(uri)) {
                 if (input == null) return null;
-                return BitmapFactory.decodeStream(input, null, options);
+                decoded = BitmapFactory.decodeStream(input, null, options);
             }
+            if (decoded == null) return null;
+            return applyOrientation(decoded, orientation(uri));
         } catch (Exception e) {
             return null;
         }
+    }
+
+    private int orientation(Uri uri) {
+        try (InputStream input = activity.getContentResolver().openInputStream(uri)) {
+            if (input == null) return ExifInterface.ORIENTATION_NORMAL;
+            return new ExifInterface(input).getAttributeInt(
+                    ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL);
+        } catch (Exception e) {
+            return ExifInterface.ORIENTATION_NORMAL;
+        }
+    }
+
+    private static Bitmap applyOrientation(Bitmap bitmap, int orientation) {
+        Matrix matrix = new Matrix();
+        switch (orientation) {
+            case ExifInterface.ORIENTATION_FLIP_HORIZONTAL: matrix.setScale(-1, 1); break;
+            case ExifInterface.ORIENTATION_ROTATE_180: matrix.setRotate(180); break;
+            case ExifInterface.ORIENTATION_FLIP_VERTICAL: matrix.setScale(1, -1); break;
+            case ExifInterface.ORIENTATION_TRANSPOSE: matrix.setRotate(90); matrix.postScale(-1, 1); break;
+            case ExifInterface.ORIENTATION_ROTATE_90: matrix.setRotate(90); break;
+            case ExifInterface.ORIENTATION_TRANSVERSE: matrix.setRotate(-90); matrix.postScale(-1, 1); break;
+            case ExifInterface.ORIENTATION_ROTATE_270: matrix.setRotate(-90); break;
+            default: return bitmap;
+        }
+        Bitmap rotated = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        if (rotated != bitmap) bitmap.recycle();
+        return rotated;
     }
 
     private Uri save(Bitmap bitmap) {
