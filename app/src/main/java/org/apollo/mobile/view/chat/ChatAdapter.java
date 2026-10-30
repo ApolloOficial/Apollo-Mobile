@@ -196,7 +196,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 org.apollo.mobile.view.common.Motion.bounce(view);
                 view.postDelayed(() -> view.setActivated(false), 1600);
             });
-            edit.setVisibility(editable ? View.VISIBLE : View.INVISIBLE);
+            edit.setVisibility(editable ? View.VISIBLE : View.GONE);
             edit.setEnabled(editable);
             edit.setOnClickListener(view -> {
                 if (editable) actions.onEdit(message);
