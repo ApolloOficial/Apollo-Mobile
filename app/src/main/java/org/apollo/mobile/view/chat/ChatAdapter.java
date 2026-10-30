@@ -32,6 +32,7 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
     private final Actions actions;
     private ChatMessage speaking;
     private int lastAnimatedPosition = -1;
+    private boolean editable = true;
 
     ChatAdapter(Actions actions) {
         this.actions = actions;
@@ -47,6 +48,14 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
         }
         if (currentIndex >= 0) {
             notifyItemChanged(currentIndex);
+        }
+    }
+
+    void setEditable(boolean value) {
+        if (editable == value) return;
+        editable = value;
+        for (int index = 0; index < messages.size(); index++) {
+            if (messages.get(index).getKind() == ChatMessage.Kind.USER) notifyItemChanged(index);
         }
     }
 
@@ -187,7 +196,11 @@ final class ChatAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
                 org.apollo.mobile.view.common.Motion.bounce(view);
                 view.postDelayed(() -> view.setActivated(false), 1600);
             });
-            edit.setOnClickListener(view -> actions.onEdit(message));
+            edit.setVisibility(editable ? View.VISIBLE : View.INVISIBLE);
+            edit.setEnabled(editable);
+            edit.setOnClickListener(view -> {
+                if (editable) actions.onEdit(message);
+            });
         }
     }
 

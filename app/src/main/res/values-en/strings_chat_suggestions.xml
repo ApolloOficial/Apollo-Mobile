@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chat_suggestions_diagnosis">
+        <item>Why did the string drop?</item>
+        <item>What causes a hot spot?</item>
+        <item>Does dirt cut output much?</item>
+        <item>How to find a bad MC4?</item>
+        <item>What is an inverter fault?</item>
+        <item>Does shade hit the whole string?</item>
+        <item>Why did health drop?</item>
+        <item>How to spot a cracked panel?</item>
+        <item>What is PID on a panel?</item>
+        <item>Inverter is off, now what?</item>
+    </string-array>
+    <string-array name="chat_suggestions_maintenance">
+        <item>How to clean a panel?</item>
+        <item>When to do preventive work?</item>
+        <item>What goes in the report?</item>
+        <item>Which PPE should I use?</item>
+        <item>How to replace a connector?</item>
+        <item>Can I wash with cold water?</item>
+        <item>How to measure string voltage?</item>
+        <item>What to check before a work order?</item>
+        <item>When to replace a panel?</item>
+        <item>How to avoid electric shock?</item>
+    </string-array>
+    <string-array name="chat_suggestions_panels">
+        <item>What is a string?</item>
+        <item>What is MPPT?</item>
+        <item>How much does a panel degrade?</item>
+        <item>How long does a panel last?</item>
+        <item>What is rated power?</item>
+        <item>Is an old panel still useful?</item>
+        <item>What is Pmax?</item>
+        <item>What does the inverter do?</item>
+        <item>Mono or polycrystalline?</item>
+        <item>What does the panel label say?</item>
+    </string-array>
+    <string-array name="chat_suggestions_app">
+        <item>How to activate a panel?</item>
+        <item>How to report a problem?</item>
+        <item>How to scan a panel?</item>
+        <item>Label is worn out, now what?</item>
+        <item>How to close a work order?</item>
+        <item>How to see the history?</item>
+        <item>How does health work?</item>
+        <item>How to deactivate a panel?</item>
+        <item>Does it work offline?</item>
+        <item>What is relocation?</item>
+    </string-array>
+</resources>
