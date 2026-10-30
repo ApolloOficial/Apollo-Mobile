@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chat_suggestions_diagnosis">
+        <item>¿Por qué cayó la string?</item>
+        <item>¿Qué causa un punto caliente?</item>
+        <item>¿La suciedad reduce mucho?</item>
+        <item>¿Cómo hallar un MC4 malo?</item>
+        <item>¿Qué es una falla del inversor?</item>
+        <item>¿La sombra afecta a toda la string?</item>
+        <item>¿Por qué bajó la salud?</item>
+        <item>¿Cómo ver si la placa se rajó?</item>
+        <item>¿Qué es PID en la placa?</item>
+        <item>El inversor se apagó, ¿y ahora?</item>
+    </string-array>
+    <string-array name="chat_suggestions_maintenance">
+        <item>¿Cómo limpiar la placa?</item>
+        <item>¿Cuándo hacer preventiva?</item>
+        <item>¿Qué revisar en el informe?</item>
+        <item>¿Qué EPP usar?</item>
+        <item>¿Cómo cambiar un conector?</item>
+        <item>¿Puedo lavar con agua fría?</item>
+        <item>¿Cómo medir la tensión de la string?</item>
+        <item>¿Qué revisar antes de una OT?</item>
+        <item>¿Cuándo cambiar la placa?</item>
+        <item>¿Cómo evitar una descarga eléctrica?</item>
+    </string-array>
+    <string-array name="chat_suggestions_panels">
+        <item>¿Qué es una string?</item>
+        <item>¿Qué es MPPT?</item>
+        <item>¿Cuánto se degrada la placa al año?</item>
+        <item>¿Cuánto dura una placa?</item>
+        <item>¿Qué es la potencia nominal?</item>
+        <item>¿Una placa vieja aún sirve?</item>
+        <item>¿Qué es Pmax?</item>
+        <item>¿Para qué sirve el inversor?</item>
+        <item>¿Monocristalina o poli?</item>
+        <item>¿Qué dice la etiqueta de la placa?</item>
+    </string-array>
+    <string-array name="chat_suggestions_app">
+        <item>¿Cómo activar una placa?</item>
+        <item>¿Cómo reportar un problema?</item>
+        <item>¿Cómo escanear una placa?</item>
+        <item>Etiqueta borrada, ¿y ahora?</item>
+        <item>¿Cómo cerrar una OT?</item>
+        <item>¿Cómo ver el historial?</item>
+        <item>¿Cómo funciona la salud?</item>
+        <item>¿Cómo desactivar una placa?</item>
+        <item>¿Funciona sin internet?</item>
+        <item>¿Qué es la reubicación?</item>
+    </string-array>
+</resources>

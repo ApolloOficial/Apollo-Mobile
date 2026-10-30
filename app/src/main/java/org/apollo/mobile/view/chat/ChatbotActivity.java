@@ -43,6 +43,7 @@ public final class ChatbotActivity extends AppCompatActivity {
     private EditText initialInput;
     private EditText conversationEditor;
     private SpeechReader speechReader;
+    private static final int SUGGESTION_COUNT = 4;
     private SuggestionCarousel suggestionCarousel;
     private ChatMessage speakingMessage;
     private String sessionId;
@@ -167,13 +168,7 @@ public final class ChatbotActivity extends AppCompatActivity {
 
         suggestionCarousel = new SuggestionCarousel(
                 findViewById(R.id.cgSuggestions),
-                new String[]{
-                        getString(R.string.chat_chip_board_error),
-                        getString(R.string.chat_chip_technical_question),
-                        getString(R.string.chat_chip_activate_board),
-                        getString(R.string.chat_chip_scan_board),
-                        getString(R.string.chat_chip_maintenance_history)
-                },
+                new SuggestionPicker(this).pick(SUGGESTION_COUNT),
                 this::sendMessage);
     }
 
@@ -200,6 +195,7 @@ public final class ChatbotActivity extends AppCompatActivity {
         }
         waitingReply = true;
         showConversation();
+        adapter.setEditable(false);
         adapter.add(ChatMessage.user(text));
         adapter.add(ChatMessage.typing());
         scrollToEnd();
@@ -226,6 +222,9 @@ public final class ChatbotActivity extends AppCompatActivity {
                     return;
                 }
                 if (error.getType() == ChatError.Type.SESSION_EXPIRED) {
+                    adapter.removeTyping();
+                    waitingReply = false;
+                    adapter.setEditable(true);
                     org.apollo.mobile.view.common.AppSheets.sessionExpired(ChatbotActivity.this);
                     return;
                 }
@@ -241,6 +240,7 @@ public final class ChatbotActivity extends AppCompatActivity {
         adapter.removeTyping();
         adapter.add(ChatMessage.bot(text, sources));
         waitingReply = false;
+        adapter.setEditable(true);
         scrollToEnd();
     }
 

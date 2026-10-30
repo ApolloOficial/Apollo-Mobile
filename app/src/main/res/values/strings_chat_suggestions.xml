@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chat_suggestions_diagnosis">
+        <item>Por que a string caiu?</item>
+        <item>O que causa ponto quente?</item>
+        <item>Placa suja perde muito?</item>
+        <item>Como achar um MC4 ruim?</item>
+        <item>O que é falha no inversor?</item>
+        <item>Sombra afeta a string toda?</item>
+        <item>Por que a saúde baixou?</item>
+        <item>Como ver se a placa trincou?</item>
+        <item>O que é PID na placa?</item>
+        <item>Inversor desligou, e agora?</item>
+    </string-array>
+    <string-array name="chat_suggestions_maintenance">
+        <item>Como limpar a placa?</item>
+        <item>Quando fazer preventiva?</item>
+        <item>O que checar no laudo?</item>
+        <item>Quais EPIs usar?</item>
+        <item>Como trocar um conector?</item>
+        <item>Posso lavar com água fria?</item>
+        <item>Como medir tensão da string?</item>
+        <item>O que fazer antes de abrir a OS?</item>
+        <item>Quando trocar a placa?</item>
+        <item>Como evitar choque elétrico?</item>
+    </string-array>
+    <string-array name="chat_suggestions_panels">
+        <item>O que é uma string?</item>
+        <item>O que é MPPT?</item>
+        <item>Quanto a placa degrada por ano?</item>
+        <item>Quanto dura uma placa?</item>
+        <item>O que é potência nominal?</item>
+        <item>Placa antiga ainda serve?</item>
+        <item>O que é Pmax?</item>
+        <item>Para que serve o inversor?</item>
+        <item>Monocristalina ou poli?</item>
+        <item>O que diz a etiqueta da placa?</item>
+    </string-array>
+    <string-array name="chat_suggestions_app">
+        <item>Como ativar uma placa?</item>
+        <item>Como relatar um problema?</item>
+        <item>Como escanear uma placa?</item>
+        <item>Etiqueta apagada, e agora?</item>
+        <item>Como concluir uma OS?</item>
+        <item>Como ver o histórico?</item>
+        <item>Como funciona a saúde?</item>
+        <item>Como desativar uma placa?</item>
+        <item>Funciona sem internet?</item>
+        <item>O que é realocação?</item>
+    </string-array>
+</resources>
