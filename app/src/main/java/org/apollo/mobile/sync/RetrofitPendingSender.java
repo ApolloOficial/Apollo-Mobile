@@ -27,13 +27,13 @@ public final class RetrofitPendingSender implements PendingSender {
             Call<ResponseBody> call;
             switch (action.getMethod()) {
                 case "PUT":
-                    call = service.put(action.getPath(), body);
+                    call = service.put(action.getPath(), action.getId(), body);
                     break;
                 case "PATCH":
-                    call = service.patch(action.getPath(), body);
+                    call = service.patch(action.getPath(), action.getId(), body);
                     break;
                 default:
-                    call = service.post(action.getPath(), body);
+                    call = service.post(action.getPath(), action.getId(), body);
                     break;
             }
             Response<ResponseBody> response = call.execute();
