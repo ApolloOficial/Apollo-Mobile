@@ -268,10 +268,11 @@ public final class SettingsActivity extends AppCompatActivity {
     private void confirmLogout() {
         org.apollo.mobile.view.common.AppSheets.message(this, getString(R.string.settings_logout_title),
                 org.apollo.mobile.view.common.Tr.t("Tem certeza que deseja sair? Certifique-se de que não há nenhum registro pendente de sincronização."),
-                getString(R.string.settings_logout_confirm), () -> {
-                    SessionManagerFactory.create(getApplicationContext()).logout();
-                    SettingsUi.goToLogin(this);
-                }, getString(R.string.settings_cancel), null);
+                getString(R.string.settings_logout_confirm), () ->
+                        org.apollo.mobile.push.PushTokenRegistrar.revoke(getApplicationContext(), () -> {
+                            SessionManagerFactory.create(getApplicationContext()).logout();
+                            SettingsUi.goToLogin(this);
+                        }), getString(R.string.settings_cancel), null);
     }
 
     private static String blankTo(String value, String fallback) {

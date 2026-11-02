@@ -116,6 +116,7 @@ public final class HomeActivity extends AppCompatActivity {
         findViewById(R.id.btnNextAttention).setOnClickListener(
                 view -> Motion.slideSwap(attentionCard, true, () -> showAttention(attentionIndex + 1)));
 
+        org.apollo.mobile.push.PushBootstrap.start(this);
         loadHome();
     }
 
