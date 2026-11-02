@@ -100,6 +100,7 @@ public final class ApiClient {
                     }
                     return chain.proceed(request);
                 })
+                .addInterceptor(new IdempotencyKeyInterceptor())
                 .addInterceptor(
                         new AuthInterceptor(
                                 new EncryptedSessionStorage(context)
