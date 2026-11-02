@@ -617,6 +617,7 @@
     <string name="report_send">Enviar reporte</string>
     <string name="report_sending">Enviando...</string>
     <string name="report_sent">Reporte enviado. El operador fue avisado.</string>
+    <string name="report_saved_offline">Sin conexión. Reporte guardado en el dispositivo; sincronízalo desde la pantalla de inicio cuando vuelva la red.</string>
     <string name="report_pick_severity">Elige la severidad.</string>
     <string name="report_pick_type">Elige el tipo de problema.</string>
     <string name="report_write_description">Describe lo que viste en la placa.</string>

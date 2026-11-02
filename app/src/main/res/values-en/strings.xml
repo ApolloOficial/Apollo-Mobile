@@ -617,6 +617,7 @@
     <string name="report_send">Send report</string>
     <string name="report_sending">Sending...</string>
     <string name="report_sent">Report sent. The operator has been notified.</string>
+    <string name="report_saved_offline">No connection. Report saved on this device; sync it from the home screen when the network is back.</string>
     <string name="report_pick_severity">Choose the severity.</string>
     <string name="report_pick_type">Choose the issue type.</string>
     <string name="report_write_description">Describe what you saw on the panel.</string>

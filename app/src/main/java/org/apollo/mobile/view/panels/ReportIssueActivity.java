@@ -8,17 +8,20 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.chip.ChipGroup;
+import com.google.gson.Gson;
 
 import org.apollo.mobile.R;
 import org.apollo.mobile.panels.error.PanelsError;
 import org.apollo.mobile.panels.gateway.PanelIssueBody;
 import org.apollo.mobile.panels.gateway.PanelsGateway;
 import org.apollo.mobile.panels.gateway.PanelsGatewayFactory;
+import org.apollo.mobile.sync.PendingSyncFactory;
 
 public final class ReportIssueActivity extends AppCompatActivity {
     static final String EXTRA_BARCODE = "barcode";
     static final String EXTRA_SERIAL = "serial";
 
+    private static final String REPORT_PATH = "api/v1/panels/report-issue";
     private static final String[] SEVERITY_VALUES = {"BAIXA", "MEDIA", "ALTA", "CRITICA"};
     private final String[] SEVERITY_LABELS = {org.apollo.mobile.view.common.Tr.t("Baixa"), org.apollo.mobile.view.common.Tr.t("Média"), org.apollo.mobile.view.common.Tr.t("Alta"), org.apollo.mobile.view.common.Tr.t("Crítica")};
     private static final String[] TYPE_VALUES = {"DANO_FISICO", "SUJIDADE", "PONTO_QUENTE", "CONEXAO"};
@@ -131,10 +134,25 @@ public final class ReportIssueActivity extends AppCompatActivity {
                 if (isFinishing() || isDestroyed()) {
                     return;
                 }
+                if (error.getType() == PanelsError.Type.NETWORK && saveOffline(body)) {
+                    org.apollo.mobile.tracking.lifecycle.TrackingForm.succeeded(ReportIssueActivity.this);
+                    org.apollo.mobile.view.common.AppToast.info(ReportIssueActivity.this, R.string.report_saved_offline);
+                    send.postDelayed(ReportIssueActivity.this::finish, 1400);
+                    return;
+                }
                 setSending(false);
                 PanelsUi.handleFailure(ReportIssueActivity.this, error);
             }
         });
+    }
+
+    private boolean saveOffline(PanelIssueBody body) {
+        try {
+            PendingSyncFactory.queue(getApplicationContext()).enqueue("POST", REPORT_PATH, new Gson().toJson(body));
+            return true;
+        } catch (RuntimeException exception) {
+            return false;
+        }
     }
 
     private void setSending(boolean sending) {
