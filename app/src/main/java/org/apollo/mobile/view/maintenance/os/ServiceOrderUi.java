@@ -4,8 +4,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
-final class ServiceOrderUi {
+public final class ServiceOrderUi {
     private ServiceOrderUi() {
+    }
+
+    private static final java.time.ZoneId ZONE = java.time.ZoneId.of("America/Sao_Paulo");
+
+    public static LocalDateTime local(String value) {
+        if (value == null || value.trim().isEmpty()) return null;
+        String text = value.trim().replace(' ', 'T');
+        try {
+            return java.time.OffsetDateTime.parse(text).atZoneSameInstant(ZONE).toLocalDateTime();
+        } catch (DateTimeParseException ignored) {
+            try {
+                return LocalDateTime.parse(text);
+            } catch (DateTimeParseException ignoredToo) {
+                return null;
+            }
+        }
     }
 
     static String status(String value) {
@@ -32,20 +48,16 @@ final class ServiceOrderUi {
 
     static String date(String value) {
         if (value == null || value.trim().isEmpty()) return "-";
-        try {
-            return LocalDateTime.parse(value).format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-        } catch (DateTimeParseException ignored) {
-            return value.length() >= 10 ? value.substring(0, 10) : value;
-        }
+        LocalDateTime moment = local(value);
+        if (moment != null) return moment.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+        return value.length() >= 10 ? value.substring(0, 10) : value;
     }
 
     static String dateTime(String value) {
         if (value == null || value.trim().isEmpty()) return null;
-        try {
-            return LocalDateTime.parse(value).format(DateTimeFormatter.ofPattern("dd/MM/yyyy '·' HH:mm"));
-        } catch (DateTimeParseException ignored) {
-            return date(value);
-        }
+        LocalDateTime moment = local(value);
+        if (moment != null) return moment.format(DateTimeFormatter.ofPattern("dd/MM/yyyy '·' HH:mm"));
+        return date(value);
     }
 
     static CharSequence boldLabel(android.content.Context context, String text) {

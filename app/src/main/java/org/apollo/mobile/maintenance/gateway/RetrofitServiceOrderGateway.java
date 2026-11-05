@@ -280,8 +280,8 @@ public final class RetrofitServiceOrderGateway implements ServiceOrderGateway {
     }
 
     @Override
-    public void complete(long id, String report, double laborCost, Callback<Order> callback) {
-        enqueueOrder(api.complete(id, new CompleteBody(report.trim(), Math.max(0.0, laborCost))),
+    public void complete(long id, String report, Callback<Order> callback) {
+        enqueueOrder(api.complete(id, new CompleteBody(report.trim())),
                 tracked(callback, "complete_work_order", id));
     }
 
@@ -298,6 +298,11 @@ public final class RetrofitServiceOrderGateway implements ServiceOrderGateway {
                 callback.onFailure(error);
             }
         };
+    }
+
+    @Override
+    public void requestCancellation(long id, String reason, Callback<Order> callback) {
+        enqueueOrder(api.requestCancellation(id, new ServiceOrderModels.CancellationRequestBody(reason.trim())), callback);
     }
 
     private void enqueueOrder(Call<Order> call, Callback<Order> callback) {

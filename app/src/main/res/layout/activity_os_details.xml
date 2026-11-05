@@ -218,6 +218,29 @@
                 android:layout_height="@dimen/space_52"
                 android:layout_marginTop="@dimen/space_12"
                 android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/btnRequestCancel"
+                style="@style/apollo_label3"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/space_40"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/space_16"
+                android:background="?attr/selectableItemBackground"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/space_16"
+                android:textColor="@color/error_one"
+                android:visibility="gone" />
+
+            <TextView
+                android:id="@+id/tvCancelRequested"
+                style="@style/apollo_body4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/space_16"
+                android:gravity="center"
+                android:textColor="@color/neutral_gray"
+                android:visibility="gone" />
             </LinearLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

@@ -1,5 +1,6 @@
 package org.apollo.mobile.maintenance.api;
 
+import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.CancellationRequestBody;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.CompleteBody;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.MaintenanceType;
 import org.apollo.mobile.maintenance.gateway.ServiceOrderModels.Order;
@@ -14,6 +15,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -40,6 +42,9 @@ public interface ServiceOrderApiService {
 
     @PATCH("api/v1/maintenance-registers/{id}/complete")
     Call<Order> complete(@Path("id") long id, @Body CompleteBody body);
+
+    @POST("api/v1/maintenance-registers/{id}/cancellation-request")
+    Call<Order> requestCancellation(@Path("id") long id, @Body CancellationRequestBody body);
 
     @GET("api/v1/warnings/{id}")
     Call<Warning> getWarning(@Path("id") long id);

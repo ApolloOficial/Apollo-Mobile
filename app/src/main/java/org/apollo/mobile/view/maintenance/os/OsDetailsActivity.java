@@ -292,20 +292,21 @@ public final class OsDetailsActivity extends AppCompatActivity {
         reportCard.setVisibility(hasReport ? View.VISIBLE : View.GONE);
         if (hasReport) {
             int cut = report.indexOf(CompleteMaintenanceActivity.REPORT_SEPARATOR);
-            ((TextView) findViewById(R.id.tvReport)).setText(boldCost((cut > 0 ? report.substring(0, cut) : report).trim()));
+            ((TextView) findViewById(R.id.tvReport)).setText(withoutCost((cut > 0 ? report.substring(0, cut) : report).trim()));
         }
         if (hasSummary) Motion.fadeUp(card, 120);
         if (hasReport) Motion.fadeUp(reportCard, 180);
     }
 
-    private CharSequence boldCost(String report) {
-        android.text.SpannableString text = new android.text.SpannableString(report);
-        int start = report.lastIndexOf(CompleteMaintenanceActivity.COST_LABEL);
-        if (start >= 0) {
-            text.setSpan(new android.text.style.StyleSpan(android.graphics.Typeface.BOLD), start,
-                    start + CompleteMaintenanceActivity.COST_LABEL.length(), android.text.Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+    static String withoutCost(String report) {
+        StringBuilder kept = new StringBuilder();
+        for (String line : report.split("\\R")) {
+            String normalized = line.trim().toLowerCase(java.util.Locale.ROOT);
+            if (normalized.startsWith("custo:") || normalized.startsWith("custo total")) continue;
+            if (kept.length() > 0) kept.append('\n');
+            kept.append(line);
         }
-        return text;
+        return kept.toString().trim();
     }
 
     private void openCondition(Panel panel) {
@@ -398,6 +399,62 @@ public final class OsDetailsActivity extends AppCompatActivity {
         } else {
             primary.setVisibility(View.GONE);
         }
+        configureCancellation(status);
+    }
+
+    private void configureCancellation(String status) {
+        TextView request = findViewById(R.id.btnRequestCancel);
+        TextView requested = findViewById(R.id.tvCancelRequested);
+        boolean active = "ABERTA".equals(status) || "EM_ANDAMENTO".equals(status);
+        String reason = details.getOrder().getCancellationRequestReason();
+        boolean pending = active && reason != null && !reason.trim().isEmpty();
+        request.setVisibility(active && !pending ? View.VISIBLE : View.GONE);
+        request.setText(org.apollo.mobile.view.common.Tr.t("Solicitar cancelamento"));
+        request.setOnClickListener(view -> openCancelRequest());
+        requested.setVisibility(pending ? View.VISIBLE : View.GONE);
+        requested.setText(org.apollo.mobile.view.common.Tr.t("Cancelamento solicitado ao operador. Aguarde a análise."));
+    }
+
+    private void openCancelRequest() {
+        com.google.android.material.bottomsheet.BottomSheetDialog dialog =
+                org.apollo.mobile.view.common.AppSheets.create(this, R.layout.sheet_cancel_request);
+        ((TextView) dialog.findViewById(R.id.tvCancelTitle)).setText(org.apollo.mobile.view.common.Tr.t("Solicitar cancelamento"));
+        ((TextView) dialog.findViewById(R.id.tvCancelMessage)).setText(
+                org.apollo.mobile.view.common.Tr.t("O operador responsável recebe o pedido e decide se cancela a OS."));
+        android.widget.EditText reason = dialog.findViewById(R.id.etCancelReason);
+        TextView send = dialog.findViewById(R.id.btnSendCancel);
+        reason.setHint(org.apollo.mobile.view.common.Tr.t("Explique o motivo do cancelamento"));
+        send.setText(org.apollo.mobile.view.common.Tr.t("Enviar ao operador"));
+        dialog.findViewById(R.id.btnCloseSheet).setOnClickListener(v -> dialog.dismiss());
+        reason.addTextChangedListener(new android.text.TextWatcher() {
+            @Override public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override public void onTextChanged(CharSequence s, int start, int before, int count) {
+                send.setEnabled(s.toString().trim().length() > 0);
+            }
+            @Override public void afterTextChanged(android.text.Editable s) { }
+        });
+        send.setOnClickListener(v -> {
+            send.setEnabled(false);
+            gateway.requestCancellation(orderId, reason.getText().toString(), new ServiceOrderGateway.Callback<Order>() {
+                @Override
+                public void onSuccess(Order value) {
+                    if (isFinishing() || isDestroyed()) return;
+                    dialog.dismiss();
+                    org.apollo.mobile.view.common.AppToast.success(OsDetailsActivity.this,
+                            org.apollo.mobile.view.common.Tr.t("Solicitação enviada ao operador."));
+                    load();
+                }
+
+                @Override
+                public void onFailure(org.apollo.mobile.maintenance.gateway.ServiceOrderError error) {
+                    if (isFinishing() || isDestroyed()) return;
+                    send.setEnabled(true);
+                    org.apollo.mobile.view.common.AppToast.error(OsDetailsActivity.this,
+                            org.apollo.mobile.view.common.Tr.t("Não foi possível enviar a solicitação."));
+                }
+            });
+        });
+        dialog.show();
     }
 
     private void openScanner() {
