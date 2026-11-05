@@ -63,6 +63,9 @@ public class ScannerActivity extends AppCompatActivity {
     public static final String EXTRA_ORDER_ID = OsDetailsActivity.EXTRA_ORDER_ID;
 
     private final AtomicBoolean busy = new AtomicBoolean(false);
+    private static final int REQUIRED_READS = 3;
+    private String candidate;
+    private int candidateReads;
 
     private long orderId = -1L;
     private Details orderDetails;
@@ -184,28 +187,69 @@ public class ScannerActivity extends AppCompatActivity {
             proxy.close();
             return;
         }
-        InputImage image = InputImage.fromMediaImage(proxy.getImage(), proxy.getImageInfo().getRotationDegrees());
+        int rotation = proxy.getImageInfo().getRotationDegrees();
+        boolean swap = rotation == 90 || rotation == 270;
+        int imageWidth = swap ? proxy.getHeight() : proxy.getWidth();
+        int imageHeight = swap ? proxy.getWidth() : proxy.getHeight();
+        InputImage image = InputImage.fromMediaImage(proxy.getImage(), rotation);
         scanner.process(image)
-                .addOnSuccessListener(this::onCodes)
+                .addOnSuccessListener(codes -> onCodes(codes, imageWidth, imageHeight))
                 .addOnCompleteListener(task -> proxy.close());
     }
 
-    private void onCodes(List<Barcode> codes) {
+    private void onCodes(List<Barcode> codes, int imageWidth, int imageHeight) {
+        String value = centeredCode(codes, imageWidth, imageHeight);
+        if (value == null) {
+            candidate = null;
+            candidateReads = 0;
+            return;
+        }
+        if (value.equals(candidate)) {
+            candidateReads++;
+        } else {
+            candidate = value;
+            candidateReads = 1;
+        }
+        if (candidateReads < REQUIRED_READS) return;
+        candidate = null;
+        candidateReads = 0;
+        if (!busy.compareAndSet(false, true)) return;
+        java.util.Map<String, String> scanProperties = new java.util.HashMap<>();
+        scanProperties.put("input_method", "camera");
+        if (isOrderMode()) scanProperties.put("work_order_id", Long.toString(orderId));
+        TrackingManager.track(TrackingEvents.BARCODE_SCANNED, "ScannerActivity", scanProperties);
+        if (isOrderMode()) {
+            runOnUiThread(() -> identifyByCode(value));
+        } else {
+            runOnUiThread(() -> lookup(value, false));
+        }
+    }
+
+    private String centeredCode(List<Barcode> codes, int imageWidth, int imageHeight) {
+        View preview = findViewById(R.id.previewView);
+        ScannerOverlayView overlay = findViewById(R.id.scannerOverlay);
+        if (preview == null || overlay == null || imageWidth <= 0 || imageHeight <= 0) return null;
+        android.graphics.RectF frame = overlay.frameRect();
+        if (frame.isEmpty()) return null;
+        float scale = Math.max(preview.getWidth() / (float) imageWidth, preview.getHeight() / (float) imageHeight);
+        float offsetX = (preview.getWidth() - imageWidth * scale) / 2f;
+        float offsetY = (preview.getHeight() - imageHeight * scale) / 2f;
+        String best = null;
+        double bestDistance = Double.MAX_VALUE;
         for (Barcode code : codes) {
             String value = ScanCode.normalize(code.getRawValue());
-            if (value != null && busy.compareAndSet(false, true)) {
-                java.util.Map<String, String> scanProperties = new java.util.HashMap<>();
-                scanProperties.put("input_method", "camera");
-                if (isOrderMode()) scanProperties.put("work_order_id", Long.toString(orderId));
-                TrackingManager.track(TrackingEvents.BARCODE_SCANNED, "ScannerActivity", scanProperties);
-                if (isOrderMode()) {
-                    runOnUiThread(() -> identifyByCode(value));
-                } else {
-                    runOnUiThread(() -> lookup(value, false));
-                }
-                return;
+            android.graphics.Rect box = code.getBoundingBox();
+            if (value == null || box == null) continue;
+            float x = box.exactCenterX() * scale + offsetX;
+            float y = box.exactCenterY() * scale + offsetY;
+            if (!frame.contains(x, y)) continue;
+            double distance = Math.hypot(x - frame.centerX(), y - frame.centerY());
+            if (distance < bestDistance) {
+                bestDistance = distance;
+                best = value;
             }
         }
+        return best;
     }
 
     private void lookup(String code, boolean allowSerial) {

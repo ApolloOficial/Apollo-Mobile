@@ -13,7 +13,8 @@ public interface ServiceOrderGateway {
     void targetLabel(long warningId, Callback<String> callback);
     void details(long id, Callback<Details> callback);
     void start(long id, Callback<Order> callback);
-    void complete(long id, String report, double laborCost, Callback<Order> callback);
+    void complete(long id, String report, Callback<Order> callback);
+    void requestCancellation(long id, String reason, Callback<Order> callback);
 
     interface Callback<T> {
         void onSuccess(T value);

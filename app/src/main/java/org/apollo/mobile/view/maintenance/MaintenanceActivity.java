@@ -289,7 +289,9 @@ public final class MaintenanceActivity extends AppCompatActivity {
     private java.time.LocalDate parseDate(String value) {
         if (value == null || value.trim().isEmpty()) return null;
         try {
-            return LocalDateTime.parse(value).toLocalDate();
+            LocalDateTime moment = org.apollo.mobile.view.maintenance.os.ServiceOrderUi.local(value);
+            if (moment != null) return moment.toLocalDate();
+            return java.time.LocalDate.parse(value.length() >= 10 ? value.substring(0, 10) : value);
         } catch (DateTimeParseException ignored) {
             try {
                 return java.time.LocalDate.parse(value.length() >= 10 ? value.substring(0, 10) : value);
@@ -322,8 +324,9 @@ public final class MaintenanceActivity extends AppCompatActivity {
     private String formatDate(String value) {
         if (value == null || value.trim().isEmpty()) return "-";
         try {
-            return LocalDateTime.parse(value)
-                    .format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            LocalDateTime moment = org.apollo.mobile.view.maintenance.os.ServiceOrderUi.local(value);
+            if (moment != null) return moment.format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+            return value.length() >= 10 ? value.substring(0, 10) : value;
         } catch (DateTimeParseException ignored) {
             return value.length() >= 10 ? value.substring(0, 10) : value;
         }

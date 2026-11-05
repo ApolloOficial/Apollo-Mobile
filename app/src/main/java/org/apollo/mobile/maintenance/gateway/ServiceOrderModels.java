@@ -51,6 +51,7 @@ public final class ServiceOrderModels {
         private String dueDate;
         private String startedAt;
         private String concludedAt;
+        private String cancellationRequestReason;
 
         public long getId() { return id; }
         public Long getWarningId() { return warningId; }
@@ -65,6 +66,7 @@ public final class ServiceOrderModels {
         public String getDueDate() { return dueDate; }
         public String getStartedAt() { return startedAt; }
         public String getConcludedAt() { return concludedAt; }
+        public String getCancellationRequestReason() { return cancellationRequestReason; }
     }
 
     public static final class Warning {
@@ -119,13 +121,19 @@ public final class ServiceOrderModels {
         public String getOperatingStats() { return operatingStats; }
     }
 
+    public static final class CancellationRequestBody {
+        private final String reason;
+
+        public CancellationRequestBody(String reason) {
+            this.reason = reason;
+        }
+    }
+
     public static final class CompleteBody {
         private final String technicalReport;
-        private final double laborCost;
 
-        public CompleteBody(String technicalReport, double laborCost) {
+        public CompleteBody(String technicalReport) {
             this.technicalReport = technicalReport;
-            this.laborCost = laborCost;
         }
     }
 
